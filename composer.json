@@ -1,0 +1,15 @@
+{
+    "name": "joandev/moon",
+    "autoload": {
+        "psr-4": {
+            "Moon\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Papamundodev",
+            "email": "papamundodev@gmail.com"
+        }
+    ],
+    "require": {}
+}
