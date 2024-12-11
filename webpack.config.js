@@ -1,6 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
+const fs = require('fs');
 
 module.exports = {
   entry: {
@@ -14,6 +14,21 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css'
     }),
+    {
+      apply: (compiler) => {
+        compiler.hooks.done.tap('WriteHashPlugin', (stats) => {
+          const compilationStatus = {
+            hash: stats.hash,
+            timestamp: new Date().getTime()
+          };
+          
+          fs.writeFileSync(
+            path.join(__dirname, 'assets/build/compilation-status.json'),
+            JSON.stringify(compilationStatus)
+          );
+        });
+      }
+    }
   ],
   output: {
     path: path.resolve(__dirname, 'assets/build'),
