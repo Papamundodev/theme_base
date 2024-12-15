@@ -1,10 +1,88 @@
-html{
+@use 'typography.scss';
+@use 'card.scss';
+@use 'nav.scss';
+@use 'posts.scss';
+
+:root{
+    --card-width: 150px;
+    --card-height: 100%;
+}
+
+body{
+    min-height: 100vh;
+    background-attachment: fixed;
+    background-origin: border-box;
+    background-size: 100%;
+    background-image: url('http://moon.local/wp-content/uploads/2024/12/fantasy-style-galaxy-background-scaled.jpg');
+}
+
+@media (max-width: 1512px) {
     body{
-        background-color: #2D2D2D;
+       background-size: initial;
     }
 }
 
-main{
-    background-color: #2D2D2D;
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+main {
+    color: #fff;
     min-height: 100vh;
+    padding-top: 5em;
+}
+
+.section-container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@media (max-width: 1400px) {
+    .section-container{
+        max-width: 912px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .section-container{
+        max-width: 768px;
+    }
+}
+
+@media (max-width: 912px) {
+    .section-container{
+        max-width: 512px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .section-container{
+        max-width: 100%;
+        padding: 0 2.5em;
+    }
+}
+
+.title-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2em 0;
+}
+
+.footer__copyright{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2em 0;
+    color: #fff;
 }
