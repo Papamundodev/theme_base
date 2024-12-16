@@ -52,6 +52,7 @@ function no_paged_cards($query) {
 }
 add_action( 'pre_get_posts', 'no_paged_cards' );
 
+
 function get_post_image($post){
     if (function_exists('get_field')) {  
         $default_image = get_field('default_image', 'option') ?? get_site_icon_url();

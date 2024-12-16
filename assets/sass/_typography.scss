@@ -15,19 +15,21 @@ body{
     font-size: 8em;
     font-weight: 600;
     color: transparent;
+    transform: translateY(20%);
 }
 
 .nav__menu__item__link{
-    font-size: 1.8rem;
-    font-weight: 600;
+    font-size: 1.3rem;
+    font-weight: 400;
     color: transparent;
     text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .title-container__title{
     font-size: 4em;
     font-weight: 600;
-    color: white;
+    color: var(--white-color);
     margin: 0;
 }
 
@@ -39,10 +41,10 @@ body{
     a{
         font-size: 1em;
         font-weight: 600;
-        color: white;
+        color: var(--white-color);
         padding: .8em .5em .5em;
         border-radius: 0.5em;
-        background-color: rgba(124, 140, 178, .8);
+        background-color: var(--background-transparent-color);
         min-width: 10em;
         text-align: center;
     }
@@ -54,8 +56,11 @@ body{
     .site-title__link{
         font-size: 4em;
     }
+    .nav__menu__item{
+        padding: 0 .5em;
+    }
     .nav__menu__item__link{
-        font-size: 1.5em;
+        font-size: .9em;
     }
     .title-container__title{
         font-size: 2em;

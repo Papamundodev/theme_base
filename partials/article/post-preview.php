@@ -2,7 +2,7 @@
 $post = $args['post'];
 $title = get_the_title($post);
 $content = get_the_content($post);
-$content_trimmed = wp_trim_words($content, 100);
+$content_trimmed = wp_trim_words($content, 50);
 $default_class = get_the_post_thumbnail_url($post) ? '' : 'post-preview__image--default';
 ?>
 <a href="<?=get_permalink($post); ?>" class="post-preview__link">

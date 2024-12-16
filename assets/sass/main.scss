@@ -2,10 +2,40 @@
 @use 'card.scss';
 @use 'nav.scss';
 @use 'posts.scss';
-
+@use 'modal.scss';
 :root{
     --card-width: 150px;
     --card-height: 100%;
+
+    --primary-color: rgba(124, 140, 178, 1);
+    --secondary-color: rgba(23, 33, 57, 1);
+    --white-color: #fff;
+    --black-color: #000;
+    --gray-color: #ccc;
+    --background-transparent-color: rgba(23, 33, 57, .3);
+
+    --box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+html{
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--secondary-color);
+    &::-webkit-scrollbar {
+        width: 10px; /* Ajoutez cette ligne */
+        background-color: var(--secondary-color);
+    }
+    
+    /* Styliser le "track" (la piste) */
+    &::-webkit-scrollbar-track {
+        background-color: var(--secondary-color);
+        border-radius: 5px;
+    }
+    
+    /* Styliser le "thumb" (la poignée) */
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--primary-color);
+        border-radius: 5px;
+    }
 }
 
 body{
@@ -22,13 +52,8 @@ body{
     }
 }
 
-a{
-    text-decoration: none;
-    color: inherit;
-}
-
 main {
-    color: #fff;
+    color: var(--white-color);
     min-height: 100vh;
     padding-top: 5em;
 }
@@ -64,12 +89,17 @@ main {
     }
 }
 
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+
 .title-container{
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 
 
 .pagination{
@@ -84,5 +114,6 @@ main {
     justify-content: center;
     align-items: center;
     margin: 2em 0;
-    color: #fff;
+    color: var(--white-color);
 }
+

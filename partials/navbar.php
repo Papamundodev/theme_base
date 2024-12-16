@@ -5,7 +5,7 @@ $theme_location = $args['theme_location'] ?? "header";
 
 ?>
 
-<nav class="nav">
+<nav class="nav <?=$theme_location?>-nav">
 
       <?php $menu_items = \Moon\Base::wp_get_menu_array($theme_location);?>
 
@@ -27,6 +27,5 @@ $theme_location = $args['theme_location'] ?? "header";
           <?php endif; ?>
         <?php endforeach; ?>
       </ul>
-
 
 </nav>

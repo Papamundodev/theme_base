@@ -26,7 +26,10 @@ class Base
     {
         add_action('wp_enqueue_scripts', function () {
             wp_register_script('main',  get_template_directory_uri() . '/assets/build/js/main.js', ['wp-api'], null, true);
-            wp_localize_script('main', 'ajaxurl', [admin_url('admin-ajax.php')]);
+            wp_localize_script('main', 'ajaxurl', array(
+                'ajax_url' => admin_url('admin-ajax.php'),
+                'nonce'    => wp_create_nonce('aas_ajax_nonce'),
+            ));
             wp_enqueue_script('main');
         });
     }
@@ -191,6 +194,7 @@ class Base
      {
          $ajax = new Ajax();
          $ajax->initCreatePost();
+         $ajax->initSearchAutocomplete();
      }
 
      public static function complus_pagination( \WP_Query $query = null) : array
@@ -216,7 +220,55 @@ class Base
      }
 
 
-
+     public static function search_posts( $search_term, $post_types = ['post', 'page' ] ) {
+        global $wpdb;
+    
+        // Sanitize the search term
+        $search_term = sanitize_text_field( $search_term );
+    
+        // Return empty array if search term is empty
+        if ( empty( $search_term ) ) {
+            return array();
+        }
+    
+        // Prepare the LIKE clause
+        $like = '%' . $wpdb->esc_like( $search_term ) . '%';
+    
+        // Build the SQL query
+        $sql = $wpdb->prepare(
+            sprintf("
+            SELECT DISTINCT ID
+            FROM {$wpdb->posts}
+            WHERE post_type IN (%s)
+            AND post_status = 'publish'
+            AND ( post_title LIKE %%s )
+            ", implode(',', array_fill(0, count($post_types), '%s'))),
+            array_merge( $post_types, array( $like, $like ) )
+        );
+    
+        // Get the results
+        $post_ids = $wpdb->get_col( $sql );
+    
+        // If no posts found, return empty array
+        if ( empty( $post_ids ) ) {
+            return array();
+        }
+    
+        $results = [];
+        // Get the posts
+        foreach ($post_types as $post_type) {
+            $posts = [];
+            $posts = get_posts( array(
+                'post__in'       => $post_ids,
+                'post_type'      => $post_type,
+                'post_status'    => 'publish',
+                'posts_per_page' => 10, // Adjust as needed
+                'orderby'        => 'post__in',
+            ) );
+            $results[$post_type] = $posts ?? 'fuck';
+        }
+        return $results;
+    }
 
      /*
      fin
