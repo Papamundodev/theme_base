@@ -1,7 +1,7 @@
 <?php
 
-namespace Moon;
-
+namespace Theme_base;
+    
 class Base
 {
     private string $theme_name;
@@ -18,18 +18,26 @@ class Base
     {
         add_action('wp_enqueue_scripts', function () {
             wp_register_style('main', get_template_directory_uri() . '/assets/build/css/main.css', [], null, 'all');
+            wp_register_style('swiper', get_template_directory_uri() . '/node_modules/swiper/swiper-bundle.min.css', [], null, 'all');
             wp_enqueue_style('main');
+            wp_enqueue_style('swiper');
         });
     }   
 
     public function includeScripts() : void
     {
         add_action('wp_enqueue_scripts', function () {
-            wp_register_script('main',  get_template_directory_uri() . '/assets/build/js/main.js', ['wp-api'], null, true);
+            wp_register_script('popper', get_template_directory_uri() . '/node_modules/@popperjs/core/dist/umd/popper.min.js', [], null, true);
+            wp_register_script('bootstrap', get_template_directory_uri() . '/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js', ['popper'], null, true);
+            wp_register_script('swiper', get_template_directory_uri() . '/node_modules/swiper/swiper-bundle.min.js', [], null, true);
+            wp_register_script('main', get_template_directory_uri() . '/assets/build/js/main.js', ['swiper'], null, true);
             wp_localize_script('main', 'ajaxurl', array(
                 'ajax_url' => admin_url('admin-ajax.php'),
                 'nonce'    => wp_create_nonce('aas_ajax_nonce'),
             ));
+            
+            wp_enqueue_script('popper');
+            wp_enqueue_script('bootstrap');
             wp_enqueue_script('main');
         });
     }
@@ -172,6 +180,7 @@ class Base
                     $children[$m->ID] = array();
                     $children[$m->ID]['ID'] = intval($m->ID);
                     $children[$m->ID]['title'] = $m->title;
+                    $children[$m->ID]['classes'] = $m->classes;
                     $children[$m->ID]['url'] = $m->url;
                     $children[$m->ID]['parent'] = intval($menu_item->ID);
                     $children[$m->ID]['target'] = $m->target;
@@ -184,6 +193,14 @@ class Base
         return $children;
     }
 
+    public static function get_active_class($item) : string
+    {
+        if(in_array('current-menu-item', $item['classes'] ? $item['classes'] : [])){
+            return 'active';
+        }
+        return '';
+    }
+
         /**
      * initAjax
      *
@@ -193,30 +210,7 @@ class Base
      public function initAjax() :void
      {
          $ajax = new Ajax();
-         $ajax->initCreatePost();
          $ajax->initSearchAutocomplete();
-     }
-
-     public static function complus_pagination( \WP_Query $query = null) : array
-     {
-         // When we're on page 1, 'paged' is 0, but we're counting from 1,
-         // so we're using max() to get 1 instead of 0
-         $currentPage = max( 1, get_query_var( 'paged', 1 ) );
- 
-         // This creates an array with all available page numbers, if there
-         // is only *one* page, max_num_pages will return 0, so here we also
-         // use the max() function to make sure we'll always get 1
-         $pages = range( 1, max( 1, $query->max_num_pages ) );
- 
-         // Now, map over $pages and return the page number, the url to that
-         // page and a boolean indicating whether that number is the current page
-         return array_map( function( $page ) use ( $currentPage ) {
-             return [
-                 "isCurrent" => $page == $currentPage,
-                 "page" => $page,
-                 "url" => get_pagenum_link( $page )
-             ];
-         }, $pages );
      }
 
 
@@ -269,6 +263,9 @@ class Base
         }
         return $results;
     }
+
+
+    
 
      /*
      fin

@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*
-Theme Name: Moon
+Theme Name: Theme_base
 Theme URI: https://papamundodev.com/
 Author: Papamundodev
 Author URI: https://papamundodev.com/
@@ -10,5 +10,5 @@ Requires at least: __MIN_WORDPRESS_VERSION__
 Requires PHP: __MIN_PHP_VERSION__
 Version: 1.0
 License: Proprietary
-Text Domain: moon
+Text Domain: theme_base
 */

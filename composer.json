@@ -1,8 +1,8 @@
 {
-    "name": "joandev/moon",
+    "name": "joandev/theme_base",
     "autoload": {
         "psr-4": {
-            "Moon\\": "src/"
+            "Theme_base\\": "src/"
         }
     },
     "authors": [

@@ -1,6 +1,6 @@
 <?php
 
-namespace Moon;
+namespace Theme_base;
 
 class Taxonomy
 {

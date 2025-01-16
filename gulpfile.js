@@ -12,9 +12,14 @@ gulp.task('styles', async function () {
   const autoprefixer = await import('gulp-autoprefixer'); // Dynamic import for autoprefixer
   const cleanCSS = await import('gulp-clean-css'); // Dynamic import for cleanCSS
 
-  return gulp.src('./assets/sass/main.scss')
+  return gulp.src(['./assets/sass/main.scss'])
     .pipe(sourcemaps.init())
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass({
+      includePaths: [
+        './node_modules',
+        './node_modules/bootstrap/scss'  // Ajout explicite du chemin Bootstrap
+      ]
+    }).on('error', sass.logError))
     .pipe(autoprefixer.default()) // Add vendor prefixes
     .pipe(cleanCSS.default({ compatibility: 'ie11' })) // Minify CSS
     .pipe(sourcemaps.write())
@@ -24,10 +29,31 @@ gulp.task('styles', async function () {
 
 // Compile JS
 gulp.task('scripts', function () {
-  return gulp.src('./assets/js/main.js')
-    .pipe(concat('main.js'))   // Concatenate all JS files into one
-    .pipe(webpack(require('./webpack.config.js')))
-    .pipe(uglify())            // Minify the JS file
+  return gulp.src(['./assets/js/main.js'])
+    .pipe(webpack({
+      mode: 'development',
+      output: {
+        filename: 'main.js'
+      },
+      resolve: {
+        modules: ['node_modules']
+      },
+      module: {
+        rules: [
+          {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                presets: ['@babel/preset-env']
+              }
+            }
+          }
+        ]
+      }
+    }))
+    .pipe(uglify()) // Minifier le JS
     .pipe(gulp.dest('./assets/build/js'))
     .pipe(browserSync.stream());
 });
@@ -35,7 +61,7 @@ gulp.task('scripts', function () {
 // Watch for changes and reload the browser
 gulp.task('watch', function () {
   browserSync.init({
-    proxy: "http://moon.local",
+    proxy: "http://portfolio.local/",
     notify: false
   });
 

@@ -1,8 +1,8 @@
 <?php
 
-use Moon\Base;
-use Moon\CustomPostType;
-use Moon\Taxonomy;
+use Theme_base\Base;
+use Theme_base\CustomPostType;
+use Theme_base\Taxonomy;
 
 if (is_file(__DIR__ . '/vendor/autoload.php')) {
     require_once __DIR__ . '/vendor/autoload.php';
@@ -10,7 +10,7 @@ if (is_file(__DIR__ . '/vendor/autoload.php')) {
 
 
 
-$base = new Base('__THEME_NAME__', '__THEME_SLUG__');
+$base = new Base('theme_base', 'theme_base');
 
 $base->themeSupports();
 $base->registerMenus();
@@ -19,12 +19,6 @@ $base->includeScripts();
 $base->addSVGSupport();
 $base->initAjax();
 
-
-$card = new CustomPostType( 'theme_base', 'card', 'Card', 'Cards', 2, 'Card Description' );
-$card->register();
-
-$arcanes = new Taxonomy('theme_base', 'arcanes', 'Arcane', 'Arcanes', array($card->getSlug()));
-$arcanes->associateToCustomPostType(array($card->getSlug()));
 
 
 function pre_debug($data){
@@ -43,14 +37,6 @@ function get_attachment_id_from_url($url) {
     set_post_thumbnail($post, $attachement_id);
     return $attachement_id;
 }
-
-
-function no_paged_cards($query) {
-    if ( $query->is_tax () && $query->is_main_query() ) {
-    $query->set( 'posts_per_page', -1 );
-    }
-}
-add_action( 'pre_get_posts', 'no_paged_cards' );
 
 
 function get_post_image($post){

@@ -1,0 +1,87 @@
+/*--------------------------------------------------------------
+# Carrousel Section
+--------------------------------------------------------------*/
+.carrousels .carrousels-carousel,
+.carrousels .carrousels-slider {
+  overflow: hidden;
+}
+
+.carrousels .carrousel-item {
+  box-sizing: content-box;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.carrousels .carrousel-item .carrousel-img {
+  margin: 0 auto;
+}
+
+.carrousels .carrousel-item h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0 5px 0;
+}
+
+.carrousels .carrousel-item .carrousel-img img {
+  width: 250px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  filter: grayscale(100%);
+}
+
+.carrousels .carrousel-item h4 {
+  font-size: 18px;
+  color: color-mix(in srgb, var(--accent-color), transparent 20%);
+  margin: 1em 0;
+  font-weight: 700;
+    
+}
+
+.carrousels .carrousel-item p {
+  font-style: italic;
+  margin: 0 15px 15px 15px;
+  padding: 20px;
+  background-color: var(--surface-color);
+  position: relative;
+  margin-bottom: 35px;
+  border-radius: 6px;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.carrousels .carrousel-item p::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 20px solid var(--surface-color);
+  border-right: 20px solid transparent;
+  border-left: 20px solid transparent;
+  position: absolute;
+  bottom: -20px;
+  left: calc(50% - 20px);
+}
+
+.carrousels .swiper-wrapper {
+  height: auto;
+}
+
+.carrousels .swiper-pagination {
+  margin-top: 40px;
+  position: relative;
+}
+
+.carrousels .swiper-pagination .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: var(--background-color);
+  opacity: 1;
+  border: 1px solid var(--accent-color);
+}
+
+.carrousels .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: var(--accent-color);
+}

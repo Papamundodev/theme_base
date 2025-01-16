@@ -1,119 +1,203 @@
-@use 'typography.scss';
-@use 'card.scss';
-@use 'nav.scss';
-@use 'posts.scss';
-@use 'modal.scss';
-:root{
-    --card-width: 150px;
-    --card-height: 100%;
+// D'abord les fonctions de Bootstrap
+@import "bootstrap/scss/functions";
 
-    --primary-color: rgba(124, 140, 178, 1);
-    --secondary-color: rgba(23, 33, 57, 1);
-    --white-color: #fff;
-    --black-color: #000;
-    --gray-color: #ccc;
-    --background-transparent-color: rgba(23, 33, 57, .3);
+// Ensuite définir les variables personnalisées de Bootstrap
+$primary: #955c07;
+$theme-colors: (
+  "primary": $primary
+);
 
-    --box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+// Puis importer les variables et mixins de Bootstrap
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+
+// Importer Bootstrap complet
+@import "bootstrap/scss/bootstrap";
+
+// Ensuite vos variables personnalisées
+$grid-columns: 12;
+$grid-gutter-width: 3rem;
+$gutters: (
+  0: 0,
+  1: $grid-gutter-width * .25,
+  2: $grid-gutter-width * .5,
+  3: $grid-gutter-width,
+  4: $grid-gutter-width * 1.5,
+  5: $grid-gutter-width * 3
+);
+
+@import "partials/header/logo";
+@import "partials/social-links";
+@import "partials/header/navbar";
+@import "partials/hero";
+@import "partials/preloader";
+@import "partials/scroll-top";
+@import "partials/header/header";
+@import "partials/carrousel";
+@import "partials/article/post-preview";
+// Vos styles personnalisés ici
+
+
+
+/* Fonts */
+:root {
+    --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --heading-font: "Raleway",  sans-serif;
+    --nav-font: "Poppins",  sans-serif;
+  }
+  
+  /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
+  :root { 
+    --background-color: #ffffff; /* Background color for the entire website, including individual sections */
+    --default-color: #272829; /* Default color used for the majority of the text content across the entire website */
+    --heading-color: #050d18; /* Color for headings, subheadings and title throughout the website */
+    --accent-color: #955c07; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+    --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
+    --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+  }
+  
+  /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
+  :root {
+    --nav-color: #a8a9b4;  /* The default color of the main navmenu links */
+    --nav-hover-color: #955c07; /* Applied to main navmenu links when they are hovered over or active */
+    --nav-mobile-background-color: #040b14; /* Used as the background color for mobile navigation menu */
+    --nav-dropdown-background-color: #040b14; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
+    --nav-dropdown-color: #a8a9b4; /* Used for navigation links of the dropdown items in the navigation menu. */
+    --nav-dropdown-hover-color: #ffffff; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  }
+
+  :root {
+    --accent-darker: color-mix(in oklch, var(--accent-color), black 20%);
+    --accent-transparent: color-mix(in oklch, var(--accent-color), transparent 80%);
+    --border-color: #040b14;
 }
+  /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
 
-html{
-    scrollbar-width: thin;
-    scrollbar-color: var(--primary-color) var(--secondary-color);
-    &::-webkit-scrollbar {
-        width: 10px; /* Ajoutez cette ligne */
-        background-color: var(--secondary-color);
-    }
-    
-    /* Styliser le "track" (la piste) */
-    &::-webkit-scrollbar-track {
-        background-color: var(--secondary-color);
-        border-radius: 5px;
-    }
-    
-    /* Styliser le "thumb" (la poignée) */
-    &::-webkit-scrollbar-thumb {
-        background-color: var(--primary-color);
-        border-radius: 5px;
-    }
-}
+.light-background {
+    --background-color: #f4fafd;
+    --surface-color: #ffffff;
+  }
+  
+  .dark-background {
+    --background-color: #040b14;
+    --default-color: #ffffff;
+    --heading-color: #ffffff;
+    --surface-color: #151f2b;
+    --contrast-color: #ffffff;
+  }
 
-body{
-    min-height: 100vh;
-    background-attachment: fixed;
-    background-origin: border-box;
-    background-size: 100%;
-    background-image: url('http://moon.local/wp-content/uploads/2024/12/fantasy-style-galaxy-background-scaled.jpg');
-}
+  /* Smooth scroll */
+:root {
+    scroll-behavior: smooth;
+  }
 
-@media (max-width: 1512px) {
-    body{
-       background-size: initial;
-    }
-}
-
-main {
-    color: var(--white-color);
-    min-height: 100vh;
-    padding-top: 5em;
-}
-
-.section-container{
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-@media (max-width: 1400px) {
-    .section-container{
-        max-width: 912px;
-    }
-}
-
-@media (max-width: 1200px) {
-    .section-container{
-        max-width: 768px;
-    }
-}
-
-@media (max-width: 912px) {
-    .section-container{
-        max-width: 512px;
-    }
-}
-
-
-@media (max-width: 768px) {
-    .section-container{
-        max-width: 100%;
-        padding: 0 2.5em;
-    }
-}
-
-a{
+  /*--------------------------------------------------------------
+# General Styling & Shared Classes
+--------------------------------------------------------------*/
+body {
+    color: var(--default-color);
+    background-color: var(--background-color);
+    font-family: var(--default-font);
+  }
+  
+  a {
+    color: var(--accent-color);
     text-decoration: none;
-    color: inherit;
+    transition: 0.3s;
+  }
+  
+  a:hover {
+    color: color-mix(in srgb, var(--accent-color), transparent 25%);
+    text-decoration: none;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--heading-color);
+    font-family: var(--heading-font);
+  }
+/*--------------------------------------------------------------
+# Global Page Titles & Breadcrumbs
+--------------------------------------------------------------*/
+.page-title {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  padding: 25px 0;
+  position: relative;
+}
+
+.page-title h1 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.page-title .breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.page-title .breadcrumbs ol li+li {
+  padding-left: 10px;
+}
+
+.page-title .breadcrumbs ol li+li::before {
+  content: "/";
+  display: inline-block;
+  padding-right: 10px;
+  color: color-mix(in srgb, var(--default-color), transparent 80%);
+}
+
+/*--------------------------------------------------------------
+# Global Sections
+--------------------------------------------------------------*/
+section,
+.section {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  padding: 60px 0;
+  overflow: clip;
+}
+
+/*--------------------------------------------------------------
+# Global Section Titles
+--------------------------------------------------------------*/
+.section-title {
+  padding-bottom: 60px;
+  position: relative;
+}
+
+.section-title h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.section-title h2:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: var(--accent-color);
+  left: 0;
+  bottom: 0;
+}
+
+.section-title p {
+  margin-bottom: 0;
 }
 
 
-.title-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-
-.pagination{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 2em 0;
-}
-
-.footer__copyright{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 2em 0;
-    color: var(--white-color);
-}
 
