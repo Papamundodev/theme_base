@@ -9,7 +9,6 @@ z-index: 9997;
 
 .navmenu ul {
 list-style: none;
-padding: 0 0 20px 0;
 margin: 0;
 }
 
@@ -94,7 +93,9 @@ color: var(--accent-color);
 }
 
 .navmenu .dropdown ul {
-position: static;
+position: absolute;
+right: 0;
+width: fit-content;
 display: none;
 z-index: 99;
 padding: 5px 10px;
@@ -111,5 +112,10 @@ background-color: rgba(33, 37, 41, 0.1);
 
 .navmenu .dropdown>.dropdown-active {
 display: block;
-background-color: rgba(33, 37, 41, 0.03);
+background-color: var(--nav-dropdown-background-color);
+border-radius: 10px;
+}
+
+.dropdown a span {
+  margin-inline: 10px;
 }

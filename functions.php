@@ -18,7 +18,7 @@ $base->includeStyles();
 $base->includeScripts();
 $base->addSVGSupport();
 $base->initAjax();
-
+$base->process_contact_form();
 
 
 function pre_debug($data){

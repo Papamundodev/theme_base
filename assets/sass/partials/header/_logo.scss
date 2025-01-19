@@ -1,13 +1,12 @@
 .header .profile-img img {
     margin: 15px auto;
     display: block;
-    width: 120px;
-    border: 8px solid color-mix(in srgb, var(--default-color), transparent 85%);
+    width: 100px;
+    border: 6px solid color-mix(in srgb, var(--default-color), transparent 85%);
   }
   
   .header .logo {
     line-height: 1;
-    margin-bottom: 15px;
   }
   
   .header .logo img {

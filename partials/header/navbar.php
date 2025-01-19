@@ -7,8 +7,8 @@ $theme_location = $args['theme_location'] ?? "header";
 
 <?php $menu_items = \Theme_base\Base::wp_get_menu_array($theme_location);?>
 <?php if(is_array($menu_items) && count($menu_items) > 0): ?>
-<nav id="navmenu" class="navmenu">
-  <ul>
+<nav id="navmenu" class="navmenu m-0 p-0 ms-lg-auto">
+  <ul class="d-flex flex-column flex-lg-row text-center align-items-center text-lg-start m-0 p-0">
     <?php foreach($menu_items as $item): ?>
       <?php if(empty($item['children'])):?>
         <li class="<?= \Theme_base\Base::get_active_class($item) ?>">
@@ -20,7 +20,7 @@ $theme_location = $args['theme_location'] ?? "header";
           ><?=$item['title']?></a>
         </li>
       <?php else: ?>
-        <li class="dropdown"><a href="#"><i class="bi bi-menu-button navicon"></i> <span><?=$item['title']?></span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+        <li class="dropdown"><a href="#"><span><?=$item['title']?></span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
           <ul>
             <?php foreach($item['children'] as $child): ?>
               <li class="<?= \Theme_base\Base::get_active_class($child) ?>">

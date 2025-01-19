@@ -11,22 +11,73 @@ class Base
     {
         $this->theme_name = $theme_name;
         $this->theme_slug = $theme_slug;
+        
+        // Ajouter cette configuration pour l'environnement local
+        if (defined('LOCAL_DEV_SITE') && LOCAL_DEV_SITE) {
+            add_action('phpmailer_init', [$this, 'configure_smtp_for_local']);
+        }
+
+        // Désactiver Gravatar
+        add_filter('option_show_avatars', '__return_false');
+        
+        // OU optimiser Gravatar en utilisant un placeholder local
+        add_filter('pre_get_avatar_data', [$this, 'replace_gravatar'], 10, 2);
+
+        // Désactiver les styles Gutenberg frontend
+        add_action('wp_enqueue_scripts', function() {
+            wp_dequeue_style('wp-block-library');
+            wp_dequeue_style('wp-block-library-theme');
+            wp_dequeue_style('wc-block-style'); // Si vous utilisez WooCommerce
+        }, 100);
+
+        // Désactiver les source maps en production
+        if (!defined('WP_DEBUG') || !WP_DEBUG) {
+            add_action('wp_head', function() {
+                remove_action('wp_head', 'wp_generator');
+                echo '<meta name="sourcemap" content="none">' . "\n";
+            });
+            
+            add_filter('style_loader_src', [$this, 'remove_source_maps'], 999, 2);
+            add_filter('script_loader_src', [$this, 'remove_source_maps'], 999, 2);
+        }
     }
 
- 
+    public function configure_smtp_for_local($phpmailer) {
+        $phpmailer->isSMTP();
+        $phpmailer->Host = 'localhost';
+        $phpmailer->SMTPAuth = false;
+        $phpmailer->Port = 1025; // Port par défaut de Mailpit
+        
+        // Optionnel : forcer l'email de destination pour les tests
+        // $phpmailer->addAddress('votre-email@example.com');
+    }
+
+    public function replace_gravatar($args, $id_or_email) : array
+    {
+        // Remplacer par une image locale par défaut
+        $args['url'] = get_template_directory_uri() . '/assets/images/default-avatar.png';
+        
+        // Désactiver la requête vers Gravatar
+        $args['found_avatar'] = true;
+        
+        return $args;
+    }
+
     public function includeStyles() : void
     {
         add_action('wp_enqueue_scripts', function () {
-            wp_register_style('main', get_template_directory_uri() . '/assets/build/css/main.css', [], null, 'all');
-            wp_register_style('swiper', get_template_directory_uri() . '/node_modules/swiper/swiper-bundle.min.css', [], null, 'all');
-            wp_enqueue_style('main');
-            wp_enqueue_style('swiper');
+            // AOS uniquement sur les pages nécessaires
+            wp_enqueue_style('aos', get_template_directory_uri() . '/node_modules/aos/dist/aos.css', [], null);
+            // Style principal avec Bootstrap et Bootstrap Icons intégrés
+            wp_enqueue_style('main', get_template_directory_uri() . '/assets/build/css/main.css', [], null);
         });
     }   
 
     public function includeScripts() : void
     {
         add_action('wp_enqueue_scripts', function () {
+            // Bootstrap uniquement si nécessaire
+            wp_enqueue_script('aos', get_template_directory_uri() . '/node_modules/aos/dist/aos.js', [], null, true);
             wp_register_script('popper', get_template_directory_uri() . '/node_modules/@popperjs/core/dist/umd/popper.min.js', [], null, true);
             wp_register_script('bootstrap', get_template_directory_uri() . '/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js', ['popper'], null, true);
             wp_register_script('swiper', get_template_directory_uri() . '/node_modules/swiper/swiper-bundle.min.js', [], null, true);
@@ -265,9 +316,55 @@ class Base
     }
 
 
+
+    public function process_contact_form() {
+        add_action('admin_post_nopriv_submit_contact_form', [$this, 'handle_contact_form']);
+        add_action('admin_post_submit_contact_form', [$this, 'handle_contact_form']);
+    }
+
+    public function handle_contact_form() {
+        if (!isset($_POST['contact_nonce']) || !wp_verify_nonce($_POST['contact_nonce'], 'submit_contact_form')) {
+            wp_die('Nonce verification failed');
+        }
+
+        $name = sanitize_text_field($_POST['name']);
+        $email = sanitize_email($_POST['email']);
+        $subject = sanitize_text_field($_POST['subject']);
+        $message = sanitize_textarea_field($_POST['message']);
+
+        $to = get_field('email', 'option');
+        $headers = array(
+            'Content-Type: text/html; charset=UTF-8',
+            'From: ' . $name . ' <' . $email . '>'
+        );
+
+        $email_content = "Nom: " . $name . "<br>";
+        $email_content .= "Email: " . $email . "<br>";
+        $email_content .= "Message:<br>" . nl2br($message);
+
+        $sent = wp_mail($to, $subject, $email_content, $headers);
+
+        $redirect_url = add_query_arg(
+            array(
+                'status' => $sent ? 'success' : 'error'
+            ),
+            wp_get_referer()
+        );
+
+        wp_safe_redirect($redirect_url);
+        exit;
+    }
     
 
      /*
      fin
      */
+
+    public function remove_source_maps($src, $handle) : string
+    {
+        if (strpos($src, '.map') !== false) {
+            return '';
+        }
+        return str_replace(['.map', '.min.map'], '', $src);
+    }
 }

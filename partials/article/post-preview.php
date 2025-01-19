@@ -9,7 +9,7 @@ $default_class = get_the_post_thumbnail_url($post) ? '' : 'post-preview__image--
     <?php if (get_the_post_thumbnail_url($post)) : ?>
         <img src="<?=get_post_image($post); ?>" alt="<?=$title; ?>" class="card-img-top <?=get_the_post_thumbnail_url($post) ? '' : $default_class; ?>"> 
     <?php endif; ?>
-    <div class="card-body vstack gap-3">
+    <div class="card-body vstack">
         <h4 class=""><?=$title; ?></h4>
         <p class=""><?=$content; ?></p>
     </div>

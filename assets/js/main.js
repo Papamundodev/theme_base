@@ -1,6 +1,3 @@
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOMContentLoaded');
   /**
@@ -29,17 +26,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-    /**
-   * Preloader
-   */
-    const preloader = document.querySelector('#preloader');
-    if (preloader) {
-      window.addEventListener('load', () => {
-        setTimeout(() => {
-            preloader.remove();
-        }, 500);
-      });
-    }
+
+   /**
+    * Preloader
+    * if page has selector .page-preloaderthen the preloader will appear for 1000ms
+    * if not , then no loader will be shown 
+    */
+   const preloader = document.querySelector('#preloader');
+   const pagePreloader = document.querySelector('.page-preloader');
+   if (preloader && pagePreloader) {
+     setTimeout(() => {
+       preloader.remove();
+     }, 500);
+   }else{
+    preloader.remove();
+   }
 
       /**
    * Scroll top button
@@ -81,4 +82,39 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   
     window.addEventListener("load", initSwiper);
+
+      /**
+   * Animation on scroll function and init
+   */
+  function aosInit() {
+    AOS.init({
+      duration: 600,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false
+    });
+  }
+  window.addEventListener('load', aosInit);
+
+   /**
+   * Navmenu Scrollspy
+   */
+   let navmenulinks = document.querySelectorAll('.navmenu a');
+
+   function navmenuScrollspy() {
+     navmenulinks.forEach(navmenulink => {
+       if (!navmenulink.hash) return;
+       let section = document.querySelector(navmenulink.hash);
+       if (!section) return;
+       let position = window.scrollY + 200;
+       if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
+         document.querySelectorAll('.navmenu a.active').forEach(link => link.classList.remove('active'));
+         navmenulink.classList.add('active');
+       } else {
+         navmenulink.classList.remove('active');
+       }
+     })
+   }
+   window.addEventListener('load', navmenuScrollspy);
+   document.addEventListener('scroll', navmenuScrollspy);
 });

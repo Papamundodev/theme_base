@@ -16,8 +16,9 @@ if (function_exists('wp_body_open')){
 }
 ?>
 
-<header id="header" class="header dark-background d-flex flex-column">
-    <i class="header-toggle d-xl-none bi bi-list"></i>
+<header id="header" class="header dark-background">
+    <div class="container-xl flex-column d-flex flex-lg-row align-items-center gap-3">
+    <i class="header-toggle d-lg-none bi bi-list"></i>
 
     <?php if (function_exists('get_field')): ?>
 
@@ -25,14 +26,14 @@ if (function_exists('wp_body_open')){
         <?php get_template_part('partials/header/logo'); ?>
         <!-- End Logo -->
 
-        <!-- Social Links -->
-        <?php get_template_part('partials/social-links'); ?>
-        <!-- End Social Links -->
+        <!-- phone number -->
+      
+        <!-- End phone number -->
 
         <!-- Navbar -->
         <?php get_template_part('partials/header/navbar', 'header', ['theme_location' => 'header']); ?>
         <!-- End Navbar -->
 
     <?php endif; ?>
-
+    </div>
 </header>
