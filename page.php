@@ -19,12 +19,12 @@ $title = get_the_title();
         ?>
 
         <!-- Section Title -->
-        <div class="section-title" data-aos="fade-up">
+        <div class="section-title">
             <h1 class=""><?=$title; ?></h1>
         </div>
         <!-- End Section Title -->
 
-        <div class="" data-aos="fade-up" ><?=$content;?></div>
+        <div><?=$content;?></div>
 
         </div>
 

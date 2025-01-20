@@ -18,45 +18,54 @@ get_header();
     <section id="contact" class="contact section">
 
     <!-- Section Title -->
-    <div class="container section-title" data-aos="fade-up">
+    <div class="container section-title" >
     <h2><?=$contact_title;?></h2>
     <p><?=$contact_description;?></p>
     </div><!-- End Section Title -->
 
-    <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="container">
 
     <div class="row gy-4">
 
-        <div class="col-lg-5">
+        <div class="col-lg-5" data-aos="fade-up" data-aos-delay="500">
         <div class="info-wrap">
-            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+            <div class="info-item d-flex">
             <a href="<?=$google_maps_link?>" target="_blank" class="text-decoration-none d-flex align-items-center ">
             <i class="bi bi-geo-alt flex-shrink-0"></i>
             <div>
-                <h3>Address</h3>
+                <h3><?=__('Address', 'theme_base');?></h3>
                 <p><?=$address;?></p>
             </div>
             </a>
             </div><!-- End Info Item -->
 
-            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+            <div class="info-item d-flex">
             <a href="tel:<?=$phone?>" class="text-decoration-none d-flex align-items-center">
             <i class="bi bi-telephone flex-shrink-0"></i>
             <div>
-                <h3>Call Us</h3>
+                <h3><?=__('Call Us', 'theme_base');?></h3>
                 <p><?=$phone;?></p>
             </div>
             </a>
             </div><!-- End Info Item -->
 
-            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+            <div class="info-item d-flex">
             <a href="mailto:<?=$email?>" class="text-decoration-none d-flex align-items-center">
             <i class="bi bi-envelope flex-shrink-0"></i>
             <div>
-                <h3>Email Us</h3>
+                <h3><?=__('Email Us', 'theme_base');?></h3>
                 <p><?=$email;?></p>
             </div>
             </a>
+            </div><!-- End Info Item -->
+
+
+            <div class="info-item d-flex">
+                <i class="bi bi-clock flex-shrink-0"></i>
+                <div>
+                    <h3><?=__('Open Hours', 'theme_base');?></h3>
+                    <p>Mon-Fri: 9AM to 5PM</p>
+                </div>
             </div><!-- End Info Item -->
 
             <?php 
@@ -67,44 +76,52 @@ get_header();
         </div>
         </div>
 
-        <div class="col-lg-7">
-        <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+        <div class="col-lg-7" data-aos="fade-up" data-aos-delay="700">
+
+        <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post" class="php-email-form" enctype="multipart/form-data">
             <input type="hidden" name="action" value="submit_contact_form">
             <?php wp_nonce_field('submit_contact_form', 'contact_nonce'); ?>
-            
-            <div class="row gy-4">
-            <div class="col-md-6">
-                <label for="name-field" class="pb-2">Your Name</label>
-                <input type="text" name="name" id="name-field" class="form-control" required>
-            </div>
-
-            <div class="col-md-6">
-                <label for="email-field" class="pb-2">Your Email</label>
-                <input type="email" class="form-control" name="email" id="email-field" required>
-            </div>
-
-            <div class="col-md-12">
-                <label for="subject-field" class="pb-2">Subject</label>
-                <input type="text" class="form-control" name="subject" id="subject-field" required>
-            </div>
-
-            <div class="col-md-12">
-                <label for="message-field" class="pb-2">Message</label>
-                <textarea class="form-control" name="message" rows="10" id="message-field" required></textarea>
-            </div>
 
             <?php 
             if (isset($_GET['status'])) {
                 if ($_GET['status'] === 'success') {
-                    echo '<div class="sent-message">Votre message a été envoyé. Merci!</div>';
+                    echo '<div class="sent-message btn btn-primary mx-auto mb-5 d-block">Votre message a été envoyé. Merci!</div>';
                 } elseif ($_GET['status'] === 'error') {
-                    echo '<div class="error-message">Une erreur est survenue. Veuillez réessayer.</div>';
+                    echo '<div class="error-message btn btn-primary mx-auto mb-5 d-block">Une erreur est survenue. Veuillez réessayer.</div>';
                 }
             }
             ?>
 
+            <div class="row gy-4">
+            <div class="col-md-6">
+                <label for="name-field" class="pb-2"><?=__('Your Name', 'theme_base');?></label>
+                <input type="text" name="name" id="name-field" class="form-control" required>
+            </div>
+
+            <div class="col-md-6">
+                <label for="email-field" class="pb-2"><?=__('Your Email', 'theme_base');?></label>
+                <input type="email" class="form-control" name="email" id="email-field" required>
+            </div>
+
+            <div class="col-md-12">
+                <label for="subject-field" class="pb-2"><?=__('Subject', 'theme_base');?></label>
+                <input type="text" class="form-control" name="subject" id="subject-field" required>
+            </div>
+
+            <div class="col-md-12">
+                <label for="message-field" class="pb-2"><?=__('Message', 'theme_base');?></label>
+                <textarea class="form-control" name="message" rows="10" id="message-field" required></textarea>
+            </div>
+
+            <div class="col-md-12">
+                <label for="file-field" class="pb-2"><?=__('Attachment', 'theme_base');?> (Max 5MB)</label>
+                <input type="file" class="form-control" name="attachment" id="file-field" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+            </div>
+
+
+
             <div class="col-md-12 text-center">
-                <button type="submit">Send Message</button>
+                <button type="submit"><?=__('Send Message', 'theme_base');?></button>
             </div>
             </div>
         </form>
@@ -116,4 +133,6 @@ get_header();
 
     </section><!-- /Contact Section -->
 </main>
+<!-- Preloader -->
+<div id="preloader"></div>
 <?php get_footer(); 

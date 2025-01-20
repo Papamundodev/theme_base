@@ -17,7 +17,6 @@ $base->registerMenus();
 $base->includeStyles();
 $base->includeScripts();
 $base->addSVGSupport();
-$base->initAjax();
 $base->process_contact_form();
 
 
@@ -27,26 +26,20 @@ function pre_debug($data){
     echo '</pre>';
 }
 
-function get_attachment_id_from_url($url) { 
-    $upload_dir = wp_upload_dir();
-    $url =  $upload_dir['baseurl'] . '/2024/12/' . $title_slug . '.jpg';
-    if(!file_exists($url)){
-        $url =  $upload_dir['baseurl'] . '/2024/12/' . $title_slug . '.jpeg';
-    }
-    $attachement_id = attachment_url_to_postid($url);
-    set_post_thumbnail($post, $attachement_id);
-    return $attachement_id;
-}
 
-
-function get_post_image($post){
-    if (function_exists('get_field')) {  
-        $default_image = get_field('default_image', 'option') ?? get_site_icon_url();
-        $default_class = 'post-preview__image--default';
-    } else {
-        $default_image = get_site_icon_url();
-        $default_class = 'post-preview__image--default';
+/**
+ * Add category to Yoast breadcrumb
+ */
+add_filter( 'wpseo_breadcrumb_links', function( $links ) {
+    if ( is_single() ) {
+        $cats = get_the_category();
+        if ( ! empty( $cats ) ) {
+            $cat_link = array(
+                'url' => get_category_link( $cats[0]->term_id ),
+                'text' => $cats[0]->name
+            );
+            array_splice( $links, -1, 0, array( $cat_link ) );
+        }
     }
-    $image = get_the_post_thumbnail_url($post) ? get_the_post_thumbnail_url($post) : $default_image;
-    return $image;
-}
+    return $links;
+});

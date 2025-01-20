@@ -32,7 +32,7 @@ $insurances = get_field('insurances', 'option');
         <div class="swiper-slide">
             <div class="carrousel-item">
                 <div class="carrousel-img">
-                    <img src="<?= $insurance['image']['url'] ?>" alt="">
+                    <img src="<?= $insurance['image']['sizes']['medium'] ?>" alt="">
                 </div>
                 <h4><?= $insurance['name'] ?></h4>
             </div>

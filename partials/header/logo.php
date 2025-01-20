@@ -2,7 +2,7 @@
 <!-- Logo -->
 <?php if(get_field('logo', 'option')): ?>
 <div class="profile-img">
-    <img src="<?= get_field('logo', 'option')['url']; ?>" alt="<?= get_field('logo', 'option')['alt']; ?>" class="img-fluid rounded-circle">
+    <img src="<?= get_field('logo', 'option')['sizes']['small']; ?>" alt="<?= get_field('logo', 'option')['alt']; ?>" class="img-fluid rounded-circle profile-image" loading="lazy">
 </div>
 <?php endif; ?>
 

@@ -11,7 +11,7 @@ $theme_template_name = basename(__FILE__, ".php");
     <section id="category-<?=$object->slug?>" class="category section">
 
         <!-- Section Title -->
-        <div class="container section-title" data-aos="fade-up">
+        <div class="container section-title">
 
         <?php
         
@@ -22,11 +22,11 @@ $theme_template_name = basename(__FILE__, ".php");
         <h2><?=$object->name?></h2>
         <p><?=$object->description?></p>
         </div><!-- End Section Title -->
-        <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="container">
 
             <div class="row">
                 <?php foreach ($posts as $post) : setup_postdata($post); ?>
-                    <div class="col-lg-6 col-xxl-4 mb-4">
+                    <div class="col-lg-6 col-xxl-4 mb-4" data-aos="fade-up" data-aos-delay="200">
                         <?php get_template_part('partials/article/post-preview', null, ['post' => $post]); ?>
                     </div>
                 <?php endforeach; wp_reset_postdata(); ?>

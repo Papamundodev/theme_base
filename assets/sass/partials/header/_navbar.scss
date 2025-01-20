@@ -17,7 +17,7 @@ margin: 0;
 color: var(--nav-color);
 padding: 15px 10px;
 font-family: var(--nav-font);
-font-size: 16px;
+font-size: 18px;
 font-weight: 400;
 display: flex;
 align-items: center;
@@ -26,11 +26,6 @@ transition: 0.3s;
 width: 100%;
 }
 
-// .navmenu a .navicon,
-// .navmenu a:focus .navicon {
-// font-size: 20px;
-// margin-right: 10px;
-// }
 
 .navmenu a:hover,
 .navmenu .active,

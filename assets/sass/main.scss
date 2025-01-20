@@ -230,3 +230,9 @@ section,
 footer {
   background-color: var(--background-color);
 }
+
+@media (max-width: 576px) { 
+  footer a {
+    font-size: 14px;
+  }
+}

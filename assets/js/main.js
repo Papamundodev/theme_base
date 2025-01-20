@@ -33,13 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
     * if not , then no loader will be shown 
     */
    const preloader = document.querySelector('#preloader');
-   const pagePreloader = document.querySelector('.page-preloader');
-   if (preloader && pagePreloader) {
+   if (preloader) {
      setTimeout(() => {
        preloader.remove();
      }, 500);
-   }else{
-    preloader.remove();
    }
 
       /**
@@ -88,33 +85,26 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   function aosInit() {
     AOS.init({
-      duration: 600,
-      easing: 'ease-in-out',
       once: true,
-      mirror: false
+      startEvent: 'DOMContentLoaded',
     });
   }
   window.addEventListener('load', aosInit);
 
-   /**
-   * Navmenu Scrollspy
-   */
-   let navmenulinks = document.querySelectorAll('.navmenu a');
-
-   function navmenuScrollspy() {
-     navmenulinks.forEach(navmenulink => {
-       if (!navmenulink.hash) return;
-       let section = document.querySelector(navmenulink.hash);
-       if (!section) return;
-       let position = window.scrollY + 200;
-       if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-         document.querySelectorAll('.navmenu a.active').forEach(link => link.classList.remove('active'));
-         navmenulink.classList.add('active');
-       } else {
-         navmenulink.classList.remove('active');
-       }
-     })
-   }
-   window.addEventListener('load', navmenuScrollspy);
-   document.addEventListener('scroll', navmenuScrollspy);
+  // Gestion du stockage de l'image de profil
+  const profileImg = document.querySelector('.profile-image'); // Ajustez le sélecteur selon votre HTML
+  
+  if (profileImg) {
+    const imgUrl = profileImg.src;
+    
+    // Vérifie si l'image est déjà en cache
+    const cachedImgUrl = sessionStorage.getItem('profileImageUrl');
+    
+    if (cachedImgUrl) {
+      profileImg.src = cachedImgUrl;
+    } else {
+      // Stocke l'URL dans le sessionStorage
+      sessionStorage.setItem('profileImageUrl', imgUrl);
+    }
+  }
 });

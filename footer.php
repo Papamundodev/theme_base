@@ -3,7 +3,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4 col-12 mb-4 mb-md-0">
-            <h3 class="mb-3 text-center text-md-start">Contact</h3>
+            <h3 class="mb-3 text-center text-md-start"><?=__('Contact', 'theme_base');?></h3>
 
             <div class="flex-column d-flex align-items-center align-items-md-start">
             <!-- adress phone email acf -->
@@ -123,8 +123,7 @@
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 
-<!-- Preloader -->
-<div id="preloader"></div>
+
 
 <?php wp_footer(); ?>
 </body>

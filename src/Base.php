@@ -1,6 +1,9 @@
 <?php
 
 namespace Theme_base;
+
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
     
 class Base
 {
@@ -52,23 +55,14 @@ class Base
         // $phpmailer->addAddress('votre-email@example.com');
     }
 
-    public function replace_gravatar($args, $id_or_email) : array
-    {
-        // Remplacer par une image locale par défaut
-        $args['url'] = get_template_directory_uri() . '/assets/images/default-avatar.png';
-        
-        // Désactiver la requête vers Gravatar
-        $args['found_avatar'] = true;
-        
-        return $args;
-    }
-
     public function includeStyles() : void
     {
         add_action('wp_enqueue_scripts', function () {
-            // AOS uniquement sur les pages nécessaires
+            //aos
             wp_enqueue_style('aos', get_template_directory_uri() . '/node_modules/aos/dist/aos.css', [], null);
-            // Style principal avec Bootstrap et Bootstrap Icons intégrés
+            // Bootstrap
+            wp_enqueue_style('bootstrap', get_template_directory_uri() . '/node_modules/bootstrap/dist/css/bootstrap.min.css', [], null);
+            // Main
             wp_enqueue_style('main', get_template_directory_uri() . '/assets/build/css/main.css', [], null);
         });
     }   
@@ -77,11 +71,19 @@ class Base
     {
         add_action('wp_enqueue_scripts', function () {
             // Bootstrap uniquement si nécessaire
-            wp_enqueue_script('aos', get_template_directory_uri() . '/node_modules/aos/dist/aos.js', [], null, true);
             wp_register_script('popper', get_template_directory_uri() . '/node_modules/@popperjs/core/dist/umd/popper.min.js', [], null, true);
             wp_register_script('bootstrap', get_template_directory_uri() . '/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js', ['popper'], null, true);
-            wp_register_script('swiper', get_template_directory_uri() . '/node_modules/swiper/swiper-bundle.min.js', [], null, true);
-            wp_register_script('main', get_template_directory_uri() . '/assets/build/js/main.js', ['swiper'], null, true);
+            // AOS
+            wp_register_script('aos', get_template_directory_uri() . '/node_modules/aos/dist/aos.js', [], null, true);
+            
+            // Charge Swiper uniquement sur la page d'accueil
+            if (is_front_page()) {
+                wp_register_script('swiper', get_template_directory_uri() . '/node_modules/swiper/swiper-bundle.min.js', [], null, true);
+                wp_register_script('main', get_template_directory_uri() . '/assets/build/js/main.js', ['swiper', 'aos'], null, true);
+            } else {
+                wp_register_script('main', get_template_directory_uri() . '/assets/build/js/main.js', ['aos'], null, true);
+            }
+            
             wp_localize_script('main', 'ajaxurl', array(
                 'ajax_url' => admin_url('admin-ajax.php'),
                 'nonce'    => wp_create_nonce('aas_ajax_nonce'),
@@ -89,6 +91,7 @@ class Base
             
             wp_enqueue_script('popper');
             wp_enqueue_script('bootstrap');
+            wp_enqueue_script('aos');
             wp_enqueue_script('main');
         });
     }
@@ -96,10 +99,6 @@ class Base
     public function themeSupports() : void
     {
         add_action('after_setup_theme', function () {
-            add_image_size('medium', 250, '', true); // Medium Thumbnail
-            add_image_size('small', 120, '', true); // Small Thumbnail
-            add_image_size('large', 1024, '', true); // Large Thumbnail 
-
             // Menus
             add_theme_support('menus');
             add_theme_support('post-thumbnails');
@@ -107,20 +106,34 @@ class Base
             add_theme_support('automatic-feed-links');
     
             // I18N
-            load_theme_textdomain('moon', get_template_directory() . '/languages');
+            load_theme_textdomain('theme_base', get_template_directory() . '/languages');
     
             // Content width
             if ( ! isset ($content_width)) {
                 $content_width = 800;
             }
+
+            // Activer le lazy loading natif
+            add_theme_support('lazy-loading-images');
+            
+            // Ajouter des tailles d'images optimisées
+            add_image_size('tiny', 50, 50, true);  // Pour les miniatures très petites
+            add_image_size('mobile', 576, '', true); // Pour les mobiles
+            add_image_size('tablet', 768, '', true); // Pour les tablettes
+            add_image_size('medium', 250, '', true); // Medium Thumbnail
+            add_image_size('small', 120, '', true); // Small Thumbnail
+            add_image_size('large', 1024, '', true); // Large Thumbnail 
+
         }, 99);
     }
+
+
 
     public function registerMenus() : void
     {
         register_nav_menus([
-            'header' => 'Header',
-            'footer' => 'Footer',
+            'header' => __('Header', 'theme_base'),
+            'footer' => __('Footer', 'theme_base'),
         ]);
     }
 
@@ -208,7 +221,6 @@ class Base
                 $menu[$m->ID]['url'] = $m->url;
                 $menu[$m->ID]['object_id'] = intval($m->object_id);
                 $object = get_post($m->object_id);
-                $menu[$m->ID]['parent_object_id'] = $object->post_parent;
                 $menu[$m->ID]['target'] = $m->target;
                 $menu[$m->ID]['children'] = self::populate_children($menu_items, $m);
             }
@@ -252,69 +264,6 @@ class Base
         return '';
     }
 
-        /**
-     * initAjax
-     *
-     * create Ajax from class Ajax
-     */
-
-     public function initAjax() :void
-     {
-         $ajax = new Ajax();
-         $ajax->initSearchAutocomplete();
-     }
-
-
-     public static function search_posts( $search_term, $post_types = ['post', 'page' ] ) {
-        global $wpdb;
-    
-        // Sanitize the search term
-        $search_term = sanitize_text_field( $search_term );
-    
-        // Return empty array if search term is empty
-        if ( empty( $search_term ) ) {
-            return array();
-        }
-    
-        // Prepare the LIKE clause
-        $like = '%' . $wpdb->esc_like( $search_term ) . '%';
-    
-        // Build the SQL query
-        $sql = $wpdb->prepare(
-            sprintf("
-            SELECT DISTINCT ID
-            FROM {$wpdb->posts}
-            WHERE post_type IN (%s)
-            AND post_status = 'publish'
-            AND ( post_title LIKE %%s )
-            ", implode(',', array_fill(0, count($post_types), '%s'))),
-            array_merge( $post_types, array( $like, $like ) )
-        );
-    
-        // Get the results
-        $post_ids = $wpdb->get_col( $sql );
-    
-        // If no posts found, return empty array
-        if ( empty( $post_ids ) ) {
-            return array();
-        }
-    
-        $results = [];
-        // Get the posts
-        foreach ($post_types as $post_type) {
-            $posts = [];
-            $posts = get_posts( array(
-                'post__in'       => $post_ids,
-                'post_type'      => $post_type,
-                'post_status'    => 'publish',
-                'posts_per_page' => 10, // Adjust as needed
-                'orderby'        => 'post__in',
-            ) );
-            $results[$post_type] = $posts ?? 'fuck';
-        }
-        return $results;
-    }
-
 
 
     public function process_contact_form() {
@@ -332,6 +281,16 @@ class Base
         $subject = sanitize_text_field($_POST['subject']);
         $message = sanitize_textarea_field($_POST['message']);
 
+        // Gestion du fichier joint
+        $attachment_path = '';
+        if (!empty($_FILES['attachment']['name'])) {
+            $upload = wp_handle_upload($_FILES['attachment'], array('test_form' => false));
+            
+            if (!isset($upload['error'])) {
+                $attachment_path = $upload['file'];
+            }
+        }
+
         $to = get_field('email', 'option');
         $headers = array(
             'Content-Type: text/html; charset=UTF-8',
@@ -342,7 +301,18 @@ class Base
         $email_content .= "Email: " . $email . "<br>";
         $email_content .= "Message:<br>" . nl2br($message);
 
-        $sent = wp_mail($to, $subject, $email_content, $headers);
+        // Ajout de la pièce jointe à l'email
+        $attachments = array();
+        if ($attachment_path) {
+            $attachments[] = $attachment_path;
+        }
+
+        $sent = wp_mail($to, $subject, $email_content, $headers, $attachments);
+
+        // Nettoyage du fichier temporaire après envoi
+        if ($attachment_path && file_exists($attachment_path)) {
+            unlink($attachment_path);
+        }
 
         $redirect_url = add_query_arg(
             array(
@@ -360,6 +330,9 @@ class Base
      fin
      */
 
+    /**
+     * Optimization
+     */
     public function remove_source_maps($src, $handle) : string
     {
         if (strpos($src, '.map') !== false) {
@@ -367,4 +340,16 @@ class Base
         }
         return str_replace(['.map', '.min.map'], '', $src);
     }
+
+    public function replace_gravatar($args, $id_or_email) : array
+    {
+        // Remplacer par une image locale par défaut
+        $args['url'] = get_template_directory_uri() . '/assets/images/default-avatar.png';
+        
+        // Désactiver la requête vers Gravatar
+        $args['found_avatar'] = true;
+        
+        return $args;
+    }
+
 }
