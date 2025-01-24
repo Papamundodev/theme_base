@@ -3,7 +3,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4 col-12 mb-4 mb-md-0">
-            <h3 class="mb-3 text-center text-md-start"><?=__('Contact', 'theme_base');?></h3>
+            <h3 class="mb-4 text-center text-md-start"><?=__('Contact', 'theme_base');?></h3>
 
             <div class="flex-column d-flex align-items-center align-items-md-start">
             <!-- adress phone email acf -->
@@ -17,7 +17,7 @@
             ?>
 
 
-            <div class="d-flex align-items-center mb-2 gap-2">
+            <div class="d-flex align-items-center mb-3 gap-2">
               <?php if($google_map_link) : ?>
                 <a href="<?=$google_map_link?>" target="_blank" class="text-decoration-none d-flex align-items-center gap-2">
                   <i class="bi bi-geo-alt text-primary"></i>
@@ -28,7 +28,7 @@
                 <p class="mb-0"><?=$adress?></p>
               <?php endif; ?>
             </div>
-            <div class="d-flex align-items-center mb-2 gap-2">
+            <div class="d-flex align-items-center mb-3 gap-2">
               <?php if($phone) : ?>
                 <a href="tel:<?=$phone?>" class="text-decoration-none d-flex align-items-center gap-2">
                   <i class="bi bi-phone text-primary"></i>
@@ -39,7 +39,7 @@
                 <p class="mb-0"><?=$phone?></p>
               <?php endif; ?>
             </div>
-            <div class="d-flex align-items-center mb-2 gap-2">
+            <div class="d-flex align-items-center mb-3 gap-2">
               <?php if($email) : ?> 
                 <a href="mailto:<?=$email?>" class="text-decoration-none d-flex align-items-center gap-2">
                   <i class="bi bi-envelope text-primary"></i>
@@ -55,14 +55,14 @@
 
           </div>
           <div class="col-md-4 col-12 text-center mb-4 mb-md-0">
-          <h3 class="mb-3">Legal Links</h3>
+          <h3 class="mb-4">Legal Links</h3>
             <?php $menu_items = \Theme_base\Base::wp_get_menu_array('footer');?>
             <?php if(is_array($menu_items) && count($menu_items) > 0): ?>
             <nav id="navmenu" class="navmenu m-0 ">
               <ul class="d-flex flex-column text-center align-items-center justify-content-center m-0 p-0">
                 <?php foreach($menu_items as $item): ?>
                   <?php if(empty($item['children'])):?>
-                    <li class="<?= \Theme_base\Base::get_active_class($item) ?> mb-2">
+                    <li class="<?= \Theme_base\Base::get_active_class($item) ?> mb-3">
                       <a class="navicon p-0" 
                       href="<?=$item['url']?>"
                       title="<?=$item['title']?>"
@@ -74,7 +74,7 @@
                     <li class="dropdown"><a href="#"><span><?=$item['title']?></span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                       <ul>
                         <?php foreach($item['children'] as $child): ?>
-                          <li class="<?= \Theme_base\Base::get_active_class($child) ?> mb-2">
+                          <li class="<?= \Theme_base\Base::get_active_class($child) ?> mb-3">
                             <a  class="navicon p-0"
                             href="<?=$child['url']?>"
                             title="<?=$child['title']?>"
@@ -93,7 +93,7 @@
           </div>
           <!-- openning hours -->
           <div class="col-md-4 col-12 footer-hours">
-            <h3 class="mb-3 text-center">Opening Hours</h3>
+            <h3 class="mb-4 text-center">Opening Hours</h3>
             <?php if(function_exists('get_field')) : ?>
             <?php
             $opening_hours = get_field('opening_hours', 'option') ?? 'Office Hours: Monday - Friday 8 - 5';

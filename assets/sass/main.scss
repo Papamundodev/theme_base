@@ -75,7 +75,9 @@ $gutters: (
   :root {
     --accent-darker: color-mix(in oklch, var(--accent-color), black 20%);
     --accent-transparent: color-mix(in oklch, var(--accent-color), transparent 80%);
+    --accent-light: color-mix(in oklch, var(--accent-color), white 20%);
     --border-color: #040b14;
+    --accent-hover: color-mix(in oklch, var(--accent-color), transparent 25%);
 }
   /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
 
@@ -92,6 +94,7 @@ $gutters: (
     --heading-color: #ffffff;
     --surface-color: #151f2b;
     --contrast-color: #ffffff;
+    --accent-hover: color-mix(in oklch, var(--accent-color), white 20%);
   }
 
   /* Smooth scroll */
@@ -102,36 +105,43 @@ $gutters: (
   /*--------------------------------------------------------------
 # General Styling & Shared Classes
 --------------------------------------------------------------*/
+
+
 body {
     color: var(--default-color);
     background-color: var(--background-color);
     font-family: var(--default-font);
-  }
-  
-  a {
-    color: var(--accent-color);
-    text-decoration: none;
-    transition: 0.3s;
-  }
-  
-  a:hover {
-    color: color-mix(in srgb, var(--accent-color), transparent 25%);
-    text-decoration: none;
-  }
-  
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    color: var(--heading-color);
-    font-family: var(--heading-font);
-  }
+}
 
-  main {
-    min-height: 90vh;
-  }
+body.home{
+  background-color: var(--nav-mobile-background-color);
+}
+  
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+a:hover {
+  color: var(--accent-hover);
+  text-decoration: none;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--heading-color);
+  font-family: var(--heading-font);
+}
+
+main {
+  min-height: 90vh;
+}
 /*--------------------------------------------------------------
 # Global Page Titles & Breadcrumbs
 --------------------------------------------------------------*/
@@ -229,10 +239,68 @@ section,
 
 footer {
   background-color: var(--background-color);
+  .navmenu a:after {
+    bottom: -5px;
+  }
 }
 
-@media (max-width: 576px) { 
-  footer a {
+@media (max-width: 400px) { 
+  footer a{
     font-size: 14px;
+  }
+}
+
+/*--------------------------------------------------------------
+# Contact Section
+--------------------------------------------------------------*/
+.footer-hours .info-wrap {
+  background-color: var(--surface-color);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  overflow: hidden;
+}
+
+@media (max-width: 575px) {
+  .footer-hours .info-wrap {
+    padding: 20px;
+  }
+}
+
+.footer-hours .info-item i {
+  font-size: 20px;
+  color: var(--accent-color);
+  background: color-mix(in srgb, var(--accent-color), transparent 92%);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  transition: all 0.3s ease-in-out;
+  margin-right: 15px;
+}
+
+.footer-hours .info-item h3 {
+  padding: 0;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.footer-hours .info-item p {
+  padding: 0;
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+.footer-hours .info-item:hover i {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+}
+
+#wpadminbar{
+  position: absolute;
+  @media (max-width: 992px) {
+    display: none;
   }
 }

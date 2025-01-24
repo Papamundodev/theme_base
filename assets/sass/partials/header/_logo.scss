@@ -1,22 +1,49 @@
 .header .profile-img img {
-    margin: 15px auto;
-    display: block;
-    width: 100px;
-    border: 6px solid color-mix(in srgb, var(--default-color), transparent 85%);
-  }
+  margin: 15px auto;
+  display: block;
+  width: 100px;
+  border: 6px solid color-mix(in srgb, var(--default-color), transparent 85%);
+}
   
-  .header .logo {
-    line-height: 1;
-  }
-  
-  .header .logo img {
-    max-height: 32px;
-    margin-right: 8px;
-  }
-  
-  .header .logo h1 {
-    font-size: 24px;
-    margin: 0;
-    font-weight: 700;
-    color: var(--accent-color);
-  }
+.header .logo {
+  line-height: 1;
+}
+
+.header .logo img {
+  max-height: 32px;
+  margin-right: 8px;
+}
+
+.header .logo h1 {
+  font-size: 24px;
+  margin: 0;
+  font-weight: 700;
+  color: var(--accent-color);
+}
+
+.profile-img {
+  transition: all 0.3s ease-in-out;
+  opacity: 1;
+  max-height: 150px; // Ajustez selon la taille réelle de votre image
+  overflow: hidden;
+  width: 100px;
+}
+
+@media (min-width: 992px) {
+  .header.hide{
+    .profile-img {
+      opacity: 0;
+      height: 80px;
+      margin: 0;
+      width: 0;
+      transition: all 0.3s ease-in-out;
+      img {
+          transform: scale(0);
+          transition: transform 0.3s ease-in-out;
+      }
+    }
+    .logo h1 {
+      font-size: 18px;
+    }
+  } 
+}

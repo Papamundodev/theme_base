@@ -107,4 +107,17 @@ document.addEventListener('DOMContentLoaded', () => {
       sessionStorage.setItem('profileImageUrl', imgUrl);
     }
   }
+
+  const logo = document.querySelector('.header');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 150) {
+      logo.classList.add('hide');
+    } else {
+      logo.classList.remove('hide');
+    }
+  }, { passive: true });
+
+
+  //end of the page
 });

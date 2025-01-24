@@ -4,6 +4,8 @@ $title = get_the_title($post);
 $content = get_the_excerpt($post);
 $content = wpautop($content);
 $default_class = get_the_post_thumbnail_url($post, 'medium') ? '' : 'post-preview__image--default';
+$category = get_the_category($post);
+$category_name = $category[0]->name;
 ?>
 <div class="card">
     <?php if (has_post_thumbnail($post)) : ?>

@@ -88,7 +88,7 @@ $featured_image = get_the_post_thumbnail_url($object->ID);
 
             <!-- Button to see all resources -->
             <div class="text-center mt-4"  data-aos-delay="100" data-aos-anchor-placement="bottom-bottom">
-                <a href="<?=get_permalink(get_option('page_for_posts'))?>" class="btn btn-primary">See all resources</a>
+                <a href="<?=get_category_link(get_category_by_slug('ressources')->term_id)?>" class="btn btn-primary">See all resources</a>
             </div>
         </div>
     </section>

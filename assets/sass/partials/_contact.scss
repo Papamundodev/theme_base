@@ -3,7 +3,7 @@
 /*--------------------------------------------------------------
 # Contact Section
 --------------------------------------------------------------*/
-.contact .info-wrap, .footer-hours .info-wrap {
+.contact .info-wrap {
     background-color: var(--surface-color);
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
     padding: 30px;
@@ -11,7 +11,7 @@
   }
   
   @media (max-width: 575px) {
-    .contact .info-wrap, .footer-hours .info-wrap {
+    .contact .info-wrap {
       padding: 20px;
     }
   }
@@ -20,7 +20,7 @@
     margin-bottom: 40px;
   }
   
-  .contact .info-item i, .footer-hours .info-item i {
+  .contact .info-item i {
     font-size: 20px;
     color: var(--accent-color);
     background: color-mix(in srgb, var(--accent-color), transparent 92%);
@@ -34,20 +34,20 @@
     margin-right: 15px;
   }
   
-  .contact .info-item h3, .footer-hours .info-item h3 {
+  .contact .info-item h3 {
     padding: 0;
     font-size: 18px;
     font-weight: 700;
     margin-bottom: 5px;
   }
   
-  .contact .info-item p, .footer-hours .info-item p {
+  .contact .info-item p {
     padding: 0;
     margin-bottom: 0;
     font-size: 14px;
   }
   
-  .contact .info-item:hover i, .footer-hours .info-item:hover i {
+  .contact .info-item:hover i {
     background: var(--accent-color);
     color: var(--contrast-color);
   }

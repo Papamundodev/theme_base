@@ -10,6 +10,9 @@ z-index: 9997;
 .navmenu ul {
 list-style: none;
 margin: 0;
+  li{
+    position: relative;
+  }
 }
 
 .navmenu a,
@@ -27,16 +30,31 @@ width: 100%;
 }
 
 
-.navmenu a:hover,
-.navmenu .active,
-.navmenu .active:focus {
-color: var(--nav-hover-color);
+
+.navmenu .active a ,
+.navmenu .active:focus a {
+  color: var(--accent-color);
 }
 
-.navmenu a:hover .navicon,
-.navmenu .active .navicon,
-.navmenu .active:focus .navicon {
-color: var(--accent-color);
+.navmenu li:not(.active) > a:hover{
+  color: var(--nav-color);
+}
+
+.navmenu a:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 3px;
+  background: var(--accent-color);
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
+  transition: width 0.5s ease-in-out;
+}
+
+.navmenu li:not(.active) >  a:hover:after{
+  width: 100%;
 }
 
 

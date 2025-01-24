@@ -1,9 +1,6 @@
 <?php
 
 namespace Theme_base;
-
-use RecursiveDirectoryIterator;
-use RecursiveIteratorIterator;
     
 class Base
 {

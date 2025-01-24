@@ -27,7 +27,7 @@ get_header();
 
     <div class="row gy-4">
 
-        <div class="col-lg-5" data-aos="fade-up" data-aos-delay="500">
+        <div class="col-lg-5" data-aos="fade-up" data-aos-delay="300">
         <div class="info-wrap">
             <div class="info-item d-flex">
             <a href="<?=$google_maps_link?>" target="_blank" class="text-decoration-none d-flex align-items-center ">
@@ -76,7 +76,7 @@ get_header();
         </div>
         </div>
 
-        <div class="col-lg-7" data-aos="fade-up" data-aos-delay="700">
+        <div class="col-lg-7" data-aos="fade-up" data-aos-delay="500">
 
         <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post" class="php-email-form" enctype="multipart/form-data">
             <input type="hidden" name="action" value="submit_contact_form">
