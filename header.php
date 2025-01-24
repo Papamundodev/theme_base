@@ -24,10 +24,6 @@ if (function_exists('wp_body_open')){
         <?php get_template_part('partials/header/logo'); ?>
         <!-- End Logo -->
 
-        <!-- phone number -->
-      
-        <!-- End phone number -->
-
         <!-- Navbar -->
         <?php get_template_part('partials/header/navbar', 'header', ['theme_location' => 'header']); ?>
         <!-- End Navbar -->

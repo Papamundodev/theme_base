@@ -1,4 +1,4 @@
-.card {
+.card-resource {
     background-color: #f4fafd;
     border-radius: 10px;
     transition: 0.3s;
@@ -14,14 +14,14 @@
     }
   }
 
-  .card img {
+  .card-resource img {
     width: 100%;
     height: 150px;
     object-position: center;
     object-fit: cover;
   }
   
-  .card .card-body h4 {
+  .card-resource .card-body h4 {
     color: $primary;
     font-weight: 500;
     height: 2.5em;
@@ -29,7 +29,7 @@
     text-overflow: ellipsis;
   }
   
-  .card .card-body p {
+  .card-resource .card-body p {
     color: var(--default-color);
     display: -webkit-box;
     -webkit-line-clamp: 7;
@@ -38,3 +38,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
+
+  

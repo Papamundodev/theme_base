@@ -29,6 +29,8 @@
   width: 100px;
 }
 
+
+// Hide logo on desktop
 @media (min-width: 992px) {
   .header.hide{
     .profile-img {

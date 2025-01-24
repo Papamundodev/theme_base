@@ -36,10 +36,10 @@ $featured_image = get_the_post_thumbnail_url($object->ID);
             $featured_services = get_posts($args_services);
             ?>
 
-            <div class="row">
-                <?php foreach ($featured_services as $post) : setup_postdata($post); ?>
-                    <div class="col-lg-6 col-xxl-4 mb-4" data-aos="fade-up" data-aos-delay="300">
-                        <?php get_template_part('partials/article/post-preview', null, ['post' => $post]); ?>
+            <div class="vstack services-list">
+                <?php foreach ($featured_services as $i => $post) : setup_postdata($post); ?>
+                    <div class="mb-4 <?=($i % 2 == 0) ? 'dark-background img-left' : 'light-background img-right';?>" data-aos="fade-up" data-aos-delay="200">
+                        <?php get_template_part('partials/article/service-preview', null, ['post' => $post]); ?>
                     </div>
                 <?php endforeach; wp_reset_postdata(); ?>
             </div>

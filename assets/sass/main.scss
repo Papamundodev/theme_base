@@ -35,6 +35,7 @@ $gutters: (
 @import "partials/header/header";
 @import "partials/carrousel";
 @import "partials/article/post-preview";
+@import "partials/article/service-preview";
 @import "partials/contact";
 // Vos styles personnalisés ici
 
@@ -304,3 +305,5 @@ footer {
     display: none;
   }
 }
+
+
