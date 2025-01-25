@@ -15,16 +15,6 @@ $theme-colors: (
 @import "bootstrap/scss/bootstrap";
 
 // Ensuite vos variables personnalisées
-$grid-columns: 12;
-$grid-gutter-width: 3rem;
-$gutters: (
-  0: 0,
-  1: $grid-gutter-width * .25,
-  2: $grid-gutter-width * .5,
-  3: $grid-gutter-width,
-  4: $grid-gutter-width * 1.5,
-  5: $grid-gutter-width * 3
-);
 
 @import "partials/header/logo";
 @import "partials/social-links";
@@ -37,6 +27,7 @@ $gutters: (
 @import "partials/article/post-preview";
 @import "partials/article/service-preview";
 @import "partials/contact";
+@import "partials/footer";
 // Vos styles personnalisés ici
 
 // Import Swiper styles
@@ -57,7 +48,7 @@ $gutters: (
   :root { 
     --background-color: #ffffff; /* Background color for the entire website, including individual sections */
     --default-color: #272829; /* Default color used for the majority of the text content across the entire website */
-    --heading-color: #050d18; /* Color for headings, subheadings and title throughout the website */
+    --heading-color: #040b14; /* Color for headings, subheadings and title throughout the website */
     --accent-color: #955c07; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
     --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
     --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
@@ -85,8 +76,8 @@ $gutters: (
 .light-background {
     --background-color: #f4fafd;
     --surface-color: #ffffff;
-    --default-color: black;
-    --heading-color: black;
+    --default-color: #040b14;
+    --heading-color: #040b14;
   }
   
   .dark-background {
@@ -102,7 +93,12 @@ $gutters: (
 :root {
     scroll-behavior: smooth;
   }
+  
+  .row {
+    --bs-gutter-x: 3rem;
+  }
 
+  
   /*--------------------------------------------------------------
 # General Styling & Shared Classes
 --------------------------------------------------------------*/
@@ -143,19 +139,29 @@ h6 {
 main {
   min-height: 90vh;
 }
+
 /*--------------------------------------------------------------
 # Global Page Titles & Breadcrumbs
 --------------------------------------------------------------*/
 .page-title {
+  background: linear-gradient(to right, var(--background-color), color-mix(in srgb, var(--accent-color), transparent 10%)) !important;
+  background-size: 200% auto !important;
+  background-position: 0% center !important;
+  width: fit-content;
+  margin-inline: auto;
   color: var(--default-color);
   background-color: var(--background-color);
-  padding: 25px 0;
+  padding: 10px 10px 5px 20px;
   position: relative;
+  text-align: center;
 }
 
 .page-title h1 {
-  font-size: 24px;
+  font-size: 3rem;
   font-weight: 700;
+  color: var(--heading-color);
+  line-height: 1;
+  margin-bottom: 0;
 }
 
 #breadcrumbs {
@@ -202,21 +208,25 @@ section,
 .section-title {
   padding-bottom: 60px;
   position: relative;
+  width: fit-content;
+  margin-inline: auto;
 }
 
 .section-title h2 {
-  font-size: 32px;
+  font-size: 2.8rem;
   font-weight: 700;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   position: relative;
+  @media (max-width: 768px) {
+    font-size: 1.8rem;
+  }
 }
 
 .section-title h2:after {
   content: "";
   position: absolute;
   display: block;
-  width: 50px;
+  width: 100%;
   height: 3px;
   background: var(--accent-color);
   left: 0;
@@ -227,6 +237,13 @@ section,
   margin-bottom: 0;
 }
 
+.post-full .section-title {
+  width: 100%;
+  margin-inline: 0;
+  & h2:after {
+    width: 50px;
+  }
+}
 
 .post-full img {
   width: 100%;
@@ -238,72 +255,89 @@ section,
 }
 
 
-footer {
-  background-color: var(--background-color);
-  .navmenu a:after {
-    bottom: -5px;
-  }
-}
-
-@media (max-width: 400px) { 
-  footer a{
-    font-size: 14px;
-  }
-}
-
-/*--------------------------------------------------------------
-# Contact Section
---------------------------------------------------------------*/
-.footer-hours .info-wrap {
-  background-color: var(--surface-color);
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  overflow: hidden;
-}
-
-@media (max-width: 575px) {
-  .footer-hours .info-wrap {
-    padding: 20px;
-  }
-}
-
-.footer-hours .info-item i {
-  font-size: 20px;
-  color: var(--accent-color);
-  background: color-mix(in srgb, var(--accent-color), transparent 92%);
-  width: 44px;
-  height: 44px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50px;
-  transition: all 0.3s ease-in-out;
-  margin-right: 15px;
-}
-
-.footer-hours .info-item h3 {
-  padding: 0;
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 5px;
-}
-
-.footer-hours .info-item p {
-  padding: 0;
-  margin-bottom: 0;
-  font-size: 14px;
-}
-
-.footer-hours .info-item:hover i {
-  background: var(--accent-color);
-  color: var(--contrast-color);
-}
-
+// to remove before production
 #wpadminbar{
   position: absolute;
   @media (max-width: 992px) {
     display: none;
   }
 }
+
+
+.btn-primary {
+  color: var(--default-color) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  border: none !important;
+  min-width: 150px;
+  text-align: start;
+  background: linear-gradient(to right, color-mix(in srgb, var(--accent-color), white 30%) 0%, color-mix(in srgb, var(--background-color), transparent 100%) 50%, color-mix(in srgb, var(--accent-color), white 30%) 100%) !important;
+  background-size: 200% auto !important;
+  background-position: 0% center !important;
+  transition: background-position .8s ease !important;
+  border-radius: 0 !important;
+  &:hover {
+    background-position: -100% center !important;
+  }
+}
+
+.btn-big {
+  font-size: 1.5rem;
+  padding: 10px 20px;
+  min-width: 200px;
+  margin-top: 60px;
+}
+
+.about-img {
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.about-description {
+  font-size: 1.2rem;
+  line-height: 1.4;
+  font-weight: 400;
+  display: -webkit-box;
+  -webkit-line-clamp: 9;
+  line-clamp: 9;
+  -webkit-box-orient: vertical;
+  position: relative;
+  font-style: italic;
+  padding: 20px;
+  background-color: var(--surface-color);
+  position: relative;
+  margin: auto;
+  border-radius: 6px;
+    p{
+      margin-bottom: 0;
+    }
+}
+
+.about-description .quote-icon-left,
+.about-description .quote-icon-right {
+  color: color-mix(in srgb, var(--accent-color), transparent 40%);
+  font-size: 26px;
+  line-height: 0;
+}
+
+.about-description .quote-icon-left {
+  display: inline-block;
+  left: -5px;
+  position: relative;
+}
+
+.about-description .quote-icon-right {
+  display: inline-block;
+  transform: scale(-1, -1);
+  right: -5px;
+  position: relative;
+  top: 10px;
+}
+
 
 

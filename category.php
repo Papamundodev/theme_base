@@ -10,23 +10,16 @@ $theme_template_name = basename(__FILE__, ".php");
 
     <section id="category-<?=$object->slug?>" class="category section">
 
-        <!-- Section Title -->
-        <div class="container section-title">
+        <!-- Page Title -->
+        <div class="container page-title mb-5">
+            <h1><?=$object->name?></h1>
+        </div><!-- End Page Title -->
 
-        <?php
-        
-        if ( function_exists('yoast_breadcrumb') ) : ?>
-        <?php yoast_breadcrumb( '<p id="breadcrumbs">','</p>' ); ?>
-        <?php endif; ?>
-
-        <h2><?=$object->name?></h2>
-        <p><?=$object->description?></p>
-        </div><!-- End Section Title -->
         <div class="container">
 
-            <div class="row">
+            <div class="row list-layout">
                 <?php foreach ($posts as $post) : setup_postdata($post); ?>
-                    <div class="col-lg-6 col-xxl-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="col-lg-6 col-xxl-4 mb-5" data-aos="fade-up" data-aos-delay="200">
                         <?php get_template_part('partials/article/post-preview', null, ['post' => $post]); ?>
                     </div>
                 <?php endforeach; wp_reset_postdata(); ?>

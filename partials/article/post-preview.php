@@ -19,7 +19,7 @@ $default_class = get_the_post_thumbnail_url($post, 'medium') ? '' : 'post-previe
         <p class=""><?=$content; ?></p>
     </div>
     <div class="d-flex justify-content-center align-items-center">
-        <a href="<?=get_permalink($post); ?>" class="btn btn-primary">
+        <a href="<?=get_permalink($post); ?>" class="btn btn-primary stretched-link">
             <span class="">Read more</span>
         </a>
     </div>

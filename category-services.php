@@ -10,15 +10,10 @@ $theme_template_name = basename(__FILE__, ".php");
         <section id="category-<?=$object->slug?>" class="category section">
             <div class="container">
 
-                <!-- Section Title -->
-                <div class="section-title">
-                    <?php if ( function_exists('yoast_breadcrumb') ) : ?>
-                    <?php yoast_breadcrumb( '<p id="breadcrumbs">','</p>' ); ?>
-                    <?php endif; ?>
-
-                    <h2><?=$object->name?></h2>
-                    <p><?=$object->description?></p>
-                </div><!-- End Section Title -->
+                <!-- Page Title -->
+                <div class="page-title mb-5">
+                    <h1><?=$object->name?></h1>
+                </div><!-- End Page Title -->
                 
                 <div class="vstack services-list">
                     <?php foreach ($posts as $i => $post) : setup_postdata($post); ?>
@@ -30,6 +25,11 @@ $theme_template_name = basename(__FILE__, ".php");
 
             </div>
         </section>
+
+        <?php
+        $insurances = get_field('insurances', 'option');
+        ?>
+        
     </main>
 
 <?php

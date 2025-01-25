@@ -25,7 +25,7 @@ $content = wpautop($content);
                 <p class=""><?=$content; ?></p>
             </div>
             <div class="d-flex justify-content-start align-items-center">
-                <a href="<?=get_permalink($post); ?>" class="btn btn-primary">
+                <a href="<?=get_permalink($post); ?>" class="btn btn-primary stretched-link">
                     <span class="">Read more</span>
                 </a>
             </div>

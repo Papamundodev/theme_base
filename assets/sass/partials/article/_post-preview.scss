@@ -8,22 +8,19 @@
     overflow: hidden;
     height: 100%;
     text-align: center;
-    padding: 2em;
-    @include media-breakpoint-up(xxl) {
-      width: 350px;
-    }
+    padding: 1.5em;
   }
 
   .card-resource img {
     width: 100%;
-    height: 150px;
+    height: 200px;
     object-position: center;
     object-fit: cover;
   }
   
   .card-resource .card-body h4 {
-    color: $primary;
-    font-weight: 500;
+    color: var(--default-color);
+    font-weight: 700;
     height: 2.5em;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -31,13 +28,30 @@
   
   .card-resource .card-body p {
     color: var(--default-color);
+    text-align: left;
     display: -webkit-box;
-    -webkit-line-clamp: 7;
-    line-clamp: 7;
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
+  @media (min-width: 992px) {
+    .list-layout {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+  }
 
+  @media (min-width: 1400px) {
+    .card-resource {
+      max-width: 350px;
+      margin: 0 auto;
+    }
+    .list-layout {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  }
   

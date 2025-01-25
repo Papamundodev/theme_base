@@ -12,17 +12,10 @@ $title = get_the_title();
 
         <div class="container">
 
-        <?php
-        if ( function_exists('yoast_breadcrumb') ) {
-        yoast_breadcrumb( '<p id="breadcrumbs">','</p>' );
-        }
-        ?>
-
-        <!-- Section Title -->
-        <div class="section-title">
-            <h1 class=""><?=$title; ?></h1>
-        </div>
-        <!-- End Section Title -->
+        <!-- Page Title -->
+        <div class="container page-title mb-5">
+            <h1><?=$title; ?></h1>
+        </div><!-- End Page Title -->
 
         <div><?=$content;?></div>
 
