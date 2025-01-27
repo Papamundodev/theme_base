@@ -6,15 +6,17 @@ $theme_template_name = basename(__FILE__, ".php");
 
 <main id="main-<?=$theme_template_name?>" class="">
 
-    <section class="section section-container">
+    <section class="section"> 
 
-        <div class="container">    
+        <div class="container">
 
-        <?php
-        if ( function_exists('yoast_breadcrumb') ) {
-        yoast_breadcrumb( '<p id="breadcrumbs">','</p>' );
-        }
-        ?>
+            <?php
+            if ( function_exists('yoast_breadcrumb') ) {
+            yoast_breadcrumb( '<p id="breadcrumbs">','</p>' );
+            }
+            ?>
+
+        </div>
 
         <?php
         if ( have_posts() ):
@@ -26,8 +28,6 @@ $theme_template_name = basename(__FILE__, ".php");
 
         endif;
         ?>
-
-        </div>
 
     </section>
 

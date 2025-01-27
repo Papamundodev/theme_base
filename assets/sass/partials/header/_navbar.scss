@@ -57,7 +57,17 @@ width: 100%;
   width: 100%;
 }
 
+// Home page: background dark under the navbar 
 
+body.home {
+  background: linear-gradient(
+    to bottom,
+    var(--heading-color) 0,
+    var(--heading-color) 150px,
+    var(--background-color) 150px,
+    var(--background-color) 100%
+  );
+}
 
 /*----------------------------------------------------------
 # Toggle Dropdown

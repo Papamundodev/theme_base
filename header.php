@@ -7,6 +7,16 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class() ?>>
+<?php 
+if (function_exists('get_field')){
+    $primary_color = get_field('primary_color', 'option') ?? '#955c07';
+}
+?>
+<style>
+    :root {
+        --primary: <?=$primary_color?>;
+    }
+</style>
 
 <?php
 if (function_exists('wp_body_open')){
@@ -17,17 +27,12 @@ if (function_exists('wp_body_open')){
 <header id="header" class="header dark-background">
     <div class="container-xl flex-column d-flex flex-lg-row align-items-center gap-3">
     <i class="header-toggle d-lg-none bi bi-list"></i>
+    <!-- Logo -->
+    <?php get_template_part('partials/header/logo'); ?>
+    <!-- End Logo -->
 
-    <?php if (function_exists('get_field')): ?>
-
-        <!-- Logo -->
-        <?php get_template_part('partials/header/logo'); ?>
-        <!-- End Logo -->
-
-        <!-- Navbar -->
-        <?php get_template_part('partials/header/navbar', 'header', ['theme_location' => 'header']); ?>
-        <!-- End Navbar -->
-
-    <?php endif; ?>
+    <!-- Navbar -->
+    <?php get_template_part('partials/header/navbar', 'header', ['theme_location' => 'header']); ?>
+    <!-- End Navbar -->
     </div>
 </header>

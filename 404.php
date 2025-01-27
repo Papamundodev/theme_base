@@ -7,7 +7,7 @@ $theme_template_name = basename(__FILE__, ".php");
     <main id="main-<?=$theme_template_name?>" class="">
 
         <section class="section " data-aos="fade-up">
-            <div class="section-title" >
+            <div class="" >
                 <div class="container d-flex flex-column align-items-center justify-content-center">
                     <h1>404</h1>
                     <p>Page not found</p>

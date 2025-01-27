@@ -11,11 +11,11 @@ class Base
     {
         $this->theme_name = $theme_name;
         $this->theme_slug = $theme_slug;
-        
-        // Ajouter cette configuration pour l'environnement local
-        if (defined('LOCAL_DEV_SITE') && LOCAL_DEV_SITE) {
-            add_action('phpmailer_init', [$this, 'configure_smtp_for_local']);
-        }
+    
+        // add excerpt
+        add_action('init', function () {
+            add_post_type_support('page', 'excerpt');
+        });
 
         // Désactiver Gravatar
         add_filter('option_show_avatars', '__return_false');
@@ -40,16 +40,6 @@ class Base
             add_filter('style_loader_src', [$this, 'remove_source_maps'], 999, 2);
             add_filter('script_loader_src', [$this, 'remove_source_maps'], 999, 2);
         }
-    }
-
-    public function configure_smtp_for_local($phpmailer) {
-        $phpmailer->isSMTP();
-        $phpmailer->Host = 'localhost';
-        $phpmailer->SMTPAuth = false;
-        $phpmailer->Port = 1025; // Port par défaut de Mailpit
-        
-        // Optionnel : forcer l'email de destination pour les tests
-        // $phpmailer->addAddress('votre-email@example.com');
     }
 
     public function includeStyles() : void
@@ -101,7 +91,6 @@ class Base
             add_theme_support('post-thumbnails');
             // Enables post and comment RSS feed links to head
             add_theme_support('automatic-feed-links');
-    
             // I18N
             load_theme_textdomain('theme_base', get_template_directory() . '/languages');
     
@@ -190,14 +179,14 @@ class Base
      *
      * @param string|null $location The menu location id
      */
-    public static function  wp_get_menu_array(?string $location = null, $args = [])
+    public static function  wp_get_menu_array(?string $location = null, $args = []) : array
     {
         
         // Get all locations
         $locations = get_nav_menu_locations();
 
         if ($location === null || !array_key_exists($location, $locations)) {
-            return;
+            return [];
         }
 
         // Get object id by location
@@ -206,12 +195,12 @@ class Base
         $menu_items = wp_get_nav_menu_items($object->name, array( 'update_post_term_cache' => false ));
         _wp_menu_item_classes_by_context( $menu_items );
         // Return menu post objects
-        $menu = array();
+        $menu = [];
 
         foreach ($menu_items as $m) {
        
             if (empty($m->menu_item_parent)) {
-                $menu[$m->ID] = array();
+                $menu[$m->ID] = [];
                 $menu[$m->ID]['ID'] = intval($m->ID);
                 $menu[$m->ID]['title'] = $m->title;
                 $menu[$m->ID]['classes'] = $m->classes;
@@ -233,11 +222,11 @@ class Base
 
     public static function populate_children( array $menu_array = null, \WP_Post $menu_item = null) : array
     {
-        $children = array();
+        $children = [];
         if (!empty($menu_array)) {
             foreach ($menu_array as $k => $m) {
                 if ($m->menu_item_parent == $menu_item->ID) {
-                    $children[$m->ID] = array();
+                    $children[$m->ID] = [];
                     $children[$m->ID]['ID'] = intval($m->ID);
                     $children[$m->ID]['title'] = $m->title;
                     $children[$m->ID]['classes'] = $m->classes;
@@ -255,77 +244,25 @@ class Base
 
     public static function get_active_class($item) : string
     {
-        if(in_array('current-menu-item', $item['classes'] ? $item['classes'] : [])){
+        if(in_array('current-menu-item', $item['classes'] ?? [])){
             return 'active';
         }
         return '';
     }
 
-
-
-    public function process_contact_form() {
-        add_action('admin_post_nopriv_submit_contact_form', [$this, 'handle_contact_form']);
-        add_action('admin_post_submit_contact_form', [$this, 'handle_contact_form']);
-    }
-
-    public function handle_contact_form() {
-        if (!isset($_POST['contact_nonce']) || !wp_verify_nonce($_POST['contact_nonce'], 'submit_contact_form')) {
-            wp_die('Nonce verification failed');
-        }
-
-        $name = sanitize_text_field($_POST['name']);
-        $email = sanitize_email($_POST['email']);
-        $subject = sanitize_text_field($_POST['subject']);
-        $message = sanitize_textarea_field($_POST['message']);
-
-        // Gestion du fichier joint
-        $attachment_path = '';
-        if (!empty($_FILES['attachment']['name'])) {
-            $upload = wp_handle_upload($_FILES['attachment'], array('test_form' => false));
-            
-            if (!isset($upload['error'])) {
-                $attachment_path = $upload['file'];
-            }
-        }
-
-        $to = get_field('email', 'option');
-        $headers = array(
-            'Content-Type: text/html; charset=UTF-8',
-            'From: ' . $name . ' <' . $email . '>'
-        );
-
-        $email_content = "Nom: " . $name . "<br>";
-        $email_content .= "Email: " . $email . "<br>";
-        $email_content .= "Message:<br>" . nl2br($message);
-
-        // Ajout de la pièce jointe à l'email
-        $attachments = array();
-        if ($attachment_path) {
-            $attachments[] = $attachment_path;
-        }
-
-        $sent = wp_mail($to, $subject, $email_content, $headers, $attachments);
-
-        // Nettoyage du fichier temporaire après envoi
-        if ($attachment_path && file_exists($attachment_path)) {
-            unlink($attachment_path);
-        }
-
-        $redirect_url = add_query_arg(
-            array(
-                'status' => $sent ? 'success' : 'error'
-            ),
-            wp_get_referer()
-        );
-
-        wp_safe_redirect($redirect_url);
-        exit;
-    }
-    
-
-     /*
-     fin
+    /**
+     * Add class to pagination link
      */
+    public function my_theme_posts_link_attributes() : string
+    {
+        return 'class="btn btn-primary"';
+    }
+
+    public function add_pagination_link_attributes() : void
+    {   
+        add_filter('next_posts_link_attributes', [$this, 'my_theme_posts_link_attributes']);
+        add_filter('previous_posts_link_attributes', [$this, 'my_theme_posts_link_attributes']);
+    }
 
     /**
      * Optimization
@@ -348,5 +285,9 @@ class Base
         
         return $args;
     }
+
+    /*
+    fin
+    */
 
 }

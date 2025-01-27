@@ -8,18 +8,18 @@ $title = get_the_title();
 
     <main id="main-<?=$theme_template_name?>">
 
-        <section class="section section-container">
+        <section class="section">
 
-        <div class="container">
+            <!-- Page Title -->
+            <div class="container">
+                <div class="page-title mx-0">
+                    <h1><?=$title; ?></h1>
+                </div><!-- End Page Title -->
+            </div>
 
-        <!-- Page Title -->
-        <div class="container page-title mb-5">
-            <h1><?=$title; ?></h1>
-        </div><!-- End Page Title -->
-
-        <div><?=$content;?></div>
-
-        </div>
+            <div class="container">
+                <div><?=$content;?></div>
+            </div>
 
         </section>
 

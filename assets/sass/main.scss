@@ -1,11 +1,6 @@
 // D'abord les fonctions de Bootstrap
 @import "bootstrap/scss/functions";
 // Ensuite définir les variables personnalisées de Bootstrap
-$primary: #955c07;
-$theme-colors: (
-  "primary": $primary
-  
-);
 
 // Puis importer les variables et mixins de Bootstrap
 @import "bootstrap/scss/variables";
@@ -17,17 +12,23 @@ $theme-colors: (
 // Ensuite vos variables personnalisées
 
 @import "partials/header/logo";
-@import "partials/social-links";
 @import "partials/header/navbar";
-@import "partials/hero";
-@import "partials/preloader";
-@import "partials/scroll-top";
 @import "partials/header/header";
-@import "partials/carrousel";
+
 @import "partials/article/post-preview";
 @import "partials/article/service-preview";
-@import "partials/contact";
+@import "partials/article/post-full";
+
+@import "components/preloader";
+@import "components/scroll-top";
+@import "components/yoast-breadcrumbs";
+@import "components/carrousel";
+@import "components/buttons";
+
+@import "partials/about";
 @import "partials/footer";
+@import "partials/hero";
+@import "partials/pagination";
 // Vos styles personnalisés ici
 
 // Import Swiper styles
@@ -39,65 +40,52 @@ $theme-colors: (
 
 /* Fonts */
 :root {
-    --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    --heading-font: "Raleway",  sans-serif;
-    --nav-font: "Poppins",  sans-serif;
-  }
-  
-  /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
-  :root { 
-    --background-color: #ffffff; /* Background color for the entire website, including individual sections */
-    --default-color: #272829; /* Default color used for the majority of the text content across the entire website */
-    --heading-color: #040b14; /* Color for headings, subheadings and title throughout the website */
-    --accent-color: #955c07; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
-    --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
-    --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
-  }
-  
-  /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
-  :root {
-    --nav-color: #a8a9b4;  /* The default color of the main navmenu links */
-    --nav-hover-color: #955c07; /* Applied to main navmenu links when they are hovered over or active */
-    --nav-mobile-background-color: #040b14; /* Used as the background color for mobile navigation menu */
-    --nav-dropdown-background-color: #040b14; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
-    --nav-dropdown-color: #a8a9b4; /* Used for navigation links of the dropdown items in the navigation menu. */
-    --nav-dropdown-hover-color: #ffffff; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
-  }
-
-  :root {
-    --accent-darker: color-mix(in oklch, var(--accent-color), black 20%);
-    --accent-transparent: color-mix(in oklch, var(--accent-color), transparent 80%);
-    --accent-light: color-mix(in oklch, var(--accent-color), white 20%);
-    --border-color: #040b14;
-    --accent-hover: color-mix(in oklch, var(--accent-color), transparent 25%);
+  --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --heading-font: "Raleway",  sans-serif;
+  --nav-font: "Poppins",  sans-serif;
 }
-  /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
+  
+/* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
+:root { 
+  --background-color: #ffffff; /* Background color for the entire website, including individual sections */
+  --default-color: #272829; /* Default color used for the majority of the text content across the entire website */
+  --heading-color: #040b14; /* Color for headings, subheadings and title throughout the website */
+  --accent-color: var(--primary); /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
+  --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+  --accent-hover: color-mix(in oklch, var(--accent-color), transparent 25%);
+  --nav-color: #a8a9b4;
+}
 
 .light-background {
-    --background-color: #f4fafd;
-    --surface-color: #ffffff;
-    --default-color: #040b14;
-    --heading-color: #040b14;
-  }
+  --background-color: #f4fafd;
+  --surface-color: #ffffff;
+  --default-color: #040b14;
+  --heading-color: #040b14;
+}
   
-  .dark-background {
-    --background-color: #040b14;
-    --default-color: #ffffff;
-    --heading-color: #ffffff;
-    --surface-color: #151f2b;
-    --contrast-color: #ffffff;
-    --accent-hover: color-mix(in oklch, var(--accent-color), white 20%);
-  }
+.dark-background {
+  --background-color: #040b14;
+  --default-color: #ffffff;
+  --heading-color: #ffffff; 
+  --surface-color: #040b14;
+  --contrast-color: #ffffff;
+}
 
   /* Smooth scroll */
 :root {
     scroll-behavior: smooth;
-  }
-  
-  .row {
-    --bs-gutter-x: 3rem;
-  }
+}
 
+.row {
+  --bs-gutter-x: 3rem;
+}
+
+@media (max-width: 572px) {
+  body, html {
+    overflow-x: hidden;
+  }
+}
   
   /*--------------------------------------------------------------
 # General Styling & Shared Classes
@@ -110,8 +98,9 @@ body {
     font-family: var(--default-font);
 }
 
-body.home{
-  background-color: var(--nav-mobile-background-color);
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
   
 a {
@@ -125,6 +114,9 @@ a:hover {
   text-decoration: none;
 }
 
+.bi{
+  color: var(--accent-color);
+}
 
 h1,
 h2,
@@ -140,56 +132,7 @@ main {
   min-height: 90vh;
 }
 
-/*--------------------------------------------------------------
-# Global Page Titles & Breadcrumbs
---------------------------------------------------------------*/
-.page-title {
-  background: linear-gradient(to right, var(--background-color), color-mix(in srgb, var(--accent-color), transparent 10%)) !important;
-  background-size: 200% auto !important;
-  background-position: 0% center !important;
-  width: fit-content;
-  margin-inline: auto;
-  color: var(--default-color);
-  background-color: var(--background-color);
-  padding: 10px 10px 5px 20px;
-  position: relative;
-  text-align: center;
-}
 
-.page-title h1 {
-  font-size: 3rem;
-  font-weight: 700;
-  color: var(--heading-color);
-  line-height: 1;
-  margin-bottom: 0;
-}
-
-#breadcrumbs {
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  padding: 0;
-  margin-bottom: 20px;
-  font-size: 14px;
-  font-weight: 400;
-  span {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  a {
-    color: var(--accent-color);
-    
-    &:hover {
-      color: color-mix(in srgb, var(--accent-color), transparent 25%);
-    }
-  }
-
-  .breadcrumb_last {
-    color: var(--default-color);
-  }
-}
 
 /*--------------------------------------------------------------
 # Global Sections
@@ -205,24 +148,27 @@ section,
 /*--------------------------------------------------------------
 # Global Section Titles
 --------------------------------------------------------------*/
-.section-title {
+.section-title, .page-title {
   padding-bottom: 60px;
   position: relative;
   width: fit-content;
   margin-inline: auto;
+  text-align: center;
 }
 
-.section-title h2 {
-  font-size: 2.8rem;
+.section-title > *, .page-title > * {
+  font-size: 2.5rem;
   font-weight: 700;
   padding-bottom: 10px;
   position: relative;
-  @media (max-width: 768px) {
-    font-size: 1.8rem;
+  color: var(--heading-color);
+  @media (max-width: 572px) {
+    font-size: 1.7rem;
   }
 }
 
-.section-title h2:after {
+
+.section-title > *:after, .page-title > *:after {
   content: "";
   position: absolute;
   display: block;
@@ -233,27 +179,18 @@ section,
   bottom: 0;
 }
 
-.section-title p {
+.section-title p, .page-title p {
   margin-bottom: 0;
 }
 
-.post-full .section-title {
-  width: 100%;
-  margin-inline: 0;
-  & h2:after {
+
+@media (max-width: 575px) {
+  .section-title > *:after, .page-title > *:after {
     width: 50px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
-
-.post-full img {
-  width: 100%;
-  height: 100%;
-  max-height: 400px;
-  object-position: center;
-  object-fit: cover;
-  margin-bottom: 20px;
-}
-
 
 // to remove before production
 #wpadminbar{
@@ -264,80 +201,6 @@ section,
 }
 
 
-.btn-primary {
-  color: var(--default-color) !important;
-  font-weight: 700 !important;
-  text-transform: uppercase !important;
-  border: none !important;
-  min-width: 150px;
-  text-align: start;
-  background: linear-gradient(to right, color-mix(in srgb, var(--accent-color), white 30%) 0%, color-mix(in srgb, var(--background-color), transparent 100%) 50%, color-mix(in srgb, var(--accent-color), white 30%) 100%) !important;
-  background-size: 200% auto !important;
-  background-position: 0% center !important;
-  transition: background-position .8s ease !important;
-  border-radius: 0 !important;
-  &:hover {
-    background-position: -100% center !important;
-  }
-}
-
-.btn-big {
-  font-size: 1.5rem;
-  padding: 10px 20px;
-  min-width: 200px;
-  margin-top: 60px;
-}
-
-.about-img {
-  overflow: hidden;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-}
-
-.about-description {
-  font-size: 1.2rem;
-  line-height: 1.4;
-  font-weight: 400;
-  display: -webkit-box;
-  -webkit-line-clamp: 9;
-  line-clamp: 9;
-  -webkit-box-orient: vertical;
-  position: relative;
-  font-style: italic;
-  padding: 20px;
-  background-color: var(--surface-color);
-  position: relative;
-  margin: auto;
-  border-radius: 6px;
-    p{
-      margin-bottom: 0;
-    }
-}
-
-.about-description .quote-icon-left,
-.about-description .quote-icon-right {
-  color: color-mix(in srgb, var(--accent-color), transparent 40%);
-  font-size: 26px;
-  line-height: 0;
-}
-
-.about-description .quote-icon-left {
-  display: inline-block;
-  left: -5px;
-  position: relative;
-}
-
-.about-description .quote-icon-right {
-  display: inline-block;
-  transform: scale(-1, -1);
-  right: -5px;
-  position: relative;
-  top: 10px;
-}
 
 
 

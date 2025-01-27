@@ -1,0 +1,30 @@
+/*--------------------------------------------------------------
+# Global Page Titles & Breadcrumbs
+--------------------------------------------------------------*/
+
+#breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 400;
+    span {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+  
+    a {
+      color: var(--accent-color);
+      
+      &:hover {
+        color: color-mix(in srgb, var(--accent-color), transparent 25%);
+      }
+    }
+  
+    .breadcrumb_last {
+      color: var(--default-color);
+    }
+  }

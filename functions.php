@@ -1,8 +1,6 @@
 <?php
 
 use Theme_base\Base;
-use Theme_base\CustomPostType;
-use Theme_base\Taxonomy;
 
 if (is_file(__DIR__ . '/vendor/autoload.php')) {
     require_once __DIR__ . '/vendor/autoload.php';
@@ -17,7 +15,7 @@ $base->registerMenus();
 $base->includeStyles();
 $base->includeScripts();
 $base->addSVGSupport();
-$base->process_contact_form();
+$base->add_pagination_link_attributes();
 
 
 function pre_debug($data){

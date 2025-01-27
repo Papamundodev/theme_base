@@ -3,18 +3,24 @@ global $post;
 $content = get_the_content();
 $title = get_the_title();
 $content = wpautop($content);
+$featured_image = get_the_post_thumbnail_url($post);
 ?>
 
 <div class="post-full">
 
     <!-- Section Title -->
-    <div class="section-title">
-        <h2><?=$title; ?></h2>
+    <div class="container">
+        <div class="section-title">
+            <h1><?=$title;?></h1>
+        </div>
     </div>
     <!-- End Section Title -->
 
-    <?php if (has_post_thumbnail($post)) : ?>
-    <img src="<?=get_the_post_thumbnail_url($post); ?>" alt="<?=$title; ?>" class="img-fluid" data-aos="fade-up" data-aos-delay="500">
-    <?php endif; ?>
-    <div data-aos="fade-up" data-aos-delay="500"><?=$content;?></div>
+    <div class="container">
+        <?php if ($featured_image) : ?>
+        <img src="<?=$featured_image; ?>" alt="<?=$title; ?>" class="img-fluid" data-aos="fade-up" data-aos-delay="200">
+        <?php endif; ?>
+        <div data-aos="fade-up" data-aos-delay="300"><?=$content;?></div>
+    </div>
+
 </div>

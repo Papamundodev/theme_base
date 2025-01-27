@@ -24,11 +24,13 @@ $content = wpautop($content);
                 <h4 class=""><?=$title; ?></h4>
                 <p class=""><?=$content; ?></p>
             </div>
+            <?php if (get_permalink($post)) : ?>
             <div class="d-flex justify-content-start align-items-center">
                 <a href="<?=get_permalink($post); ?>" class="btn btn-primary stretched-link">
                     <span class="">Read more</span>
                 </a>
             </div>
+            <?php endif; ?>
         </div>
     </div>
 </div>
