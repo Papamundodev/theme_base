@@ -126,6 +126,9 @@
   overflow: hidden;
   max-width: 100%;
   margin: 0 auto;
+  @media (max-width: 572px) {
+    padding: 20px;
+  }
   .team-member__img{
     img {
       box-shadow: 10px 10px 0 0 var(--accent-color);
@@ -139,6 +142,13 @@
       img {
         width: 120px;
         height: 120px;
+      }
+    }
+
+    @media (max-width: 572px) {
+      img {
+        width: 100px;
+        height: 100px;
       }
     }
   }

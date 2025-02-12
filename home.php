@@ -17,7 +17,7 @@ global $wp_query;
             <?php if(is_array($wp_query->posts) && count($wp_query->posts) > 0): ?>
                 <div class="row list-layout">
                     <?php foreach ($wp_query->posts as $post) : setup_postdata($post); ?>
-                        <div class="col-lg-6 col-xxl-4 mb-5" data-aos="fade-up" data-aos-delay="200">
+                        <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
                             <?php get_template_part('partials/article/post-preview', null, ['post' => $post]); ?>
                         </div>
                     <?php endforeach; wp_reset_postdata(); ?>

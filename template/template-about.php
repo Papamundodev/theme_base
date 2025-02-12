@@ -114,7 +114,7 @@ get_header();
                         <div class="mb-4 data-aos="fade-up" data-aos-delay="200">
                             <div class="team-member row">
                                 <div class="col-12 col-lg-3">
-                                    <div class="d-flex h-100 flex-lg-column gap-5 gap-lg-0 align-items-center align-items-lg-start"> 
+                                    <div class="d-flex h-100 flex-lg-column gap-4 gap-lg-0 align-items-center align-items-lg-start"> 
                                         <div class="team-member__img mb-3">
                                             <img src="<?=$team_member['photo']['sizes']['large']?>" alt="<?=$team_member['full_name']?>">
                                         </div>

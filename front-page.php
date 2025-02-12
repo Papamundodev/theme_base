@@ -106,7 +106,7 @@ $content = wpautop(get_the_content());
             <div class="row list-layout">
                 <?php if(is_array($featured_resources) && count($featured_resources) > 0): ?>
                     <?php foreach ($featured_resources as $post) : setup_postdata($post); ?>
-                        <div class="col-lg-6 col-xxl-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="col-lg-4 mb-4 " data-aos="fade-up" data-aos-delay="300">
                             <?php get_template_part('partials/article/post-preview', null, ['post' => $post]); ?>
                         </div>
                     <?php endforeach; wp_reset_postdata(); ?>
