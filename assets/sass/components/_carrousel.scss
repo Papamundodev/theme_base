@@ -27,11 +27,11 @@
 }
 
 .carrousels .carrousel-item .carrousel-img img {
-  width: 250px;
+  width: 200px;
   height: 150px;
   object-fit: cover;
   border-radius: 10px;
-  filter: grayscale(100%);
+  filter: grayscale(50%);
 }
 
 .carrousels .carrousel-item h4 {
@@ -40,6 +40,10 @@
   margin: 1em 0;
   font-weight: 700;
     
+}
+
+.swiper {
+  max-width: 1200px;
 }
 
 .carrousels .carrousel-item p {

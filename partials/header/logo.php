@@ -18,7 +18,7 @@
       <div class="d-flex align-items-center justify-content-center">
           <i class="bi bi-phone"></i>
           <a href="tel:<?= get_field('phone_number', 'option'); ?>" class="logo">
-            <h1 class="sitename"><?= get_field('phone_number', 'option'); ?></h1>
+            <span class="sitename"><?= get_field('phone_number', 'option'); ?></span>
           </a>
       </div>
   <?php endif; ?>

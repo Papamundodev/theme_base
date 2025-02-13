@@ -15,6 +15,15 @@ $content = wpautop($object->description) ?? "";
                     <h1><?=$object->name?></h1>
                 </div><!-- End Page Title -->
 
+                            <!-- link to anchor for the services -->
+            <div class="container">
+                <div class="vstack gap-1 mx-auto text-center mb-5">   
+                    <?php foreach ($posts as $i => $post) : setup_postdata($post); ?>
+                        <a href="#service-<?=$post->ID?>" class="anchor-service"><?=$post->post_title?></a>
+                    <?php endforeach; wp_reset_postdata(); ?>
+                </div>
+            </div>
+
                 <?php if($content) : ?>
                     <div class="container text-center mb-5">
                         <?=$content;?>
@@ -27,7 +36,7 @@ $content = wpautop($object->description) ?? "";
                 <div class="vstack services-list">
                     <?php if(is_array($posts) && count($posts) > 0): ?>
                         <?php foreach ($posts as $i => $post) : setup_postdata($post); ?>
-                            <div class="mb-4 <?=($i % 2 == 0) ? 'dark-background img-left' : 'light-background img-right';?>" data-aos="fade-up" data-aos-delay="200">
+                            <div id="service-<?=$post->ID?>" class="mb-4 <?=($i % 2 == 0) ? 'dark-background img-left' : 'light-background img-right';?>" data-aos="fade-up" data-aos-delay="200">
                                 <?php get_template_part('partials/article/service-preview', null, ['post' => $post]); ?>
                             </div>
                         <?php endforeach; wp_reset_postdata(); ?>

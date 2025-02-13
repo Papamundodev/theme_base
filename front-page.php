@@ -92,21 +92,19 @@ $content = wpautop(get_the_content());
             $sticky_posts = get_option('sticky_posts');
             $args_resources = array(
                 'post_type' => 'post',
-                'posts_per_page' => 3,
+                'posts_per_page' => 5,
                 'post__in' => $sticky_posts,
                 'orderby' => 'date',
                 'order' => 'DESC',
                 'category__not_in' => [$cat_services_id],
-
-
             );
             $featured_resources = get_posts($args_resources);
             ?>
 
-            <div class="row list-layout">
+            <div class="grid-list-layout">
                 <?php if(is_array($featured_resources) && count($featured_resources) > 0): ?>
                     <?php foreach ($featured_resources as $post) : setup_postdata($post); ?>
-                        <div class="col-lg-4 mb-4 " data-aos="fade-up" data-aos-delay="300">
+                        <div class="grid-item" data-aos="fade-up" data-aos-delay="300">
                             <?php get_template_part('partials/article/post-preview', null, ['post' => $post]); ?>
                         </div>
                     <?php endforeach; wp_reset_postdata(); ?>

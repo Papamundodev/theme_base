@@ -14,10 +14,29 @@
   margin-right: 8px;
 }
 
-.header .logo h1 {
+.header .logo h1{
   font-size: 24px;
   margin: 0;
-  font-weight: 700;
+  font-weight: 400;
+  color: var(--nav-color);
+}
+
+.header .logo span {
+  font-size: 18px;
+  margin: 0;
+  font-weight: 400;
+  color: var(--nav-color);
+}
+
+.header .bi{
+  color: var(--nav-color);
+}
+
+.header .logo:hover h1, .header .logo:hover span {
+  color: var(--accent-color);
+}
+
+.header .bi:has(+ .logo:hover) {
   color: var(--accent-color);
 }
 

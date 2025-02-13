@@ -1,8 +1,9 @@
 <?php
 $post = $args['post'];
 $title = get_the_title($post);
-$content = get_the_excerpt($post);
-$content = wpautop($content);
+$content = get_the_content($post);
+$content = wpautop(wp_trim_words($content, 100, '...'));
+
 $default_class = get_the_post_thumbnail_url($post, 'medium') ? '' : 'post-preview__image--default';
 ?>
 <div class="card card-resource">

@@ -2,7 +2,7 @@
     background-color: #f4fafd;
     border-radius: 0;
     transition: 0.3s;
-    border: 2px solid var(--accent-color);
+    border: none;
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1);
     transform: scale(1);
     overflow: hidden;
@@ -64,3 +64,72 @@
   }
   
 
+.grid-list-layout {
+  display: grid;
+  grid-template-areas: 
+    "a"
+    "b"
+    "c"
+    "d"
+    "e";
+  gap: 1.5rem;
+  grid-auto-columns: 1fr;
+}
+
+.grid-item {
+  width: 100%;
+  .card-resource {
+    max-width: 100%;
+    border: none;
+  }
+  .card-img-top{
+    width: auto;
+    max-width: initial;
+  }
+  //only show the first 6 p tags
+  .card-resource .card-body *:nth-child(n+6) {
+    display: none;
+  }
+}
+
+.grid-item:nth-child(1) {
+  grid-area: a;
+}
+
+.grid-item:nth-child(2) {
+  grid-area: b;
+}     
+
+.grid-item:nth-child(3) {
+  grid-area: c;
+} 
+
+.grid-item:nth-child(4) {
+  grid-area: d;
+} 
+
+.grid-item:nth-child(5) {
+  grid-area: e;
+} 
+
+@media (min-width: 878px) {
+  .grid-list-layout {
+    grid-template-areas: 
+      "a a"
+      "b c"
+      "d e";
+  }
+  .grid-item:nth-child(5) {
+    .card-resource .card-body p {
+      display: inline-block;
+    }
+  } 
+}
+
+@media (min-width: 992px) {
+  .grid-list-layout {
+    grid-template-areas: 
+    "a a b e"
+    "c d d e";
+  }
+}
