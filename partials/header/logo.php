@@ -1,7 +1,7 @@
 <!-- Logo -->
-<?php if(function_exists('get_field') && get_field('logo', 'option')): ?>
+<?php if(function_exists('get_field') && get_field('logo_site_name', 'option')): ?>
   <div class="profile-img">
-      <img src="<?= get_field('logo', 'option')['sizes']['small']; ?>" alt="<?= get_field('logo', 'option')['alt']; ?>" class="img-fluid rounded-circle profile-image" loading="lazy">
+      <img src="<?= get_field('logo_site_name', 'option')['sizes']['small']; ?>" alt="logo" class="img-fluid  profile-image" >
   </div>
 <?php endif; ?>
 

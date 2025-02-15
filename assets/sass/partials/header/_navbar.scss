@@ -1,42 +1,40 @@
-  /*--------------------------------------------------------------
+/*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
 
 .navmenu {
-padding: 0;
-z-index: 9997;
+  padding: 0;
+  z-index: 9997;
 }
 
 .navmenu ul {
-list-style: none;
-margin: 0;
-  li{
+  list-style: none;
+  margin: 0;
+  li {
     position: relative;
   }
 }
 
 .navmenu a,
 .navmenu a:focus {
-color: var(--nav-color);
-padding: 15px 10px;
-font-family: var(--nav-font);
-font-size: 18px;
-font-weight: 400;
-display: flex;
-align-items: center;
-white-space: nowrap;
-transition: 0.3s;
-width: 100%;
+  color: var(--nav-color);
+  padding: 15px 10px;
+  font-family: var(--nav-font);
+  font-size: 18px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  transition: 0.3s;
+  width: 100%;
 }
 
-
-
-.navmenu .active a ,
+.navmenu .active a,
 .navmenu .active:focus a {
-  color: var(--accent-color);
+  color: var(--secondary-surface);
 }
 
-.navmenu li:not(.active) > a:hover{
+.navmenu li:not(.active) > a:hover {
   color: var(--nav-color);
 }
 
@@ -53,11 +51,11 @@ width: 100%;
   transition: width 0.5s ease-in-out;
 }
 
-.navmenu li:not(.active) >  a:hover:after{
+.navmenu li:not(.active) > a:hover:after {
   width: 100%;
 }
 
-// Home page: background dark under the navbar 
+// Home page: background dark under the navbar
 
 body.home {
   background: linear-gradient(
@@ -74,69 +72,69 @@ body.home {
 ----------------------------------------------------------*/
 .navmenu a .toggle-dropdown,
 .navmenu a:focus .toggle-dropdown {
-font-size: 12px;
-line-height: 0;
-margin-left: auto;
-width: 30px;
-height: 30px;
-display: flex;
-align-items: center;
-justify-content: center;
-border-radius: 50%;
-transition: 0.3s;
-flex-shrink: 0;
-background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
+  font-size: 12px;
+  line-height: 0;
+  margin-left: auto;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: 0.3s;
+  flex-shrink: 0;
+  background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
 }
 
 .navmenu a .toggle-dropdown:hover,
 .navmenu a:focus .toggle-dropdown:hover {
-background-color: var(--accent-color);
-color: var(--contrast-color);
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
 }
 .navmenu .active .toggle-dropdown,
 .navmenu .active:focus .toggle-dropdown {
-background-color: var(--accent-color);
-color: var(--contrast-color);
-transform: rotate(180deg);
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+  transform: rotate(180deg);
 }
 
 .navmenu .dropdown {
-display: block;
+  display: block;
 }
 
 .navmenu .dropdown a,
 .navmenu .dropdown a:focus {
-color: --nav-dropdown-color;
+  color: --nav-dropdown-color;
 }
 
 .navmenu .dropdown a:hover,
 .navmenu .dropdown .active,
 .navmenu .dropdown .active:focus {
-color: var(--accent-color);
+  color: var(--accent-color);
 }
 
 .navmenu .dropdown ul {
-position: absolute;
-right: 0;
-width: fit-content;
-display: none;
-z-index: 99;
-padding: 5px 10px;
-margin: 5px 10px;
-background-color: var(--nav-dropdown-background-color);
-border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
-box-shadow: none;
-transition: all 0.5s ease-in-out;
+  position: absolute;
+  right: 0;
+  width: fit-content;
+  display: none;
+  z-index: 99;
+  padding: 5px 10px;
+  margin: 5px 10px;
+  background-color: var(--nav-dropdown-background-color);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  box-shadow: none;
+  transition: all 0.5s ease-in-out;
 }
 
 .navmenu .dropdown ul ul {
-background-color: rgba(33, 37, 41, 0.1);
+  background-color: rgba(33, 37, 41, 0.1);
 }
 
-.navmenu .dropdown>.dropdown-active {
-display: block;
-background-color: var(--nav-dropdown-background-color);
-border-radius: 10px;
+.navmenu .dropdown > .dropdown-active {
+  display: block;
+  background-color: var(--nav-dropdown-background-color);
+  border-radius: 10px;
 }
 
 .dropdown a span {

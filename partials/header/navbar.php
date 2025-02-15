@@ -13,7 +13,7 @@ $theme_location = $args['theme_location'] ?? "header";
       <?php if(empty($item['children'])):?>
         <li class="<?= \Theme_base\Base::get_active_class($item) ?>">
           <a class="navicon" 
-          href="<?=$item['url']?>"
+          href="<?=$item['url']?>"hea
           title="<?=$item['title']?>"
           target="<?=$item['target']?>"
           rel="<?= $item['target'] === '_blank' ? 'noopener noreferrer' : '' ?>"

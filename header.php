@@ -7,16 +7,7 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class() ?>>
-<?php 
-if (function_exists('get_field')){
-    $primary_color = get_field('primary_color', 'option') ?? '#955c07';
-}
-?>
-<style>
-    :root {
-        --primary: <?=$primary_color?>;
-    }
-</style>
+
 
 <?php
 if (function_exists('wp_body_open')){

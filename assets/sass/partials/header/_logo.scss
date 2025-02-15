@@ -2,9 +2,8 @@
   margin: 15px auto;
   display: block;
   width: 100px;
-  border: 6px solid color-mix(in srgb, var(--default-color), transparent 85%);
 }
-  
+
 .header .logo {
   line-height: 1;
 }
@@ -14,26 +13,27 @@
   margin-right: 8px;
 }
 
-.header .logo h1{
+.header .logo h1 {
   font-size: 24px;
   margin: 0;
   font-weight: 400;
-  color: var(--nav-color);
+  color: var(--secondary-surface);
 }
 
 .header .logo span {
   font-size: 18px;
   margin: 0;
   font-weight: 400;
+  color: var(--secondary-surface);
+}
+
+.header .bi {
   color: var(--nav-color);
 }
 
-.header .bi{
-  color: var(--nav-color);
-}
-
-.header .logo:hover h1, .header .logo:hover span {
-  color: var(--accent-color);
+.header .logo:hover h1,
+.header .logo:hover span {
+  color: var(--secondary-surface);
 }
 
 .header .bi:has(+ .logo:hover) {
@@ -48,23 +48,22 @@
   width: 100px;
 }
 
-
 // Hide logo on desktop
 @media (min-width: 992px) {
-  .header.hide{
+  .header.hide {
     .profile-img {
-      opacity: 0;
-      height: 80px;
-      margin: 0;
-      width: 0;
+      height: auto;
+      max-height: 80px;
+      margin: 10px 0;
+      width: 80px;
       transition: all 0.3s ease-in-out;
       img {
-          transform: scale(0);
-          transition: transform 0.3s ease-in-out;
+        margin: 0;
+        transition: transform 0.3s ease-in-out;
       }
     }
     .logo h1 {
       font-size: 18px;
     }
-  } 
+  }
 }

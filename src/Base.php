@@ -16,30 +16,6 @@ class Base
         add_action('init', function () {
             add_post_type_support('page', 'excerpt');
         });
-
-        // Désactiver Gravatar
-        add_filter('option_show_avatars', '__return_false');
-        
-        // OU optimiser Gravatar en utilisant un placeholder local
-        add_filter('pre_get_avatar_data', [$this, 'replace_gravatar'], 10, 2);
-
-        // Désactiver les styles Gutenberg frontend
-        add_action('wp_enqueue_scripts', function() {
-            wp_dequeue_style('wp-block-library');
-            wp_dequeue_style('wp-block-library-theme');
-            wp_dequeue_style('wc-block-style'); // Si vous utilisez WooCommerce
-        }, 100);
-
-        // Désactiver les source maps en production
-        if (!defined('WP_DEBUG') || !WP_DEBUG) {
-            add_action('wp_head', function() {
-                remove_action('wp_head', 'wp_generator');
-                echo '<meta name="sourcemap" content="none">' . "\n";
-            });
-            
-            add_filter('style_loader_src', [$this, 'remove_source_maps'], 999, 2);
-            add_filter('script_loader_src', [$this, 'remove_source_maps'], 999, 2);
-        }
     }
 
     public function includeStyles() : void
@@ -264,27 +240,7 @@ class Base
         add_filter('previous_posts_link_attributes', [$this, 'my_theme_posts_link_attributes']);
     }
 
-    /**
-     * Optimization
-     */
-    public function remove_source_maps($src, $handle) : string
-    {
-        if (strpos($src, '.map') !== false) {
-            return '';
-        }
-        return str_replace(['.map', '.min.map'], '', $src);
-    }
 
-    public function replace_gravatar($args, $id_or_email) : array
-    {
-        // Remplacer par une image locale par défaut
-        $args['url'] = get_template_directory_uri() . '/assets/images/default-avatar.png';
-        
-        // Désactiver la requête vers Gravatar
-        $args['found_avatar'] = true;
-        
-        return $args;
-    }
 
     /*
     fin

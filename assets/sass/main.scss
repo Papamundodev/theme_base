@@ -1,3 +1,9 @@
+//bigger titles on mobile
+// about bi clock not in red
+//header logo bi not right color
+//padding buttons see- all
+//inssurance carrousel mobile , desktop left title right grid
+
 // D'abord les fonctions de Bootstrap
 @import "bootstrap/scss/functions";
 // Ensuite définir les variables personnalisées de Bootstrap
@@ -36,25 +42,52 @@
 @import "../../node_modules/swiper/modules/pagination.scss";
 @import "../../node_modules/swiper/modules/navigation.scss";
 
+@font-face {
+  font-family: "Outfit";
+  src: url("../fonts/Outfit-VariableFont_wght.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
 
+@font-face {
+  font-family: "Fira Sans";
+  src: url("../fonts/FiraCode-VariableFont_wght.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
 
 /* Fonts */
 :root {
-  --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --heading-font: "Raleway",  sans-serif;
-  --nav-font: "Poppins",  sans-serif;
+  --default-font: "Fira Sans", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --heading-font: "Outfit", sans-serif;
+  --nav-font: "Fira Sans", sans-serif;
 }
-  
+
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
-:root { 
+:root {
   --background-color: #ffffff; /* Background color for the entire website, including individual sections */
-  --default-color: #272829; /* Default color used for the majority of the text content across the entire website */
+  --default-color: #040b14; /* Default color used for the majority of the text content across the entire website */
   --heading-color: #040b14; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: var(--primary); /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
-  --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
-  --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+  --accent-color: #00518b; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --surface-color: color-mix(
+    in oklch,
+    var(--background-color),
+    var(--accent-color) 25%
+  ); /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
+  --contrast-color: #f4fafd; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
   --accent-hover: color-mix(in oklch, var(--accent-color), transparent 25%);
-  --nav-color: #a8a9b4;
+  --nav-color: #d0d2ed;
+  --secondary-color: #e8222b;
+  --secondary-surface: color-mix(
+    in oklch,
+    var(--default-color),
+    var(--secondary-color) 90%
+  );
+  --letter-spacing: -0.025em;
+  --letter-spacing-heading: 0.065em;
+  --button-color: var(--secondary-surface);
 }
 
 .light-background {
@@ -63,45 +96,90 @@
   --default-color: #040b14;
   --heading-color: #040b14;
 }
-  
+
 .dark-background {
   --background-color: #040b14;
   --default-color: #ffffff;
-  --heading-color: #ffffff; 
+  --heading-color: #ffffff;
   --surface-color: #040b14;
   --contrast-color: #ffffff;
+  --surface-color: color-mix(
+    in oklch,
+    var(--default-color),
+    var(--accent-color) 40%
+  );
+  --secondary-surface: color-mix(
+    in oklch,
+    var(--default-color),
+    var(--secondary-color) 25%
+  );
 }
 
-  /* Smooth scroll */
+/* Smooth scroll */
 :root {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+[role="list"] {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-block-size: 100vh;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+input,
+label {
+  line-height: 1.1;
+}
 
 @media (max-width: 572px) {
-  body, html {
+  body,
+  html {
     overflow-x: hidden;
   }
 }
-  
-  /*--------------------------------------------------------------
+
+/*--------------------------------------------------------------
 # General Styling & Shared Classes
 --------------------------------------------------------------*/
 
-
 body {
-    color: var(--default-color);
-    background-color: var(--background-color);
-    font-family: var(--default-font);
+  color: var(--default-color);
+  background-color: var(--background-color);
+  font-family: var(--default-font);
+  letter-spacing: var(--letter-spacing);
 }
 
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
-  
+
 a {
-  color: var(--accent-color);
+  color: var(--secondary-surface);
   text-decoration: none;
   transition: 0.3s;
 }
@@ -111,8 +189,8 @@ a:hover {
   text-decoration: none;
 }
 
-.bi{
-  color: var(--accent-color);
+.bi {
+  color: var(--secondary-surface);
 }
 
 h1,
@@ -123,13 +201,17 @@ h5,
 h6 {
   color: var(--heading-color);
   font-family: var(--heading-font);
+  letter-spacing: var(--letter-spacing-heading);
 }
 
 main {
   min-height: 90vh;
 }
 
-
+p {
+  font-weight: 500;
+  font-size: 1.1rem;
+}
 
 /*--------------------------------------------------------------
 # Global Sections
@@ -145,7 +227,8 @@ section,
 /*--------------------------------------------------------------
 # Global Section Titles
 --------------------------------------------------------------*/
-.section-title, .page-title {
+.section-title,
+.page-title {
   padding-bottom: 60px;
   position: relative;
   width: fit-content;
@@ -153,19 +236,20 @@ section,
   text-align: center;
 }
 
-.section-title > *, .page-title > * {
+.section-title > *,
+.page-title > * {
   font-size: 2.5rem;
   font-weight: 700;
   padding-bottom: 10px;
   position: relative;
-  color: var(--heading-color);
+  color: var(--accent-color);
   @media (max-width: 572px) {
     font-size: 1.7rem;
   }
 }
 
-
-.section-title > *:after, .page-title > *:after {
+.section-title > *:after,
+.page-title > *:after {
   content: "";
   position: absolute;
   display: block;
@@ -176,13 +260,14 @@ section,
   bottom: 0;
 }
 
-.section-title p, .page-title p {
+.section-title p,
+.page-title p {
   margin-bottom: 0;
 }
 
-
 @media (max-width: 575px) {
-  .section-title > *:after, .page-title > *:after {
+  .section-title > *:after,
+  .page-title > *:after {
     width: 50px;
     left: 50%;
     transform: translateX(-50%);
@@ -190,14 +275,9 @@ section,
 }
 
 // to remove before production
-#wpadminbar{
+#wpadminbar {
   position: absolute;
   @media (max-width: 992px) {
     display: none;
   }
 }
-
-
-
-
-

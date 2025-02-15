@@ -104,7 +104,7 @@ $content = wpautop(get_the_content());
             <div class="grid-list-layout">
                 <?php if(is_array($featured_resources) && count($featured_resources) > 0): ?>
                     <?php foreach ($featured_resources as $post) : setup_postdata($post); ?>
-                        <div class="grid-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="grid-item">
                             <?php get_template_part('partials/article/post-preview', null, ['post' => $post]); ?>
                         </div>
                     <?php endforeach; wp_reset_postdata(); ?>
