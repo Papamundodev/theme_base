@@ -122,15 +122,8 @@ $content = wpautop(get_the_content());
     <!-- /Latest resources -->
 
     <!-- Latest insurances -->
-    <section id="insurances-carousel" class="carrousels section light-background">
+    <section id="insurances-carousel" class="carrousels section light-background ">
         <!-- Section Title -->
-        <div class="container">
-            <div class="section-title" >
-                <?php if (function_exists('get_field')){$section_insurances_title = get_field('section_insurances_title', 'option') ?? __('Our Insurances', 'theme_base');}?>
-                <h2><?=$section_insurances_title?></h2>
-            </div>
-        </div><!-- End Section Title -->
-
         <div class="container">
             <?php get_template_part('partials/carrousel'); ?>
         </div>

@@ -46,7 +46,7 @@
           <h3 class="mb-4"><?=__('Legal Links', 'theme_base');?></h3>
             <?php $menu_items = \Theme_base\Base::wp_get_menu_array('footer');?>
             <?php if(is_array($menu_items) && count($menu_items) > 0): ?>
-            <nav id="navmenu" class="navmenu m-0 ">
+            <nav id="navmenu-footer" class="navmenu m-0 ">
               <ul class="d-flex flex-column text-center align-items-center justify-content-center m-0 p-0">
                 <?php foreach($menu_items as $item): ?>
                   <?php if(empty($item['children'])):?>

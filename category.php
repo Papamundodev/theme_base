@@ -28,7 +28,7 @@ $content = wpautop($object->description);
             <div class="row list-layout">
                 <?php if(is_array($posts) && count($posts) > 0): ?>
                     <?php foreach ($posts as $post) : setup_postdata($post); ?>
-                        <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
                             <?php get_template_part('partials/article/post-preview', null, ['post' => $post]); ?>
                         </div>
                     <?php endforeach; wp_reset_postdata(); ?>
@@ -41,6 +41,15 @@ $content = wpautop($object->description);
 
         </div>
     </section>
+
+
+                <!-- Latest insurances -->
+    <section id="insurances-carousel" class="carrousels section light-background ">
+        <!-- Section Title -->
+        <div class="container">
+            <?php get_template_part('partials/carrousel'); ?>
+        </div>
+    </section><!-- /Latest insurances -->
     </main>
 
 <?php

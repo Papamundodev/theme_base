@@ -55,8 +55,8 @@
 
 /* Fonts */
 :root {
-  --default-font: "Fira Sans", system-ui, -apple-system, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
+  --default-font: "Fira Sans", "Raleway", system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --heading-font: "Outfit", sans-serif;
   --nav-font: "Fira Sans", sans-serif;
@@ -68,7 +68,7 @@
   --default-color: #040b14; /* Default color used for the majority of the text content across the entire website */
   --heading-color: #040b14; /* Color for headings, subheadings and title throughout the website */
   --accent-color: #00518b; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
-  --surface-color: color-mix(
+  --surface-accent: color-mix(
     in oklch,
     var(--background-color),
     var(--accent-color) 25%
@@ -100,7 +100,7 @@
   --heading-color: #ffffff;
   --surface-color: #040b14;
   --contrast-color: #ffffff;
-  --surface-color: color-mix(
+  --surface-accent: color-mix(
     in oklch,
     var(--default-color),
     var(--accent-color) 40%

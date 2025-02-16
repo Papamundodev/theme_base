@@ -21,9 +21,10 @@
 }
 
 .carrousels .carrousel-item h3 {
-  font-size: 18px;
-  font-weight: bold;
-  margin: 10px 0 5px 0;
+  font-size: 16px;
+  color: var(--default-color);
+  margin: 1em 0;
+  font-weight: 700;
 }
 
 .carrousels .carrousel-item .carrousel-img img {
@@ -31,13 +32,6 @@
   height: 150px;
   object-fit: cover;
   filter: grayscale(50%);
-}
-
-.carrousels .carrousel-item h4 {
-  font-size: 16px;
-  color: var(--default-color);
-  margin: 1em 0;
-  font-weight: 700;
 }
 
 .swiper {
@@ -48,7 +42,6 @@
   font-style: italic;
   margin: 0 15px 15px 15px;
   padding: 20px;
-  background-color: var(--surface-color);
   position: relative;
   margin-bottom: 35px;
   border-radius: 6px;
@@ -86,4 +79,85 @@
 
 .carrousels .swiper-pagination .swiper-pagination-bullet-active {
   background-color: var(--accent-color);
+}
+
+.carrousels .grid-item:nth-child(1) {
+  grid-area: a;
+}
+
+.carrousels .grid-item:nth-child(2) {
+  grid-area: b;
+}
+
+.carrousels .grid-item:nth-child(3) {
+  grid-area: c;
+}
+
+.carrousels .grid-item:nth-child(4) {
+  grid-area: d;
+}
+
+.carrousels .grid-item:nth-child(5) {
+  grid-area: e;
+}
+
+.carrousels .grid-item {
+  margin: 0;
+  background-color: var(--accent-color);
+}
+#insurances-carousel .section-title {
+  padding: 0;
+}
+
+#insurances-carousel .section-title > h2 {
+  font-size: 2.8rem;
+  font-weight: 400;
+  color: var(--default-color);
+  text-transform: uppercase;
+  text-align: center;
+  font-family: var(--default-font);
+  margin-bottom: 1.5rem;
+  &:after {
+    display: none;
+  }
+}
+
+.carrousels .grid-insurances {
+  margin: 0 auto;
+  width: fit-content;
+  // background-color: color-mix(
+  //   in srgb,
+  //   var(--background-color),
+  //   var(--secondary-surface) 25%
+  // );
+  background-color: var(--nav-color);
+  display: grid;
+  grid-template-areas:
+    "a . c . e"
+    ". b . d .";
+  .grid-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    width: 150px;
+    box-sizing: border-box;
+    padding: 1rem;
+    text-align: center;
+  }
+  .grid-item h3 {
+    font-size: 1.225rem;
+    font-weight: 500;
+    color: var(--contrast-color);
+    margin: 0;
+    text-transform: uppercase;
+  }
+  @media (width < 768px) {
+    grid-template-areas:
+      "a ."
+      ". b"
+      "c ."
+      ". d"
+      "e .";
+  }
 }

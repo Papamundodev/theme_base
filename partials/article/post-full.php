@@ -25,4 +25,6 @@ $featured_image = get_the_post_thumbnail_url($post);
         <div data-aos="fade-up" data-aos-delay="300"><?=$content;?></div>
     </div>
 
+    
+
 </div>

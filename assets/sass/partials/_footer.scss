@@ -50,9 +50,9 @@ footer {
   font-size: 14px;
 }
 
-.dark-background a:hover,
-.dark-background a:hover i {
-  color: var(--secondary-color);
+.navmenu .dark-background a:hover,
+.navmenu.dark-background a:hover i {
+  cursor: default;
 }
 
 footer .footer__top a:has(> i) p {
