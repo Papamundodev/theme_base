@@ -2,10 +2,10 @@
     <div class="footer__top pt-5 ">
       <div class="container">
         <div class="row">
-          <div class="col-md-4 col-12 px-0 mb-4 mb-md-0">
-            <h3 class="mb-4 text-center text-md-start"><?=__('Contact', 'theme_base');?></h3>
+          <div class="col-xl-4 col-12 px-0 mb-4 mb-md-0">
+            <h3 class="mb-4 text-center text-xl-start"><?=__('Contact', 'theme_base');?></h3>
 
-            <div class="flex-column d-flex align-items-center align-items-md-start">
+            <div class="flex-column d-flex align-items-center align-items-xl-start">
             <!-- adress phone email acf -->
             <?php if(function_exists('get_field')) : ?>
             <?php
@@ -38,22 +38,11 @@
                 <p class="mb-0"><?=$phone?></p>
               <?php endif; ?>
             </div>
-            <div class="d-flex align-items-center mb-3 gap-2">
-              <?php if($email) : ?> 
-                <a href="mailto:<?=$email?>" class="text-decoration-none d-flex align-items-center gap-2">
-                  <i class="bi bi-envelope"></i>
-                  <p class="mb-0"><?=$email?></p>
-                </a>
-              <?php else : ?>
-                <i class="bi bi-envelope"></i>
-                <p class="mb-0"><?=$email?></p>
-              <?php endif; ?>
-            </div>
             <?php endif; ?>
             </div>
 
           </div>
-          <div class="col-md-4 col-12 px-0 text-center mb-4 mb-md-0">
+          <div class="col-xl-4 col-12 px-0 text-center mb-4 mb-md-0">
           <h3 class="mb-4"><?=__('Legal Links', 'theme_base');?></h3>
             <?php $menu_items = \Theme_base\Base::wp_get_menu_array('footer');?>
             <?php if(is_array($menu_items) && count($menu_items) > 0): ?>
@@ -91,7 +80,7 @@
             <?php endif; ?>
           </div>
           <!-- openning hours -->
-          <div class="col-md-4 col-12 px-0 footer-hours">
+          <div class="col-xl-4 col-12 px-0 footer-hours">
             <h3 class="mb-4 text-center"><?=__('Opening Hours', 'theme_base');?></h3>
             <?php if(function_exists('get_field')) : ?>
             <?php

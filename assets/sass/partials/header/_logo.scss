@@ -28,16 +28,12 @@
 }
 
 .header .bi {
-  color: var(--nav-color);
+  color: var(--secondary-surface);
 }
 
 .header .logo:hover h1,
 .header .logo:hover span {
   color: var(--secondary-surface);
-}
-
-.header .bi:has(+ .logo:hover) {
-  color: var(--accent-color);
 }
 
 .profile-img {

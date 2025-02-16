@@ -54,3 +54,29 @@ footer {
 .dark-background a:hover i {
   color: var(--secondary-color);
 }
+
+footer .footer__top a:has(> i) p {
+  word-spacing: -0.3em;
+}
+
+@media (max-width: 575px) {
+  footer .footer__top a,
+  footer .footer__top .footer-hours .info-item {
+    max-width: 250px;
+    margin: 0 auto;
+  }
+}
+
+@media (width < 1200px) {
+  footer .footer__top .footer-hours .info-wrap {
+    max-width: 50ch;
+    margin: 0 auto;
+  }
+}
+
+@media (width > 1200px) {
+  footer .row {
+    width: 100%;
+    --bs-gutter-x: 0;
+  }
+}

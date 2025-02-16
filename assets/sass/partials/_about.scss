@@ -11,7 +11,7 @@
 .quoted-text {
   font-size: 1.2rem;
   line-height: 1.2;
-
+  letter-spacing: -0.02em;
   font-weight: 400;
   line-height: 1.4;
   font-style: italic;
@@ -71,7 +71,7 @@
 
 .contact .info-item i {
   font-size: 20px;
-  color: var(--secondary-surface);
+
   background: color-mix(in srgb, var(--accent-color), transparent 92%);
   width: 44px;
   height: 44px;
@@ -81,6 +81,12 @@
   border-radius: 50px;
   transition: all 0.3s ease-in-out;
   margin-right: 15px;
+}
+
+.contact .info-item:has(a) p,
+.contact .info-item:has(a) i {
+  color: var(--secondary-surface);
+  color: var(--secondary-surface);
 }
 
 .contact .info-item h3 {
@@ -94,25 +100,11 @@
   padding: 0;
   margin-bottom: 0;
   font-size: 14px;
-  color: var(--secondary-surface);
 }
 
 .contact .info-item:hover a i,
 .contact .info-item:hover a p {
   color: var(--accent-color);
-}
-
-.contact .php-email-form {
-  background-color: var(--surface-color);
-  height: 100%;
-  padding: 30px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-}
-
-@media (max-width: 575px) {
-  .contact .php-email-form {
-    padding: 20px;
-  }
 }
 
 .team-member {

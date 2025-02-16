@@ -6,9 +6,6 @@ if(function_exists('get_field')){$insurances = get_field('insurances', 'option')
     {
         "loop": true,
         "speed": 600,
-        "autoplay": {
-        "delay": 5000
-        },
         "slidesPerView": "auto",
         "pagination": {
         "el": ".swiper-pagination",

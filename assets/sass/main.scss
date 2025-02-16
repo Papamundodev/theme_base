@@ -1,8 +1,5 @@
-//bigger titles on mobile
-// about bi clock not in red
-//header logo bi not right color
-//padding buttons see- all
 //inssurance carrousel mobile , desktop left title right grid
+//favicon
 
 // D'abord les fonctions de Bootstrap
 @import "bootstrap/scss/functions";
@@ -86,7 +83,7 @@
     var(--secondary-color) 90%
   );
   --letter-spacing: -0.025em;
-  --letter-spacing-heading: 0.065em;
+  --letter-spacing-heading: 0.04em;
   --button-color: var(--secondary-surface);
 }
 
@@ -243,9 +240,10 @@ section,
   padding-bottom: 10px;
   position: relative;
   color: var(--accent-color);
-  @media (max-width: 572px) {
-    font-size: 1.7rem;
-  }
+}
+
+.page-title > * {
+  font-size: 2.8rem;
 }
 
 .section-title > *:after,

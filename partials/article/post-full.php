@@ -16,10 +16,12 @@ $featured_image = get_the_post_thumbnail_url($post);
     </div>
     <!-- End Section Title -->
 
-    <div class="container">
-        <?php if ($featured_image) : ?>
-        <img src="<?=$featured_image; ?>" alt="<?=$title; ?>" class="img-fluid" data-aos="fade-up" data-aos-delay="200">
-        <?php endif; ?>
+    <div class="container grid-test">
+        <div class="grid-test-img">
+            <?php if ($featured_image) : ?>
+            <img src="<?=$featured_image; ?>" alt="<?=$title; ?>" class="img-fluid" data-aos="fade-up" data-aos-delay="200">
+            <?php endif; ?>
+        </div>
         <div data-aos="fade-up" data-aos-delay="300"><?=$content;?></div>
     </div>
 
