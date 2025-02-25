@@ -6,58 +6,38 @@
   overflow: hidden;
 }
 
-.carrousels .carrousel-item {
-  box-sizing: content-box;
-  min-height: 150px;
+.carrousels .swiper-slide {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
-}
-
-.carrousels .carrousel-item .carrousel-img {
-  margin: 0 auto;
-}
-
-.carrousels .carrousel-item h3 {
-  font-size: 16px;
-  color: var(--default-color);
-  margin: 1em 0;
-  font-weight: 700;
-}
-
-.carrousels .carrousel-item .carrousel-img img {
-  width: 200px;
   height: 150px;
-  object-fit: cover;
-  filter: grayscale(50%);
+  width: 150px;
+  box-sizing: border-box;
+  padding: 1rem;
+}
+
+.carrousel-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 150px;
+  width: 150px;
+  box-sizing: border-box;
+  padding: 1rem;
+  text-align: center;
+  margin: 0;
+  border: 2px solid #e3e3e3;
+}
+.carrousel-item h3 {
+  font-size: 1.225rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  margin: 0;
+  text-transform: uppercase;
 }
 
 .swiper {
-  max-width: 1200px;
-}
-
-.carrousels .carrousel-item p {
-  font-style: italic;
-  margin: 0 15px 15px 15px;
-  padding: 20px;
-  position: relative;
-  margin-bottom: 35px;
-  border-radius: 6px;
-  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
-}
-
-.carrousels .carrousel-item p::after {
-  content: "";
-  width: 0;
-  height: 0;
-  border-top: 20px solid var(--surface-color);
-  border-right: 20px solid transparent;
-  border-left: 20px solid transparent;
-  position: absolute;
-  bottom: -20px;
-  left: calc(50% - 20px);
+  max-width: 800px;
 }
 
 .carrousels .swiper-wrapper {
@@ -101,10 +81,6 @@
   grid-area: e;
 }
 
-.carrousels .grid-item {
-  margin: 0;
-  background-color: var(--accent-color);
-}
 #insurances-carousel .section-title {
   padding: 0;
 }
@@ -144,6 +120,8 @@
     box-sizing: border-box;
     padding: 1rem;
     text-align: center;
+    margin: 0;
+    background-color: var(--accent-color);
   }
   .grid-item h3 {
     font-size: 1.225rem;
@@ -152,7 +130,7 @@
     margin: 0;
     text-transform: uppercase;
   }
-  @media (width < 768px) {
+  @media screen and (max-width: 767px) {
     grid-template-areas:
       "a ."
       ". b"

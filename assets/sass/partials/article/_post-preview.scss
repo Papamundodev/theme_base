@@ -9,6 +9,14 @@
   height: 100%;
   text-align: center;
   padding: 1.5em;
+  .btn-primary {
+    background: inherit !important;
+    color: var(--default-color) !important;
+    border: 1px solid var(--default-color) !important;
+    &:hover {
+      padding-inline: 0.8em;
+    }
+  }
 }
 
 .card-resource img {
@@ -23,7 +31,7 @@
 }
 
 .card-resource .card-body h4 {
-  color: var(--default-color);
+  color: var(--accent-color);
   font-weight: 700;
   height: 2.2em;
   overflow: hidden;

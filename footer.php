@@ -13,6 +13,7 @@
             $phone = get_field('phone_number', 'option') ?? __('(956) 504-4800', 'theme_base') ?? '';
             $email = get_field('email', 'option') ?? __('contact@gracielaleijamdpa.com', 'theme_base') ?? '' ;
             $google_map_link = get_field('google_map_link', 'option') ?? '';
+            $portal_link = get_field('portal_link', 'option') ?? '';
             ?>
 
 
@@ -38,6 +39,14 @@
                 <p class="mb-0"><?=$phone?></p>
               <?php endif; ?>
             </div>
+              <?php if($portal_link) : ?>
+                <div class="d-flex align-items-center mb-3 gap-2">
+                  <a href="<?=$portal_link['url']?>" class="text-decoration-none d-flex align-items-center gap-2" target="<?=$portal_link['target']?>" rel="<?= $portal_link['target'] === '_blank' ? 'noopener noreferrer' : '' ?>">
+                    <i class="bi bi-person-circle"></i>
+                    <p class="mb-0"><?=$portal_link['title'];?></p>
+                  </a>
+                </div>
+              <?php endif; ?>
             <?php endif; ?>
             </div>
 

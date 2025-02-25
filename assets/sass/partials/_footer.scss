@@ -55,10 +55,6 @@ footer {
   cursor: default;
 }
 
-footer .footer__top a:has(> i) p {
-  word-spacing: -0.3em;
-}
-
 @media (max-width: 575px) {
   footer .footer__top a,
   footer .footer__top .footer-hours .info-item {

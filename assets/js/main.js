@@ -70,11 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
         swiperElement.querySelector(".swiper-config").innerHTML.trim()
       );
 
-      if (swiperElement.classList.contains("swiper-tab")) {
-        initSwiperWithCustomPagination(swiperElement, config);
-      } else {
-        new Swiper(swiperElement, config);
-      }
+      new Swiper(swiperElement, config);
     });
   }
 
@@ -104,6 +100,17 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     { passive: true }
   );
+
+  const dropdownItems = document.querySelectorAll(".dropdown-item");
+
+  dropdownItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      dropdownItems.forEach((item) => {
+        item.classList.remove("active-link");
+      });
+      item.classList.add("active-link");
+    });
+  });
 
   console.log("test");
   //end of the page

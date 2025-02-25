@@ -83,7 +83,7 @@ get_header();
                     </div>
                     <?php endif; ?>
                     <?php if($about_description) : ?>
-                    <div class="quoted-text text-center mb-3">
+                    <div role="textbox" class="quoted-text text-center mb-3">
                         <i class="bi bi-quote quote-icon-left"></i>
                         <?=$about_description?>
                         <i class="bi bi-quote quote-icon-right"></i>
@@ -125,7 +125,7 @@ get_header();
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-9 d-flex align-items-center">
-                                    <div class="quoted-text text-center">
+                                    <div role="textbox" class="quoted-text text-center">
                                         <i class="bi bi-quote quote-icon-left"></i>
                                         <?=$team_member['description']?>
                                         <i class="bi bi-quote quote-icon-right"></i>

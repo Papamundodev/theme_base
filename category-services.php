@@ -5,6 +5,7 @@ $posts = $wp_query->posts;
 $object = get_queried_object();
 $theme_template_name = basename(__FILE__, ".php");
 $content = wpautop($object->description) ?? "";
+
 ?>
 
     <main id="main-<?=$theme_template_name?>">
@@ -15,21 +16,29 @@ $content = wpautop($object->description) ?? "";
                     <h1><?=$object->name?></h1>
                 </div><!-- End Page Title -->
 
-                            <!-- link to anchor for the services -->
-            <div class="container">
-                <div class="vstack gap-1 mx-auto text-center mb-5">   
-                    <?php foreach ($posts as $i => $post) : setup_postdata($post); ?>
-                        <a href="#service-<?=$post->ID?>" class="anchor-service"><?=$post->post_title?></a>
-                    <?php endforeach; wp_reset_postdata(); ?>
-                </div>
-            </div>
-
-                <?php if($content) : ?>
-                    <div class="container text-center mb-5">
-                        <?=$content;?>
+                <div class="container">
+                    <div class="dropdown-center mx-auto text-center mb-5">
+                        <button class="btn btn-primary btn-big dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <?=__( 'Our Services', 'theme_base');?>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <?php foreach ($posts as $i => $post) : setup_postdata($post); ?>
+                            <!-- find the function that get the current page slug anchor -->
+                                <li>
+                                    <a class="dropdown-item" href="#service-<?=$post->ID?>"><?=$post->post_title?></a>
+                                </li>
+                            <?php endforeach; wp_reset_postdata(); ?>
+                        </div>
                     </div>
-                <?php endif; ?>
-            </div>
+
+                        <?php if($content) : ?>
+                            <div class="container text-center mb-5">
+                                <?=$content;?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+
 
 
             <div class="container">

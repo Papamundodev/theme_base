@@ -40,7 +40,7 @@ class Base
             wp_register_script('aos', get_template_directory_uri() . '/node_modules/aos/dist/aos.js', [], null, true);
             
             // Charge Swiper uniquement sur la page d'accueil
-            if (is_front_page()) {
+            if (is_front_page() || is_category()) {
                 wp_register_script('swiper', get_template_directory_uri() . '/node_modules/swiper/swiper-bundle.min.js', [], null, true);
                 wp_register_script('main', get_template_directory_uri() . '/assets/build/js/main.js', ['swiper', 'aos'], null, true);
             } else {

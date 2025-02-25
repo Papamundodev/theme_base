@@ -2,18 +2,21 @@
 # Buttons
 --------------------------------------------------------------*/
 .btn-primary {
-  color: var(--default-color) !important;
   font-weight: 700 !important;
   text-transform: uppercase !important;
-  border: none !important;
   text-align: start;
-  background: inherit !important;
   border-radius: 0 !important;
-  border: 1px solid var(--default-color) !important;
+  border: 1px solid var(--button-color);
   letter-spacing: var(--letter-spacing-heading) !important;
+  background: var(--button-color) !important;
+  color: var(--white-color) !important;
+  transition: all 0.3s ease-in-out;
   &:hover {
     background: var(--button-color) !important;
-    color: white !important;
+    color: var(--white-color) !important;
+    border: 1px solid var(--button-color) !important;
+    padding-inline: 1.2em;
+    transition: all 0.3s ease-in-out;
   }
 }
 
@@ -21,5 +24,15 @@
   font-size: 1.3rem;
   padding: 6px 15px;
   min-width: 200px;
+}
+
+#main-front-page .btn-big {
   margin-top: 60px;
+  background: var(--inherit-color) !important;
+  color: var(--button-color) !important;
+  border: 1px solid var(--button-color) !important;
+  &:hover {
+    background: var(--button-color) !important;
+    color: var(--white-color) !important;
+  }
 }

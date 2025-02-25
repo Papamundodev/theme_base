@@ -22,6 +22,19 @@
           </a>
       </div>
   <?php endif; ?>
-
 </div>
+
+  <?php if(function_exists('get_field')) : ?>
+    <?php
+    $portal_link = get_field('portal_link', 'option');
+    $portal_link_text = get_field('portal_link_text', 'option') ?? __('Patient Portal', 'theme_base');
+    ?>
+    <?php if($portal_link) : ?>
+        <a href="<?=$portal_link['url']?>" class="text-decoration-none btn btn-primary ms-xl-5" target="<?=$portal_link['target']?>" rel="<?= $portal_link['target'] === '_blank' ? 'noopener noreferrer' : '' ?>">
+          <div class="d-flex flex-column">
+              <p class="mb-0"><?=$portal_link_text?></p>
+          </div>
+        </a>
+    <?php endif; ?>
+  <?php endif; ?>
 

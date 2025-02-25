@@ -18,7 +18,7 @@ $title = get_the_title();
             </div>
 
             <div class="container">
-                <div><?=$content;?></div>
+                <div class="content"><?=$content;?></div>
             </div>
 
         </section>

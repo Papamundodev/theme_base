@@ -1,71 +1,68 @@
-  /*--------------------------------------------------------------
+/*--------------------------------------------------------------
 # Global Header
 --------------------------------------------------------------*/
+.header {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0 15px;
+  transition: all ease-in-out 0.3s;
+  z-index: 997;
+  border-right: 1px solid
+    color-mix(in srgb, var(--default-color), transparent 90%);
+  max-height: 150px;
+}
+
+@media (max-width: 992px) {
   .header {
-    color: var(--default-color);
-    background-color: var(--background-color);
-    position: fixed;
+    top: -200%;
+    max-height: 100%;
+    transition: all 0.3s ease-in-out;
+  }
+  .header.header-show {
     top: 0;
-    left: 0;
-    width: 100%;
-    padding: 0 15px;
+    height: 100%;
+    overflow: scroll;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+@media (min-width: 992px) {
+  #main-front-page {
+    padding-top: 117px;
+  }
+  .header ~ main {
+    padding-top: 100px;
     transition: all ease-in-out 0.3s;
-    z-index: 997;
-    border-right: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
-    max-height: 150px;
   }
+  .header.hide ~ main {
+    padding-top: 0;
+    transition: all ease-in-out 0.3s;
+  }
+}
 
-  
-  @media (max-width: 992px) {
-    .header {
-      top: -200%;
-      max-height: 100%;
-      transition: all 0.3s ease-in-out;
-    }
-    .header.header-show {
-      top: 0;
-      height: 100%;
-      overflow: scroll;
-      transition: all 0.3s ease-in-out;
-    }
-  }
+.header .header-toggle {
+  color: var(--contrast-color);
+  background-color: var(--accent-color);
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 9999;
+  transition: background-color 0.3s;
+}
 
-  @media (min-width: 992px) {
-    #main-front-page{
-      padding-top: 117px;
-    }
-    .header~main{
-      padding-top: 150px;
-      transition: all ease-in-out 0.3s;
-    }
-    .header.hide~main{
-      padding-top: 0;
-      transition: all ease-in-out 0.3s;
-    }
-  }
-
-  
-
-  
-  .header .header-toggle {
-    color: var(--contrast-color);
-    background-color: var(--accent-color);
-    font-size: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    position: fixed;
-    top: 15px;
-    right: 15px;
-    z-index: 9999;
-    transition: background-color 0.3s;
-  }
-  
-  .header .header-toggle:hover {
-    color: var(--contrast-color);
-    background-color: color-mix(in srgb, var(--accent-color) 90%, white 15%);
-  }
+.header .header-toggle:hover {
+  color: var(--contrast-color);
+  background-color: color-mix(in srgb, var(--accent-color) 90%, white 15%);
+}

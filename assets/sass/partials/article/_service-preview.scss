@@ -1,120 +1,246 @@
 .card-service {
-    &__img {
-        z-index: 2;
-        transform: translate(0);
-    }
+  &__img {
+    z-index: 2;
+    transform: translate(0);
+  }
 
-    &__img img {
-        max-width: 100%;
-        position: relative;
-        z-index: 2;
-        object-fit: cover;
-        object-position: 50% 50%;
-        display: inline-block;
-        width: 100%;
-        height: 400px;
+  &__img img {
+    max-width: 100%;
+    position: relative;
+    z-index: 2;
+    object-fit: cover;
+    object-position: 50% 50%;
+    display: inline-block;
+    width: 100%;
+    height: 400px;
+  }
 
-    }
+  h4 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--heading-color);
+  }
 
-    h4 {
-        font-size: 1.8rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-        color: var(--heading-color);
-    }
+  p {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--default-color);
+  }
 
-    p {
-        font-size: 1.2rem;
-        font-weight: 400;
-        color: var(--default-color);
+  a span:first-child {
+    min-width: fit-content;
+  }
+
+  // animationn  the width on hover od the display-hover item is going from 0 to 100 graduaatly in the same time than the text all in 1 line
+  .display-hover {
+    display: none;
+  }
+
+  @media screen and (width > 1200px) {
+    .display-hover {
+      max-width: 0;
+      height: 0;
+      opacity: 0;
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      white-space: nowrap;
     }
+    .btn-primary {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 1rem;
+      overflow: hidden;
+      &:hover .display-hover {
+        max-width: 300px;
+        height: 100%;
+        opacity: 1;
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    }
+  }
 }
 
 //between 992px and 1200px
-@media (min-width: 992px) and (max-width: 1400px) {
-    .card-service {
+@media screen and (min-width: 992px) and (max-width: 1400px) {
+  .card-service {
     margin-left: 0;
     margin-right: 40px;
-        max-width: 800px;
-        &__img img {
-            width: 375px;
-            height: 375px;
-        }
-        h4 {
-            font-size: 1.8rem;
-        }
-        p {
-            display: -webkit-box;
-            -webkit-line-clamp: 4; /* number of lines to show */
-            line-clamp: 4;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
+    max-width: 800px;
+    &__img img {
+      width: 375px;
+      height: 375px;
     }
+    h4 {
+      font-size: 1.8rem;
+    }
+    p {
+      display: -webkit-box;
+      -webkit-line-clamp: 4; /* number of lines to show */
+      line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
 }
 
-@media (min-width: 992px) {
-    .img-left {
-        .card-service {
-            margin-left: 40px;
-            margin-right: 0;
-            flex-direction: row-reverse;
-            &__img {
-                text-align: right;
-                img {
-                    margin-left: 40px;
-                }
-            }
-        }
-    }
-
-    .img-right {
-        .card-service {
-            margin-left: 0;
-            margin-right: 40px;
-        }
-    }
-    
-    .img-left, .img-right {
-        width: fit-content;
-    }
-}
-
-@media (min-width: 1400px) {
+@media screen and (min-width: 992px) {
+  .img-left {
     .card-service {
-        max-width: 1200px;
-        &__img img {
-            width: 545px;
-            height: 545px;
+      margin-left: 40px;
+      margin-right: 0;
+      flex-direction: row-reverse;
+      &__img {
+        text-align: right;
+        img {
+          margin-left: 40px;
         }
+      }
     }
+  }
+
+  .img-right {
+    .card-service {
+      margin-left: 0;
+      margin-right: 40px;
+    }
+  }
+
+  .img-left,
+  .img-right {
+    width: fit-content;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .card-service {
+    max-width: 1200px;
+    &__img img {
+      width: 545px;
+      height: 545px;
+    }
+  }
 }
 
 /*--------------------------------------------------------------
 # Category Services
 --------------------------------------------------------------*/
 .services-list {
-    align-items: center;
-    .dark-background {
-      background-color: var(--background-color);
-    }
-    .light-background {
-      background-color: var(--background-color);
-    }
+  align-items: center;
+  .dark-background {
+    background-color: var(--background-color);
   }
-
-  .anchor-service {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--default-color);
-    text-decoration: none;
-    &:hover {
-      color: var(--accent-color);
-    }
+  .light-background {
+    background-color: var(--background-color);
   }
+}
 
-@media (min-width: 992px) {
+@media screen and (min-width: 992px) {
   html {
     scroll-padding-top: 300px;
+  }
+}
+
+.anchor-services {
+  display: grid;
+  gap: 1.5rem;
+  width: fit-content;
+}
+
+.anchor-grid-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70px;
+  width: 300px;
+  box-sizing: border-box;
+  text-align: center;
+  margin: 0;
+  background-color: var(--surface-color);
+  border: 2px solid var(--default-color);
+  transition: transform 0.3s ease-in-out;
+  & a {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--button-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
+  &:hover a {
+    color: var(--accent-color);
+  }
+  &:hover {
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+}
+.anchor-services {
+  grid-template-columns: repeat(1, minmax(300px, 1fr));
+}
+
+@media screen and (width > 576px) {
+  .anchor-services {
+    grid-template-columns: repeat(1, minmax(300px, 1fr));
+  }
+}
+
+@media screen and (width > 768px) {
+  .anchor-services {
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+  }
+}
+
+@media screen and (width > 992px) {
+  .anchor-services {
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+  }
+}
+
+@media screen and (width > 1400px) {
+  .anchor-services {
+    grid-template-columns: repeat(4, minmax(300px, 1fr));
+  }
+}
+
+.dropdown-center {
+  .dropdown-menu {
+    max-width: 350px;
+    margin: 0 auto;
+  }
+  .dropdown-toggle {
+    border: 1px solid var(--contrast-color);
+  }
+
+  .dropdown-item {
+    white-space: normal;
+    word-wrap: break-word;
+    background-color: var(--surface-color);
+    margin-bottom: 0.5rem;
+    &.active-link {
+      color: var(--button-color);
+    }
+  }
+
+  .dropdown-item:last-child {
+    margin-bottom: 0;
+  }
+
+  a {
+    &:hover {
+      background-color: #ffd0ca;
+    }
   }
 }

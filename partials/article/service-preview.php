@@ -5,7 +5,7 @@ $content = get_the_excerpt($post);
 $content = wpautop($content);
 ?>
 
-<div class="card-service row">
+<article class="card-service row">
     <div class="col-12 col-lg-7 px-lg-0">
         <div class="d-flex justify-content-center align-items-center h-100 flex-column position-relative">
             <div class="w-100 position-relative card-service__img">
@@ -27,10 +27,10 @@ $content = wpautop($content);
             <?php if (get_permalink($post)) : ?>
             <div class="d-flex justify-content-start align-items-center">
                 <a href="<?=get_permalink($post); ?>" class="btn btn-primary stretched-link">
-                    <span class="">Read more</span>
+                    <span class="">Read more</span><span class="visually-hidden"> about <?=$title;?></span>
                 </a>
             </div>
             <?php endif; ?>
         </div>
     </div>
-</div>
+</article>
