@@ -12,14 +12,14 @@
             $adress = get_field('adress', 'option') ?? __('95 E. Price Rd., Bldg E, Brownsville, TX 78521', 'theme_base') ?? '';
             $phone = get_field('phone_number', 'option') ?? __('(956) 504-4800', 'theme_base') ?? '';
             $email = get_field('email', 'option') ?? __('contact@gracielaleijamdpa.com', 'theme_base') ?? '' ;
-            $google_map_link = get_field('google_map_link', 'option') ?? '';
+            $google_maps_link = get_field('google_maps_link', 'option') ?? '';
             $portal_link = get_field('portal_link', 'option') ?? '';
             ?>
 
 
             <div class="d-flex align-items-center mb-3 gap-2">
-              <?php if($google_map_link) : ?>
-                <a href="<?=$google_map_link?>" target="_blank" class="text-decoration-none d-flex align-items-center gap-2">
+              <?php if($google_maps_link) : ?>
+                <a href="<?=$google_maps_link?>" target="_blank" class="text-decoration-none d-flex align-items-center gap-2">
                   <i class="bi bi-geo-alt"></i>
                   <p class="mb-0"><?=$adress?></p>
                 </a>

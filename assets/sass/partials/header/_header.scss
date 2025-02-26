@@ -30,7 +30,7 @@
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   #main-front-page {
     padding-top: 117px;
   }
@@ -65,4 +65,12 @@
 .header .header-toggle:hover {
   color: var(--contrast-color);
   background-color: color-mix(in srgb, var(--accent-color) 90%, white 15%);
+}
+
+.wpml-widget {
+  .language-selector {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
 }

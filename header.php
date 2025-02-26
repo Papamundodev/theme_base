@@ -19,11 +19,21 @@ if (function_exists('wp_body_open')){
     <div class="container-xl flex-column d-flex flex-lg-row align-items-center gap-3">
     <i class="header-toggle d-lg-none bi bi-list"></i>
     <!-- Logo -->
-    <?php get_template_part('partials/header/logo'); ?>
+     <div class="d-flex flex-column flex-lg-row align-items-center gap-3">
+         <?php get_template_part('partials/header/logo'); ?>
+     </div>
     <!-- End Logo -->
 
     <!-- Navbar -->
     <?php get_template_part('partials/header/navbar', 'header', ['theme_location' => 'header']); ?>
     <!-- End Navbar -->
+
+
+    <?php if (is_plugin_active('sitepress-multilingual-cms/sitepress.php')) : ?>
+        <div class="wpml-widget d-flex align-items-center p-0 m-0">
+            <?php dynamic_sidebar( 'wpml_theme_base' ); ?>
+        </div>
+    <?php endif; ?>
+
     </div>
 </header>

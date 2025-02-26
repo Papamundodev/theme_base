@@ -27,7 +27,7 @@ $content = wpautop($content);
             <?php if (get_permalink($post)) : ?>
             <div class="d-flex justify-content-start align-items-center">
                 <a href="<?=get_permalink($post); ?>" class="btn btn-primary stretched-link">
-                    <span class="">Read more</span><span class="visually-hidden"> about <?=$title;?></span>
+                    <span class=""><?=__('Read more', 'theme_base');?></span><span class="visually-hidden"> about <?=$title;?></span>
                 </a>
             </div>
             <?php endif; ?>

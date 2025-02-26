@@ -16,14 +16,14 @@
 }
 
 .header .logo h1 {
-  font-size: 24px;
+  font-size: 1.5rem;
   margin: 0;
   font-weight: 400;
   color: var(--secondary-surface);
 }
 
 .header .logo span {
-  font-size: 18px;
+  font-size: 1.2rem;
   margin: 0;
   font-weight: 400;
   color: var(--secondary-surface);
@@ -46,22 +46,19 @@
   width: 100px;
 }
 
-// Hide logo on desktop
-@media (min-width: 992px) {
-  .header.hide {
-    .profile-img {
-      height: auto;
-      max-height: 80px;
-      margin: 10px 0;
-      width: 80px;
-      transition: all 0.3s ease-in-out;
-      img {
-        margin: 0;
-        transition: transform 0.3s ease-in-out;
-      }
-    }
-    .logo h1 {
-      font-size: 18px;
-    }
+#header .btn.btn-primary p {
+  font-size: 1.2rem;
+  text-transform: capitalize;
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+  .header .logo h1 {
+    font-size: 1.2rem;
+  }
+  .header .logo span {
+    font-size: 1rem;
+  }
+  #header .btn {
+    display: none;
   }
 }

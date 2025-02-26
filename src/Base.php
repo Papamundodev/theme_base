@@ -184,7 +184,9 @@ class Base
                 $menu[$m->ID]['object_id'] = intval($m->object_id);
                 $object = get_post($m->object_id);
                 $menu[$m->ID]['target'] = $m->target;
-                $menu[$m->ID]['children'] = self::populate_children($menu_items, $m);
+                if(gettype($m) === "WP_Post"){
+                    $menu[$m->ID]['children'] = self::populate_children($menu_items, $m);
+                }
             }
         }
         return $menu;
@@ -241,6 +243,38 @@ class Base
     }
 
 
+    /**
+     * Register sidebars and widgetized areas.
+     *
+     * search
+     *
+     */
+    public function registerWidgets() :void
+    {
+        add_action('widgets_init', function () {
+
+            //add sidebars and widgets here
+
+        });
+    }
+
+    /**
+     * @return void
+     * add widget for language selector if wpml is active
+     */
+    public function sidebar_widgets_wpml_init() : void
+    {
+        add_action( 'widgets_init',  function(){
+            register_sidebar( array(
+                'name'          => 'wpml_theme_base',
+                'id'            => 'wpml',
+                'before_widget' => '<ul class="language-selector">',
+                'after_widget'  => '</ul>',
+                'before_title'  => '<li>',
+                'after_title'   => '</li>',
+            ) );
+        });
+    }
 
     /*
     fin

@@ -48,6 +48,7 @@ $content = wpautop(get_the_content());
                 'order' => 'DESC',
                 'category_name' => 'services',
             );
+
             $featured_services = get_posts($args_services);
             ?>
 
@@ -79,7 +80,7 @@ $content = wpautop(get_the_content());
             <div class="section-title" >
                 <?php   
                 if (function_exists('get_field')){
-                    $section_resources_title = get_field('section_resources_title', 'option') ?? __('Our Resources', 'theme_base');
+                    $section_resources_title = get_field('section_resources_title', 'option') ;
                 }
                 ?>  
                 <h2><?=$section_resources_title?></h2>
@@ -114,7 +115,7 @@ $content = wpautop(get_the_content());
             <?php if(get_category_link(get_category_by_slug('ressources')->term_id)): ?>
                 <!-- Button to see all resources -->
                 <div class="text-center"  data-aos-delay="100" data-aos-anchor-placement="bottom-bottom">
-                    <a href="<?=get_category_link(get_category_by_slug('ressources')->term_id)?>" class="btn btn-primary btn-big">See all resources</a>
+                    <a href="<?=get_category_link(get_category_by_slug('ressources')->term_id)?>" class="btn btn-primary btn-big"><?=__('See all resources', 'theme_base');?></a>
                 </div>
             <?php endif; ?>
         </div>

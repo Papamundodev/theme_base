@@ -16,6 +16,8 @@ $base->includeStyles();
 $base->includeScripts();
 $base->addSVGSupport();
 $base->add_pagination_link_attributes();
+$base->registerWidgets();
+$base->sidebar_widgets_wpml_init();
 
 
 function pre_debug($data){

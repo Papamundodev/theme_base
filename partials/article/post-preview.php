@@ -14,7 +14,7 @@ $default_class = get_the_post_thumbnail_url($post, 'medium') ? '' : 'post-previe
     <?php if (get_permalink($post)) : ?>
     <div class="d-flex  align-items-center">
         <a href="<?=get_permalink($post); ?>" class="btn btn-primary stretched-link">
-            <span class="">Read more</span><span class="visually-hidden"> about <?=$title;?></span>
+            <span class=""><?=__('Read more', 'theme_base');?></span><span class="visually-hidden"> about <?=$title;?></span>
         </a>
     </div>
     <?php endif; ?>
