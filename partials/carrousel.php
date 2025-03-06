@@ -23,10 +23,7 @@ if(function_exists('get_field')){$insurances = get_field('insurances', 'option')
         "clickable": true
         },
         "breakpoints": {
-        "572": {
-            "slidesPerView": 2,
-            "spaceBetween": 40
-        },
+
         "768": {
             "slidesPerView": 3,
             "spaceBetween": 40

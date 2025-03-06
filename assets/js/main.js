@@ -74,7 +74,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  window.addEventListener("load", initSwiper);
+  if (window.innerWidth > 768) {
+    window.addEventListener("load", initSwiper);
+  }
 
   /**
    * Animation on scroll function and init
