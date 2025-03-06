@@ -55,7 +55,7 @@ $content = wpautop(get_the_content());
             <div class="vstack services-list">
                 <?php if(is_array($featured_services) && count($featured_services) > 0): ?>
                     <?php foreach ($featured_services as $i => $post) : setup_postdata($post); ?>
-                        <div class="mb-4 <?=($i % 2 == 0) ? 'dark-background img-left' : 'light-background img-right';?>" data-aos="fade-up" data-aos-delay="200">
+                        <div class="mb-4 <?=($i % 2 == 0) ? 'dark-background img-left' : 'light-background img-right';?>" data-aos="fade-up" data-aos-delay="100">
                             <?php get_template_part('partials/article/service-preview', null, ['post' => $post]); ?>
                         </div>
                     <?php endforeach; wp_reset_postdata(); ?>

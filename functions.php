@@ -29,17 +29,18 @@ function pre_debug($data){
 
 /**
  * Add category to Yoast breadcrumb
+ * Only needed in local environment
  */
-add_filter( 'wpseo_breadcrumb_links', function( $links ) {
-    if ( is_single() ) {
-        $cats = get_the_category();
-        if ( ! empty( $cats ) ) {
-            $cat_link = array(
-                'url' => get_category_link( $cats[0]->term_id ),
-                'text' => $cats[0]->name
-            );
-            array_splice( $links, -1, 0, array( $cat_link ) );
-        }
-    }
-    return $links;
-});
+// add_filter( 'wpseo_breadcrumb_links', function( $links ) {
+//     if ( is_single() ) {
+//         $cats = get_the_category();
+//         if ( ! empty( $cats ) ) {
+//             $cat_link = array(
+//                 'url' => get_category_link( $cats[0]->term_id ),
+//                 'text' => $cats[0]->name
+//             );
+//             array_splice( $links, -1, 0, array( $cat_link ) );
+//         }
+//     }
+//     return $links;
+// });

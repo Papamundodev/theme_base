@@ -83,8 +83,20 @@ document.addEventListener("DOMContentLoaded", () => {
     AOS.init({
       once: true,
       startEvent: "DOMContentLoaded",
+      useClassNames: true,
+      disableMutationObserver: false,
+      offset: 50,
+      delay: 0,
+      easing: "ease",
+      mirror: false,
+      disable: function () {
+        return window.innerWidth < 768;
+      },
     });
   }
+
+  // Initialiser AOS immédiatement et aussi lors du chargement de la page
+  aosInit();
   window.addEventListener("load", aosInit);
 
   const logo = document.querySelector(".header");
