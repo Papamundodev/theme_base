@@ -3,7 +3,7 @@ global $post;
 $content = get_the_content();
 $title = get_the_title();
 $content = wpautop($content);
-$featured_image = get_the_post_thumbnail_url($post);
+$featured_image = get_the_post_thumbnail_url($post, "large");
 ?>
 
 <div class="post-full">
@@ -24,7 +24,4 @@ $featured_image = get_the_post_thumbnail_url($post);
         </div>
         <div data-aos="fade-up" data-aos-delay="200"><?=$content;?></div>
     </div>
-
-    
-
 </div>

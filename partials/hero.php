@@ -8,7 +8,7 @@ $featured_image = get_the_post_thumbnail_url($object->ID);
     <img src="<?=$featured_image?>" alt="" class="">
 
     <div class="container" data-aos="fade-up" data-aos-delay="300">
-        <h2><?=get_the_title($object->ID)?></h2>
+        <h1><?=get_the_title($object->ID)?></h1>
         <p><?=get_the_excerpt($object->ID)?></p>
     </div>
 

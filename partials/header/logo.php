@@ -9,7 +9,7 @@
 <!-- Logo Title -->
   <?php if(function_exists('get_field') && get_field('logo_title', 'option')): ?>  
       <a href="<?= home_url(); ?>" class="logo mb-2 d-flex align-items-center justify-content-center">
-        <h1 class="sitename"><?= get_field('logo_title', 'option'); ?></h1>
+        <span class="sitename"><?= get_field('logo_title', 'option'); ?></span>
       </a>
   <?php endif; ?>
 
