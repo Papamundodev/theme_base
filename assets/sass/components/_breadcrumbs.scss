@@ -28,3 +28,11 @@
     color: var(--default-color);
   }
 }
+
+#breadcrumbs ul {
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style-type: none;
+}

@@ -11,10 +11,20 @@ $theme_template_name = basename(__FILE__, ".php");
         <div class="container">
 
             <?php
-            if ( function_exists('yoast_breadcrumb') ) {
-            yoast_breadcrumb( '<p id="breadcrumbs">','</p>' );
-            }
+            $breadcrumbs = \Theme_base\Base::get_breadcrumbs();
             ?>
+
+            <div id="breadcrumbs" class="breadcrumbs">
+                <ul>
+                    <?php foreach ($breadcrumbs as $breadcrumb): ?>
+                        <?php if ($breadcrumb === end($breadcrumbs)): ?>
+                            <li><?= $breadcrumb['text'] ?></li>
+                        <?php else: ?>
+                            <li><a href="<?= $breadcrumb['url'] ?>"><?= $breadcrumb['text'] ?></a></li><span>|</span>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
 
         </div>
 
