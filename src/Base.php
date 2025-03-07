@@ -65,6 +65,7 @@ class Base
             // Menus
             add_theme_support('menus');
             add_theme_support('post-thumbnails');
+            add_theme_support('title-tag');
             // Enables post and comment RSS feed links to head
             add_theme_support('automatic-feed-links');
             // I18N
@@ -276,6 +277,16 @@ class Base
         });
     }
 
+
+    public static function get_meta_description(){
+        if (is_category()){
+            return get_queried_object()->description;
+        }elseif(is_page() || is_single()){
+            return get_the_excerpt();
+        }else{
+            return bloginfo('description');
+        }
+    }
     /*
     fin
     */

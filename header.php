@@ -2,13 +2,13 @@
 <html <?php language_attributes(); ?>>
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
+    <title><?php wp_title('|', true, 'right'); ?></title>   
+    <meta name="description" content="<?= \Theme_base\Base::get_meta_description() ?>">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">	
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <?php wp_head(); ?>
 </head>
 <body <?php body_class() ?>>
-
-
 <?php
 if (function_exists('wp_body_open')){
     wp_body_open() ;
