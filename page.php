@@ -11,13 +11,13 @@ $title = get_the_title();
         <section class="section">
 
             <!-- Page Title -->
-            <div class="container">
-                <div class="page-title mx-0">
+            <div class="wrapper">
+                <div class="page-title">
                     <h1><?=$title; ?></h1>
                 </div><!-- End Page Title -->
             </div>
 
-            <div class="container">
+            <div class="wrapper content">
                 <div class="content"><?=$content;?></div>
             </div>
 

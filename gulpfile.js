@@ -16,14 +16,7 @@ gulp.task("styles", async function () {
   return gulp
     .src(["./assets/sass/main.scss"])
     .pipe(sourcemaps.init())
-    .pipe(
-      sass({
-        includePaths: [
-          "./node_modules",
-          "./node_modules/bootstrap/scss", // Ajout explicite du chemin Bootstrap
-        ],
-      }).on("error", sass.logError)
-    )
+    .pipe(sass({}).on("error", sass.logError))
     .pipe(autoprefixer.default()) // Add vendor prefixes
     .pipe(cleanCSS.default({ compatibility: "ie11" })) // Minify CSS
     .pipe(sourcemaps.write())
@@ -76,7 +69,7 @@ gulp.task("fonts", function () {
 // Watch for changes and reload the browser
 gulp.task("watch", function () {
   browserSync.init({
-    proxy: "http://portfolio.local/",
+    proxy: "http://themestarter.local/",
     notify: false,
   });
 

@@ -11,21 +11,11 @@ class Base
     {
         $this->theme_name = $theme_name;
         $this->theme_slug = $theme_slug;
-    
-        // add excerpt
-        add_action('init', function () {
-            add_post_type_support('page', 'excerpt');
-        });
     }
 
     public function includeStyles() : void
     {
         add_action('wp_enqueue_scripts', function () {
-            //aos
-            wp_enqueue_style('aos', get_template_directory_uri() . '/node_modules/aos/dist/aos.css', [], null);
-            // Bootstrap
-            wp_enqueue_style('bootstrap', get_template_directory_uri() . '/node_modules/bootstrap/dist/css/bootstrap.min.css', [], null);
-            // Main
             wp_enqueue_style('main', get_template_directory_uri() . '/assets/build/css/main.css', [], null);
         });
     }   
@@ -33,28 +23,7 @@ class Base
     public function includeScripts() : void
     {
         add_action('wp_enqueue_scripts', function () {
-            // Bootstrap uniquement si nécessaire
-            wp_register_script('popper', get_template_directory_uri() . '/node_modules/@popperjs/core/dist/umd/popper.min.js', [], null, true);
-            wp_register_script('bootstrap', get_template_directory_uri() . '/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js', ['popper'], null, true);
-            // AOS
-            wp_register_script('aos', get_template_directory_uri() . '/node_modules/aos/dist/aos.js', [], null, true);
-            
-            // Charge Swiper uniquement sur la page d'accueil
-            if (is_front_page() || is_category()) {
-                wp_register_script('swiper', get_template_directory_uri() . '/node_modules/swiper/swiper-bundle.min.js', [], null, true);
-                wp_register_script('main', get_template_directory_uri() . '/assets/build/js/main.js', ['swiper', 'aos'], null, true);
-            } else {
-                wp_register_script('main', get_template_directory_uri() . '/assets/build/js/main.js', ['aos'], null, true);
-            }
-            
-            wp_localize_script('main', 'ajaxurl', array(
-                'ajax_url' => admin_url('admin-ajax.php'),
-                'nonce'    => wp_create_nonce('aas_ajax_nonce'),
-            ));
-            
-            wp_enqueue_script('popper');
-            wp_enqueue_script('bootstrap');
-            wp_enqueue_script('aos');
+            wp_register_script('main', get_template_directory_uri() . '/assets/build/js/main.js', [], null, true);
             wp_enqueue_script('main');
         });
     }
@@ -66,31 +35,23 @@ class Base
             add_theme_support('menus');
             add_theme_support('post-thumbnails');
             add_theme_support('title-tag');
+            add_post_type_support('page', 'excerpt');
             // Enables post and comment RSS feed links to head
             add_theme_support('automatic-feed-links');
             // I18N
             load_theme_textdomain('theme_base', get_template_directory() . '/languages');
-    
-            // Content width
-            if ( ! isset ($content_width)) {
-                $content_width = 800;
-            }
-
             // Activer le lazy loading natif
             add_theme_support('lazy-loading-images');
-            
             // Ajouter des tailles d'images optimisées
-            add_image_size('tiny', 50, 50, true);  // Pour les miniatures très petites
+            add_image_size('icon_small', 32, 32, true);  // Pour les miniatures très petites
+            add_image_size('icon', 48, 48, true);  // Pour les miniatures très petites
             add_image_size('mobile', 576, '', true); // Pour les mobiles
             add_image_size('tablet', 768, '', true); // Pour les tablettes
-            add_image_size('medium', 250, '', true); // Medium Thumbnail
-            add_image_size('small', 120, '', true); // Small Thumbnail
-            add_image_size('large', 1024, '', true); // Large Thumbnail 
+            add_image_size('medium', 992, '', true); // Medium 
+            add_image_size('large', 1200, '', true); // Large 
 
         }, 99);
     }
-
-
 
     public function registerMenus() : void
     {
@@ -135,18 +96,6 @@ class Base
 
         });
 
-    }
-
-        /**
-     * currentYear
-     *
-     * function footer copyright to get current year
-     * Used in footer.php
-     */
-
-    public static function currentYear() :string
-    {
-        return date('Y');
     }
 
 
@@ -229,19 +178,6 @@ class Base
         return '';
     }
 
-    /**
-     * Add class to pagination link
-     */
-    public function my_theme_posts_link_attributes() : string
-    {
-        return 'class="btn btn-primary"';
-    }
-
-    public function add_pagination_link_attributes() : void
-    {   
-        add_filter('next_posts_link_attributes', [$this, 'my_theme_posts_link_attributes']);
-        add_filter('previous_posts_link_attributes', [$this, 'my_theme_posts_link_attributes']);
-    }
 
 
     /**
@@ -263,12 +199,12 @@ class Base
      * @return void
      * add widget for language selector if wpml is active
      */
-    public function sidebar_widgets_wpml_init() : void
+    public function sidebar_widgets_language_selector_init() : void
     {
         add_action( 'widgets_init',  function(){
             register_sidebar( array(
-                'name'          => 'wpml_theme_base',
-                'id'            => 'wpml',
+                'name'          => 'language_selector_theme_base',
+                'id'            => 'language_selector',
                 'before_widget' => '<ul class="language-selector">',
                 'after_widget'  => '</ul>',
                 'before_title'  => '<li>',
@@ -310,6 +246,38 @@ class Base
         array_push($links, $current_page);
         return $links;
     }
+    
+
+    /**
+     * Calcule le temps de lecture estimé d'un contenu
+     * @param string $content Le contenu du post
+     * @return string Le temps de lecture formaté
+     */
+    public static function get_reading_time(string $content = '') : string 
+    {
+        // Si pas de contenu, utiliser le contenu du post courant
+        if (empty($content)) {
+            $content = get_the_content();
+        }
+
+        // Nettoyer le contenu des balises HTML
+        $clean_content = strip_tags($content);
+        
+        // Nombre de caractères par minute (vitesse moyenne de lecture)
+        $chars_per_minute = 1500;
+        
+        // Calculer le temps en minutes
+        $chars_count = strlen($clean_content);
+        $minutes = ceil($chars_count / $chars_per_minute);
+        
+        // Formater le résultat
+        if ($minutes <= 1) {
+            return __('1 min read', 'theme_base');
+        } else {
+            return sprintf(__('%d min read', 'theme_base'), $minutes);
+        }
+    }
+
     /*
     fin
     */

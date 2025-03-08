@@ -15,9 +15,8 @@ $base->registerMenus();
 $base->includeStyles();
 $base->includeScripts();
 $base->addSVGSupport();
-$base->add_pagination_link_attributes();
 $base->registerWidgets();
-$base->sidebar_widgets_wpml_init();
+$base->sidebar_widgets_language_selector_init();
 
 
 function pre_debug($data){
@@ -25,22 +24,3 @@ function pre_debug($data){
     print_r($data);
     echo '</pre>';
 }
-
-
-/**
- * Add category to Yoast breadcrumb
- * Only needed in local environment
- */
-// add_filter( 'wpseo_breadcrumb_links', function( $links ) {
-//     if ( is_single() ) {
-//         $cats = get_the_category();
-//         if ( ! empty( $cats ) ) {
-//             $cat_link = array(
-//                 'url' => get_category_link( $cats[0]->term_id ),
-//                 'text' => $cats[0]->name
-//             );
-//             array_splice( $links, -1, 0, array( $cat_link ) );
-//         }
-//     }
-//     return $links;
-// });

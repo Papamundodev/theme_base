@@ -8,13 +8,13 @@ $theme_template_name = basename(__FILE__, ".php");
 
     <section class="section"> 
 
-        <div class="container">
+        <div class="wrapper">
 
             <?php
             $breadcrumbs = \Theme_base\Base::get_breadcrumbs();
             ?>
 
-            <div id="breadcrumbs" class="breadcrumbs">
+            <div id="breadcrumbs" class="breadcrumbs-custom">
                 <ul>
                     <?php foreach ($breadcrumbs as $breadcrumb): ?>
                         <?php if ($breadcrumb === end($breadcrumbs)): ?>

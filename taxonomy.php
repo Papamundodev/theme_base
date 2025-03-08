@@ -12,34 +12,17 @@ $content = wpautop($object->description) ?? "";
     <section id="taxonomy-<?=$object->slug?>" class="taxonomy section">
 
         <!-- Page Title -->
-        <div class="container">
+        <div class="wrapper">
             <div class="page-title">
                 <h1><?=$object->name?></h1>
             </div><!-- End Page Title -->
         </div>
 
         <?php if($content) : ?>
-            <div class="container text-center mb-5">
+            <div class="wrapper content">
                 <?=$content;?>
             </div>
         <?php endif; ?>
-
-        <div class="container">
-
-            <div class="row list-layout">
-                <?php if(is_array($posts) && count($posts) > 0): ?>
-                    <?php foreach ($posts as $post) : setup_postdata($post); ?>
-                        <div class="col-lg-6 col-xxl-4 mb-5" data-aos="fade-up" data-aos-delay="200">
-                        <?php get_template_part('partials/article/post-preview', null, ['post' => $post]); ?>
-                        </div>
-                    <?php endforeach; wp_reset_postdata(); ?>
-                <?php endif; ?>
-                <?php if(is_array($posts) && count($posts) > 0): ?>
-                    <?php get_template_part('pagination'); ?>
-                <?php endif; ?>
-            </div>
-
-        </div>
     </section>
     </main>
 

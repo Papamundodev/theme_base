@@ -1,27 +1,33 @@
 <?php
 global $post;
-$content = get_the_content();
 $title = get_the_title();
+$content = get_the_content();
 $content = wpautop($content);
 $featured_image = get_the_post_thumbnail_url($post, "large");
+$date_published = get_the_date();
+$reading_time = \Theme_base\Base::get_reading_time($content);
 ?>
 
 <div class="post-full">
 
     <!-- Section Title -->
-    <div class="container">
-        <div class="section-title">
+    <div class="wrapper">
+        <div class="page-title">
             <h1><?=$title;?></h1>
+        </div>
+        <div class="page-date">
+            <span><?=$date_published;?></span>
+            <span><?=$reading_time;?></span>
         </div>
     </div>
     <!-- End Section Title -->
 
-    <div class="container grid-test">
-        <div class="grid-test-img">
+    <div class="wrapper">
             <?php if ($featured_image) : ?>
-            <img src="<?=$featured_image; ?>" alt="<?=$title; ?>" class="img-fluid" data-aos="fade-up" data-aos-delay="100">
+            <div class="">
+                <img src="<?=$featured_image; ?>" alt="<?=$title; ?>" class="">
+            </div>
             <?php endif; ?>
-        </div>
-        <div data-aos="fade-up" data-aos-delay="200"><?=$content;?></div>
+        <div class="content"><?=$content;?></div>
     </div>
 </div>

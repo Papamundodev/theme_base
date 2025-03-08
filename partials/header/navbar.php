@@ -8,24 +8,25 @@ $theme_location = $args['theme_location'] ?? "header";
 
 <?php $menu_items = \Theme_base\Base::wp_get_menu_array($theme_location);?>
 <?php if(is_array($menu_items) && count($menu_items) > 0): ?>
-<nav id="navmenu" class="navmenu m-0 p-0 ms-lg-auto">
-  <ul class="d-flex flex-column flex-lg-row text-center align-items-center text-lg-start m-0 p-0 gap-2 gap-lg-3">
+<nav id="navmenu" class="navmenu-<?=$theme_location?>">
+  <ul class="">
     <?php foreach($menu_items as $item): ?>
       <?php if(empty($item['children'])):?>
         <li class="<?= \Theme_base\Base::get_active_class($item) ?>">
-          <a class="navicon" 
-          href="<?=$item['url']?>"hea
+          <a class="nav-link" 
+          href="<?=$item['url']?>"
           title="<?=$item['title']?>"
           target="<?=$item['target']?>"
           rel="<?= $item['target'] === '_blank' ? 'noopener noreferrer' : '' ?>"
           ><?=$item['title']?></a>
         </li>
       <?php else: ?>
-        <li class="dropdown"><a href="#"><span><?=$item['title']?></span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+        <li class="dropdown">
+          <a class="nav-link" href="#"><span><?=$item['title']?></span> <i class=""></i></a>
           <ul>
             <?php foreach($item['children'] as $child): ?>
               <li class="<?= \Theme_base\Base::get_active_class($child) ?>">
-                <a  class="navicon"
+                <a  class="nav-link"
                 href="<?=$child['url']?>"
                 title="<?=$child['title']?>"
                 target="<?=$child['target']?>"
