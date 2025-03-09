@@ -8,7 +8,6 @@ $content = wpautop(get_the_content());
 
 
 <main id="main-<?=$theme_template_name?>" class="main">
-    <h1>Front page</h1>
 
     <!-- Hero Section -->
     <?php get_template_part('partials/hero', null, ['object' => $object]); ?>
