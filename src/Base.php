@@ -123,7 +123,7 @@ class Base
         // Return menu post objects
         $menu = [];
 
-        foreach ($menu_items as $m) {
+        foreach ($menu_items as $k => $m) {
        
             if (empty($m->menu_item_parent)) {
                 $menu[$m->ID] = [];
@@ -134,9 +134,10 @@ class Base
                 $menu[$m->ID]['object_id'] = intval($m->object_id);
                 $object = get_post($m->object_id);
                 $menu[$m->ID]['target'] = $m->target;
-                if(gettype($m) === "WP_Post"){
-                    $menu[$m->ID]['children'] = self::populate_children($menu_items, $m);
-                }
+                unset($menu_items[$k]);
+                $menu[$m->ID]['children'] = self::populate_children($menu_items, $m);
+
+                    
             }
         }
         return $menu;

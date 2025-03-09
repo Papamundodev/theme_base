@@ -22,7 +22,7 @@ $theme_location = $args['theme_location'] ?? "header";
         </li>
       <?php else: ?>
         <li class="dropdown">
-          <a class="nav-link" href="#"><span><?=$item['title']?></span> <i class=""></i></a>
+          <a class="nav-link" href="<?=$item['url']?>"><span><?=$item['title']?></span> <i class=""></i></a>
           <ul>
             <?php foreach($item['children'] as $child): ?>
               <li class="<?= \Theme_base\Base::get_active_class($child) ?>">

@@ -13,7 +13,7 @@ global $wp_query;
             </div>
         </div>
 
-        <div class="wrapper content">
+        <div class="wrapper">
             <?php if(is_array($wp_query->posts) && count($wp_query->posts) > 0): ?>
                 <div class="">
                     <?php foreach ($wp_query->posts as $post) : setup_postdata($post); ?>
