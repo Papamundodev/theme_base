@@ -19,6 +19,11 @@ gulp.task("styles", async function () {
     .pipe(sass({}).on("error", sass.logError))
     .pipe(autoprefixer.default()) // Add vendor prefixes
     .pipe(cleanCSS.default({ compatibility: "ie11" })) // Minify CSS
+    .pipe(
+      sass({
+        silenceDeprecations: ["legacy-js-api"],
+      })
+    )
     .pipe(sourcemaps.write())
     .pipe(gulp.dest("./assets/build/css"))
     .pipe(browserSync.stream());

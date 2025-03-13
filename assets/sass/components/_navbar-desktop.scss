@@ -1,0 +1,17 @@
+@media (width >= 768px) {
+  .navmenu-mobile {
+    display: none;
+  }
+  .navmenu-desktop {
+    & > ul {
+      display: flex;
+      margin: auto;
+      width: fit-content;
+      padding-block: 1em;
+      li,
+      .dropdown {
+        padding: 1em;
+      }
+    }
+  }
+}

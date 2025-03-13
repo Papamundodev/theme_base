@@ -12,11 +12,12 @@ $reading_time = \Theme_base\Base::get_reading_time($content);
 
     <!-- Section Title -->
     <div class="wrapper">
-        <div class="page-title">
+        <div class="post-title">
             <h1><?=$title;?></h1>
         </div>
-        <div class="page-date">
+        <div class="post-date">
             <span><?=$date_published;?></span>
+            <span class="separator">|</span>
             <span><?=$reading_time;?></span>
         </div>
     </div>

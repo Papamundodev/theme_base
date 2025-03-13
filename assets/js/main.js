@@ -1,4 +1,39 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("DOMContentLoaded");
+
+  // const dropdowns = document.querySelectorAll(".dropdown-mobile");
+  // dropdowns.forEach((dropdown) => {
+  //   dropdown.addEventListener("mouseleave", () => {
+  //     if (dropdown.hasAttribute("open")) {
+  //       dropdown.removeAttribute("open");
+  //     }
+  //   });
+  // });
+
+  const burger = document.querySelector("#theme-navbar-toggler");
+  burger.addEventListener("click", () => {
+    burger.classList.toggle("open");
+  });
+
+  const popover = document.getElementById("navmenu-header-mobile");
+  popover.addEventListener("toggle", (event) => {
+    if (event.newState === "closed") {
+      burger.classList.remove("open");
+    }
+  });
+
+  //dropdown menu
+  const viewportWidth = window.innerWidth;
+  const header = document.querySelector("#navmenu-header");
+  const dropdownsMobile = document.querySelectorAll(
+    "#navmenu-header .dropdown"
+  );
+  if (viewportWidth < 768) {
+    dropdownsMobile.forEach((dropdown) => {
+      dropdown.addEventListener("click", () => {
+        dropdown.classList.toggle("open");
+      });
+    });
+  }
   //end of the page
 });

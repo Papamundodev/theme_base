@@ -8,11 +8,10 @@ $content = wpautop(get_the_content());
 
 
 <main id="main-<?=$theme_template_name?>" class="main">
-    <h1>Front page</h1>
+    <div class="wrapper">
+        <h1>Front page</h1>
+    </div>
 
-    <!-- Hero Section -->
-    <?php get_template_part('partials/hero', null, ['object' => $object]); ?>
-    <!-- /Hero Section -->
 
     <?php if($content) : ?>
         <section class="section">

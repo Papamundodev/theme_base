@@ -1,1 +1,192 @@
+@import "./components/dropdown";
+@import "./components/burger";
+@import "./components/navbar-desktop";
+@import "./components/navbar-mobile";
+@import "./components/logo";
 
+@font-face {
+  font-family: "Outfit";
+  src: url("../fonts/Outfit-VariableFont_wght.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fira Sans";
+  src: url("../fonts/FiraCode-VariableFont_wght.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+/* Fonts */
+:root {
+  --primary-font: "Fira Sans", "Raleway", system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --secondary-font: "Outfit", sans-serif;
+}
+
+body {
+  font-family: var(--primary-font);
+  box-sizing: border-box;
+  font-weight: 600;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--secondary-font);
+}
+
+/* Colors */
+:root {
+  --color-scheme: light dark;
+  --pourcentage: 40%;
+  --white-color: #f4fafd;
+  --black-color: #040b14;
+  --background-color: var(--white-color);
+  --contrast-color: var(--white-color);
+  --default-color: var(--accent-color);
+  --heading-color: color-mix(
+    in srgb,
+    var(--default-color),
+    var(--accent-color) var(--pourcentage)
+  );
+  --accent-color: #461e64;
+  --accent-color-2: #ce4e57;
+  --accent-color-3: #920e4a;
+  --accent-color-4: #68c0c2;
+  --accent-color-5: #1e2c6e;
+  --surface-color: color-mix(
+    in srgb,
+    var(--background-color),
+    var(--accent-color) var(--pourcentage)
+  );
+}
+
+.dark-theme {
+  --accent-color: #68c0c2;
+  --accent-color-2: #ce4e57;
+  --accent-color-3: #920e4a;
+  --accent-color-4: #7a388c;
+  --accent-color-5: #461e64;
+  --background-color: var(--black-color);
+  --default-color: var(--accent-color);
+  --contrast-color: var(--black-color);
+  --heading-color: color-mix(
+    in srgb,
+    var(--default-color),
+    var(--accent-color) var(--pourcentage)
+  );
+  --surface-color: color-mix(
+    in srgb,
+    var(--background-color),
+    var(--accent-color) var(--pourcentage)
+  );
+}
+
+:root {
+  --header-height: 85px;
+}
+
+body {
+  background: url("../../images/logo.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: var(--default-color);
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  & > li.active {
+    & > a {
+      color: var(--accent-color-4);
+    }
+  }
+}
+
+a,
+.nav-link {
+  text-decoration: none;
+  color: var(--default-color);
+  &:hover {
+    color: var(--accent-color-2);
+    cursor: pointer;
+  }
+}
+
+.separator {
+  margin-inline: 0.5em;
+  font-size: 0.8rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: var(--header-height);
+  background-color: var(--background-color);
+  position: fixed;
+  padding-inline: 1em;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  .wrapper-right-content {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+  }
+}
+.navmenu {
+  border: none;
+}
+
+main {
+  // position: fixed;
+  // top: calc(var(--header-height) * 2);
+  // left: 0;
+  // right: 0;
+  // bottom: 0;
+  // overflow-y: auto;
+  margin-top: calc(var(--header-height) * 2);
+}
+
+footer {
+  margin-bottom: var(--header-height);
+}
+
+.wrapper {
+  background-color: var(--background-color);
+  padding-block: 1em;
+  padding-inline: 2em;
+  @media (width >= 768px) {
+    margin: auto;
+    width: 70vw;
+  }
+  @media (width >= 992px) {
+    margin: auto;
+    width: 50vw;
+  }
+}
+
+#breadcrumbs {
+  ul {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.post-date {
+  display: flex;
+  align-items: center;
+}

@@ -16,10 +16,33 @@ if (function_exists('wp_body_open')){
 
 <header>
         <!-- Logo -->
-    <div class="wrapper">
+    <div class="wrapper-logo">
         <?php get_template_part('partials/header/logo'); ?>
     </div>
-    <div class="wrapper">
-        <?php get_template_part('partials/header/navbar'); ?>
+
+    <div class="wrapper-navbar">
+        <?php get_template_part('partials/header/navbar-desktop', null, ['theme_location' => 'header']); ?>
     </div>
+
+    <div class="wrapper-right-content">
+        <?php if (function_exists('theme_light_dark_form')): ?>
+            <div class="wrapper-theme-light-dark">
+                <?=do_shortcode('[theme_light_dark]'); ?>
+            </div>
+        <?php endif; ?>
+        <div class="wrapper-theme-navbar-toggler">
+            <button popovertarget="navmenu-header-mobile" id="theme-navbar-toggler">
+                <span class="custom-burger"></span>
+                <span class="custom-burger"></span>
+                <span class="custom-burger"></span>
+                <span class="custom-burger"></span>
+            </button>
+        </div>
+    </div>
+
+    
 </header>
+
+    <div class="wrapper-navbar">
+        <?php get_template_part('partials/header/navbar-mobile', null, ['theme_location' => 'header']); ?>
+    </div>

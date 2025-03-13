@@ -20,7 +20,7 @@ $theme_template_name = basename(__FILE__, ".php");
                         <?php if ($breadcrumb === end($breadcrumbs)): ?>
                             <li><?= $breadcrumb['text'] ?></li>
                         <?php else: ?>
-                            <li><a href="<?= $breadcrumb['url'] ?>"><?= $breadcrumb['text'] ?></a></li><span>|</span>
+                            <li><a href="<?= $breadcrumb['url'] ?>"><?= $breadcrumb['text'] ?></a></li><span class="separator">|</span>
                         <?php endif; ?>
                     <?php endforeach; ?>
                 </ul>
