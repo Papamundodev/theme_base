@@ -3,7 +3,7 @@ get_header();
 $object = get_queried_object();
 $theme_template_name = basename(__FILE__, ".php");
 $featured_image = get_the_post_thumbnail_url($object->ID);
-$content = wpautop(get_the_content());
+$content = wpautop($object->post_content);
 ?>
 
 

@@ -74,7 +74,7 @@ gulp.task("fonts", function () {
 // Watch for changes and reload the browser
 gulp.task("watch", function () {
   browserSync.init({
-    proxy: "http://themestarter.local/",
+    proxy: "http://blog.local/",
     notify: false,
   });
 

@@ -1,7 +1,7 @@
 <?php
 $post = $args['post'];
-$title = get_the_title($post);
-$content = get_the_content($post);
+$title = $post->post_title;
+$content = $post->post_content;
 $content = wp_trim_words($content, 100, '...');
 $featured_image = get_the_post_thumbnail_url($post, 'medium');
 ?>

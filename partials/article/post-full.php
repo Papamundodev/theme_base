@@ -26,7 +26,7 @@ $reading_time = \Theme_base\Base::get_reading_time($content);
     <div class="wrapper">
             <?php if ($featured_image) : ?>
             <div class="">
-                <img src="<?=$featured_image; ?>" alt="<?=$title; ?>" class="">
+                <img src="<?=$featured_image; ?>" alt="<?=$title; ?>" class="post-image">
             </div>
             <?php endif; ?>
         <div class="content"><?=$content;?></div>
