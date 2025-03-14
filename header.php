@@ -24,7 +24,12 @@ if (function_exists('wp_body_open')){
         <?php get_template_part('partials/header/navbar-desktop', null, ['theme_location' => 'header']); ?>
     </div>
 
-    <div class="wrapper-right-content">
+    <div class="wrapper-header-right-content">
+        <?php if (function_exists('aas_open_search_form')): ?>
+            <div class="wrapper-open-search">
+                <?=do_shortcode('[aas_open_search]'); ?>
+            </div>
+        <?php endif; ?>
         <?php if (function_exists('theme_light_dark_form')): ?>
             <div class="wrapper-theme-light-dark">
                 <?=do_shortcode('[theme_light_dark]'); ?>
@@ -42,6 +47,31 @@ if (function_exists('wp_body_open')){
 
     
 </header>
+
+    <?php
+    $latest_posts = get_posts([
+        'post_type' => 'post',
+        'posts_per_page' => 5,
+    ]);
+    ?>
+
+    <div popover id="search-results-popover" class="wrapper-search-results">
+        <?php if (function_exists('aas_search_form')): ?>
+        <div class="wrapper-ajax-autocomplete-search">
+            <?=do_shortcode('[ajax_autocomplete_search]'); ?>
+        </div>
+        <?php endif; ?>
+        <div id="search-results">
+            <h2><?=__('Latest posts', 'theme_base'); ?></h2>
+            <?php foreach ($latest_posts as $post): ?>
+                <div class="wrapper-search-result">
+                    <a href="<?=get_the_permalink($post); ?>">
+                        <h2><?=get_the_title($post); ?></h2>
+                    </a>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
 
     <div class="wrapper-navbar">
         <?php get_template_part('partials/header/navbar-mobile', null, ['theme_location' => 'header']); ?>

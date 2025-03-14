@@ -3,6 +3,7 @@
 @import "./components/navbar-desktop";
 @import "./components/navbar-mobile";
 @import "./components/logo";
+@import "./components/search-open";
 
 @font-face {
   font-family: "Outfit";
@@ -43,6 +44,11 @@ h4,
 h5,
 h6 {
   font-family: var(--secondary-font);
+  margin-bottom: 0;
+}
+
+p {
+  margin-block: 0;
 }
 
 /* Colors */
@@ -94,6 +100,8 @@ h6 {
 
 :root {
   --header-height: 85px;
+  --icon-size: 1em;
+  --spacer: 1em;
 }
 
 body {
@@ -141,23 +149,20 @@ header {
   left: 0;
   right: 0;
   z-index: 100;
-  .wrapper-right-content {
+  .wrapper-header-right-content {
     display: flex;
     align-items: center;
     gap: 1em;
   }
 }
-.navmenu {
-  border: none;
+
+.wrapper-navbar {
+  .navmenu {
+    border: none;
+  }
 }
 
 main {
-  // position: fixed;
-  // top: calc(var(--header-height) * 2);
-  // left: 0;
-  // right: 0;
-  // bottom: 0;
-  // overflow-y: auto;
   margin-top: calc(var(--header-height) * 2);
 }
 

@@ -16,7 +16,7 @@ $theme_location = $args['theme_location'] ?? "header";
           <a class="nav-link" 
           href="<?=$item['url']?>"
           target="<?=$item['target']?>"
-          rel="<?= $item['target'] === '_blank' ? 'noopener noreferrer' : '' ?>"
+          rel="<?= $item['target'] === '_blank' ? 'noopener' : '' ?>"
           ><?=$item['title']?></a>
         </li>
       <?php else: ?>
@@ -37,7 +37,7 @@ $theme_location = $args['theme_location'] ?? "header";
                 href="<?=$child['url']?>"
                 title="<?=$child['title']?>"
                 target="<?=$child['target']?>"
-                rel="<?= $child['target'] === '_blank' ? 'noopener noreferrer' : '' ?>"
+                rel="<?= $child['target'] === '_blank' ? 'noopener' : '' ?>"
                 ><?=$child['title']?></a>
               </li>
             <?php endforeach; ?>

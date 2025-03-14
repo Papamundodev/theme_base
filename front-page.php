@@ -8,10 +8,6 @@ $content = wpautop(get_the_content());
 
 
 <main id="main-<?=$theme_template_name?>" class="main">
-    <div class="wrapper">
-        <h1>Front page</h1>
-    </div>
-
 
     <?php if($content) : ?>
         <section class="section">
@@ -21,6 +17,11 @@ $content = wpautop(get_the_content());
         </section>
     <?php endif; ?>
 
+    <section class="section">
+        <div class="wrapper">
+            <div id="search-results"></div>
+        </div>
+    </section>
 
 
 </main>

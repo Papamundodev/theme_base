@@ -19,6 +19,18 @@ document.addEventListener("DOMContentLoaded", () => {
   popover.addEventListener("toggle", (event) => {
     if (event.newState === "closed") {
       burger.classList.remove("open");
+    } else if (event.newState === "open") {
+    }
+  });
+
+  const popoverSearchResults = document.getElementById(
+    "search-results-popover"
+  );
+
+  document.addEventListener("keydown", function (e) {
+    if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+      e.preventDefault();
+      popoverSearchResults.showPopover();
     }
   });
 
