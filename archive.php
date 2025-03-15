@@ -11,6 +11,8 @@ $content = wpautop($object->description) ?? "";
 
     <section id="archive-<?=$object->slug?>" class="archive section">
 
+        <h1><?=$object->name?></h1>
+
         <!-- Page Title -->
         <div class="wrapper">
             <div class="page-title">

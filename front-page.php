@@ -7,7 +7,7 @@ $content = wpautop($object->post_content);
 ?>
 
 
-<main id="main-<?=$theme_template_name?>" class="main">-
+<main id="main-<?=$theme_template_name?>" class="main">
 
     <?php if($content) : ?>
         <section class="section">
@@ -19,7 +19,7 @@ $content = wpautop($object->post_content);
 
     <section class="section">
         <div class="wrapper">
-            <div id="search-results"></div>
+        
         </div>
     </section>
 

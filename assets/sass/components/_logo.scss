@@ -1,25 +1,28 @@
 .wrapper-logo {
-  display: flex;
-  align-items: center;
-  gap: 1em;
-  img {
-    width: calc(var(--header-height) * 0.8);
-    aspect-ratio: 1/1;
-    border-radius: 50%;
-  }
   .wrapper-site-title {
-    background: var(--accent-color);
+    background-image: url(../../images/logo.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 100%;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     cursor: pointer;
+    width: 100%;
     a {
       color: transparent;
       span {
         font-size: 2em;
         font-weight: 600;
-        text-transform: uppercase;
       }
+    }
+  }
+}
+
+.dark-theme {
+  .wrapper-logo {
+    .wrapper-site-title {
+      background-size: 200%;
     }
   }
 }

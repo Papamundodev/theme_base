@@ -227,11 +227,11 @@ class Base
 
     public static function get_breadcrumbs(){
         $links = array();
-        $home_link = array(
-            'url' => home_url(),
-            'text' => 'Accueil'
+        $blog_link = array(
+            'url' => get_permalink(get_option('page_for_posts')),
+            'text' => 'Blog'
         );
-        array_push($links, $home_link);
+        array_push($links, $blog_link);
         $cats = get_the_category();
         if ( ! empty( $cats ) ) {
             $cat_link = array(
@@ -240,11 +240,14 @@ class Base
             );
             array_push($links, $cat_link);
         }
-        $current_page = array(
-            'url' => get_permalink(),
-            'text' => get_the_title()
-        );
-        array_push($links, $current_page);
+        if (is_single()) {
+            $post = get_queried_object();
+            $current_page = array(
+                'url' => get_permalink($post->ID),
+                'text' => $post->post_title
+            );
+            array_push($links, $current_page);
+        }
         return $links;
     }
     

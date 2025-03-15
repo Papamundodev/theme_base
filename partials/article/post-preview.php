@@ -2,7 +2,7 @@
 $post = $args['post'];
 $title = $post->post_title;
 $content = $post->post_content;
-$content = wp_trim_words($content, 100, '...');
+$content = wp_trim_words($content, 20, '...');
 $featured_image = get_the_post_thumbnail_url($post, 'medium');
 ?>
 <article class="post-preview">
