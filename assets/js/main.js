@@ -1,14 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("DOMContentLoaded");
 
-  // const dropdowns = document.querySelectorAll(".dropdown-mobile");
-  // dropdowns.forEach((dropdown) => {
-  //   dropdown.addEventListener("mouseleave", () => {
-  //     if (dropdown.hasAttribute("open")) {
-  //       dropdown.removeAttribute("open");
-  //     }
-  //   });
-  // });
+  //responsive navbar
 
   const burger = document.querySelector("#theme-navbar-toggler");
   burger.addEventListener("click", () => {
@@ -23,16 +16,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  //end of responsive navbar
+
+  //search popover
+
   const popoverSearchResults = document.getElementById(
     "search-results-popover"
   );
 
-  document.addEventListener("keydown", function (e) {
-    if ((e.metaKey || e.ctrlKey) && e.key === "k") {
-      e.preventDefault();
-      popoverSearchResults.showPopover();
-    }
-  });
+  if (popoverSearchResults) {
+    document.addEventListener("keydown", function (e) {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        popoverSearchResults.showPopover();
+      }
+    });
+  }
+
+  //end of search popover
 
   //dropdown menu
   const viewportWidth = window.innerWidth;
@@ -47,5 +48,5 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
-  //end of the page
+  //end of dropdown menu
 });

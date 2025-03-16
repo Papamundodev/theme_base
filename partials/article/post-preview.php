@@ -8,7 +8,9 @@ $featured_image = get_the_post_thumbnail_url($post, 'medium');
 <article class="post-preview">
     <div class="">
         <h2 class=""><?=$title; ?></h2>
-        <p class=""><?=$content; ?></p>
+        <div class="content">
+            <div><?=$content; ?></div>
+        </div>
     </div>
     <?php if (get_permalink($post)) : ?>
     <div class="">

@@ -8,7 +8,7 @@ $theme_location = $args['theme_location'] ?? "header";
 
 <?php $menu_items = \Theme_base\Base::wp_get_menu_array($theme_location);?>
 <?php if(is_array($menu_items) && count($menu_items) > 0): ?>
-<nav id="navmenu-<?=$theme_location?>" class="navmenu navmenu-desktop">
+<nav id="navmenu-<?=$theme_location?>" class="navmenu navmenu-desktop" aria-label="Menu principal">
   <ul class="navmenu-list">
     <?php foreach($menu_items as $item): ?>
       <?php if(empty($item['children'])):?>

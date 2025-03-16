@@ -1,0 +1,29 @@
+.post-full {
+  .post-date {
+    display: flex;
+    align-items: center;
+  }
+  .separator {
+    background-color: var(--accent-color);
+    width: 1em;
+    height: 2px;
+    margin-inline: 0.5em;
+    @media (width >= 768px) {
+      width: 2px;
+      height: 1em;
+      margin-inline: 0.5em;
+    }
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  .content pre {
+    background-color: var(--accent-color-4);
+    color: var(--default-color);
+    padding: 1em;
+    border-radius: 0.5em;
+  }
+}

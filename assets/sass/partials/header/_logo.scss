@@ -1,7 +1,8 @@
 .wrapper-logo {
+  padding-inline-start: var(--spacer);
   .wrapper-site-title {
     background-image: url(../../images/logo.jpg);
-    background-size: cover;
+    background-size: 400%;
     background-repeat: no-repeat;
     background-position: 100%;
     -webkit-background-clip: text;
@@ -22,7 +23,7 @@
 .dark-theme {
   .wrapper-logo {
     .wrapper-site-title {
-      background-size: 200%;
+      width: 100%;
     }
   }
 }

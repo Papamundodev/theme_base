@@ -1,0 +1,291 @@
+<div class="your-body">
+  <h1>css dark/light mode trick</h1>
+
+  <h2>The button toggle icons HTML et SVG</h2>
+  <p>
+    First we need to push a button that would alternate between light
+    (&#127774;) and dark (&#127770;).
+  </p>
+  <p>
+    Create a button with an id, the 2 svg are inside the button living in
+    harmony.<br />
+    Like the sun and the moon when one will show up the other one will be
+    gone.<br />
+    a solar eclipse would be a bug in that case.<br />
+  </p>
+  <button id="example-theme-toggle" class="example-theme-toggle-button">
+    <svg
+      class="icon example-dark-icon"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 384 512"
+    >
+      <path
+        d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"
+      />
+    </svg>
+    <svg
+      class="icon example-light-icon"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+    >
+      <path
+        d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z"
+      />
+    </svg>
+  </button>
+
+  <pre><code class="code-block">
+&lt;button id="example-theme-toggle" class="example-theme-toggle-button"&gt;
+    &lt;svg class="example-dark-icon example-theme-toggle-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"&gt;
+        &lt;path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"/&gt;
+    &lt;/svg&gt;
+    &lt;svg class="example-light-icon example-theme-toggle-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"&gt;
+        &lt;path d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z"/&gt;
+    &lt;/svg&gt;
+&lt;/button&gt;</code></pre>
+
+  <h2>Dark/light mode in JS !</h2>
+  <p>
+    Time for a script, We begin by selecting the button and make sure its there.
+  </p>
+  <pre><code class="code-block" role="region" aria-label="Code source du bouton de thème">
+    /**
+     * Initialise le gestionnaire de thème pour le site
+     * Cette fonction gère le basculement entre les thèmes clair et sombre
+     */
+    function initThemeManager() {
+        // Récupère le bouton de basculement du thème depuis le DOM
+        const themeToggle = document.getElementById("example-theme-toggle");
+        const yourBody = document.querySelector(".your-body");
+        if (!themeToggle || !yourBody) {
+            return; // Si le bouton ou la div n'existe pas, on arrête l'initialisation
+        }
+
+        /**
+         * Sauvegarde la préférence de thème dans le localStorage
+         * @param {string} theme - Le thème à sauvegarder ('light-theme' ou 'dark-theme')
+         */
+        function saveTheme(theme) {
+            localStorage.setItem("preferred-theme", theme);
+        }
+
+        /**
+         * Charge le thème sauvegardé depuis le localStorage
+         * Si aucun thème n'est sauvegardé, utilise la préférence système
+         */
+        function loadSavedTheme() {
+            const savedTheme = localStorage.getItem("preferred-theme");
+            if (savedTheme) {
+                // Supprime les classes existantes et ajoute le thème sauvegardé
+                yourBody.classList.remove("light-theme", "dark-theme");
+                yourBody.classList.add(savedTheme);
+            } else {
+                setThemeBasedOnSystem();
+            }
+        }
+
+        /**
+         * Définit le thème en fonction des préférences système de l'utilisateur
+         * Utilise l'API matchMedia pour détecter si le mode sombre est activé
+         */
+        function setThemeBasedOnSystem() {
+            const theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark-theme"
+                : "light-theme";
+            yourBody.classList.remove("light-theme", "dark-theme");
+            yourBody.classList.add(theme);
+            saveTheme(theme);
+        }
+
+        // Initialisation : charge le thème au chargement de la page
+        loadSavedTheme();
+
+        // Écoute les changements de préférences système pour le mode sombre
+        window
+            .matchMedia("(prefers-color-scheme: dark)")
+            .addEventListener("change", setThemeBasedOnSystem);
+
+        /**
+         * Gère le clic sur le bouton de basculement
+         * Alterne entre le thème clair et sombre
+         */
+        themeToggle.addEventListener("click", () => {
+            const newTheme = yourBody.classList.contains("light-theme")
+                ? "dark-theme"
+                : "light-theme";
+            yourBody.classList.remove("light-theme", "dark-theme");
+            yourBody.classList.add(newTheme);
+            saveTheme(newTheme);
+        });
+    }
+
+    // Initialise le gestionnaire de thème une fois que le DOM est chargé
+    document.addEventListener("DOMContentLoaded", () => {
+        initThemeManager();
+    });</code></pre>
+
+  <h2>And now the Trick CSS</h2>
+  <p></p>
+  <pre><code class="code-block">
+    /* Colors */
+:root {
+  --color-scheme: light dark;
+
+  --background-color: #f4fafd;
+  --default-color: #040b14;
+}
+.dark-theme{
+    --background-color: #040b14;
+    --default-color: #f4fafd;
+}
+body{
+    background-color: var(--background-color);
+    color: var(--default-color)
+}
+</code></pre>
+
+  <style>
+    :root {
+      --color-scheme: light dark;
+
+      --background-color: #f4fafd;
+      --contrast-color: #f4fafd;
+      --default-color: #040b14;
+    }
+
+    .dark-theme {
+      --background-color: #040b14;
+      --contrast-color: #040b14;
+      --default-color: #f4fafd;
+    }
+
+    .your-body {
+      background-color: var(--background-color);
+      color: var(--default-color);
+    }
+
+    /* Quand le thème est light, inverser l'affichage des icônes */
+    .your-body.light-theme .example-light-icon {
+      display: none;
+    }
+
+    .your-body.light-theme .example-dark-icon {
+      display: block;
+    }
+
+    .your-body.dark-theme .example-light-icon {
+      display: block;
+    }
+
+    .your-body.dark-theme .example-dark-icon {
+      display: none;
+    }
+
+    .icon {
+      width: 32px;
+      aspect-ratio: 1;
+    }
+    .code-block {
+      margin: 2rem 0;
+      padding: 1em;
+      border-radius: 8px;
+      overflow: hidden;
+      background-color: black;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    pre {
+      margin: 0;
+      padding: 1rem;
+      overflow-x: auto;
+      font-family: "Fira Code", monospace;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    code {
+      display: block;
+      color: white;
+      tab-size: 2;
+    }
+  </style>
+
+  <script>
+    /**
+     * Initialise le gestionnaire de thème pour le site
+     * Cette fonction gère le basculement entre les thèmes clair et sombre
+     */
+    function initThemeManager() {
+      // Récupère le bouton de basculement du thème depuis le DOM
+      const themeToggle = document.getElementById("example-theme-toggle");
+      const yourBody = document.querySelector(".your-body");
+      if (!themeToggle || !yourBody) {
+        return; // Si le bouton ou la div n'existe pas, on arrête l'initialisation
+      }
+
+      /**
+       * Sauvegarde la préférence de thème dans le localStorage
+       * @param {string} theme - Le thème à sauvegarder ('light-theme' ou 'dark-theme')
+       */
+      function saveTheme(theme) {
+        localStorage.setItem("preferred-theme", theme);
+      }
+
+      /**
+       * Charge le thème sauvegardé depuis le localStorage
+       * Si aucun thème n'est sauvegardé, utilise la préférence système
+       */
+      function loadSavedTheme() {
+        const savedTheme = localStorage.getItem("preferred-theme");
+        if (savedTheme) {
+          // Supprime les classes existantes et ajoute le thème sauvegardé
+          yourBody.classList.remove("light-theme", "dark-theme");
+          yourBody.classList.add(savedTheme);
+        } else {
+          setThemeBasedOnSystem();
+        }
+      }
+
+      /**
+       * Définit le thème en fonction des préférences système de l'utilisateur
+       * Utilise l'API matchMedia pour détecter si le mode sombre est activé
+       */
+      function setThemeBasedOnSystem() {
+        const theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark-theme"
+          : "light-theme";
+        yourBody.classList.remove("light-theme", "dark-theme");
+        yourBody.classList.add(theme);
+        saveTheme(theme);
+      }
+
+      // Initialisation : charge le thème au chargement de la page
+      loadSavedTheme();
+
+      // Écoute les changements de préférences système pour le mode sombre
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", setThemeBasedOnSystem);
+
+      /**
+       * Gère le clic sur le bouton de basculement
+       * Alterne entre le thème clair et sombre
+       */
+      themeToggle.addEventListener("click", () => {
+        const newTheme = yourBody.classList.contains("light-theme")
+          ? "dark-theme"
+          : "light-theme";
+        yourBody.classList.remove("light-theme", "dark-theme");
+        yourBody.classList.add(newTheme);
+        saveTheme(newTheme);
+      });
+    }
+
+    // Initialise le gestionnaire de thème une fois que le DOM est chargé
+    document.addEventListener("DOMContentLoaded", () => {
+      initThemeManager();
+    });
+  </script>
+</div>

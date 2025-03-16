@@ -17,12 +17,6 @@ $content = wpautop($object->post_content);
         </section>
     <?php endif; ?>
 
-    <section class="section">
-        <div class="wrapper">
-        
-        </div>
-    </section>
-
 
 </main>
 
