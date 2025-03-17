@@ -141,7 +141,6 @@ class Base
             }
         }
         return $menu;
-
     }
 
     /**
@@ -169,6 +168,67 @@ class Base
             }
         };
         return $children;
+    }
+
+
+
+        /**
+     * Get nav menu items by location
+     *
+     * @param string|null $location The menu location id
+     */
+    public static function  wp_get_term_array($terms_active) : array
+    {
+
+        $terms = get_terms( array(
+            'taxonomy'   => 'category',
+            'hide_empty' => false,
+            'hierarchical' => true,
+            'orderby' => 'name',
+            'parent' => 0,
+        ) );
+        $menu = [];
+        foreach ($terms as $k => $m) {
+
+                $menu[$m->term_id    ] = [];
+                $menu[$m->term_id]['ID'] = intval($m->term_id);
+                $menu[$m->term_id]['title'] = $m->name;
+                $menu[$m->term_id]['slug'] = $m->slug;
+                $menu[$m->term_id]['parent'] = $m->parent;
+                $menu[$m->term_id]['url'] = get_term_link($m);
+                $children = get_term_children($m->term_id, 'category');
+                $menu[$m->term_id]['current'] = in_array($m->term_id, $terms_active) ? true : false;
+                $menu[$m->term_id]['open'] = !empty($children) && !empty(array_intersect($children, $terms_active)) ? true : false;
+                $menu[$m->term_id]['children']= self::populate_term_children($children, $terms_active);
+        }
+
+        return $menu;
+    }
+
+    /**
+     * Populate children
+     *
+     */
+
+    public static function populate_term_children($child, $terms_active) : array
+    {
+        $children = [];
+        if (!empty($child)) {
+            foreach ($child as $k => $m) {
+                    $term = get_term_by('id', $m, 'category');
+                    $children[$term->term_id    ] = [];
+                    $children[$term->term_id]['ID'] = intval($term->term_id);
+                    $children[$term->term_id]['title'] = $term->name;
+                    $children[$term->term_id]['slug'] = $term->slug;
+                    $children[$term->term_id]['parent'] = $term->parent;
+                    $children[$term->term_id]['url'] = get_term_link($term);
+                    $grandchildren = get_term_children($term->term_id, 'category');
+                    $children[$term->term_id]['current'] = in_array($term->term_id, $terms_active) ? true : false;
+                    $children[$term->term_id]['open'] = !empty($grandchildren) && !empty(array_intersect($grandchildren, $terms_active)) ? true : false;
+                    $children[$term->term_id]['children'] = self::populate_term_children($grandchildren, $terms_active);
+            }
+        };
+    return $children;
     }
 
     public static function get_active_class($item) : string

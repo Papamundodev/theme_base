@@ -52,7 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   //end of dropdown menu
 
-  console.log(window.isSecureContext);
   //copy to clipboard
   const codeBlocks = document.querySelectorAll(".code-block");
   codeBlocks.forEach((codeBlock) => {

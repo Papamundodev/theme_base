@@ -104,3 +104,13 @@
     }
   }
 }
+
+//Specific dropdowns
+
+.navmenu-aside-categories-related {
+  summary {
+    &.active {
+      color: var(--accent-color-4);
+    }
+  }
+}

@@ -17,9 +17,6 @@ $content = wpautop($object->post_content);
         </section>
     <?php endif; ?>
 
-
-
-
 </main>
 
 

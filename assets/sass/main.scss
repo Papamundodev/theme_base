@@ -215,6 +215,7 @@ aside {
     width: fit-content;
     max-width: calc(25vw - (var(--spacer) * 2));
     margin-inline: auto;
+    margin-top: 300px;
 
     .wrapper-side-right,
     .wrapper-side-left {

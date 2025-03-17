@@ -23,7 +23,7 @@ if (function_exists('wp_body_open')){
     <div class="wrapper-navbar">
         <?php get_template_part('partials/header/navbar-desktop', null, ['theme_location' => 'header']); ?>
     </div>
-            <div class="wrapper-navbar">
+    <div class="wrapper-navbar">
         <?php get_template_part('partials/header/navbar-mobile', null, ['theme_location' => 'header']); ?>
     </div>
 

@@ -36,8 +36,7 @@
   }
 }
 
-.code-block,
-.copied {
+.code-block {
   width: 100%;
   display: inline-block;
   overflow-x: auto;
@@ -47,32 +46,26 @@
   &:hover::after {
     content: "Copy";
     position: absolute;
-    width: 100%;
-    height: calc(100% - var(--spacer));
-    top: 0;
-    left: 0;
-    background-color: color-mix(
-      in srgb,
-      var(--accent-color-4) 40%,
-      transparent
-    );
+    width: fit-content;
+    height: fit-content;
+    top: var(--spacer);
+    right: var(--spacer);
+
+    background-color: var(--accent-color-2);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
+    padding: calc(var(--spacer) / 2.5);
+    font-size: 0.8rem;
     font-weight: 600;
-    color: var(--default-color);
+    border-radius: var(--border-radius);
+    color: var(--accent-color-4);
   }
 }
 
 .copied {
   &:hover::after {
     content: "Copied !";
-    background-color: color-mix(
-      in srgb,
-      var(--accent-color-4) 80%,
-      transparent
-    );
   }
 }
 
