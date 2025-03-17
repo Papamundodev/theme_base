@@ -18,6 +18,8 @@ $content = wpautop($object->post_content);
     <?php endif; ?>
 
 
+
+
 </main>
 
 

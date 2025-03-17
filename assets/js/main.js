@@ -1,3 +1,5 @@
+import "clipboard-copy-element";
+
 document.addEventListener("DOMContentLoaded", () => {
   console.log("DOMContentLoaded");
 
@@ -49,4 +51,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
   //end of dropdown menu
+
+  console.log(window.isSecureContext);
+  //copy to clipboard
+  const codeBlocks = document.querySelectorAll(".code-block");
+  codeBlocks.forEach((codeBlock) => {
+    const clipboardCopy = document.createElement("clipboard-copy");
+    clipboardCopy.value = codeBlock.textContent;
+    codeBlock.appendChild(clipboardCopy);
+
+    codeBlock.addEventListener("click", () => {
+      clipboardCopy.click();
+      codeBlock.classList.add("copied");
+      setTimeout(() => {
+        codeBlock.classList.remove("copied");
+      }, 2000);
+    });
+  });
 });

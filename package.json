@@ -30,6 +30,7 @@
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "aos": "^2.3.4",
+    "clipboard-copy-element": "^0.7.0",
     "swiper": "^11.2.1"
   }
 }
