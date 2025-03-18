@@ -108,9 +108,12 @@
 //Specific dropdowns
 
 .navmenu-aside-categories-related {
-  summary {
-    &.active {
-      color: var(--accent-color-4);
+  .dropdown-details {
+    summary {
+      margin-bottom: 0;
+      &.active {
+        color: var(--accent-color-4);
+      }
     }
   }
 }

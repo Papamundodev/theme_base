@@ -13,7 +13,9 @@ if (function_exists('wp_body_open')){
     wp_body_open() ;
 }
 ?>
-
+<?php
+$object = get_queried_object();
+?>
 <header>
         <!-- Logo -->
     <div class="wrapper-logo">
@@ -74,25 +76,15 @@ if (function_exists('wp_body_open')){
 
 </header>
 
+
+<div class="wrapper-layout">
+
 <?php if (is_single()) : ?>
 <aside class="left">
     <div class="wrapper-side-left">
-                   <?php
-             $breadcrumbs = \Theme_base\Base::get_breadcrumbs();
-            //  var_dump(wp_get_post_terms($object->ID, 'category')); 
-            // $terms = wp_get_post_terms($object->ID, 'category');
-            // $term_related = [];
-            // foreach ($terms as $term) {
-            //     $term_related["id"] = $term->term_id;
-            //     $term_related["name"] = $term->name;
-            //     $term_related["slug"] = $term->slug;
-            //     $term_related["url"] = get_term_link($term);
-            //     $term_related["parent"] = $term->parent;
-            //     $term_related["children"] = get_term_children($term->term_id, 'category');
-                
-            // }
+            <?php
+            $breadcrumbs = \Theme_base\Base::get_breadcrumbs($object);
             ?>
-
             <div id="breadcrumbs" class="breadcrumbs-custom">
                 <ul>
                     <?php foreach ($breadcrumbs as $breadcrumb): ?>
@@ -107,8 +99,9 @@ if (function_exists('wp_body_open')){
     </div>
 </aside>
 <?php endif; ?>
-<div class="wrapper-center-content">
     
+<div class="wrapper-center-content">
+
 
 
 

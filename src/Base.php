@@ -285,19 +285,21 @@ class Base
         }
     }
 
-    public static function get_breadcrumbs(){
+    public static function get_breadcrumbs($object){
         $links = array();
         $blog_link = array(
             'url' => get_permalink(get_option('page_for_posts')),
             'text' => 'Blog'
         );
         array_push($links, $blog_link);
-        $cats = get_the_category();
-        if ( ! empty( $cats ) ) {
-            $cat_link = array(
-            'url' => get_category_link( $cats[0]->term_id ),
+        if($object->post_type === 'post'){
+            $cats = get_the_category();
+            if ( ! empty( $cats ) ) {
+                $cat_link = array(
+                'url' => get_category_link( $cats[0]->term_id ),
             'text' => $cats[0]->name
             );
+        }
             array_push($links, $cat_link);
         }
         if (is_single()) {

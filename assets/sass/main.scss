@@ -97,7 +97,7 @@ h4,
 h5,
 h6 {
   font-family: var(--secondary-font);
-  margin-bottom: 0;
+  margin: 0;
 }
 
 p {
@@ -137,6 +137,7 @@ a,
   border-radius: 0.5em;
   box-shadow: 0 0 10px 0 var(--background-color);
   width: fit-content;
+  color: var(--default-color);
   &:hover {
     cursor: pointer;
     box-shadow: 2px 2px 10px 0px var(--default-color);
@@ -159,17 +160,17 @@ body {
   background-size: cover;
 }
 
-body {
+.wrapper-layout {
   position: relative;
   @media (width >= 992px) {
     display: grid;
     grid-template-areas: "aside-left center aside-right";
     grid-template-columns: 25vw 50vw 25vw;
     margin: auto;
-    .content {
-      word-wrap: break-word;
-    }
   }
+}
+.content {
+  word-wrap: break-word;
 }
 
 .wrapper {
@@ -180,15 +181,21 @@ body {
 
 .wrapper-center-content {
   grid-area: center;
+  min-width: 100%;
+  @media (width > 572px) {
+    min-width: 400px;
+  }
 }
 
 main {
   min-height: calc(100vh - (var(--header-height) * 4));
   margin-top: calc(var(--header-height) * 2);
   background-color: var(--background-color);
+  padding-block: var(--spacer);
 }
 
 aside.left {
+  left: 0;
   @media (width >= 992px) {
     grid-area: aside-left;
     .wrapper-side-right {
@@ -198,6 +205,7 @@ aside.left {
 }
 
 aside.right {
+  right: 0;
   @media (width >= 992px) {
     grid-area: aside-right;
     .wrapper-side-right {
@@ -207,7 +215,8 @@ aside.right {
 }
 
 aside {
-  display: none;
+  @media (width >= 572px) {
+  }
   @media (width >= 992px) {
     display: block;
     position: relative;
@@ -215,7 +224,6 @@ aside {
     width: fit-content;
     max-width: calc(25vw - (var(--spacer) * 2));
     margin-inline: auto;
-    margin-top: 300px;
 
     .wrapper-side-right,
     .wrapper-side-left {
@@ -233,6 +241,80 @@ aside {
   }
 }
 
+aside[popover] {
+  background-color: var(--background-color);
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
 footer {
   margin-bottom: var(--header-height);
+}
+
+.wrapper-popover-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacer);
+  p {
+    font-size: 1.3em;
+  }
+}
+
+#aside-categories-related:popover-open {
+  position: fixed;
+  inset: calc(var(--header-height) * 2) 0 0 auto;
+  margin: 0;
+  animation: slide-in 0.5s ease;
+  opacity: 1;
+  transform: translateX(0);
+  .button-mobile-close-aside {
+    padding: 0;
+    margin-inline-start: auto;
+    &:hover {
+      svg {
+        fill: var(--accent-color-2);
+      }
+    }
+    svg {
+      width: calc(var(--spacer) * 2);
+      height: calc(var(--spacer) * 2);
+      fill: var(--default-color);
+      transition: all 0.3s ease;
+    }
+  }
+}
+
+#aside-categories-related {
+  .button-mobile-close-aside {
+    display: flex;
+    @media (width >= 992px) {
+      display: none;
+    }
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.wrapper-command-mobile {
+  display: flex;
+  @media (width >= 992px) {
+    display: none;
+  }
+}
+
+#aside-categories-related:popover-closed {
+  animation: slide-out 0.5s ease;
+  opacity: 0;
+  transform: translateX(100%);
 }
