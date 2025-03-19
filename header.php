@@ -3,8 +3,15 @@
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <title><?php wp_title('|', true, 'right'); ?></title>   
-    <meta name="description" content="<?= \Theme_base\Base::get_meta_description() ?>">
+    <meta name="description" content="<?=get_the_title()?>"> <!-- TODO: add description when excerpt are sets \Theme_base\Base::get_meta_description()-->
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">	
+    <?php if(is_single()): ?>
+        <meta property="og:url" content="<?=get_the_permalink()?>" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="<?=get_the_title()?>" />
+        <meta property="og:description" content="<?=get_the_title()?>" /> <!-- TODO: add description when excerpt are sets -->
+        <meta property="og:image" content="<?=get_the_post_thumbnail_url()?>" />
+    <?php endif; ?>
     <?php wp_head(); ?>
 </head>
 <body <?php body_class() ?>>
@@ -81,21 +88,18 @@ $object = get_queried_object();
 
 <?php if (is_single()) : ?>
 <aside class="left">
-    <div class="wrapper-side-left">
-            <?php
-            $breadcrumbs = \Theme_base\Base::get_breadcrumbs($object);
-            ?>
-            <div id="breadcrumbs" class="breadcrumbs-custom">
-                <ul>
-                    <?php foreach ($breadcrumbs as $breadcrumb): ?>
-                        <?php if ($breadcrumb === end($breadcrumbs)): ?>
-                            <li><?= $breadcrumb['text'] ?></li>
-                        <?php else: ?>
-                            <li><a href="<?= $breadcrumb['url'] ?>"><?= $breadcrumb['text'] ?></a></li><span class="separator"></span>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-                </ul>
+    <div class="wrapper-all-modules">
+        <div id="module-most-viewed" class="wrapper-module">
+            <div class="wrapper-popover-header">
+                <p>Most viewed</p>
+                <button popovertarget="module-most-viewed" popovertargetaction="hide" class="button-mobile-close-module btn">
+                    <svg fill="#000000" width="800px" height="800px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.8,16l5.5-5.5c0.8-0.8,0.8-2,0-2.8l0,0C24,7.3,23.5,7,23,7c-0.5,0-1,0.2-1.4,0.6L16,13.2l-5.5-5.5  c-0.8-0.8-2.1-0.8-2.8,0C7.3,8,7,8.5,7,9.1s0.2,1,0.6,1.4l5.5,5.5l-5.5,5.5C7.3,21.9,7,22.4,7,23c0,0.5,0.2,1,0.6,1.4  C8,24.8,8.5,25,9,25c0.5,0,1-0.2,1.4-0.6l5.5-5.5l5.5,5.5c0.8,0.8,2.1,0.8,2.8,0c0.8-0.8,0.8-2.1,0-2.8L18.8,16z"/>
+                    </svg>
+                </button>
             </div>
+            <?php get_template_part('partials/modules/module-most-viewed-posts'); ?>
+        </div>
     </div>
 </aside>
 <?php endif; ?>
@@ -103,5 +107,6 @@ $object = get_queried_object();
 <div class="wrapper-center-content">
 
 
+<?php
 
 

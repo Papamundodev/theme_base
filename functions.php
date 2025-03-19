@@ -17,7 +17,7 @@ $base->includeScripts();
 $base->addSVGSupport();
 $base->registerWidgets();
 $base->sidebar_widgets_language_selector_init();
-
+$base->increment_views();
 
 function pre_debug($data){
     echo '<pre class="debug" style="color: red;">';

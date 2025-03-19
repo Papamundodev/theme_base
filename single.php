@@ -2,13 +2,16 @@
 get_header();
 $object = get_queried_object();
 $theme_template_name = basename(__FILE__, ".php");
+
+// Mettre à jour le compteur lors de l'affichage d'un article
+
 ?>
 
 <main id="main-<?=$theme_template_name?>" class="">
 
     <section>
         <div class="wrapper-command-mobile wrapper">
-            <button class="button-mobile-open-aside btn" popovertarget="aside-categories-related">
+            <button class="open-module btn" popovertarget="module-categories-related">
                 <?php
                 $object = get_queried_object();
                 $get_term_id = wp_get_post_terms($object->ID, 'category');
@@ -18,6 +21,13 @@ $theme_template_name = basename(__FILE__, ".php");
                         <span><?=$term->name?></span>
                     <?php endforeach; ?>
                 <?php endif; ?>
+            </button>
+
+            <button class="open-module btn" popovertarget="module-breadcrumbs">
+                <p>You are here</p>
+            </button>
+            <button class="open-module btn" popovertarget="module-most-viewed">
+                <p>Most viewed</p>
             </button>
         </div>
     </section>

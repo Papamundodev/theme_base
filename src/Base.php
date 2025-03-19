@@ -231,6 +231,31 @@ class Base
     return $children;
     }
 
+
+        /**
+     * Get nav for posts
+     *
+     * @param array|null $posts The posts
+     */
+    public static function  wp_get_menu_array_posts($posts, $current_post) : array
+    {
+        // Return menu post objects
+        $menu = [];
+
+        foreach ($posts as $k => $m) {
+                $menu[$m->ID] = [];
+                $menu[$m->ID]['ID'] = intval($m->ID);
+                $menu[$m->ID]['title'] = $m->post_title;
+                $menu[$m->ID]['url'] = get_permalink($m->ID);
+                $menu[$m->ID]['date'] = $m->post_date ?? '';
+                $menu[$m->ID]['author'] = $m->post_author ?? '';
+                $menu[$m->ID]['excerpt'] = $m->post_excerpt ?? '';
+                $menu[$m->ID]['views'] = get_post_meta($m->ID, 'views', true) ?? 0;
+                $menu[$m->ID]['current'] = $m->ID === $current_post->ID ? true : false;
+        }
+        return $menu;
+    }
+
     public static function get_active_class($item) : string
     {
         if(in_array('current-menu-item', $item['classes'] ?? [])){
@@ -343,6 +368,21 @@ class Base
             return sprintf(__('%d min read', 'theme_base'), $minutes);
         }
     }
+
+    public function increment_views() {
+        add_action('wp_head', function(){
+            if (is_single()) {
+                $post_id = get_the_ID();
+                $views = get_post_meta($post_id, 'views', true);
+                if (empty($views)) {
+            $views = 0;
+        }
+        $views++;
+                update_post_meta($post_id, 'views', $views);
+            }
+        });
+    }
+
 
     /*
     fin
