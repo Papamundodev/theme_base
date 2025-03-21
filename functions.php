@@ -18,6 +18,9 @@ $base->addSVGSupport();
 $base->registerWidgets();
 $base->sidebar_widgets_language_selector_init();
 $base->increment_views();
+$base->register_likes_meta();
+$base->register_views_meta();
+
 
 function pre_debug($data){
     echo '<pre class="debug" style="color: red;">';

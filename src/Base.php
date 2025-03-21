@@ -23,7 +23,16 @@ class Base
     public function includeScripts() : void
     {
         add_action('wp_enqueue_scripts', function () {
+            // Enregistrer le script principal
             wp_register_script('main', get_template_directory_uri() . '/assets/build/js/main.js', [], null, true);
+            
+            // Localiser le script avant de l'enfiler
+            wp_localize_script('main', 'wpApiSettings', array(
+                'root' => esc_url_raw(rest_url()),
+                'nonce' => wp_create_nonce('wp_rest')
+            ));
+            
+            // Enfiler le script principal
             wp_enqueue_script('main');
         });
     }
@@ -251,6 +260,7 @@ class Base
                 $menu[$m->ID]['author'] = $m->post_author ?? '';
                 $menu[$m->ID]['excerpt'] = $m->post_excerpt ?? '';
                 $menu[$m->ID]['views'] = get_post_meta($m->ID, 'views', true) ?? 0;
+                $menu[$m->ID]['likes'] = get_post_meta($m->ID, 'likes', true) ?? 0;
                 $menu[$m->ID]['current'] = $m->ID === $current_post->ID ? true : false;
         }
         return $menu;
@@ -383,6 +393,27 @@ class Base
         });
     }
 
+    public function register_likes_meta() {
+        //on API
+        add_action('init', function(){
+            register_meta('post', 'likes', array(
+                'show_in_rest' => true,
+                'single' => true,
+                'type' => 'integer',
+            ));
+        });
+    }    
+
+    public function register_views_meta() {
+        //on API
+        add_action('init', function(){
+            register_meta('post', 'views', array(
+                'show_in_rest' => true,
+                'single' => true,
+                'type' => 'integer',
+            ));
+        });
+    }  
 
     /*
     fin

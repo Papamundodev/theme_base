@@ -2,7 +2,7 @@ import "clipboard-copy-element";
 
 document.addEventListener("DOMContentLoaded", () => {
   console.log("DOMContentLoaded");
-
+  console.log("wpApiSettings:", wpApiSettings);
   //responsive navbar
 
   const burger = document.querySelector("#theme-navbar-toggler");
@@ -94,4 +94,47 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+
+  // Trouver tous les boutons de like
+  const likeButtons = document.querySelectorAll(".like-button");
+
+  likeButtons.forEach((button) => {
+    button.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      const postId = this.dataset.postId;
+      const currentLikes = parseInt(this.dataset.likes) || 0;
+
+      // Désactiver le bouton pendant la requête
+      this.disabled = true;
+
+      // Mettre à jour le meta likes
+      fetch("/wp-json/wp/v2/posts/" + postId, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-WP-Nonce": wpApiSettings.nonce,
+        },
+        body: JSON.stringify({
+          meta: {
+            likes: currentLikes + 1,
+          },
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          // Mettre à jour l'affichage
+          this.dataset.likes = currentLikes + 1;
+          this.querySelector(".like-count").textContent = currentLikes + 1;
+
+          // Ajouter une classe pour le style "liked"
+          this.classList.add("liked");
+        })
+        .catch((error) => {
+          console.error("Erreur:", error);
+          // Réactiver le bouton en cas d'erreur
+          this.disabled = false;
+        });
+    });
+  });
 });

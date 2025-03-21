@@ -29,6 +29,12 @@ $theme_template_name = basename(__FILE__, ".php");
             <button class="open-module btn" popovertarget="module-most-viewed">
                 <p>Most viewed</p>
             </button>
+            <button class="open-module btn" popovertarget="module-author-info">
+                <p>Author info</p>
+            </button>
+            <button class="open-module btn" popovertarget="module-most-popular-posts">
+                <p>Most popular posts</p>
+            </button>
         </div>
     </section>
 
