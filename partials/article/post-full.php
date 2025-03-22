@@ -5,8 +5,13 @@ $content = get_the_content();
 $content = wpautop($content);
 $featured_image = get_the_post_thumbnail_url($post, "large");
 $date_published = get_the_date();
+$time_till_now = \Theme_base\Base::get_time_till_now_in_year_with_month($date_published);
 $reading_time = \Theme_base\Base::get_reading_time($content);
 $likes = get_post_meta(get_the_ID(), 'likes', true);
+$views = get_post_meta(get_the_ID(), 'views', true);
+
+
+
 ?>
 
 <div class="post-full">
@@ -16,9 +21,10 @@ $likes = get_post_meta(get_the_ID(), 'likes', true);
         <div class="post-header">
             <div class="post-title">
                 <h1><?=$title;?></h1>
-                <span><?=$date_published;?></span>
+                <span><?=$time_till_now;?><?=__(" ago", "theme_base");?></span>
                 <span class="separator"></span>
                 <span><?=$reading_time;?></span>
+                <span><?=\Theme_base\Base::get_views($views);?> <?=__("views", "theme_base");?></span>
             </div>
             <div class="post-actions">
                     <!-- Dans votre template de post -->

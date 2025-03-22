@@ -45,10 +45,6 @@ $social_links = [
 ];
 ?>
 
-
-<div class="wrapper-side">
-<?php if(is_array($social_links) && count($social_links) > 0): ?>
-<nav id="navmenu-module-socials" class="navmenu navmenu-module-socials" aria-label="Navigation socials">
 <ul class="dropdown-menu">
 <?php foreach($social_links as $item): ?>
     <li class="">
@@ -61,8 +57,3 @@ $social_links = [
     </li>
 <?php endforeach; ?>
 </ul>
-</nav>
-<?php endif; ?>
-</div>
-
-

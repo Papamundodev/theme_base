@@ -38,6 +38,9 @@ $theme_template_name = basename(__FILE__, ".php");
             <button class="open-module btn" popovertarget="module-topics">
                 <p>Topics</p>
             </button>
+            <button class="open-module btn" popovertarget="module-join-us">
+                <p>Join us</p>
+            </button>
         </div>
     </section>
 
@@ -66,6 +69,7 @@ $theme_template_name = basename(__FILE__, ".php");
             $post_categories_ids = array();
             foreach($post_categories as $category){
                 $post_categories_ids[] = $category->term_id;
+                $post_categories_ids[] = $category->parent;
             }
             $related_posts = get_posts(array(
                 'post_type' => 'post',
@@ -86,6 +90,34 @@ $theme_template_name = basename(__FILE__, ".php");
                 </div>
                 <?php endforeach; ?>
                 <?php wp_reset_postdata(); ?>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <?php
+        //next previous post
+        $next_post = get_next_post();
+        $previous_post = get_previous_post();
+        ?>
+        <div class="wrapper">
+            <div class="next-previous-post">
+                <div class="next-previous-post-item">
+                    <?php if($previous_post): ?>
+                        <a href="<?php the_permalink($previous_post->ID); ?>" class="btn">
+                            <p>Previous post</p>
+                            <span><?=$previous_post->post_title;?></span>
+                        </a>
+                    <?php endif; ?>
+                </div>
+                <div class="next-previous-post-item">
+                    <?php if($next_post): ?>
+                        <a href="<?php the_permalink($next_post->ID); ?>" class="btn">
+                            <p>Next post</p>
+                            <span><?=$next_post->post_title;?></span>
+                        </a>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
     </section>

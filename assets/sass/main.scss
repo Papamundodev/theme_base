@@ -213,3 +213,43 @@ main {
 footer {
   margin-bottom: var(--header-height);
 }
+
+.group-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacer);
+}
+
+/*--------------------------------------------------------------
+# Scroll Top Button
+--------------------------------------------------------------*/
+.scroll-top {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 100px;
+  bottom: 100px;
+  z-index: 99999;
+  background-color: var(--accent-color-2);
+  width: 44px;
+  height: 44px;
+  border-radius: 50px;
+  transition: all 0.4s;
+}
+
+.scroll-top svg,
+.scroll-top svg path {
+  fill: var(--accent-color);
+  width: 3em;
+  height: 3em;
+}
+
+.scroll-top:hover {
+  background-color: var(--accent-color-2);
+}
+
+.scroll-top.active {
+  visibility: visible;
+  opacity: 1;
+  bottom: 15px;
+}

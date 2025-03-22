@@ -372,7 +372,7 @@ class Base
         }
     }
 
-    public function increment_views() {
+    public function increment_views(): void {
         add_action('wp_head', function(){
             if (is_single()) {
                 $post_id = get_the_ID();
@@ -386,7 +386,7 @@ class Base
         });
     }
 
-    public function register_likes_meta() {
+    public function register_likes_meta(): void {
         //on API
         add_action('init', function(){
             register_meta('post', 'likes', array(
@@ -397,7 +397,7 @@ class Base
         });
     }    
 
-    public function register_views_meta() {
+    public function register_views_meta(): void {
         //on API
         add_action('init', function(){
             register_meta('post', 'views', array(
@@ -408,6 +408,93 @@ class Base
         });
     }  
 
+
+public static function get_views($views) : string {
+    //using modulus to get how many k
+    if ($views > 1000) {
+        $views = $views % 1000;
+        $views = round($views / 1000) . "k";
+    }
+    return $views;
+}
+
+
+public static function get_time_till_now_in_year_with_month($date) : string {
+    $time_till_now_in_days = time() - strtotime($date);
+    $time_till_now_in_days = round($time_till_now_in_days / 60 / 60 / 24);
+    
+    // Convertir en mois (approximativement)
+    $time_till_now_in_month = round($time_till_now_in_days / 30);
+    
+    if ($time_till_now_in_month >= 12) {
+        // Calcul des années et des mois restants
+        $years = floor($time_till_now_in_month / 12);
+        $remaining_months = $time_till_now_in_month % 12;
+        
+        if ($years == 1) {
+            if ($remaining_months > 0) {
+                return $years . " " . __("year and", "theme_base") . " " . $remaining_months . " " . __("month", "theme_base");
+            } else {
+                return $years . " " . __("year", "theme_base");
+            }
+        } else {
+            if ($remaining_months > 0) {
+                return $years . " " . __("years and", "theme_base") . " " . $remaining_months . " " . __("month", "theme_base");
+            } else {
+                return $years . " " . __("years", "theme_base");
+            }
+        }
+    } elseif ($time_till_now_in_month > 0) {
+        // Moins d'un an, mais plus d'un mois
+        return $time_till_now_in_month . " " . __("month", "theme_base");
+    } else {
+        // Moins d'un mois
+        if ($time_till_now_in_days > 1) {
+            return $time_till_now_in_days . " " . __("days", "theme_base");
+        } else {
+            return __("today", "theme_base");
+        }
+    }
+}
+
+
+public function get_gravatar_profile_data_social_links($author_id) : void   {
+        // Récupérer l'email de l'auteur
+        $author_email = get_the_author_meta('user_email', $author_id);
+
+    // Créer le hash pour Gravatar
+    $email_hash = md5(strtolower(trim($author_email)));
+    // Récupération des données du profil Gravatar au format PHP sérialisé
+    $gravatar_profile_url = 'https://gravatar.com/' . $email_hash . '.php';
+    $gravatar_profile_data = null;
+    $author_social_links = array();
+    $serialized_data = @file_get_contents($gravatar_profile_url);
+
+        if ($serialized_data) {
+            $gravatar_profile_data = unserialize($serialized_data);
+            
+            // Extraction des médias sociaux
+            if (isset($gravatar_profile_data['entry'][0]['accounts'])) {
+                foreach ($gravatar_profile_data['entry'][0]['accounts'] as $account) {
+                    if (isset($account['shortname']) && isset($account['url'])) {
+                        $author_social_links[$account['shortname']] = $account['url'];
+                    }
+                }
+            }
+            
+            // Alternative: chercher les liens dans urls s'ils existent
+            if (empty($author_social_links) && isset($gravatar_profile_data['entry'][0]['urls'])) {
+                foreach ($gravatar_profile_data['entry'][0]['urls'] as $url_info) {
+                    if (isset($url_info['title']) && isset($url_info['value'])) {
+                        $author_social_links[$url_info['title']] = $url_info['value'];
+                    }
+                }
+            }
+        }
+
+        $user = get_user_by('email', $author_email);
+        update_user_meta($user->ID, 'social_links', $author_social_links);
+}
     /*
     fin
     */

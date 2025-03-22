@@ -11,20 +11,7 @@ $content = wpautop($object->description) ?? "";
 
     <section id="archive-<?=$object->slug?>" class="archive section">
 
-        <h1><?=$object->name?></h1>
-
-        <!-- Page Title -->
-        <div class="wrapper">
-            <div class="page-title">
-                <h1><?=$object->name?></h1>
-            </div><!-- End Page Title -->
-        </div>
-
-        <?php if($content) : ?>
-            <div class="wrapper content">
-                <?=$content;?>
-            </div>
-        <?php endif; ?>
+        <?php get_template_part('partials/taxo'); ?>
 
     </section>
     </main>

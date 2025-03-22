@@ -2,7 +2,7 @@ import "clipboard-copy-element";
 
 document.addEventListener("DOMContentLoaded", () => {
   console.log("DOMContentLoaded");
-  console.log("wpApiSettings:", wpApiSettings);
+
   //responsive navbar
 
   const burger = document.querySelector("#theme-navbar-toggler");
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Trouver tous les boutons de like
   const likeButtons = document.querySelectorAll(".like-button");
-  console.log(likeButtons);
+
   likeButtons.forEach((button) => {
     button.addEventListener("click", function (e) {
       e.preventDefault();
@@ -137,4 +137,27 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
   });
+
+  /**
+   * Scroll top button
+   */
+  let scrollTop = document.querySelector(".scroll-top");
+
+  function toggleScrollTop() {
+    if (scrollTop) {
+      window.scrollY > 100
+        ? scrollTop.classList.add("active")
+        : scrollTop.classList.remove("active");
+    }
+  }
+  scrollTop.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
+
+  window.addEventListener("load", toggleScrollTop);
+  document.addEventListener("scroll", toggleScrollTop);
 });
