@@ -1,7 +1,6 @@
 <?php 
 $object = get_queried_object();
-$theme_template_name = basename(__FILE__, ".php");
-$author_id = $object->post_author;
+$author_id = $args['author_id'] ?? $object->post_author;
 $social_links = get_user_meta($author_id, 'social_links', true);
 ?>
 
