@@ -7,7 +7,7 @@ $featured_image = get_the_post_thumbnail_url($post, 'medium');
 ?>
 <article class="post-preview">
     <div class="">
-        <h2 class=""><?=$title; ?></h2>
+        <h3 class=""><?=$title; ?></h3>
         <div class="content">
             <div><?=$content; ?></div>
         </div>

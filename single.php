@@ -35,6 +35,9 @@ $theme_template_name = basename(__FILE__, ".php");
             <button class="open-module btn" popovertarget="module-most-popular-posts">
                 <p>Most popular posts</p>
             </button>
+            <button class="open-module btn" popovertarget="module-topics">
+                <p>Topics</p>
+            </button>
         </div>
     </section>
 
@@ -53,6 +56,38 @@ $theme_template_name = basename(__FILE__, ".php");
         endif;
         ?>
 
+    </section>
+
+    <section>
+        <div class="wrapper">
+            <h2>Related posts</h2>
+            <?php 
+            $post_categories = wp_get_post_terms($object->ID, 'category');
+            $post_categories_ids = array();
+            foreach($post_categories as $category){
+                $post_categories_ids[] = $category->term_id;
+            }
+            $related_posts = get_posts(array(
+                'post_type' => 'post',
+                'category' => $post_categories_ids,
+                'posts_per_page' => 5,
+                'post__not_in' => array($object->ID),
+                'post_status' => 'publish',
+                'meta_key' => 'views',
+                'orderby' => 'meta_value_num',
+                'order' => 'DESC',
+            ));
+            ?>
+            <div class="layout-grid">
+                <?php foreach($related_posts as $post): ?>
+                <?php setup_postdata($post); ?>
+                <div class="layout-grid-item">
+                    <?php get_template_part( 'partials/article/post-preview' , null, ['post' => $post]); ?>
+                </div>
+                <?php endforeach; ?>
+                <?php wp_reset_postdata(); ?>
+            </div>
+        </div>
     </section>
 
 </main>

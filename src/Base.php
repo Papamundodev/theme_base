@@ -186,18 +186,11 @@ class Base
      *
      * @param string|null $location The menu location id
      */
-    public static function  wp_get_term_array($terms_active) : array
+    public static function  wp_get_term_array($terms_query,$terms_active) : array
     {
 
-        $terms = get_terms( array(
-            'taxonomy'   => 'category',
-            'hide_empty' => false,
-            'hierarchical' => true,
-            'orderby' => 'name',
-            'parent' => 0,
-        ) );
         $menu = [];
-        foreach ($terms as $k => $m) {
+        foreach ($terms_query as $k => $m) {
 
                 $menu[$m->term_id    ] = [];
                 $menu[$m->term_id]['ID'] = intval($m->term_id);

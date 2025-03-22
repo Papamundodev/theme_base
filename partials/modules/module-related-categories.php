@@ -7,10 +7,17 @@ $terms_active = [];
 foreach($get_term_id as $term){
     $terms_active[] = $term->term_id;
 }
+$terms_query = get_terms( array(
+    'taxonomy'   => 'category',
+    'hide_empty' => false,
+    'hierarchical' => true,
+    'orderby' => 'name',
+    'parent' => 0,
+) );
 ?>
 
 
-<?php $menu_items = \Theme_Base\Base::wp_get_term_array($terms_active);?>
+<?php $menu_items = \Theme_Base\Base::wp_get_term_array($terms_query,$terms_active);?>
 <?php if(is_array($menu_items) && count($menu_items) > 0): ?>
 <nav id="navmenu-aside-categories-related" class="navmenu navmenu-aside-categories-related" aria-label="Navigation related categories">
   <ul class="navmenu-list">
