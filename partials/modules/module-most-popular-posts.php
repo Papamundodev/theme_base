@@ -10,9 +10,6 @@ $most_liked_posts_query = get_posts([
 ]); 
 $most_liked_posts = \Theme_Base\Base::wp_get_menu_array_posts($most_liked_posts_query, $object);
 ?>
-  <?php
-
-?>
 
 <div class="wrapper-side">
 <?php if(is_array($most_liked_posts) && count($most_liked_posts) > 0): ?>

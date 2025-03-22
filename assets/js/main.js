@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Trouver tous les boutons de like
   const likeButtons = document.querySelectorAll(".like-button");
-
+  console.log(likeButtons);
   likeButtons.forEach((button) => {
     button.addEventListener("click", function (e) {
       e.preventDefault();

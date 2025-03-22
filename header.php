@@ -9,7 +9,7 @@
         <meta property="og:url" content="<?=get_the_permalink()?>" />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="<?=get_the_title()?>" />
-        <meta property="og:description" content="<?=get_the_title()?>" /> <!-- TODO: add description when excerpt are sets -->
+        <meta property="og:description" content="this is a description" /> <!-- TODO: add description when excerpt are sets -->
         <meta property="og:image" content="<?=get_the_post_thumbnail_url()?>" />
     <?php endif; ?>
     <?php wp_head(); ?>

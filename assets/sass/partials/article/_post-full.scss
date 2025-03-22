@@ -69,18 +69,19 @@
   }
 }
 
-.single .wrapper {
-  background-color: var(--background-color);
-  padding-block: 1em;
-  padding-inline: 2em;
+.post-header {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: var(--spacer);
   @media (width >= 992px) {
-    margin: auto;
-    width: 50vw;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
   }
 }
 
-.post-header {
+.post-actions {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: var(--spacer);
 }

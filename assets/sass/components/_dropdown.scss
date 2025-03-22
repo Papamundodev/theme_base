@@ -117,3 +117,141 @@
     }
   }
 }
+
+.dropdown-social {
+  .container-svg-button {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: var(--background-color);
+    border-radius: 50%;
+    width: 3em;
+    height: 3em;
+    padding: 0.75em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--accent-color-2);
+    svg {
+      width: 1.5em;
+      height: 1.5em;
+      fill: var(--accent-color-2);
+      transition: all 0.3s ease;
+    }
+  }
+  .plus-icon-svg {
+    display: none;
+  }
+  .share-svg {
+    display: block;
+  }
+}
+
+.dropdown-social:hover {
+  .plus-icon-svg {
+    display: block;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  .share-svg {
+    display: none;
+  }
+  svg {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+    transition: all 0.3s ease;
+  }
+  .dropdown-menu {
+    height: fit-content;
+    background-color: transparent;
+    opacity: 1;
+    left: -0.8em;
+    z-index: 300;
+    li {
+      margin-bottom: 0.5em;
+      min-width: 3em;
+      &:hover {
+        transform: scale(1.3);
+        transition: all 0.3s ease;
+      }
+      a {
+        svg {
+          width: 2em;
+          height: 2em;
+          fill: var(--accent-color-2);
+        }
+      }
+    }
+    li:first-child {
+      margin-top: 0.5em;
+    }
+    li:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media (width <= 992px) {
+  .dropdown-social {
+    display: none;
+  }
+  .container-svg-button.open-module {
+    display: flex;
+    border: none;
+    svg {
+      width: 1.5em;
+      height: 1.5em;
+      fill: var(--accent-color-2);
+      transition: all 0.3s ease;
+    }
+  }
+  .dropdown-menu {
+    height: fit-content;
+    background-color: transparent;
+    opacity: 1;
+    left: -0.8em;
+    overflow: hidden;
+
+    li {
+      margin-bottom: 0.5em;
+      &:hover {
+        transform: scale(1.3);
+        transition: all 0.3s ease;
+      }
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        svg {
+          width: 2em;
+          height: 2em;
+          fill: var(--accent-color-2);
+        }
+      }
+    }
+    li:first-child {
+      margin-top: 0.5em;
+    }
+    li:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media (width >= 992px) {
+  .container-svg-button.open-module {
+    display: none;
+  }
+  .dropdown-social {
+    display: flex;
+  }
+  #module-socials {
+    display: none;
+  }
+}
