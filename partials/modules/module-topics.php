@@ -2,12 +2,16 @@
 $object = get_queried_object();
 $display = $args['display'] ?? "list";
 $theme_template_name = basename(__FILE__, ".php");
-$get_term_id = wp_get_post_terms($object->ID, 'post_tag');
-
 $terms_active = [];
-foreach($get_term_id as $term){
-    $terms_active[] = $term->term_id;
+if(is_single()){
+    $get_term_id = wp_get_post_terms($object->ID, 'post_tag');
+    foreach($get_term_id as $term){
+        $terms_active[] = $term->term_id;
+    }
+}elseif(is_category() || is_tag()){
+    $terms_active[] = $object->term_id;
 }
+
 $popular_terms = get_terms(array(
     'taxonomy' => 'post_tag', // Utiliser 'post_tag' pour les tags
     'orderby' => 'count',

@@ -1,12 +1,28 @@
 <?php 
 $object = get_queried_object();
 $theme_template_name = basename(__FILE__, ".php");
-$latest_posts_query = get_posts([
+if(is_category()){
+  $latest_posts_query = get_posts([
     'post_type' => 'post',
     'posts_per_page' => 5,
     'orderby' => 'date',
     'order' => 'DESC',
-]); 
+    'tax_query' => [
+      [
+        'taxonomy' => $object->taxonomy,
+        'field' => 'term_id',
+        'terms' => $object->term_id,
+      ],
+    ],
+  ]);
+}else{
+  $latest_posts_query = get_posts([
+    'post_type' => 'post',
+    'posts_per_page' => 5,
+    'orderby' => 'date',
+    'order' => 'DESC',
+  ]);
+}
 $latest_posts = \Theme_Base\Base::wp_get_menu_array_posts($latest_posts_query, $object);
 ?>
 

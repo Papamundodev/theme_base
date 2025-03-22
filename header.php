@@ -86,7 +86,7 @@ $object = get_queried_object();
 
 <div class="wrapper-layout">
 
-<?php if (is_single()) : ?>
+
 <aside class="left">
     <div class="wrapper-all-modules">
         <div id="module-most-viewed" class="wrapper-module">
@@ -100,6 +100,7 @@ $object = get_queried_object();
             </div>
             <?php get_template_part('partials/modules/module-most-viewed-posts'); ?>
         </div>
+        <?php if(is_single()): ?>
         <div id="module-author-info" class="wrapper-module">
             <div class="wrapper-popover-header">
                 <p>Author info</p>
@@ -111,6 +112,7 @@ $object = get_queried_object();
             </div>
             <?php get_template_part('partials/modules/module-author-info'); ?>
         </div>
+        <?php endif; ?>
         <div id="module-most-popular-posts" class="wrapper-module">
             <div class="wrapper-popover-header">
                 <p>Most popular posts</p>
@@ -135,7 +137,7 @@ $object = get_queried_object();
         </div>
     </div>
 </aside>
-<?php endif; ?>
+
     
 <div class="wrapper-center-content">
 

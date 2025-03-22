@@ -1,17 +1,32 @@
 <?php 
 $object = get_queried_object();
 $theme_template_name = basename(__FILE__, ".php");
+if(is_category()){
+
 $most_viewed_posts_query = get_posts([
     'post_type' => 'post',
     'posts_per_page' => 5,
     'meta_key' => 'views',
     'orderby' => 'meta_value_num',
     'order' => 'DESC',
-]); 
+    'tax_query' => [
+      [
+        'taxonomy' => $object->taxonomy,
+        'field' => 'term_id',
+        'terms' => $object->term_id,
+      ],
+    ],
+  ]);
+}else{
+$most_viewed_posts_query = get_posts([
+    'post_type' => 'post',
+    'posts_per_page' => 5,
+    'meta_key' => 'views',
+    'orderby' => 'meta_value_num',
+    'order' => 'DESC',
+]);
+}
 $most_viewed_posts = \Theme_Base\Base::wp_get_menu_array_posts($most_viewed_posts_query, $object);
-?>
-  <?php
-
 ?>
 
 <div class="wrapper-side">

@@ -12,7 +12,7 @@
 <!-- closing div for wrapper center content -->
 </div>
 
-<?php if (is_single()) : ?>
+
 <aside class="right" >
     <div class="wrapper-all-modules">
         <div id="module-breadcrumbs" class="wrapper-module">
@@ -73,6 +73,7 @@
             </div>
             <?php get_template_part('partials/modules/module-topics'); ?>
         </div>
+        <?php if(is_single()): ?>
         <div id="module-join-us" class="wrapper-module">
             <div class="wrapper-popover-header">
                 <p>Join us</p>
@@ -84,11 +85,10 @@
             </div>
             <?php get_template_part('partials/modules/module-join-us'); ?>
         </div>
+        <?php endif; ?>
     </div>
 </aside>
 
-
-<?php endif; ?>
 
 <!-- closing div for wrapper layout -->
 </div>

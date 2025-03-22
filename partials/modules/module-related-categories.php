@@ -1,12 +1,15 @@
 <?php
 $object = get_queried_object();
 $theme_template_name = basename(__FILE__, ".php");
-$get_term_id = wp_get_post_terms($object->ID, 'category');
-
 $terms_active = [];
-foreach($get_term_id as $term){
-    $terms_active[] = $term->term_id;
-}
+if(is_category()){
+  $terms_active[] = $object->term_id;
+}elseif (is_single()){
+  $get_term_id = wp_get_post_terms($object->ID, 'category');
+  foreach($get_term_id as $term){
+      $terms_active[] = $term->term_id;
+  }
+} 
 $terms_query = get_terms( array(
     'taxonomy'   => 'category',
     'hide_empty' => false,
@@ -15,7 +18,6 @@ $terms_query = get_terms( array(
     'parent' => 0,
 ) );
 ?>
-
 
 <?php $menu_items = \Theme_Base\Base::wp_get_term_array($terms_query,$terms_active);?>
 <?php if(is_array($menu_items) && count($menu_items) > 0): ?>
