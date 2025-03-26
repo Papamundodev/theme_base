@@ -2,6 +2,6 @@
 
 <div class="wrapper-site-title">
     <a href="<?=home_url();?>">
-        <span><?=get_bloginfo('name');?></span>
+        <span class="svg-logo"></span>
     </a>
 </div>

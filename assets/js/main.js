@@ -160,4 +160,66 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("load", toggleScrollTop);
   document.addEventListener("scroll", toggleScrollTop);
+  //import instagram feed
 });
+
+// Fonction pour charger les intégrations Instagram
+function loadInstagramEmbeds() {
+  // Si le SDK Facebook n'est pas chargé, l'ajouter au DOM
+  if (!document.getElementById("facebook-jssdk")) {
+    const script = document.createElement("script");
+    script.id = "facebook-jssdk";
+    script.src =
+      "https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v22.0";
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+  }
+
+  // Si la fonction FB existe, forcer le rendu des intégrations
+  if (typeof FB !== "undefined") {
+    FB.XFBML.parse();
+  }
+}
+
+// Appeler la fonction quand le DOM est chargé
+document.addEventListener("DOMContentLoaded", loadInstagramEmbeds);
+
+function setupScrollAnimations() {
+  // Sélectionnez les éléments à animer (à adapter selon vos besoins)
+  const elementsToAnimate = document.querySelectorAll(".card");
+  console.log(elementsToAnimate);
+
+  // Options de l'Intersection Observer
+  const observerOptions = {
+    root: null, // utilise le viewport comme zone d'observation
+    rootMargin: "0px", // aucune marge
+    threshold: 0.1, // déclenche lorsque 10% de l'élément est visible
+  };
+
+  // Fonction de callback exécutée lors de l'intersection
+  const observerCallback = (entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // Ajoute une classe pour déclencher l'animation CSS
+        entry.target.classList.add("animate");
+
+        // Optionnel : stoppe l'observation une fois animé
+        observer.unobserve(entry.target);
+      } else if (entry.isIntersecting === false) {
+        // Optionnel : retire la classe si l'élément n'est plus visible
+        entry.target.classList.remove("animate");
+      }
+    });
+  };
+
+  // Crée l'observer
+  const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+  // Observe chaque élément
+  elementsToAnimate.forEach((element) => {
+    observer.observe(element);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", setupScrollAnimations);

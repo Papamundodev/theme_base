@@ -495,6 +495,10 @@ public function get_gravatar_profile_data_social_links($author_id) : void   {
         $user = get_user_by('email', $author_email);
         update_user_meta($user->ID, 'social_links', $author_social_links);
 }
+
+
+    
+
     /*
     fin
     */

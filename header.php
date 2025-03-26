@@ -12,6 +12,7 @@
         <meta property="og:description" content="this is a description" /> <!-- TODO: add description when excerpt are sets -->
         <meta property="og:image" content="<?=get_the_post_thumbnail_url()?>" />
     <?php endif; ?>
+
     <?php wp_head(); ?>
 </head>
 <body <?php body_class() ?>>
@@ -84,9 +85,9 @@ $object = get_queried_object();
 </header>
 
 
-<div class="wrapper-layout">
+<div class="<?=is_single() || is_category() || is_tag() || is_home() ? 'wrapper-layout' : 'wrapper-layout-full-width'; ?>">
 
-
+<?php if(is_single() || is_category() || is_tag() || is_home()): ?>
 <aside class="left">
     <div class="wrapper-all-modules">
         <div id="module-most-viewed" class="wrapper-module">
@@ -137,7 +138,7 @@ $object = get_queried_object();
         </div>
     </div>
 </aside>
-
+<?php endif; ?>
     
 <div class="wrapper-center-content">
 

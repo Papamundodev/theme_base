@@ -2,6 +2,8 @@
 $object = get_queried_object();
 $display = $args['display'] ?? "list";
 $theme_template_name = basename(__FILE__, ".php");
+
+//define terms active
 $terms_active = [];
 if(is_single()){
     $get_term_id = wp_get_post_terms($object->ID, 'post_tag');
@@ -12,6 +14,7 @@ if(is_single()){
     $terms_active[] = $object->term_id;
 }
 
+//get popular terms
 $popular_terms = get_terms(array(
     'taxonomy' => 'post_tag', // Utiliser 'post_tag' pour les tags
     'orderby' => 'count',

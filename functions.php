@@ -24,6 +24,7 @@ $base->register_views_meta();
 //développement only then cron
 //$base->get_gravatar_profile_data_social_links(1);
 
+
 function pre_debug($data){
     echo '<pre class="debug" style="color: red;">';
     print_r($data);

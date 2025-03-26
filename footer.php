@@ -12,7 +12,7 @@
 <!-- closing div for wrapper center content -->
 </div>
 
-
+<?php if(is_single() || is_category() || is_tag() || is_home()): ?>
 <aside class="right" >
     <div class="wrapper-all-modules">
         <div id="module-breadcrumbs" class="wrapper-module">
@@ -88,7 +88,7 @@
         <?php endif; ?>
     </div>
 </aside>
-
+<?php endif; ?>
 
 <!-- closing div for wrapper layout -->
 </div>

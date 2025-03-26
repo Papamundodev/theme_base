@@ -9,6 +9,7 @@ $time_till_now = \Theme_base\Base::get_time_till_now_in_year_with_month($date_pu
 $reading_time = \Theme_base\Base::get_reading_time($content);
 $likes = get_post_meta(get_the_ID(), 'likes', true);
 $views = get_post_meta(get_the_ID(), 'views', true);
+$previous_views = $views - 1;
 
 
 
@@ -21,10 +22,15 @@ $views = get_post_meta(get_the_ID(), 'views', true);
         <div class="post-header">
             <div class="post-title">
                 <h1><?=$title;?></h1>
-                <span><?=$time_till_now;?><?=__(" ago", "theme_base");?></span>
-                <span class="separator"></span>
-                <span><?=$reading_time;?></span>
-                <span><?=\Theme_base\Base::get_views($views);?> <?=__("views", "theme_base");?></span>
+                <div class="post-meta">
+                    <span><?=$time_till_now;?><?=__(" ago", "theme_base");?></span>
+                    <span><?=$reading_time;?></span>
+                </div>
+                <div class="views-container">
+                    <span class="previous-views"><?=\Theme_base\Base::get_views($previous_views);?></span>
+                    <span class="current-views"><?=\Theme_base\Base::get_views($views);?></span>
+                    <span class="views-count"><?=__("views", "theme_base");?></span>
+                </div>
             </div>
             <div class="post-actions">
                     <!-- Dans votre template de post -->
@@ -121,6 +127,7 @@ $views = get_post_meta(get_the_ID(), 'views', true);
     <!-- End Section Title -->
 
     <div class="wrapper">
+        <div class="scroll-watcher"></div>
             <?php if ($featured_image) : ?>
             <div class="">
                 <img src="<?=$featured_image; ?>" alt="<?=$title; ?>" class="post-image">

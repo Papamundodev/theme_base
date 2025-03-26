@@ -12,6 +12,10 @@ global $wp_query;
                 <h1><?=$object->post_title?></h1>
             </div>
         </div>
+        <div class="wrapper">
+            <?php get_template_part('partials/modules/module-command-mobile'); ?>
+        </div>
+
 
         <div class="wrapper">
             <?php if(is_array($wp_query->posts) && count($wp_query->posts) > 0): ?>
