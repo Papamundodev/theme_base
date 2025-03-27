@@ -2,7 +2,6 @@
 //- nav desktop
 //--------------------------------
 
-//header nav desktop
 header .navmenu-desktop {
   .dropdown-over {
     display: flex;
@@ -19,13 +18,14 @@ header .navmenu-desktop {
       gap: var(--spacer-small);
       padding: var(--spacer-small);
       overflow: hidden;
-      left: 0;
+      left: -100vw;
       top: calc(var(--header-height) - calc(var(--spacer) / 2));
       height: 0;
-      opacity: 0;
+      opacity: 0.4;
       width: 100vw;
       border-bottom-left-radius: var(--border-radius);
       border-bottom-right-radius: var(--border-radius);
+      animation: slideLeft 0.2s ease;
       li {
         a {
           padding: var(--spacer);
@@ -37,7 +37,7 @@ header .navmenu-desktop {
     }
     &:hover {
       .dropdown-menu {
-        animation: slideRight 0.3s ease forwards;
+        animation: 0.5s slideRight 0.2s ease forwards;
       }
     }
     svg {
@@ -74,6 +74,18 @@ header .navmenu-desktop {
   }
 }
 
+@keyframes slideLeft {
+  from {
+    height: fit-content;
+    opacity: 1;
+    left: 0;
+  }
+  to {
+    height: fit-content;
+    opacity: 0;
+    left: -100vw;
+  }
+}
 //--------------------------------
 //- nav mobile
 //--------------------------------
