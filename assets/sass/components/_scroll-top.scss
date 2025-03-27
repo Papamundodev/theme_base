@@ -1,0 +1,25 @@
+.scroll-top {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: calc(var(--header-height) / 2);
+  bottom: calc(var(--header-height) / 2);
+  z-index: 999;
+  transform: translateX(50%);
+  width: var(--icon-size-big);
+  height: var(--icon-size-big);
+  border-radius: 50px;
+  transition: all 0.4s;
+}
+
+.scroll-top svg,
+.scroll-top svg path {
+  width: var(--icon-size-big);
+  height: var(--icon-size-big);
+}
+
+.scroll-top.active {
+  visibility: visible;
+  opacity: 1;
+  bottom: 15px;
+}

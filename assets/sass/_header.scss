@@ -1,6 +1,5 @@
 header {
   height: var(--header-height);
-  background-color: var(--background-color);
 }
 
 header {
@@ -36,7 +35,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 1em;
+    gap: var(--spacer);
     padding-inline-end: var(--spacer);
   }
 }

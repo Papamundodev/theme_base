@@ -25,12 +25,8 @@
 }
 
 @media (width <= 768px) {
-  .navmenu-desktop {
-    display: none;
-  }
   .navmenu-mobile {
     animation: fade-out 0.3s ease-out;
-    background-color: var(--background-color);
     position: fixed;
     top: var(--header-height);
     right: auto;
@@ -45,22 +41,23 @@
       padding: 0;
       margin: auto;
       width: fit-content;
-      padding-block: 1em;
+      padding-block: var(--spacer);
       li {
-        margin-bottom: 1em;
+        margin-bottom: var(--spacer);
       }
       li,
       .dropdown {
         text-align: center;
-        .nav-link {
-          white-space: nowrap;
-          font-size: 1.5em;
-          font-weight: 600;
-        }
       }
     }
   }
   #navmenu-header-mobile:popover-open {
     animation: fade-in 0.3s ease-out;
+  }
+}
+
+@media (width >= 768px) {
+  .navmenu-mobile {
+    display: none;
   }
 }

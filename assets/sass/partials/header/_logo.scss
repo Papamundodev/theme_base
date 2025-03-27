@@ -7,16 +7,8 @@
     background-position: 100%;
     -webkit-background-clip: text;
     background-clip: text;
-    color: transparent;
     cursor: pointer;
     width: 100%;
-    a {
-      color: transparent;
-      span {
-        font-size: 2em;
-        font-weight: 600;
-      }
-    }
   }
 }
 
@@ -26,4 +18,15 @@
       width: 100%;
     }
   }
+}
+
+.svg-logo {
+  width: var(--icon-size-medium);
+  height: var(--icon-size-medium);
+  background-image: url("../../images/logo.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: inline-block;
+  border-radius: 50%;
+  padding: 0.2em;
 }

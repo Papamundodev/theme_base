@@ -1,0 +1,153 @@
+@font-face {
+  font-family: "Outfit";
+  src: url("../fonts/Outfit-VariableFont_wght.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fira Sans";
+  src: url("../fonts/FiraCode-VariableFont_wght.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Oswald";
+  src: url("../fonts/Oswald-VariableFont_wght.ttf") format("ttf");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-VariableFont_wght.ttf") format("ttf");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Nunito";
+  src: url("../fonts/Nunito-VariableFont_wght.ttf") format("ttf");
+  font-weight: 100 900;
+  font-display: swap;
+}
+/* Fonts */
+:root {
+  --primary-font: "Roboto", "Raleway", system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --secondary-font: "Nunito", sans-serif;
+  --tertiary-font: "Oswald", sans-serif;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+  font-family: var(--primary-font);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--primary-font);
+  margin-block-end: var(--spacer);
+}
+
+.content {
+  word-wrap: break-word;
+}
+
+p,
+.content {
+  margin-block: 0;
+  font-family: var(--primary-font);
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  font-size: 1.2rem;
+  letter-spacing: -0.003rem;
+}
+
+a,
+.nav-link {
+  font-family: var(--tertiary-font);
+  text-decoration: none;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.btn,
+.btn-container a {
+  outline: none;
+}
+
+//--------------------------------
+//- Modules
+//--------------------------------
+
+.wrapper-module {
+  .wrapper-popover-header {
+    p {
+      font-size: 1.3em;
+    }
+  }
+}
+
+//--------------------------------
+//- Search
+//--------------------------------
+
+.input-search {
+  font-size: 1.5rem;
+}
+
+//--------------------------------
+//- Post full
+//--------------------------------
+
+.post-full {
+  .content {
+    pre,
+    code,
+    div {
+      word-wrap: break-word;
+    }
+  }
+}
+
+.code-block {
+  &:hover::after {
+    content: "Copy";
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+}
+
+//--------------------------------
+//- Logo
+//--------------------------------
+
+.wrapper-logo {
+  .wrapper-site-title {
+    a {
+      span {
+        font-size: 2em;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+//--------------------------------
+//- Navbar
+//--------------------------------
+@media (width <= 768px) {
+  .nav-link {
+    font-size: 1.5em;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+}

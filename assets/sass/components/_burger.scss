@@ -1,7 +1,8 @@
 #theme-navbar-toggler {
-  width: 32px;
+  --burger-base: 32px;
+  width: var(--burger-base);
   height: auto;
-  min-height: 24px;
+  min-height: calc(var(--burger-base) * 0.75);
   position: relative;
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
@@ -17,12 +18,11 @@
   outline: none;
 
   .custom-burger {
-    background-color: var(--default-color);
     display: block;
     position: absolute;
-    height: 3px;
+    height: calc(var(--burger-base) * 0.09375);
     width: 100%;
-    border-radius: 9px;
+    border-radius: calc(var(--burger-base) * 0.28125);
     opacity: 1;
     left: 0;
     -webkit-transform: rotate(0deg);
@@ -35,17 +35,17 @@
     transition: 0.25s ease-in-out;
   }
   .custom-burger:nth-child(1) {
-    top: 0px;
+    top: 0;
   }
   .custom-burger:nth-child(3),
   .custom-burger:nth-child(2) {
-    top: 10px;
+    top: calc(var(--burger-base) * 0.3125);
   }
   .custom-burger:nth-child(4) {
-    top: 20px;
+    top: calc(var(--burger-base) * 0.625);
   }
   &.open .custom-burger:nth-child(1) {
-    top: 10px;
+    top: calc(var(--burger-base) * 0.3125);
     width: 0%;
     left: 50%;
   }
@@ -63,7 +63,7 @@
   }
 
   &.open .custom-burger:nth-child(4) {
-    top: 10px;
+    top: calc(var(--burger-base) * 0.3125);
     width: 0%;
     left: 50%;
   }
