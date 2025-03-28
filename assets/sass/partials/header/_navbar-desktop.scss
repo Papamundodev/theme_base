@@ -4,8 +4,7 @@
       display: flex;
       margin: auto;
       width: fit-content;
-      li,
-      .dropdown {
+      li {
         padding-inline: var(--spacer);
         padding-block: var(--spacer-big);
       }
