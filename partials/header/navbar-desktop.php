@@ -26,7 +26,6 @@ $theme_location = $args['theme_location'] ?? "header";
           <button class="open-module nav-link" popovertarget="module-<?=$item['title']?>">
               <?=$item['title']?>
           </button>
-         </li>
         <div popover id="module-<?=$item['title']?>" class="module">
            <div class="module-test">
               <div class="wrapper-popover-header">
@@ -50,6 +49,7 @@ $theme_location = $args['theme_location'] ?? "header";
               </ul>
             </div>
         </div>
+        </li>
       <?php endif; ?>
     <?php endforeach; ?>
   </ul>

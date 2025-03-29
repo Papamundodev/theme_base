@@ -46,11 +46,34 @@ $sub_cats = \Theme_Base\Base::wp_get_term_array($terms_query,[]);
 <div class="wrapper">
     <?php if(is_array($wp_query->posts) && count($wp_query->posts) > 0): ?>
         <div class="">
-            <?php foreach ($wp_query->posts as $post) : setup_postdata($post); ?>
-                <div class="post-preview">
-                    <?php get_template_part('partials/article/post-preview', null, ['post' => $post]); ?>
-                </div>
+            <?php usort($wp_query->posts, function($a, $b) {
+                $ordre_a = get_field('ordre', $a->ID);
+                $ordre_b = get_field('ordre', $b->ID);
+                return $ordre_a - $ordre_b;
+            });
+            ?>
+            <div class="layout-card-preview">
+            <?php $i = 1; foreach ($wp_query->posts as $post) : setup_postdata($post); ?>
+                <?php if($post->post_type == 'card'): ?>
+                    <?php if($i <= 10): ?>
+                        <div class="card-preview">
+                            <?php get_template_part('partials/article/card-preview', null, ['post' => $post]); ?>
+                        </div>
+                    <?php endif; ?>
+                <?php endif; $i++; ?>
             <?php endforeach; wp_reset_postdata(); ?>
+            </div>
+            <div class="layout-card-preview">
+            <?php $i = 1; foreach ($wp_query->posts as $post) : setup_postdata($post); ?>
+                <?php if($post->post_type == 'card'): ?>
+                    <?php if($i > 10): ?>
+                        <div class="card-preview">
+                            <?php get_template_part('partials/article/card-preview', null, ['post' => $post]); ?>
+                        </div>
+                    <?php endif; ?>
+                <?php endif; $i++; ?>
+            <?php endforeach; wp_reset_postdata(); ?>
+            </div>
         </div>
         <?php get_template_part('pagination'); ?>
     <?php endif; ?>

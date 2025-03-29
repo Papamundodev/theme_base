@@ -7,7 +7,7 @@ $theme_template_name = basename(__FILE__, ".php");
 $content = wpautop($object->description);
 ?>
 
-    <main id="main-<?=$theme_template_name?>">
+    <main id="main-<?=$theme_template_name?>" class="main-category">
 
     <section id="category-<?=$object->slug?>" class="category section">
 

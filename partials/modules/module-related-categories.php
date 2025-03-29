@@ -5,13 +5,13 @@ $terms_active = [];
 if(is_category()){
   $terms_active[] = $object->term_id;
 }elseif (is_single()){
-  $get_term_id = wp_get_post_terms($object->ID, 'category');
+  $get_term_id = wp_get_post_terms($object->ID, 'arcanes');
   foreach($get_term_id as $term){
       $terms_active[] = $term->term_id;
   }
 } 
 $terms_query = get_terms( array(
-    'taxonomy'   => 'category',
+    'taxonomy'   => 'arcanes',
     'hide_empty' => false,
     'hierarchical' => true,
     'orderby' => 'name',

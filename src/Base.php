@@ -198,7 +198,7 @@ class Base
                 $menu[$m->term_id]['slug'] = $m->slug;
                 $menu[$m->term_id]['parent'] = $m->parent;
                 $menu[$m->term_id]['url'] = get_term_link($m);
-                $children = get_term_children($m->term_id, 'category');
+                $children = get_term_children($m->term_id, 'arcanes');
                 $menu[$m->term_id]['current'] = in_array($m->term_id, $terms_active) ? true : false;
                 $menu[$m->term_id]['open'] = !empty($children) && !empty(array_intersect($children, $terms_active)) ? true : false;
                 $menu[$m->term_id]['children']= self::populate_term_children($children, $terms_active);
@@ -217,7 +217,7 @@ class Base
         $children = [];
         if (!empty($child)) {
             foreach ($child as $k => $m) {
-                    $term = get_term_by('id', $m, 'category');
+                    $term = get_term_by('id', $m, 'arcanes');
                     $children[$term->term_id    ] = [];
                     $children[$term->term_id]['ID'] = intval($term->term_id);
                     $children[$term->term_id]['title'] = $term->name;
