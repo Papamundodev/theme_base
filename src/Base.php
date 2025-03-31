@@ -340,6 +340,44 @@ class Base
         }
         return $links;
     }
+
+
+    public static function cat_has_no_parent_category( \WP_Term $cat) : bool
+    {
+        if ($cat->parent === 0){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Cat_middle_category
+     *
+     * check if category has a parent and a child
+     * used in category.php
+     */
+
+    public static function cat_middle_category( \WP_Term $cat) : bool{
+        if (($cat->parent > 0) && (!empty(get_term_children($cat->term_id, $cat->taxonomy)))){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Cat_child_category
+     *
+     * check if category has a parent and no child
+     * used in category.php
+     */
+
+    public static function cat_child_category( \WP_Term $cat) : bool{
+        if (($cat->parent > 0) && (empty(get_term_children($cat->term_id, $cat->taxonomy)))){
+            return true;
+        }
+        return false;
+    }
+
     
 
     /**

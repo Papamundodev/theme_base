@@ -30,8 +30,8 @@ $base->register_views_meta();
 $card = new CustomPostType( 'theme_base', 'card', 'Card', 'Cards', 2, 'Card Description' );
 $card->register();
 
-$arcanes = new Taxonomy('theme_base', 'arcanes', 'Arcane', 'Arcanes', array($card->getSlug()));
-$arcanes->associateToCustomPostType(array($card->getSlug()));
+$arcanes = new Taxonomy('theme_base', 'arcanes', 'Arcane', 'Arcanes', array($card->getSlug(), 'post'));
+$arcanes->associateToCustomPostType(array($card->getSlug(), 'post'));
 
 
 function pre_debug($data){
