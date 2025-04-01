@@ -160,7 +160,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("load", toggleScrollTop);
   document.addEventListener("scroll", toggleScrollTop);
-  //import instagram feed
+
+  // Ajuster le scroll-margin-top pour les éléments ciblables
+  const headerHeight = document.querySelector("#navmenu-header").offsetHeight;
+  document.querySelectorAll(".anchored").forEach((element) => {
+    element.style.scrollMarginTop = `${headerHeight}px`;
+  });
+
+  // when ancre is clicked, scroll to element needs to take the fixed header into account
+  //simply remove 200px from the scroll position
+
+  //end
 });
 
 // Fonction pour charger les intégrations Instagram

@@ -8,7 +8,7 @@ $title = $object->post_title;
 
     <main id="main-<?=$theme_template_name?>">
 
-        <section class="section">
+        <section label="page-<?=$object->post_name?>" id="page-<?=$object->post_name?>" class="section">
 
             <!-- Page Title -->
             <div class="wrapper">

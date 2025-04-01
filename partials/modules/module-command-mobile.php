@@ -1,5 +1,5 @@
 <?php if(is_single() || is_category() || is_tag() || is_home()): ?>
-<section>
+<section label="module-command-mobile">
     <div class="wrapper-command-mobile wrapper">
         <button class="open-module btn" popovertarget="module-categories-related">
             <?php

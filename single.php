@@ -13,7 +13,7 @@ $theme_template_name = basename(__FILE__, ".php");
 
 
 
-    <section class="section"> 
+    <section label="single-<?=$object->post_name?>" class="section"> 
 
         <?php
         if ( have_posts() ):

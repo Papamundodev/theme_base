@@ -14,7 +14,7 @@ $author_gravatar = get_user_meta($author_id, 'social_links', true);
 
     <main id="main-<?=$theme_template_name?>">
 
-        <section class="section">
+        <section label="author-<?=$author_id?>" id="author-<?=$author_id?>" class="section">
 
             <!-- Page Title -->
             <div class="wrapper">

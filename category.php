@@ -35,18 +35,6 @@ global $wp_query;
 
     <main id="main-<?=$theme_template_name?>" class="">
 
-        <div class="">
-
-
-            <?php
-            /*
-             * HIDE CATEGORY
-             * if current user isn't admin
-             * if acf hide_cat is checked
-             */
-
-            ?>
-
             <?php switch ($theme_sorting_cats):
 
             case $theme_sorting_cats["has_no_parent"] : ?>
@@ -67,12 +55,10 @@ global $wp_query;
                 <?php get_template_part("partials/categories/child-category");?>
 
                 <?php break; ?>
-        </div>
 
         <?php endswitch ?>
 
     </main>
-
 
 
 <?php get_footer();?>

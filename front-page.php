@@ -11,7 +11,7 @@ $title = $object->post_title;
 <main id="main-<?=$theme_template_name?>" class="main">
 
             <!-- Page Title -->
-    <section class="section front-page-intro">
+    <section label="front-page-intro"  class="section front-page-intro">
             <div class="wrapper intro">
                 <div class="main-title">
                     <h1><span>Websites &</span><span>SEO services</span></h1>
@@ -24,7 +24,7 @@ $title = $object->post_title;
             </div>
     </section>
 
-    <section class="section services">
+    <section label="front-page-services" class="section services">
         <div class="wrapper">
             <div class="title-big">
                 <h2>What is Santidev ?</h2>
@@ -94,7 +94,7 @@ $title = $object->post_title;
         </div>
     </section>
 
-    <section class="section services">
+    <section label="front-page-posts" class="section services" >
         <div class="wrapper">
             <div class="title-big">
                 <h2>What is Santidev ?</h2>
@@ -128,7 +128,7 @@ $title = $object->post_title;
     </div>
 
     <?php if($content) : ?>
-        <section class="section">
+        <section label="front-page-content" class="section">
             <div class="wrapper content">
                 <?=$content;?>
             </div>
@@ -138,7 +138,7 @@ $title = $object->post_title;
 
 
     <!-- Exemple d'intégration Instagram -->
-    <section class="section instagram-feed">
+    <section label="front-page-instagram-feed" class="section instagram-feed">
         <div class="wrapper">
 
             

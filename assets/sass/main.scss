@@ -16,6 +16,7 @@
 @import "./partials/header/logo";
 @import "./partials/article/post-full";
 @import "./partials/front-page";
+@import "./partials/categories/child-category";
 :root {
   --header-height: 85px;
   --icon-size: 1em;
@@ -30,6 +31,11 @@
   --border-radius: 0.5em;
 
   --container-width: 1200px;
+
+  --transition-duration: 0.6s;
+  --layout-width: 1400px;
+  --card-preview-width: calc(var(--layout-width) / 6);
+  --card-preview-height: 351px;
 }
 
 * {
@@ -122,6 +128,16 @@ body {
 .wrapper {
   padding-block: var(--spacer-small);
   padding-inline: var(--spacer-big);
+  @media (width <= 992px) {
+    padding-inline: var(--spacer-small);
+  }
+}
+
+.wrapper-inline {
+  padding-inline: var(--spacer-big);
+  @media (width <= 992px) {
+    padding-inline: var(--spacer-small);
+  }
 }
 
 main {

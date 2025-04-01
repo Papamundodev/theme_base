@@ -9,7 +9,7 @@ $content = wpautop($object->description) ?? "";
 
     <main id="main-<?=$theme_template_name?>" class="main-category">
 
-    <section id="archive-<?=$object->slug?>" class="archive section">
+    <section label="archive-<?=$object->slug?>" id="archive-<?=$object->slug?>" class="archive section">
 
         <?php get_template_part('partials/taxo'); ?>
 

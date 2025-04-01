@@ -7,8 +7,7 @@ global $wp_query;
 
     <div id="<?=$template?>" class="<?=$template?>">
 
-    <section id="taxonomy-<?=$object->slug?>" class="taxonomy section">
-
+    <section label="taxonomy-<?=$object->slug?>" class="taxonomy section">
                 <!-- Page Title -->
         <div class="wrapper">
 
@@ -55,7 +54,6 @@ global $wp_query;
             $card_query = $wp_query->get_posts(); // Réexécuter la requête avec les nouveaux paramètres
             ?>
             <?php if(is_array($card_query) && count($card_query) > 0): ?>
-                <div class="">
                     <?php usort($card_query, function($a, $b) {
                         $ordre_a = get_field('ordre', $a->ID);
                         $ordre_b = get_field('ordre', $b->ID);
@@ -95,7 +93,6 @@ global $wp_query;
                         <?php endif; $i++; ?>
                     <?php endforeach; wp_reset_postdata(); ?>
                     </div>
-                </div>
                 <?php get_template_part('pagination'); ?>
             <?php endif; ?>
         </div>

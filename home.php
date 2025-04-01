@@ -6,7 +6,7 @@ global $wp_query;
 ?>
 <main id="main-<?=$theme_template_name?>" class="">
 
-    <section class="section">
+    <section label="home" class="section">
         <div class="wrapper">
             <div class="page-title">
                 <h1><?=$object->post_title?></h1>
