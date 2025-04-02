@@ -1,4 +1,9 @@
 /* Nouveau conteneur spécifique pour les cartes 2 par ligne */
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
 
 #main-taxonomy {
   container: taxo / inline-size;
@@ -14,17 +19,52 @@
     }
     .page-description {
       width: min(calc(100% - var(--spacer)), 1000px);
-      background-color: rgba(70, 30, 100, 0.7);
+      background-color: rgba(70, 30, 100, 1);
       margin-inline: auto;
       padding: var(--spacer-big);
       text-align: center;
       margin-bottom: var(--spacer-big);
+      position: relative;
       p {
         font-size: clamp(1.3rem, 0.5rem + 1cqi, 2rem);
         font-weight: 400;
         color: var(--contrast-color);
       }
     }
+    .page-description::before,
+    .page-description::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      background-image: conic-gradient(
+        from var(--angle),
+        var(--accent-color),
+        var(--accent-color-2),
+        var(--accent-color),
+        var(--accent-color-4),
+        var(--accent-color)
+      );
+      z-index: -1;
+      padding: 3px;
+      animation: 3s spin linear infinite;
+    }
+    .page-description::before {
+      filter: blur(1.5rem);
+      opacity: 0.5;
+    }
+  }
+}
+
+@keyframes spin {
+  from {
+    --angle: 0deg;
+  }
+  to {
+    --angle: 360deg;
   }
 }
 
