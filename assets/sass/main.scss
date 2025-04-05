@@ -33,9 +33,13 @@
   --container-width: 1200px;
 
   --transition-duration: 0.6s;
-  --layout-width: 1400px;
-  --card-preview-width: calc(var(--layout-width) / 6);
+  --layout-width: 1000px;
+  --card-preview-width: calc((var(--layout-width) / 3) - var(--header-height));
   --card-preview-height: 351px;
+  --border-card-preview: 1.5px solid var(--default-color);
+  --outline-card-preview: 2px solid var(--accent-color-4);
+  --box-shadow-card-preview: inset 1.5px -1.5px 0.5px 0px #7e7b79;
+  --font-size-card-preview: clamp(0.8rem, 0.3rem + 1cqi, 1rem);
 }
 
 * {

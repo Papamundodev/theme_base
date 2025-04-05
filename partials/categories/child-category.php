@@ -33,18 +33,25 @@ global $wp_query;
             return $ordre_a - $ordre_b;
         });
         ?>
+        <div class="wrapper-dropdown">
         <details class="select-card-dropdown">
-            <summary>Find your card</summary>
+            <summary>
+                 <span class="svg-icon svg-cup"></span>
+                Find your card
+            </summary>
             <ul class="">
                     <?php foreach ($card_query as $post) : setup_postdata($post); ?>
                         <li class="">
-                            <a href="#post-<?=$post->ID; ?>">
+                            <span class="svg-icon svg-cup"></span>
+                            <a class="" href="#post-<?=$post->ID; ?>">
                                 <?=$post->post_title; ?>
                             </a>
                         </li>
                 <?php endforeach; ?>
             </ul>
         </details>
+        </div>
+
 
         <div class="wrapper wrapper-card-preview">
 
