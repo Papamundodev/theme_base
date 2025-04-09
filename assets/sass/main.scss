@@ -25,26 +25,15 @@
     Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --secondary-font: "Outfit", sans-serif;
+  --font-size-base: 16px;
 }
 
 body {
-  font-family: var(--primary-font);
   box-sizing: border-box;
-  font-weight: 600;
 }
 
 * {
   box-sizing: border-box;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--secondary-font);
-  margin-bottom: 0;
 }
 
 p {
@@ -59,7 +48,7 @@ p {
   --black-color: #040b14;
   --background-color: var(--white-color);
   --contrast-color: var(--white-color);
-  --default-color: var(--accent-color);
+  --default-color: var(--black-color);
   --heading-color: color-mix(
     in srgb,
     var(--default-color),
@@ -68,13 +57,29 @@ p {
   --accent-color: #461e64;
   --accent-color-2: #ce4e57;
   --accent-color-3: #920e4a;
-  --accent-color-4: #68c0c2;
-  --accent-color-5: #1e2c6e;
+  --accent-color-4: #7a388c;
+  --accent-color-5: #68c0c2;
   --surface-color: color-mix(
     in srgb,
     var(--background-color),
-    var(--accent-color) var(--pourcentage)
+    var(--accent-color) 10%
   );
+  --surface-color-2: color-mix(
+    in srgb,
+    var(--background-color),
+    var(--accent-color) 30%
+  );
+  --surface-color-3: color-mix(
+    in srgb,
+    var(--background-color),
+    var(--accent-color) 50%
+  );
+  --surface-color-4: color-mix(
+    in srgb,
+    var(--background-color),
+    var(--accent-color) 70%
+  );
+  --gray-color: #3b4142;
 }
 
 .dark-theme {
@@ -84,7 +89,7 @@ p {
   --accent-color-4: #7a388c;
   --accent-color-5: #461e64;
   --background-color: var(--black-color);
-  --default-color: var(--accent-color);
+  --default-color: var(--white-color);
   --contrast-color: var(--black-color);
   --heading-color: color-mix(
     in srgb,
@@ -94,7 +99,22 @@ p {
   --surface-color: color-mix(
     in srgb,
     var(--background-color),
-    var(--accent-color) var(--pourcentage)
+    var(--accent-color) 10%
+  );
+  --surface-color-2: color-mix(
+    in srgb,
+    var(--background-color),
+    var(--accent-color) 30%
+  );
+  --surface-color-3: color-mix(
+    in srgb,
+    var(--background-color),
+    var(--accent-color) 50%
+  );
+  --surface-color-4: color-mix(
+    in srgb,
+    var(--background-color),
+    var(--accent-color) 70%
   );
 }
 
@@ -105,10 +125,9 @@ p {
 }
 
 body {
-  background: url("../../images/logo.jpg") no-repeat center center fixed;
-  background-size: cover;
-  color: var(--default-color);
   margin: 0;
+  background-color: var(--background-color);
+  color: var(--default-color);
 }
 
 ul {
@@ -170,20 +189,6 @@ footer {
   margin-bottom: var(--header-height);
 }
 
-.wrapper {
-  background-color: var(--background-color);
-  padding-block: 1em;
-  padding-inline: 2em;
-  @media (width >= 768px) {
-    margin: auto;
-    width: 70vw;
-  }
-  @media (width >= 992px) {
-    margin: auto;
-    width: 50vw;
-  }
-}
-
 #breadcrumbs {
   ul {
     display: flex;
@@ -206,5 +211,262 @@ footer {
   img {
     width: 100%;
     height: auto;
+  }
+}
+
+/* Design System */
+
+/* ------- Breakpoint ------- */
+$breakpoints: (
+  "sm": 576px,
+  "md": 768px,
+  "lg": 992px,
+  "xl": 1200px,
+);
+
+@mixin mq($key) {
+  $size: map-get($breakpoints, $key);
+  @media only screen and (min-width: $size) {
+    @content;
+  }
+}
+
+/* ------- Spacer ------- */
+
+$spacer-sm: 0.5em;
+$spacer-md: 1em;
+$spacer-lg: 1.5em;
+$spacer-xl: 2em;
+$spacer-xxl: 150px;
+
+/* ------- Container ------- */
+
+$container-sm: 576px;
+$container-md: 768px;
+$container-lg: 992px;
+$container-xl: 1200px;
+$container-xxl: 1400px;
+
+$container: (
+  "sm": 576px,
+  "md": 768px,
+  "lg": 992px,
+  "xl": 1200px,
+  "xxl": 1400px,
+);
+
+@mixin container() {
+  @each $key, $value in $container {
+    @media (width >= $value) {
+      width: clamp(375px, calc($value - $spacer-xl), 1200px);
+    }
+  }
+}
+.container {
+  margin-inline: auto;
+}
+
+.container-smll {
+  margin-inline: auto;
+  @include container;
+}
+
+.wrapper {
+  border-inline: 3px solid var(--gray-color);
+  padding-block: $spacer-md;
+  padding-inline: $spacer-xl;
+  @media (width <= 768px) {
+    padding-inline: $spacer-sm;
+  }
+}
+
+/* ------- Utilities ------- */
+
+/* ------- Flex center ------- */
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flex-center {
+  @include flex-center;
+}
+
+/* ------- Flex table ------- */
+@mixin flex-table {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  & > *:not(:first-child) {
+    flex-grow: 1;
+    text-align: center;
+  }
+}
+.flex-table {
+  @include flex-table;
+}
+
+/* ------- Table component ------- */
+
+.container-smll:has(.table-component) {
+}
+
+@mixin table-component {
+  & .grid-table:first-child {
+    grid-template-rows: 50px;
+  }
+  .grid-table {
+    @include grid-table;
+  }
+}
+
+@mixin grid-table {
+  display: flex;
+  flex-direction: column;
+  border-block-end: 3px solid var(--gray-color);
+  gap: $spacer-md;
+  align-items: center;
+  justify-content: space-around;
+  padding-block: 1em;
+  &:first-child {
+    padding-inline: $spacer-md;
+  }
+  @media (width >= $container-sm) {
+    display: grid;
+    grid-template-columns: minmax(180px, auto) 1fr;
+    grid-template-rows: 120px;
+    gap: 0;
+    padding-block: 0;
+
+    & > *:first-child {
+      display: flex;
+      align-items: center;
+    }
+    & > *:not(:first-child) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+.table-component {
+  padding-block: 0;
+  @include table-component;
+  .bg-gray-color {
+    color: var(--white-color);
+  }
+}
+
+/* ------- IMG  ------- */
+$img-sizes: (
+  "icon-sm": 24px,
+  "icon-md": 32px,
+  "icon-lg": 48px,
+
+  "logo-sm": 80px,
+  "logo": 100px,
+
+  "full": 100%,
+);
+
+@mixin image($border-radius: 50%) {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  aspect-ratio: 1/1;
+  border-radius: $border-radius;
+}
+
+@each $key, $value in $img-sizes {
+  .img-container-#{$key} {
+    width: $value;
+    height: $value;
+    & > * {
+      @include flex-center;
+      img {
+        @include image();
+      }
+    }
+  }
+}
+
+/* ------- Font family ------- */
+$heading-font: "Outfit", sans-serif;
+$text-font: "Fira Sans", sans-serif;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $heading-font;
+  margin: 0;
+}
+
+p,
+a,
+span {
+  font-family: $text-font;
+}
+
+/* ------- Font-size  ------- */
+
+$font-sizes: (
+  "sm": clamp(0.7rem, 1.5vw, 1.3rem),
+  "md": clamp(1.2rem, 2vw, 2rem),
+  "lg": clamp(1.5rem, 3vw, 2.7rem),
+  "xl": clamp(1.8rem, 4vw, 3.5rem),
+);
+
+@mixin font-size($key) {
+  font-size: map-get($font-sizes, $key);
+}
+
+@each $key, $value in $font-sizes {
+  .fs-#{$key} {
+    font-size: $value;
+  }
+}
+
+/* ------- Colors ------- */
+
+$colors: (
+  "background-color": var(--background-color),
+  "contrast-color": var(--contrast-color),
+  "default-color": var(--default-color),
+  "heading-color": var(--heading-color),
+  "accent-color": var(--accent-color),
+  "accent-color-2": var(--accent-color-2),
+  "accent-color-3": var(--accent-color-3),
+  "accent-color-4": var(--accent-color-4),
+  "accent-color-5": var(--accent-color-5),
+  "surface-color": var(--surface-color),
+  "surface-color-2": var(--surface-color-2),
+  "surface-color-3": var(--surface-color-3),
+  "surface-color-4": var(--surface-color-4),
+  "gray-color": var(--gray-color),
+);
+
+@each $key, $value in $colors {
+  .#{$key} {
+    color: $value;
+  }
+}
+@each $key, $value in $colors {
+  .bg-#{$key} {
+    background-color: $value;
+  }
+}
+
+/* ------- Design System ------- */
+
+.design-system {
+  .page-title {
+    @include font-size("xl");
+    color: var(--accent-color);
+    margin-bottom: $spacer-md;
   }
 }

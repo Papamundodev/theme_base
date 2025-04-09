@@ -1,15 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("DOMContentLoaded");
 
-  // const dropdowns = document.querySelectorAll(".dropdown-mobile");
-  // dropdowns.forEach((dropdown) => {
-  //   dropdown.addEventListener("mouseleave", () => {
-  //     if (dropdown.hasAttribute("open")) {
-  //       dropdown.removeAttribute("open");
-  //     }
-  //   });
-  // });
-
   const burger = document.querySelector("#theme-navbar-toggler");
   burger.addEventListener("click", () => {
     burger.classList.toggle("open");
