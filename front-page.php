@@ -11,11 +11,11 @@ $content = wpautop($object->post_content);
 
 
 <section class="design-system">
-    <div class="container-smll container">
+    <div class="container">
         <h1 class="page-title">Design System</h1>
         <div class="wrapper table-component">
             <div class="logo-system">
-                <div class="grid-table bg-gray-color">
+                <div class="design-system-header bg-gray-color">
                     <h2 class="">Logo</h2>
                 </div>
                 <div class="grid-table">
@@ -25,7 +25,7 @@ $content = wpautop($object->post_content);
                     </a>
                 </div>
                 <a class="" href="<?=home_url();?>" rel="home" aria-label="Page d'accueil">
-                        <span class="fs-xl"><?=get_bloginfo('name');?></span>
+                        <span class="fs-xxl"><?=get_bloginfo('name');?></span>
                     </a>
                 </div>
             </div>
@@ -33,7 +33,7 @@ $content = wpautop($object->post_content);
 
         <div class="wrapper table-component">
             <div class="font-system ">
-                <div class="grid-table bg-gray-color">
+                <div class="design-system-header bg-gray-color">
                     <h2 class="">Font</h2>
                 </div>
                 <div class="grid-table">
@@ -57,7 +57,7 @@ $content = wpautop($object->post_content);
 
         <div class="wrapper table-component">
             <div class="color-text-system">
-                <div class="grid-table bg-gray-color">
+                <div class="design-system-header bg-gray-color">
                     <h2 class="">Color</h2>
                 </div>
                 <div class="grid-table">
@@ -79,37 +79,135 @@ $content = wpautop($object->post_content);
             </div>
         </div>
 
-        <div class="wrapper flex-col-3">
-            <div class="color-text-system">
-                <div class="flex-row-auto bg-gray-color">
-                    <h2 class="">Background Color</h2>
+        <div class="wrapper flex-col-3 color-text-system ">
+            <div class="design-system-header bg-gray-color">
+                <h2 class="">Background Color</h2>
+            </div>
+            <div class="flex-auto">
+                <div>
+                    <div class="bg-accent-color-2">
+                        <p class="default-color">Lorem ipsum dolor.</p>
+                        <p class="gray-color">Lorem ipsum dolor.</p>
+                        <p class="heading-color">Lorem ipsum dolor.</p>
+                        <p class="accent-color">Lorem ipsum dolor.</p>
+                    </div>
                 </div>
-                <div class="flex-row-auto">
-                    <p class="accent-color-2">Lorem ipsum dolor.</p>
+                <div>
+                    <div class="bg-accent-color-3">
+                        <p class="default-color">Lorem ipsum dolor.</p>
+                        <p class="gray-color">Lorem ipsum dolor.</p>
+                        <p class="heading-color">Lorem ipsum dolor.</p>
+                        <p class="accent-color">Lorem ipsum dolor.</p>
+                    </div>
                 </div>
-                <div class="flex-row-auto">
-                    <p class="accent-color-3">Lorem ipsum dolor.</p>
+                <div>
+                    <div class="bg-accent-color-4">
+                        <p class="default-color">Lorem ipsum dolor.</p>
+                        <p class="gray-color">Lorem ipsum dolor.</p>
+                        <p class="heading-color">Lorem ipsum dolor.</p>
+                        <p class="accent-color">Lorem ipsum dolor.</p>
+                    </div>
                 </div>
-                <div class="flex-row-auto">
-                    <p class="accent-color-4">Lorem ipsum dolor.</p>
+                <div>
+                    <div class="bg-accent-color-5">
+                        <p class="default-color">Lorem ipsum dolor.</p>
+                        <p class="gray-color">Lorem ipsum dolor.</p>
+                        <p class="heading-color">Lorem ipsum dolor.</p>
+                        <p class="accent-color">Lorem ipsum dolor.</p>
+                    </div>
                 </div>
-                <div class="flex-row-auto">
-                    <p class="accent-color-5">Lorem ipsum dolor.</p>
+                <div>
+                    <div class="bg-surface-color">
+                        <p class="default-color">Lorem ipsum dolor.</p>
+                        <p class="gray-color">Lorem ipsum dolor.</p>
+                        <p class="heading-color">Lorem ipsum dolor.</p>
+                        <p class="accent-color">Lorem ipsum dolor.</p>
+                    </div>
                 </div>
-                <div class="flex-row-auto">
-                    <p class="surface-color">Lorem ipsum dolor.</p>
+                <div>
+                    <div class="bg-surface-color-2">
+                        <p class="default-color">Lorem ipsum dolor.</p>
+                        <p class="gray-color">Lorem ipsum dolor.</p>
+                        <p class="heading-color">Lorem ipsum dolor.</p>
+                        <p class="accent-color">Lorem ipsum dolor.</p>
+                    </div>
                 </div>
-                <div class="flex-row-auto">
-                    <p class="surface-color-2">Lorem ipsum dolor.</p>
+                <div>
+                    <div class="bg-surface-color-3">
+                        <p class="default-color">Lorem ipsum dolor.</p>
+                        <p class="gray-color">Lorem ipsum dolor.</p>
+                        <p class="heading-color">Lorem ipsum dolor.</p>
+                        <p class="accent-color">Lorem ipsum dolor.</p>
+                    </div>
                 </div>
-                <div class="flex-row-auto">
-                    <p class="surface-color-3">Lorem ipsum dolor.</p>
+                <div>
+                    <div class="bg-surface-color-4">
+                        <p class="default-color">Lorem ipsum dolor.</p>
+                        <p class="gray-color">Lorem ipsum dolor.</p>
+                        <p class="heading-color">Lorem ipsum dolor.</p>
+                        <p class="accent-color">Lorem ipsum dolor.</p>
+                    </div>
                 </div>
-                <div class="flex-row-auto">
-                    <p class="surface-color-4">Lorem ipsum dolor.</p>
+                <div>
+                    <div class="bg-surface-color-5">
+                        <p class="default-color">Lorem ipsum dolor.</p>
+                        <p class="gray-color">Lorem ipsum dolor.</p>
+                        <p class="heading-color">Lorem ipsum dolor.</p>
+                        <p class="accent-color">Lorem ipsum dolor.</p>
+                    </div>
                 </div>
-                <div class="flex-row-auto">
-                    <p class="gray-color">Lorem ipsum dolor.</p>
+            </div>
+        </div>
+
+        <div class="wrapper  border-radius-system">
+            <div class="design-system-header bg-gray-color">
+                <h2 class="">Border Radius</h2>
+            </div>
+            <div class=" flex-auto">
+                <div class="flex-item">
+                    <div class="bg-surface-color">
+                        <div class="card-border-radius"></div>
+                    </div>
+                </div>
+                <div class="flex-item">
+                    <div class="bg-surface-color">
+                        <div class="card-border-radius"></div>
+                    </div>
+                </div>
+                <div class="flex-item">
+                    <div class="bg-surface-color">
+                        <div class="card-border-radius"></div>
+                    </div>
+                </div>
+                <div class="flex-item">
+                    <div class="bg-surface-color">
+                        <div class="card-border-radius"></div>
+                    </div>
+                </div>
+                <div class="flex-item">
+                    <div class="bg-surface-color">
+                        <div class="card-border-radius"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="bg-surface-color">
+                        <div class="card-border-radius"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="bg-surface-color">
+                        <div class="card-border-radius"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="bg-surface-color">
+                        <div class="card-border-radius"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="bg-surface-color">
+                        <div class="card-border-radius"></div>
+                    </div>
                 </div>
             </div>
         </div>

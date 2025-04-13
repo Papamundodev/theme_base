@@ -1,4 +1,4 @@
-<div class="profile-img">
+<div class="img-container-logo-sm">
     <a href="<?=home_url();?>">
         <img src="<?=get_template_directory_uri();?>/assets/images/logo.jpg" alt="logo">
     </a>
@@ -6,6 +6,6 @@
 
 <div class="wrapper-site-title">
     <a href="<?=home_url();?>">
-        <span><?=get_bloginfo('name');?></span>
+        <span class="fs-md"><?=get_bloginfo('name');?></span>
     </a>
 </div>

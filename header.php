@@ -16,7 +16,7 @@ if (function_exists('wp_body_open')){
 
 <header>
         <!-- Logo -->
-    <div class="wrapper-logo">
+    <div class="wrapper-logo flex-center gap-xl">
         <?php get_template_part('partials/header/logo'); ?>
     </div>
 

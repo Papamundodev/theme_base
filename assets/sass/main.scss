@@ -1,9 +1,11 @@
+@import "./variables";
 @import "./components/dropdown";
 @import "./components/burger";
 @import "./components/navbar-desktop";
 @import "./components/navbar-mobile";
-@import "./components/logo";
 @import "./components/search-open";
+@import "./utilities/flex";
+@import "./design_system";
 
 @font-face {
   font-family: "Outfit";
@@ -28,445 +30,71 @@
   --font-size-base: 16px;
 }
 
-body {
+/* Box sizing rules */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
-* {
-  box-sizing: border-box;
+/* Prevent font size inflation */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
 }
 
-p {
+/* Remove default margin in favour of better control in authored CSS */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
   margin-block: 0;
 }
 
-/* Colors */
-:root {
-  --color-scheme: light dark;
-  --pourcentage: 40%;
-  --white-color: #f4fafd;
-  --black-color: #040b14;
-  --background-color: var(--white-color);
-  --contrast-color: var(--white-color);
-  --default-color: var(--black-color);
-  --heading-color: color-mix(
-    in srgb,
-    var(--default-color),
-    var(--accent-color) var(--pourcentage)
-  );
-  --accent-color: #461e64;
-  --accent-color-2: #ce4e57;
-  --accent-color-3: #920e4a;
-  --accent-color-4: #7a388c;
-  --accent-color-5: #68c0c2;
-  --surface-color: color-mix(
-    in srgb,
-    var(--background-color),
-    var(--accent-color) 10%
-  );
-  --surface-color-2: color-mix(
-    in srgb,
-    var(--background-color),
-    var(--accent-color) 30%
-  );
-  --surface-color-3: color-mix(
-    in srgb,
-    var(--background-color),
-    var(--accent-color) 50%
-  );
-  --surface-color-4: color-mix(
-    in srgb,
-    var(--background-color),
-    var(--accent-color) 70%
-  );
-  --gray-color: #3b4142;
-}
-
-.dark-theme {
-  --accent-color: #68c0c2;
-  --accent-color-2: #ce4e57;
-  --accent-color-3: #920e4a;
-  --accent-color-4: #7a388c;
-  --accent-color-5: #461e64;
-  --background-color: var(--black-color);
-  --default-color: var(--white-color);
-  --contrast-color: var(--black-color);
-  --heading-color: color-mix(
-    in srgb,
-    var(--default-color),
-    var(--accent-color) var(--pourcentage)
-  );
-  --surface-color: color-mix(
-    in srgb,
-    var(--background-color),
-    var(--accent-color) 10%
-  );
-  --surface-color-2: color-mix(
-    in srgb,
-    var(--background-color),
-    var(--accent-color) 30%
-  );
-  --surface-color-3: color-mix(
-    in srgb,
-    var(--background-color),
-    var(--accent-color) 50%
-  );
-  --surface-color-4: color-mix(
-    in srgb,
-    var(--background-color),
-    var(--accent-color) 70%
-  );
-}
-
-:root {
-  --header-height: 85px;
-  --icon-size: 1em;
-  --spacer: 1em;
-}
-
-body {
-  margin: 0;
-  background-color: var(--background-color);
-  color: var(--default-color);
-}
-
-ul {
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
   list-style: none;
-  padding: 0;
-  margin: 0;
-  & > li.active {
-    & > a {
-      color: var(--accent-color-4);
-    }
-  }
 }
 
-a,
-.nav-link {
-  text-decoration: none;
-  color: var(--default-color);
-  &:hover {
-    color: var(--accent-color-2);
-    cursor: pointer;
-  }
-}
-
-.separator {
-  margin-inline: 0.5em;
-  font-size: 0.8rem;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: var(--header-height);
-  background-color: var(--background-color);
-  position: fixed;
-  padding-inline: 1em;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  .wrapper-header-right-content {
-    display: flex;
-    align-items: center;
-    gap: 1em;
-  }
-}
-
-.wrapper-navbar {
-  .navmenu {
-    border: none;
-  }
-}
-
-main {
-  margin-top: calc(var(--header-height) * 2);
-}
-
-footer {
-  margin-bottom: var(--header-height);
-}
-
-#breadcrumbs {
-  ul {
-    display: flex;
-    align-items: center;
-  }
-}
-
-.post-date {
-  display: flex;
-  align-items: center;
-}
-.post-full {
-  img {
-    width: 100%;
-    height: auto;
-  }
-}
-
-.content {
-  img {
-    width: 100%;
-    height: auto;
-  }
-}
-
-/* Design System */
-
-/* ------- Breakpoint ------- */
-$breakpoints: (
-  "sm": 576px,
-  "md": 768px,
-  "lg": 992px,
-  "xl": 1200px,
-);
-
-@mixin mq($key) {
-  $size: map-get($breakpoints, $key);
-  @media only screen and (min-width: $size) {
-    @content;
-  }
-}
-
-/* ------- Spacer ------- */
-
-$spacer-sm: 0.5em;
-$spacer-md: 1em;
-$spacer-lg: 1.5em;
-$spacer-xl: 2em;
-$spacer-xxl: 150px;
-
-/* ------- Container ------- */
-
-$container-sm: 576px;
-$container-md: 768px;
-$container-lg: 992px;
-$container-xl: 1200px;
-$container-xxl: 1400px;
-
-$container: (
-  "sm": 576px,
-  "md": 768px,
-  "lg": 992px,
-  "xl": 1200px,
-  "xxl": 1400px,
-);
-
-@mixin container() {
-  @each $key, $value in $container {
-    @media (width >= $value) {
-      width: clamp(375px, calc($value - $spacer-xl), 1200px);
-    }
-  }
-}
-.container {
-  margin-inline: auto;
-}
-
-.container-smll {
-  margin-inline: auto;
-  @include container;
-}
-
-.wrapper {
-  border-inline: 3px solid var(--gray-color);
-  padding-block: $spacer-md;
-  padding-inline: $spacer-xl;
-  @media (width <= 768px) {
-    padding-inline: $spacer-sm;
-  }
-}
-
-/* ------- Utilities ------- */
-
-/* ------- Flex center ------- */
-@mixin flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.flex-center {
-  @include flex-center;
-}
-
-/* ------- Flex table ------- */
-@mixin flex-table {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  & > *:not(:first-child) {
-    flex-grow: 1;
-    text-align: center;
-  }
-}
-.flex-table {
-  @include flex-table;
-}
-
-/* ------- Table component ------- */
-
-.container-smll:has(.table-component) {
-}
-
-@mixin table-component {
-  & .grid-table:first-child {
-    grid-template-rows: 50px;
-  }
-  .grid-table {
-    @include grid-table;
-  }
-}
-
-@mixin grid-table {
-  display: flex;
-  flex-direction: column;
-  border-block-end: 3px solid var(--gray-color);
-  gap: $spacer-md;
-  align-items: center;
-  justify-content: space-around;
-  padding-block: 1em;
-  &:first-child {
-    padding-inline: $spacer-md;
-  }
-  @media (width >= $container-sm) {
-    display: grid;
-    grid-template-columns: minmax(180px, auto) 1fr;
-    grid-template-rows: 120px;
-    gap: 0;
-    padding-block: 0;
-
-    & > *:first-child {
-      display: flex;
-      align-items: center;
-    }
-    & > *:not(:first-child) {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  }
-}
-
-.table-component {
-  padding-block: 0;
-  @include table-component;
-  .bg-gray-color {
-    color: var(--white-color);
-  }
-}
-
-/* ------- IMG  ------- */
-$img-sizes: (
-  "icon-sm": 24px,
-  "icon-md": 32px,
-  "icon-lg": 48px,
-
-  "logo-sm": 80px,
-  "logo": 100px,
-
-  "full": 100%,
-);
-
-@mixin image($border-radius: 50%) {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  aspect-ratio: 1/1;
-  border-radius: $border-radius;
-}
-
-@each $key, $value in $img-sizes {
-  .img-container-#{$key} {
-    width: $value;
-    height: $value;
-    & > * {
-      @include flex-center;
-      img {
-        @include image();
-      }
-    }
-  }
+/* Set core body defaults */
+body {
+  line-height: 1.5;
 }
 
 /* ------- Font family ------- */
 $heading-font: "Outfit", sans-serif;
 $text-font: "Fira Sans", sans-serif;
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: $heading-font;
-  margin: 0;
-}
-
 p,
 a,
 span {
   font-family: $text-font;
+  text-wrap: pretty;
 }
 
-/* ------- Font-size  ------- */
-
-$font-sizes: (
-  "sm": clamp(0.7rem, 1.5vw, 1.3rem),
-  "md": clamp(1.2rem, 2vw, 2rem),
-  "lg": clamp(1.5rem, 3vw, 2.7rem),
-  "xl": clamp(1.8rem, 4vw, 3.5rem),
-);
-
-@mixin font-size($key) {
-  font-size: map-get($font-sizes, $key);
+/* Set shorter line heights on headings and interactive elements */
+h1,
+h2,
+h3,
+h4,
+button,
+input,
+label {
+  font-family: $heading-font;
+  text-wrap: balance;
+  line-height: 1.1;
 }
 
-@each $key, $value in $font-sizes {
-  .fs-#{$key} {
-    font-size: $value;
-  }
-}
-
-/* ------- Colors ------- */
-
-$colors: (
-  "background-color": var(--background-color),
-  "contrast-color": var(--contrast-color),
-  "default-color": var(--default-color),
-  "heading-color": var(--heading-color),
-  "accent-color": var(--accent-color),
-  "accent-color-2": var(--accent-color-2),
-  "accent-color-3": var(--accent-color-3),
-  "accent-color-4": var(--accent-color-4),
-  "accent-color-5": var(--accent-color-5),
-  "surface-color": var(--surface-color),
-  "surface-color-2": var(--surface-color-2),
-  "surface-color-3": var(--surface-color-3),
-  "surface-color-4": var(--surface-color-4),
-  "gray-color": var(--gray-color),
-);
-
-@each $key, $value in $colors {
-  .#{$key} {
-    color: $value;
-  }
-}
-@each $key, $value in $colors {
-  .bg-#{$key} {
-    background-color: $value;
-  }
-}
-
-/* ------- Design System ------- */
-
-.design-system {
-  .page-title {
-    @include font-size("xl");
-    color: var(--accent-color);
-    margin-bottom: $spacer-md;
-  }
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
 }
