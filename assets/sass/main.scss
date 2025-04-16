@@ -1,34 +1,20 @@
-@import "./variables";
-@import "./components/dropdown";
-@import "./components/burger";
-@import "./components/navbar-desktop";
-@import "./components/navbar-mobile";
-@import "./components/search-open";
-@import "./utilities/flex";
-@import "./design_system";
+@use "./variables" as *;
+@use "./animations" as *;
 
-@font-face {
-  font-family: "Outfit";
-  src: url("../fonts/Outfit-VariableFont_wght.woff2") format("woff2");
-  font-weight: 100 900;
-  font-display: swap;
-}
+@use "./utilities/flex" as *;
 
-@font-face {
-  font-family: "Fira Sans";
-  src: url("../fonts/FiraCode-VariableFont_wght.woff2") format("woff2");
-  font-weight: 100 900;
-  font-display: swap;
-}
+@use "./components/atoms/img" as *;
+@use "./components/molecules/dropdown" as *;
+@use "./components/molecules/burger" as *;
+@use "./components/organisms/navbar-desktop" as *;
+@use "./components/organisms/navbar-mobile" as *;
+@use "./components/organisms/search-open" as *;
+@use "./components/organisms/header" as *;
 
-/* Fonts */
-:root {
-  --primary-font: "Fira Sans", "Raleway", system-ui, -apple-system, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --secondary-font: "Outfit", sans-serif;
-  --font-size-base: 16px;
-}
+@use "./partials/post_full" as *;
+
+@use "./design_system" as *;
+@use "./typography" as *;
 
 /* Box sizing rules */
 *,
@@ -42,6 +28,16 @@ html {
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
+  line-height: 1.5;
+}
+
+*[popover] {
+  border: none;
+}
+
+body {
+  background-color: $background-color;
+  color: $default-color;
 }
 
 /* Remove default margin in favour of better control in authored CSS */
@@ -59,14 +55,11 @@ dd {
 }
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul[role="list"],
-ol[role="list"] {
+ul,
+ol {
+  padding: 0;
+  margin: 0;
   list-style: none;
-}
-
-/* Set core body defaults */
-body {
-  line-height: 1.5;
 }
 
 /* ------- Font family ------- */
@@ -89,6 +82,7 @@ button,
 input,
 label {
   font-family: $heading-font;
+
   text-wrap: balance;
   line-height: 1.1;
 }
@@ -97,4 +91,69 @@ label {
 a:not([class]) {
   text-decoration-skip-ink: auto;
   color: currentColor;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: 5ex;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+.header-fixed {
+  @include header-fixed;
+}
+
+@media (width >= $breakpoint-sm) {
+  .wrapper {
+    padding-inline: $wrapper-padding-inline;
+  }
+  .wrapper-border-inline {
+    border-inline: $wrapper-border-inline solid var(--gray-color);
+  }
+}
+
+/* ------- Container ------- */
+
+@mixin container() {
+  width: 100%;
+  @each $key, $value in $breakpoints {
+    @media (width >= $value) and (width >= $breakpoint-sm) {
+      width: calc($value - $spacer-lg);
+    }
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin-inline: auto;
+  @include container;
+}
+
+$card-width: 150px;
+$card-height: 100px;
+$card-padding: $spacer-md;
+.card {
+  width: $card-width;
+  height: $card-height;
+  padding: $card-padding;
 }

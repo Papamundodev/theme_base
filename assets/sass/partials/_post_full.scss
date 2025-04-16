@@ -1,0 +1,29 @@
+.separator {
+  margin-inline: 0.5em;
+  font-size: 0.8rem;
+}
+
+#breadcrumbs {
+  ul {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.post-date {
+  display: flex;
+  align-items: center;
+}
+.post-full {
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.content {
+  img {
+    width: 100%;
+    height: auto;
+  }
+}

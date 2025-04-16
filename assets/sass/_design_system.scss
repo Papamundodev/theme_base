@@ -1,21 +1,90 @@
+@use "sass:map";
+@use "./variables" as *;
+@use "./utilities/flex" as *;
+
+@mixin flex-col-3-demo($context) {
+  .flex-auto {
+    display: flex;
+    flex-direction: column;
+    gap: $spacer-md;
+    & > * {
+      @include flex-center;
+      $i: 1;
+      @if $context == "border-radius" {
+        @each $key, $value in $border-radius {
+          &:nth-child(#{$i}) > * {
+            background-color: $accent-color;
+            @include card-border-radius($key);
+          }
+          $i: $i + 1;
+        }
+      }
+      @if $context == "img-sizes" {
+        @each $key, $value in $img-sizes {
+          &:nth-child(#{$i}) > * {
+            @include card-img-size($key);
+          }
+          $i: $i + 1;
+        }
+      }
+      & > * {
+        margin-bottom: $spacer-md;
+      }
+    }
+  }
+  @each $key, $value in $breakpoints {
+    @media (width >= $value) and (width >= $breakpoint-sm) {
+      .flex-auto {
+        width: clamp(
+          calc(375px - ($border-padding-inline)),
+          calc($value - $spacer-lg - ($border-padding-inline)),
+          calc(1200px - ($border-padding-inline))
+        );
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 5%;
+        padding-block: 0;
+        & > * {
+          @if $key == "md" or $key == "sm" {
+            width: 47.5%;
+          } @else {
+            width: 30%;
+          }
+
+          & > * {
+            margin-bottom: calc(
+              ($value - $spacer-lg - $border-padding-inline) * 0.05
+            );
+            @media (width >= 1200px) {
+              margin-bottom: calc((1200px - $border-padding-inline) * 0.05);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 /* ------- Table component ------- */
 
 @mixin grid-table-2-columns {
   // mobile
   display: flex;
   flex-direction: column;
-  border-block-end: 3px solid var(--gray-color);
+  border-block-end: $wrapper-border-inline solid $gray-color;
   gap: $spacer-md;
   align-items: center;
   justify-content: space-around;
-  padding-block: 1em;
+  padding-block: $spacer-md;
   &:first-child {
     padding-inline: $spacer-md;
   }
-
+  // responsive
   @media (width >= $breakpoint-sm) {
     display: grid;
-    grid-template-columns: minmax(180px, auto) 1fr;
+    grid-template-columns: minmax(150px, auto) 1fr;
     grid-template-rows: 120px;
     gap: 0;
     padding-block: 0;
@@ -34,10 +103,9 @@
 
 /* ------- Flex-col-3-------- */
 
-@mixin card {
+@mixin card_test {
   & > * {
     @include flex-column-center;
-    gap: $spacer-md;
     margin-inline: auto;
     & > * {
       padding: $spacer-md;
@@ -46,20 +114,28 @@
 }
 
 @mixin card-border-radius($key) {
-  border-radius: map-get($border-radius, $key);
-  border: 3px solid var(--gray-color);
-  background-color: var(--accent-color);
-  width: 100px;
+  border-radius: map.get($border-radius, $key);
+  background-color: $accent-color;
   height: 100px;
-  min-width: 100px;
-  min-height: 100px;
+  @if $key == "pill" {
+    width: 200px;
+  } @else {
+    width: 100px;
+  }
+}
+@mixin card-img-size($key) {
+  background-color: $accent-color;
+  height: map.get($img-sizes, $key);
+  width: map.get($img-sizes, $key);
 }
 
 @mixin flex-col-3 {
+  //mobile
   .flex-auto {
     display: flex;
     flex-direction: column;
     gap: $spacer-md;
+    width: 100%;
     & > * {
       @content;
       & > * {
@@ -67,97 +143,112 @@
       }
     }
   }
+  // responsive
   @each $key, $value in $breakpoints {
-    @media (width >= $value) and (width >= $breakpoint-sm) {
+    @media (width >= $value) and (width <= $breakpoint-xxl) and (width >= $breakpoint-sm) {
       .flex-auto {
-        width: clamp(
-          calc(375px - ($border-padding-inline)),
-          calc($value - ($border-padding-inline)),
-          calc(1200px - ($border-padding-inline))
-        );
+        width: calc($value - $spacer-lg - ($border-padding-inline));
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         gap: 5%;
         padding-block: 0;
         & > * {
-          width: 30%;
-
+          @if $key == "md" or $key == "sm" {
+            width: 47.5%;
+          } @else {
+            width: 30%;
+          }
           @content;
           & > * {
-            margin-bottom: calc(($value - $border-padding-inline) * 0.05);
-            @media (width >= 1200px) {
-              margin-bottom: calc((1200px - $border-padding-inline) * 0.05);
-            }
+            margin-bottom: calc(
+              ($value - $spacer-lg - $border-padding-inline) * 0.05
+            );
           }
+        }
+      }
+    }
+  }
+  // desktop
+  @media (width >= $breakpoint-xxl) {
+    .flex-auto {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 5%;
+      width: calc(1200px - ($border-padding-inline));
+      & > * {
+        width: 30%;
+        @content;
+        & > * {
+          margin-bottom: calc((1200px - $border-padding-inline) * 0.05);
         }
       }
     }
   }
 }
 
-@mixin flex-col-3-demo {
+@mixin flex-col-2 {
+  //mobile
   .flex-auto {
     display: flex;
     flex-direction: column;
     gap: $spacer-md;
+    width: 100%;
     & > * {
-      @include flex-center;
-      $i: 1;
-      @each $key, $value in $border-radius {
-        &:nth-child(#{$i}) > * {
-          background-color: var(--accent-color);
-          @include card-border-radius($key);
-        }
-        $i: $i + 1;
-      }
+      @content;
       & > * {
         margin-bottom: $spacer-md;
       }
     }
   }
+  // responsive
   @each $key, $value in $breakpoints {
-    @media (width >= $value) and (width >= $breakpoint-sm) {
+    @media (width >= $value) and (width <= $breakpoint-xxl) and (width >= $breakpoint-sm) {
       .flex-auto {
-        width: clamp(
-          calc(375px - ($border-padding-inline)),
-          calc($value - ($border-padding-inline)),
-          calc(1200px - ($border-padding-inline))
-        );
-
+        width: calc($value - $spacer-lg - ($border-padding-inline));
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         gap: 5%;
         padding-block: 0;
         & > * {
-          width: 30%;
+          width: 47.5%;
+          @content;
           & > * {
-            margin-bottom: calc(($value - $border-padding-inline) * 0.05);
-            @media (width >= 1200px) {
-              margin-bottom: calc((1200px - $border-padding-inline) * 0.05);
-            }
+            margin-bottom: calc(
+              ($value - $spacer-lg - $border-padding-inline) * 0.05
+            );
           }
+        }
+      }
+    }
+  }
+  // desktop
+  @media (width >= $breakpoint-xxl) {
+    .flex-auto {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 5%;
+      width: calc(1200px - ($border-padding-inline));
+      & > * {
+        width: 47.5%;
+        @content;
+        & > * {
+          margin-bottom: calc((1200px - $border-padding-inline) * 0.05);
         }
       }
     }
   }
 }
 
-@mixin table-component {
-  .grid-table {
-    @include grid-table-2-columns;
-    &:last-child {
-      border-block-end: 0;
-    }
-  }
-}
 /* ------- Design System ------- */
 
 .design-system {
   .page-title {
     font-size: $font-size-xxl;
-    color: var(--accent-color);
+    color: $accent-color;
     margin-bottom: $spacer-md;
     text-align: center;
   }
@@ -170,7 +261,12 @@
 
   .table-component {
     padding-block: 0;
-    @include table-component;
+    .grid-table {
+      @include grid-table-2-columns;
+      &:last-child {
+        border-block-end: 0;
+      }
+    }
   }
 
   .flex-col-3 {
@@ -179,7 +275,17 @@
       margin-bottom: $spacer-md;
     }
     @include flex-col-3 {
-      @include card;
+      @include card_test;
+    }
+  }
+
+  .flex-col-2 {
+    padding-block: 0;
+    .design-system-header {
+      margin-bottom: $spacer-md;
+    }
+    @include flex-col-2 {
+      @include card_test;
     }
   }
 
@@ -187,6 +293,13 @@
     .design-system-header {
       margin-bottom: $spacer-md;
     }
-    @include flex-col-3-demo;
+    @include flex-col-3-demo("border-radius");
+  }
+
+  .img-sizes-system {
+    .design-system-header {
+      margin-bottom: $spacer-md;
+    }
+    @include flex-col-3-demo("img-sizes");
   }
 }

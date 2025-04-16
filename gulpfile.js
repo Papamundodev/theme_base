@@ -1,7 +1,7 @@
 "use strict";
 const gulp = require("gulp");
 const browserSync = require("browser-sync").create();
-const sass = require("gulp-sass")(require("sass")); // Set Sass compiler
+const sass = require("gulp-sass")(require("sass"));
 const sourcemaps = require("gulp-sourcemaps");
 const concat = require("gulp-concat");
 const uglify = require("gulp-uglify");
@@ -16,14 +16,17 @@ gulp.task("styles", async function () {
   return gulp
     .src(["./assets/sass/main.scss"])
     .pipe(sourcemaps.init())
-    .pipe(sass({}).on("error", sass.logError))
-    .pipe(autoprefixer.default()) // Add vendor prefixes
-    .pipe(cleanCSS.default({ compatibility: "ie11" })) // Minify CSS
     .pipe(
       sass({
-        silenceDeprecations: ["legacy-js-api"],
-      })
+        includePaths: ["./assets/sass"],
+        outputStyle: "expanded",
+        sassOptions: {
+          quietDeps: true,
+        },
+      }).on("error", sass.logError)
     )
+    .pipe(autoprefixer.default()) // Add vendor prefixes
+    .pipe(cleanCSS.default({ compatibility: "ie11" })) // Minify CSS
     .pipe(sourcemaps.write())
     .pipe(gulp.dest("./assets/build/css"))
     .pipe(browserSync.stream());

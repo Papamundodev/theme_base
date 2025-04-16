@@ -1,0 +1,27 @@
+@use "sass:map";
+@use "../../variables" as *;
+@use "../../utilities/flex" as *;
+
+/* ------- IMG  ------- */
+
+@mixin image($br: "rounded") {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  aspect-ratio: 1/1;
+  border-radius: map.get($border-radius, $br);
+}
+
+@each $key, $value in $img-sizes {
+  .img-container-#{$key} {
+    width: $value;
+    height: $value;
+    & > * {
+      @include flex-center;
+      img {
+        @include image("circle");
+      }
+    }
+  }
+}

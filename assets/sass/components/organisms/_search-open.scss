@@ -1,0 +1,75 @@
+@use "../../variables" as *;
+@use "../../utilities/flex" as *;
+#open-search-modal {
+  display: flex;
+  align-items: center;
+  gap: $spacer-md;
+  background-color: $background-color;
+  border: 1px solid $accent-color;
+  outline: none;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  box-shadow: 0 0 10px 0 $background-color;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 2px 2px 10px 0px $default-color;
+  }
+  span {
+    color: $default-color;
+    font-size: $icon-xs;
+    line-height: 1;
+  }
+  .search__btn__icon {
+    width: fit-content;
+    @include flex-column-center;
+    svg {
+      width: $icon-xs;
+      height: $icon-xs;
+      fill: $default-color;
+    }
+  }
+}
+
+#search-results-popover {
+  height: 100%;
+  overflow-y: auto;
+  margin-block-start: calc($spacer-xxl * 2);
+  padding: 1em;
+  border: 2px solid $accent-color-2;
+  border-radius: 0.5em;
+  @media (width >= 768px) {
+    width: 75vw;
+  }
+  @media (width >= 992px) {
+    width: 55vw;
+  }
+  &::backdrop {
+    background-color: $black-color;
+    opacity: 0.8;
+  }
+}
+
+.wrapper-search-results {
+  &.dark-theme {
+    background-color: $background-color;
+    color: $accent-color-4;
+  }
+  #search-results {
+    margin-inline-start: 1em;
+  }
+}
+
+.input-search {
+  border: none;
+  outline: none;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  width: 100%;
+  font-size: 1.5rem;
+  color: $default-color;
+  background-color: $background-color;
+  &:focus {
+    border-bottom: 2px solid $accent-color-2;
+  }
+}

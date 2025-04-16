@@ -13,7 +13,7 @@ $content = wpautop($object->post_content);
 <section class="design-system">
     <div class="container">
         <h1 class="page-title">Design System</h1>
-        <div class="wrapper table-component">
+        <div class="wrapper wrapper-border-inline table-component">
             <div class="logo-system">
                 <div class="design-system-header bg-gray-color">
                     <h2 class="">Logo</h2>
@@ -31,10 +31,14 @@ $content = wpautop($object->post_content);
             </div>
         </div>
 
-        <div class="wrapper table-component">
+        <div class="wrapper wrapper-border-inline table-component">
             <div class="font-system ">
                 <div class="design-system-header bg-gray-color">
                     <h2 class="">Font</h2>
+                </div>
+                <div class="grid-table">
+                    <p class="">fs-xs</p>
+                    <p class="fs-xs">Lorem ipsum dolor.</p>
                 </div>
                 <div class="grid-table">
                     <p class="">fs-sm</p>
@@ -55,158 +59,274 @@ $content = wpautop($object->post_content);
             </div>
         </div>
 
-        <div class="wrapper table-component">
+        <div class="wrapper wrapper-border-inline table-component">
             <div class="color-text-system">
                 <div class="design-system-header bg-gray-color">
                     <h2 class="">Color</h2>
                 </div>
                 <div class="grid-table">
-                    <p class="">text default-color</p>
+                    <p class="">default-color</p>
                     <p class="default-color fs-lg">Lorem ipsum dolor.</p>
                 </div>
                 <div class="grid-table">
-                    <p class="">text gray-color</p>
+                    <p class="">gray-color</p>
                     <p class="gray-color fs-lg">Lorem ipsum dolor.</p>
                 </div>
                 <div class="grid-table">
-                    <p class="">text heading-color</p>
+                    <p class="">heading-color</p>
                     <p class="heading-color fs-lg">Lorem ipsum dolor.</p>
                 </div>
                 <div class="grid-table">
-                    <p class="">text accent-color</p>
+                    <p class="">accent-color</p>
                     <p class="accent-color fs-lg">Lorem ipsum dolor.</p>
+                </div>
+                <div class="bg-background-color element-ratio-calculating grid-table">
+                    <div class="flex-column-start">
+                        <p class="">Background Color</p>
+                        <div class="bg-color-computed"></div>
+                    </div>
+                    <div class="gap-lg">
+                        <p class="fs-sm default-color text-color"><span class="ratio"></span></p>
+                        <p class="fs-sm gray-color text-color"><span class="ratio"></span></p>
+                        <p class="fs-sm heading-color text-color"><span class="ratio"></span></p>
+                        <p class="fs-sm accent-color text-color"><span class="ratio"></span></p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="wrapper flex-col-3 color-text-system ">
+        <div class="wrapper wrapper-border-inline flex-col-3 color-text-system ">
             <div class="design-system-header bg-gray-color">
                 <h2 class="">Background Color</h2>
             </div>
             <div class="flex-auto">
                 <div>
-                    <div class="bg-accent-color-2">
-                        <p class="default-color">Lorem ipsum dolor.</p>
-                        <p class="gray-color">Lorem ipsum dolor.</p>
-                        <p class="heading-color">Lorem ipsum dolor.</p>
-                        <p class="accent-color">Lorem ipsum dolor.</p>
+                    <div class="bg-accent-color-2 element-ratio-calculating">
+                        <div class="bg-color-computed"></div>
+                        <p class="default-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
+                        <p class="gray-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
+                        <p class="heading-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
+                        <p class="accent-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
                     </div>
                 </div>
                 <div>
-                    <div class="bg-accent-color-3">
-                        <p class="default-color">Lorem ipsum dolor.</p>
-                        <p class="gray-color">Lorem ipsum dolor.</p>
-                        <p class="heading-color">Lorem ipsum dolor.</p>
-                        <p class="accent-color">Lorem ipsum dolor.</p>
+                    <div class="bg-accent-color-3 element-ratio-calculating">
+                        <div class="bg-color-computed"></div>
+                        <p class="default-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
+                        <p class="gray-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
+                        <p class="heading-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
+                        <p class="accent-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
                     </div>
                 </div>
                 <div>
-                    <div class="bg-accent-color-4">
-                        <p class="default-color">Lorem ipsum dolor.</p>
-                        <p class="gray-color">Lorem ipsum dolor.</p>
-                        <p class="heading-color">Lorem ipsum dolor.</p>
-                        <p class="accent-color">Lorem ipsum dolor.</p>
+                    <div class="bg-accent-color-4 element-ratio-calculating">
+                        <div class="bg-color-computed"></div>
+                        <p class="default-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
+                        <p class="gray-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
+                        <p class="heading-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
+                        <p class="accent-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
                     </div>
                 </div>
                 <div>
-                    <div class="bg-accent-color-5">
-                        <p class="default-color">Lorem ipsum dolor.</p>
-                        <p class="gray-color">Lorem ipsum dolor.</p>
-                        <p class="heading-color">Lorem ipsum dolor.</p>
-                        <p class="accent-color">Lorem ipsum dolor.</p>
+                    <div class="bg-accent-color-5 element-ratio-calculating">
+                        <div class="bg-color-computed"></div>
+                        <p class="default-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
+                        <p class="gray-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
+                        <p class="heading-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
+                        <p class="accent-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
                     </div>
                 </div>
                 <div>
-                    <div class="bg-surface-color">
-                        <p class="default-color">Lorem ipsum dolor.</p>
-                        <p class="gray-color">Lorem ipsum dolor.</p>
-                        <p class="heading-color">Lorem ipsum dolor.</p>
-                        <p class="accent-color">Lorem ipsum dolor.</p>
+                    <div class="bg-surface-color element-ratio-calculating">
+                        <div class="bg-color-computed"></div>
+                        <p class="default-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
+                        <p class="gray-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
+                        <p class="heading-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
+                        <p class="accent-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
                     </div>
                 </div>
                 <div>
-                    <div class="bg-surface-color-2">
-                        <p class="default-color">Lorem ipsum dolor.</p>
-                        <p class="gray-color">Lorem ipsum dolor.</p>
-                        <p class="heading-color">Lorem ipsum dolor.</p>
-                        <p class="accent-color">Lorem ipsum dolor.</p>
+                    <div class="bg-surface-color-2 element-ratio-calculating">
+                        <div class="bg-color-computed"></div>
+                        <p class="default-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
+                        <p class="gray-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
+                        <p class="heading-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
+                        <p class="accent-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
                     </div>
                 </div>
                 <div>
-                    <div class="bg-surface-color-3">
-                        <p class="default-color">Lorem ipsum dolor.</p>
-                        <p class="gray-color">Lorem ipsum dolor.</p>
-                        <p class="heading-color">Lorem ipsum dolor.</p>
-                        <p class="accent-color">Lorem ipsum dolor.</p>
+                    <div class="bg-surface-color-3 element-ratio-calculating">
+                        <div class="bg-color-computed"></div>
+                        <p class="default-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
+                        <p class="gray-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
+                        <p class="heading-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
+                        <p class="accent-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
                     </div>
                 </div>
                 <div>
-                    <div class="bg-surface-color-4">
-                        <p class="default-color">Lorem ipsum dolor.</p>
-                        <p class="gray-color">Lorem ipsum dolor.</p>
-                        <p class="heading-color">Lorem ipsum dolor.</p>
-                        <p class="accent-color">Lorem ipsum dolor.</p>
+                    <div class="bg-surface-color-4 element-ratio-calculating">
+                        <div class="bg-color-computed"></div>
+                        <p class="default-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
+                        <p class="gray-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
+                        <p class="heading-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
+                        <p class="accent-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
                     </div>
                 </div>
                 <div>
-                    <div class="bg-surface-color-5">
-                        <p class="default-color">Lorem ipsum dolor.</p>
-                        <p class="gray-color">Lorem ipsum dolor.</p>
-                        <p class="heading-color">Lorem ipsum dolor.</p>
-                        <p class="accent-color">Lorem ipsum dolor.</p>
+                    <div class="bg-surface-color-5 element-ratio-calculating">
+                        <div class="bg-color-computed"></div>
+                        <p class="default-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
+                        <p class="gray-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
+                        <p class="heading-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
+                        <p class="accent-color text-color">Lorem ipsum dolor. <span class="ratio"></span></p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="wrapper  border-radius-system">
+        <div class="wrapper wrapper-border-inline border-radius-system">
             <div class="design-system-header bg-gray-color">
                 <h2 class="">Border Radius</h2>
             </div>
             <div class=" flex-auto">
-                <div class="flex-item">
-                    <div class="bg-surface-color">
-                        <div class="card-border-radius"></div>
+                <div class="">
+                    <div class="">
+                        <div class=""></div>
                     </div>
                 </div>
-                <div class="flex-item">
-                    <div class="bg-surface-color">
-                        <div class="card-border-radius"></div>
+                <div class="">
+                    <div class="">
+                        <div class=""></div>
                     </div>
                 </div>
-                <div class="flex-item">
-                    <div class="bg-surface-color">
-                        <div class="card-border-radius"></div>
+                <div class="">
+                    <div class="">
+                        <div class=""></div>
                     </div>
                 </div>
-                <div class="flex-item">
-                    <div class="bg-surface-color">
-                        <div class="card-border-radius"></div>
+                <div class="">
+                    <div class="">
+                        <div class=""></div>
                     </div>
                 </div>
-                <div class="flex-item">
-                    <div class="bg-surface-color">
-                        <div class="card-border-radius"></div>
+                <div class="">
+                    <div class="">
+                        <div class=""></div>
                     </div>
                 </div>
-                <div>
-                    <div class="bg-surface-color">
-                        <div class="card-border-radius"></div>
+                <div class="">
+                    <div class="">
+                        <div class=""></div>
                     </div>
                 </div>
-                <div>
-                    <div class="bg-surface-color">
-                        <div class="card-border-radius"></div>
+                <div class="">
+                    <div class="">
+                        <div class=""></div>
                     </div>
                 </div>
-                <div>
-                    <div class="bg-surface-color">
-                        <div class="card-border-radius"></div>
+                <div class="">
+                    <div class="">
+                        <div class=""></div>
                     </div>
                 </div>
-                <div>
-                    <div class="bg-surface-color">
-                        <div class="card-border-radius"></div>
+                <div class="">
+                    <div class="">
+                        <div class=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="wrapper wrapper-border-inline flex-col-2">
+            <div class="design-system-header bg-gray-color">
+                <h2 class="">Test</h2>
+            </div>
+            <div class=" flex-auto">
+                <div class="">
+                    <div class="bg-accent-color-2">
+                        <div class=""></div>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="bg-accent-color-2">
+                        <div class=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="wrapper wrapper-border-inline table-component">
+            <div class="font-family-system ">
+                <div class="design-system-header bg-gray-color">
+                    <h2 class="">Font Family</h2>
+                </div>
+                <div class="grid-table">
+                    <p class="">Fira Sans</p>
+                    <p class="primary-font fs-lg">Lorem ipsum DOLOR.</p>
+                </div>
+                <div class="grid-table">
+                    <p class="">Outfit</p>
+                    <p class="secondary-font fs-lg">Lorem ipsum DOLOR.</p>
+                </div>
+                <div class="grid-table">
+                    <p class="">EB Garamond</p>
+                    <p class="tertiary-font fs-lg">Lorem ipsum DOLOR.</p>
+                </div>
+                <div class="grid-table">
+                    <p class="">Oswald</p>  
+                    <p class="quaternary-font fs-lg">Lorem ipsum DOLOR.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="wrapper wrapper-border-inline img-sizes-system">
+            <div class="design-system-header bg-gray-color">
+                <h2 class="">Img Sizes</h2>
+            </div>
+            <div class=" flex-auto">
+                <div class="">
+                    <div class="">
+                        <div class=""></div>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="">
+                        <div class=""></div>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="">
+                        <div class=""></div>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="">
+                        <div class=""></div>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="">
+                        <div class=""></div>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="">
+                        <div class=""></div>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="">
+                        <div class=""></div>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="">
+                        <div class=""></div>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="">
+                        <div class=""></div>
                     </div>
                 </div>
             </div>

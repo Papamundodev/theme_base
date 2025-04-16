@@ -1,28 +1,5 @@
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-    left: -100%;
-  }
-
-  100% {
-    opacity: 1;
-    left: 0;
-  }
-}
-
-@keyframes fade-out {
-  0% {
-    opacity: 1;
-    left: 0;
-    display: block;
-  }
-
-  100% {
-    opacity: 0;
-    left: -100%;
-    display: none;
-  }
-}
+@use "../../variables" as *;
+@use "../../animations" as *;
 
 @media (width <= 768px) {
   .navmenu-desktop {
@@ -30,9 +7,9 @@
   }
   .navmenu-mobile {
     animation: fade-out 0.3s ease-out;
-    background-color: var(--background-color);
+    background-color: $background-color;
     position: fixed;
-    top: var(--header-height);
+    top: $spacer-xxl;
     right: auto;
     width: 100vw;
     height: 100%;
@@ -45,9 +22,9 @@
       padding: 0;
       margin: auto;
       width: fit-content;
-      padding-block: 1em;
+      padding-block: $spacer-md;
       li {
-        margin-bottom: 1em;
+        margin-bottom: $spacer-md;
       }
       li,
       .dropdown {

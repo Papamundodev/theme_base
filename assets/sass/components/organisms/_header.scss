@@ -1,0 +1,25 @@
+// HEADER FIXED
+@use "../../variables" as *;
+@use "../../utilities/flex" as *;
+
+@mixin header-fixed {
+  &::before {
+    content: "";
+    z-index: -1;
+    display: block;
+    height: $spacer-xxl;
+    background-color: $background-color;
+  }
+  & header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    height: $spacer-xxl;
+    position: fixed;
+    padding-inline: $spacer-md;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+  }
+}

@@ -20,6 +20,66 @@
   @include flex-column-center;
 }
 
+/* ------- Flex start ------- */
+@mixin flex-start {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.flex-start {
+  @include flex-start;
+}
+
+@mixin flex-column-start {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.flex-column-start {
+  @include flex-column-start;
+}
+
+/* ------- Flex end ------- */
+@mixin flex-end {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.flex-end {
+  @include flex-end;
+}
+
+@mixin flex-column-end {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+.flex-column-end {
+  @include flex-column-end;
+}
+
+/* ------- Flex between ------- */
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.flex-between {
+  @include flex-between;
+}
+
+@mixin flex-column-between {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.flex-column-between {
+  @include flex-column-between;
+}
+
 /* ------- Flex table ------- */
 @mixin flex-table {
   display: flex;

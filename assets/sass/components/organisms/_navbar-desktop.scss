@@ -1,0 +1,7 @@
+@use "../../variables" as *;
+
+@media (width >= 768px) {
+  .navmenu-mobile {
+    display: none;
+  }
+}

@@ -7,16 +7,16 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">	
     <?php wp_head(); ?>
 </head>
-<body <?php body_class() ?>>
+<body <?php body_class("header-fixed") ?>>
 <?php
 if (function_exists('wp_body_open')){
     wp_body_open() ;
 }
 ?>
 
-<header>
+<header class="bg-background-color">
         <!-- Logo -->
-    <div class="wrapper-logo flex-center gap-xl">
+    <div class="wrapper-logo flex-start gap-xl">
         <?php get_template_part('partials/header/logo'); ?>
     </div>
 
@@ -24,7 +24,7 @@ if (function_exists('wp_body_open')){
         <?php get_template_part('partials/header/navbar-desktop', null, ['theme_location' => 'header']); ?>
     </div>
 
-    <div class="wrapper-header-right-content">
+    <div class="wrapper-header-right-content flex-end gap-md">
         <?php if (function_exists('aas_open_search_form')): ?>
             <div class="wrapper-open-search">
                 <?=do_shortcode('[aas_open_search]'); ?>
@@ -35,15 +35,14 @@ if (function_exists('wp_body_open')){
                 <?=do_shortcode('[theme_light_dark]'); ?>
             </div>
         <?php endif; ?>
-        <div class="wrapper-theme-navbar-toggler">
-            <button popovertarget="navmenu-header-mobile" id="theme-navbar-toggler">
-                <span class="custom-burger"></span>
-                <span class="custom-burger"></span>
-                <span class="custom-burger"></span>
-                <span class="custom-burger"></span>
-            </button>
-        </div>
+        <button popovertarget="navmenu-header-mobile" id="theme-navbar-toggler">
+            <span class="custom-burger"></span>
+            <span class="custom-burger"></span>
+            <span class="custom-burger"></span>
+            <span class="custom-burger"></span>
+        </button>
     </div>
+
 
     
 </header>
