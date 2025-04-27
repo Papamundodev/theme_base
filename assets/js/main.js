@@ -54,13 +54,21 @@ function updateContrastRatio() {
     const textColors = card.querySelectorAll(".text-color");
     const bg = getComputedColor(card, "background-color");
     const bgComputed = card.querySelector(".bg-color-computed");
-    bgComputed.textContent = bg;
+    if (bgComputed) {
+      bgComputed.textContent = bg;
+    }
     textColors.forEach((text) => {
       const color = getComputedColor(text, "color");
+      const colorComputed = text.querySelector(".color-computed");
+      if (colorComputed) {
+        colorComputed.textContent = color;
+      }
       const ratio = getContrastRatio(bg, color);
       const ratioFormatted = ratio.toFixed(2);
       const ratioComputed = text.querySelector(".ratio");
-      ratioComputed.textContent = `${ratioFormatted}:1`;
+      if (ratioComputed) {
+        ratioComputed.textContent = `${ratioFormatted}:1`;
+      }
     });
   });
 }

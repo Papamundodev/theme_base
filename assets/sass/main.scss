@@ -128,7 +128,7 @@ picture {
     padding-inline: $wrapper-padding-inline;
   }
   .wrapper-border-inline {
-    border-inline: $wrapper-border-inline solid var(--gray-color);
+    border-inline: $wrapper-border-inline solid $gray-color;
   }
 }
 
