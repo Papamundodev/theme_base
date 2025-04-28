@@ -193,9 +193,6 @@
     width: 100%;
     & > * {
       @content;
-      & > * {
-        margin-bottom: $spacer-md;
-      }
     }
   }
   // responsive
@@ -211,11 +208,6 @@
         & > * {
           width: 47.5%;
           @content;
-          & > * {
-            margin-bottom: calc(
-              ($value - $spacer-lg - $border-padding-inline) * 0.05
-            );
-          }
         }
       }
     }
@@ -231,9 +223,6 @@
       & > * {
         width: 47.5%;
         @content;
-        & > * {
-          margin-bottom: calc((1200px - $border-padding-inline) * 0.05);
-        }
       }
     }
   }
@@ -281,7 +270,6 @@
       margin-bottom: $spacer-md;
     }
     @include flex-col-2 {
-      @include card_test;
     }
   }
 
@@ -299,3 +287,59 @@
     @include flex-col-3-demo("img-sizes");
   }
 }
+
+// @mixin flex-col-2 {
+//   //mobile
+//   .flex-auto {
+//     display: flex;
+//     flex-direction: column;
+//     gap: $spacer-md;
+//     width: 100%;
+//     & > * {
+//       @content;
+//       & > * {
+//         margin-bottom: $spacer-md;
+//       }
+//     }
+//   }
+//   // responsive
+//   @each $key, $value in $breakpoints {
+//     @media (width >= $value) and (width <= $breakpoint-xxl) and (width >= $breakpoint-lg) {
+//       .flex-auto {
+//         width: calc($value - $spacer-lg - ($border-padding-inline));
+//         display: flex;
+//         flex-direction: row;
+//         flex-wrap: wrap;
+//         gap: 5%;
+//         padding-block: 0;
+//         & > * {
+//           width: 47.5%;
+//           @content;
+//           & > * {
+//             margin-bottom: calc(
+//               ($value - $spacer-lg - $border-padding-inline) * 0.05
+//             );
+//           }
+//         }
+//       }
+//     }
+//   }
+//   // desktop
+//   @media (width >= $breakpoint-xxl) {
+//     .flex-auto {
+//       display: flex;
+//       flex-direction: row;
+//       flex-wrap: wrap;
+//       gap: 5%;
+//       width: calc(1200px - ($border-padding-inline));
+//       & > * {
+//         width: 47.5%;
+//         @content;
+//         & > * {
+//           margin-bottom: calc((1200px - $border-padding-inline) * 0.05);
+//           overflow: hidden;
+//         }
+//       }
+//     }
+//   }
+// }

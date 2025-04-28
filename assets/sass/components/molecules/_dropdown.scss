@@ -3,7 +3,6 @@
 @use "./utilities/flex" as *;
 
 @mixin dropdown-details {
-  @include flex-column-start;
   ::marker {
     content: "";
     visibility: hidden;
@@ -44,7 +43,6 @@
   .dropdown-link {
     font-size: $font-size-xs;
     padding-block: $spacer-sm;
-    padding-inline-end: $spacer-xs;
     background-color: $surface-color;
     p,
     a {
@@ -103,7 +101,6 @@
     }
   }
   .dropdown-menu {
-    width: 100%;
     background-color: $surface-color-2;
     padding-block: $spacer-sm;
     border-block-end: $spacer-sm solid $surface-color;
@@ -149,7 +146,7 @@
   }
   &:hover {
     &::after {
-      animation: underline-hover 0.5s ease-in-out forwards;
+      animation: underline-hover 0.1s ease-in-out forwards;
       padding-inline: $spacer-sm;
     }
   }
@@ -166,11 +163,6 @@
 .dropdown-details {
   @include dropdown-details;
   @include dropdown-details-custom;
-  //dropdown menu
-  .dropdown-menu {
-    display: flex;
-    flex-direction: column;
-  }
 }
 
 //desktop dropdown
@@ -201,8 +193,6 @@
     height: 0;
     opacity: 0;
     padding-inline: $spacer-sm;
-
-    transition: height 0.3s ease, opacity 0.3s ease;
     li {
       width: 100%;
       a {
@@ -249,17 +239,19 @@
 }
 .dropdown-over-container {
   height: 600px;
+  overflow: hidden;
 }
 
 .dropdown {
   .dropdown-menu {
     font-size: $font-size-sm;
     max-height: 300px;
-    overflow-y: scroll;
+    overflow-y: auto;
     li {
       display: grid;
       grid-template-columns: $spacer-md 1fr;
       align-items: center;
+      width: 100%;
     }
     li:before {
       content: "";
@@ -273,4 +265,8 @@
       margin-top: $font-size-xs;
     }
   }
+}
+
+summary::-webkit-details-marker {
+  display: none;
 }
