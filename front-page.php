@@ -380,7 +380,7 @@ $content = wpautop($object->post_content);
                 <div class="">
                     <div class="bg-background-color">
                         <div class="">
-                             <details name="dropdown-details" class="dropdown-details">
+                             <details name="dropdown-details" class="dropdown-details dropdown">
                                 <summary class="default-color">
                                     <div class="svg-container">
                                         <svg class="plus-icon-svg" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
@@ -388,16 +388,16 @@ $content = wpautop($object->post_content);
                                             <path id="path-2" d="M128 224C123.582 224 120 220.418 120 216V40C120 35.5817 123.582 32 128 32V32C132.418 32 136 35.5817 136 40V128V216C136 220.418 132.418 224 128 224V224Z" />
                                         </svg>  
                                     </div>
-                                    <p class="dropdown-title">How many HTML elements are there?</p>
+                                    <p class="dropdown-title">This element is a details</p>
                                 </summary>
-                                <ul class="dropdown-menu fm-xs">
-                                    <li><a class=" " href="">Lorem ipsum dolor sit amet.</a></li>
-                                    <li><a class=" " href="">Lorem ipsum dolor sit amet.</a></li>
-                                    <li><a class=" " href="">Lorem ipsum dolor sit amet.</a></li>
-                                    <li><a class=" " href="">Lorem ipsum dolor sit amet.</a></li>
+                                <ul class="dropdown-menu">
+                                    <li><p class=" " href="">its nice.</p></li>
+                                    <li><p class=" " href="">its accessible.</p></li>
+                                    <li><p class=" " href="">Still not supported in safari.</p></li>
+                                    <li><p class=" " href="">I keep it for later.</p></li>
                                 </ul>
                             </details>
-                            <details name="dropdown-details" class="dropdown-details">
+                            <details name="dropdown-details" class="dropdown-details dropdown">
                                 <summary class="default-color">
                                     <div class="svg-container">
                                         <svg class="plus-icon-svg" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
@@ -407,14 +407,14 @@ $content = wpautop($object->post_content);
                                     </div>
                                     <p class="dropdown-title">How many HTML elements are there?</p>
                                 </summary>
-                                <ul class="dropdown-menu fm-xs">
+                                <ul class="dropdown-menu">
                                     <li><a class=" " href="">Lorem ipsum dolor sit amet.</a></li>
                                     <li><p>Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.</p></li>
                                     <li><a class=" " href="">Lorem ipsum dolor sit amet.</a></li>
                                     <li><a class=" " href="">Lorem ipsum dolor sit amet.</a></li>
                                 </ul>
                             </details>
-                            <details name="dropdown-details" class="dropdown-details">
+                            <details name="dropdown-details" class="dropdown-details dropdown">
                                 <summary class="default-color">
                                     <div class="svg-container">
                                         <svg class="plus-icon-svg" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
@@ -424,7 +424,7 @@ $content = wpautop($object->post_content);
                                     </div>
                                     <p class="dropdown-title">How many HTML elements are there?</p>
                                 </summary>
-                                <ul class="dropdown-menu fm-xs">
+                                <ul class="dropdown-menu">
                                     <li><a class=" " href="">Lorem ipsum dolor sit amet.</a></li>
                                     <li><a class=" " href="">Lorem ipsum dolor sit amet.</a></li>
                                     <li><a class=" " href="">Lorem ipsum dolor sit amet.</a></li>
@@ -436,8 +436,8 @@ $content = wpautop($object->post_content);
                 </div>
                 <div class="">
                     <div class="bg-background-color">
-                        <div class="">
-                            <nav aria-label="navigation" class="dropdown-over">
+                        <div class="dropdown-over-container">
+                            <nav aria-label="navigation" class="dropdown-over dropdown">
                                 <div class="dropdown-link">
                                     <div class="svg-container">
                                         <svg class="plus-icon-svg" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
@@ -447,11 +447,11 @@ $content = wpautop($object->post_content);
                                     </div>
                                     <a class="dropdown-title" href="" class="">Lorem ipsum dolor sit amet.</a> 
                                 </div>
-                                <ul class="dropdown-menu fm-xs">
+                                <ul class="dropdown-menu">
                                     <li><a href="">Lorem ipsum dolor sit amet.</a></li>
                                     <li><a href="">Lorem ipsum dolor sit amet.</a></li>
                                     <li><a href="">Lorem ipsum dolor sit amet.</a></li>
-                                    <li><p>Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.</p></li>
+                                    <li><p>Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit ameLorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.</p></li>
                                 </ul>
                             </nav>
                         </div>
