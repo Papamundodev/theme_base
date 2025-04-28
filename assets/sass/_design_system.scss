@@ -200,7 +200,7 @@
   }
   // responsive
   @each $key, $value in $breakpoints {
-    @media (width >= $value) and (width <= $breakpoint-xxl) and (width >= $breakpoint-sm) {
+    @media (width >= $value) and (width <= $breakpoint-xxl) and (width >= $breakpoint-lg) {
       .flex-auto {
         width: calc($value - $spacer-lg - ($border-padding-inline));
         display: flex;

@@ -13,7 +13,6 @@
     display: grid;
     grid-template-columns: minmax($spacer-lg, auto) 1fr;
     align-items: center;
-    margin-bottom: $spacer-xs;
 
     //SVG
     &:hover {
@@ -22,7 +21,6 @@
     svg {
       box-sizing: border-box;
       width: $icon-sm;
-      margin-inline: $spacer-xs;
       fill: $default-color;
     }
   }
@@ -33,19 +31,26 @@
       -ms-transform: rotate(45deg);
       transform: rotate(45deg);
       fill: $accent-color;
+      margin-inline: $spacer-xs;
     }
   }
 }
 
 @mixin dropdown-details-custom {
-  summary {
+  border-inline: $spacer-sm solid $surface-color;
+  margin-block: $spacer-sm;
+  summary,
+  .dropdown-link {
     font-size: $font-size-xs;
     padding-block: $spacer-sm;
     padding-inline-end: $spacer-xs;
-    height: $icon-sm;
-    p {
+    background-color: $surface-color;
+    p,
+    a {
+      @include links;
+      font-size: $font-size-sm;
       background-color: $surface-color;
-      padding-inline: $spacer-xs;
+      padding-inline: $spacer-sm;
     }
     //SVG
     &:hover {
@@ -55,11 +60,12 @@
       }
     }
     .svg-container {
-      background-color: $surface-color;
-      padding-inline: $spacer-sm;
+      background-color: $surface-color-2;
+      display: flex;
       svg {
         vertical-align: middle;
         width: $icon-xs;
+        margin: auto;
       }
     }
   }
@@ -77,14 +83,14 @@
         fill: $accent-color;
       }
     }
-    p {
+    .dropdown-title {
       transform: translateX(-$spacer-lg);
-      transition: 0.2s all 0.2s ease-in-out;
+      transition: all 0.2s ease-in-out;
     }
     summary:hover {
-      p {
+      .dropdown-title {
         transform: translateX(0);
-        transition: 0.2s all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
       }
       .svg-container {
         width: fit-content;
@@ -95,14 +101,68 @@
       }
     }
   }
+  .dropdown-menu {
+    background-color: $surface-color-2;
+    padding-block: $spacer-sm;
+    border-block-end: $spacer-sm solid $surface-color;
+    a {
+      @include links;
+    }
+    p {
+      font-size: $font-size-xs;
+      padding: $spacer-sm;
+    }
+  }
 }
 
+@mixin links {
+  font-size: $font-size-xs;
+  width: fit-content;
+  overflow: hidden;
+  $underline-height: 0.08em;
+  position: relative;
+  background-color: $surface-color-2;
+  color: $default-color;
+  text-decoration-color: $surface-color-3;
+  text-decoration-thickness: $underline-height;
+  text-underline-offset: $spacer-sm;
+  padding: $spacer-sm;
+  display: block;
+  white-space: nowrap;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: $spacer-xs + $underline-height;
+    left: 0;
+    display: block;
+    width: calc(100% - calc($spacer-sm * 2));
+    height: 0;
+    background-color: $accent-color;
+    z-index: 10;
+    padding-inline: $spacer-lg;
+    margin-inline-start: $spacer-sm;
+  }
+  &:hover {
+    &::after {
+      animation: underline-hover 0.5s ease-in-out forwards;
+      padding-inline: $spacer-sm;
+    }
+  }
+}
+
+@keyframes underline-hover {
+  from {
+    height: 0;
+  }
+  to {
+    height: 0.08em;
+  }
+}
 .dropdown-details {
   @include dropdown-details;
   @include dropdown-details-custom;
   //dropdown menu
   .dropdown-menu {
-    background-color: $background-color;
     display: flex;
     flex-direction: column;
   }
@@ -113,28 +173,39 @@
 //initial state
 .dropdown-over {
   position: relative;
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
+  @include dropdown-details-custom;
+  .dropdown-link {
+    display: grid;
+    grid-template-columns: minmax($spacer-lg, auto) 1fr;
+    align-items: center;
+  }
+
   svg {
     width: $icon-xs;
-    height: $icon-xs;
     fill: $default-color;
     transition: all 0.3s ease;
+    vertical-align: middle;
   }
   .dropdown-menu {
+    background-color: $surface-color-2;
     overflow: hidden;
     position: absolute;
-    top: 90%;
-    left: -1em;
+    top: 100%;
+    width: calc(100% + $spacer-sm * 2);
+    left: -$spacer-sm;
     height: 0;
     opacity: 0;
-    transition: all 0.3s ease;
-    background-color: $background-color;
+    padding-inline: $spacer-sm;
+
+    transition: height 0.3s ease, opacity 0.3s ease;
     li {
+      width: 100%;
       a {
-        padding: 1em;
-        white-space: nowrap;
+        @include links;
+      }
+      p {
+        font-size: $font-size-xs;
+        padding: $spacer-sm;
       }
     }
     li:last-child {
@@ -157,6 +228,8 @@
   .dropdown-menu {
     height: fit-content;
     opacity: 1;
+    border-inline: $spacer-sm solid $surface-color;
+    transition: 0;
   }
 }
 

@@ -157,3 +157,16 @@ $card-padding: $spacer-md;
   height: $card-height;
   padding: $card-padding;
 }
+
+body {
+  p {
+    font-size: $font-size-sm;
+  }
+}
+
+#search-results-popover {
+  background-color: $surface-color-3;
+}
+#aas-search-input {
+  background-color: $surface-color-2;
+}
