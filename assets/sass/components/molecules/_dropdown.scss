@@ -1,6 +1,28 @@
 @use "../../variables" as *;
 @use "../../design_system" as *;
 @use "./utilities/flex" as *;
+@use "../atoms/links" as *;
+@use "../atoms/list" as *;
+@mixin dropdown-summary {
+  display: grid;
+  grid-template-columns: minmax($spacer-lg, auto) 1fr;
+  align-items: center;
+  width: 100%;
+}
+
+@mixin dropdown-svg-open {
+  background-color: $accent-color-2;
+  transition: all 0.2s step-start;
+  padding: $spacer-xs;
+  svg {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    fill: $default-color;
+    transition: all 0.2s ease;
+  }
+}
 
 @mixin dropdown-details($color: $accent-color) {
   ::marker {
@@ -9,47 +31,85 @@
     display: none;
   }
 
+  summary::-webkit-details-marker {
+    display: none;
+  }
   summary {
-    display: grid;
-    grid-template-columns: $spacer-lg 1fr;
-    align-items: center;
-    width: 100%;
-
-    //SVG
-    &:hover {
-      cursor: pointer;
-    }
-    svg {
-      box-sizing: border-box;
-      width: $icon-sm;
-      fill: $default-color;
-    }
+    @include dropdown-summary;
   }
   &[open] {
-    svg {
-      -webkit-transform: rotate(45deg);
-      -moz-transform: rotate(45deg);
-      -ms-transform: rotate(45deg);
-      transform: rotate(45deg);
-      fill: $color;
-      margin-inline: $spacer-xs;
+    .svg-container {
+      @include dropdown-svg-open;
     }
   }
   summary:focus-visible,
   a:focus-visible {
-    outline: $spacer-xs solid $color;
+    outline: $spacer-xs solid $accent-color;
     padding-inline: $spacer-xs;
   }
   &:focus-within:has(summary:focus-visible),
   &:focus-within:has(a:focus-visible) {
-    outline: $spacer-xs solid $color;
+    outline: $spacer-xs solid $accent-color;
     summary {
       outline: none;
     }
   }
 }
 
-@mixin dropdown-details-custom {
+@mixin dropdown-hover($color: $accent-color) {
+  //hover and focus states
+  position: relative;
+  &:focus-visible {
+    outline: $spacer-xs solid $color;
+    outline-offset: calc($spacer-xs * -1);
+  }
+  &:focus-within:has(.dropdown-link:focus-visible) {
+    outline: $spacer-xs solid $color;
+    .dropdown-menu {
+      outline: none;
+    }
+  }
+  .dropdown-link {
+    @include dropdown-summary;
+  }
+  .dropdown-menu {
+    //position absolute
+    overflow: hidden;
+    position: absolute;
+    z-index: 10;
+    top: 100%;
+    width: 100%;
+    left: 0;
+
+    // animation
+    height: 0;
+    opacity: 0;
+  }
+}
+
+@mixin dropdown-hover-open {
+  //hover and focus states
+  &:has(.dropdown-link.open),
+  &:hover,
+  &:focus,
+  &:focus-within {
+    .svg-container {
+      @include dropdown-svg-open;
+    }
+    .dropdown-menu {
+      // animation
+      height: fit-content;
+      opacity: 1;
+    }
+    // to match details dropdown
+    .dropdown-menu {
+      border-inline: $spacer-sm solid $surface-color;
+      transition: 0;
+    }
+  }
+}
+
+@mixin dropdown-custom {
   border-inline: $spacer-sm solid $surface-color;
   margin-block: $spacer-sm;
   summary,
@@ -60,37 +120,26 @@
     a {
       @include links;
     }
-    .dropdown-title {
-      font-size: $font-size-sm;
-      background-color: $surface-color;
-      padding: $spacer-sm;
-      cursor: pointer;
-    }
     //SVG
-    &:hover {
-      cursor: pointer;
-      .svg-container {
-        background-color: $accent-color-2;
-        transition: all 0.2s step-start;
-        width: fit-content;
-        padding: $spacer-xs;
-        svg {
-          fill: $surface-color-2;
-          -webkit-transform: rotate(45deg);
-          -moz-transform: rotate(45deg);
-          -ms-transform: rotate(45deg);
-          transform: rotate(45deg);
-        }
-      }
-    }
     .svg-container {
       display: flex;
       svg {
         vertical-align: middle;
         width: $icon-xs;
         margin: auto;
+        transition: all 0.3s ease;
+        fill: $default-color;
       }
     }
+    &:hover {
+      .svg-container {
+        @include dropdown-svg-open;
+      }
+    }
+  }
+  .dropdown-title {
+    padding: $spacer-sm;
+    cursor: pointer;
   }
   &[open] {
     .svg-container {
@@ -124,16 +173,28 @@
       }
     }
   }
+
   .dropdown-menu {
     background-color: $surface-color-2;
-    padding-block: $spacer-sm;
+    padding: $spacer-sm;
     border-block-end: $spacer-sm solid $surface-color;
+    font-size: $font-size-sm;
+    overflow-y: auto;
+    width: 100%;
+    left: 0;
+
+    li:last-child {
+      margin-bottom: $spacer-sm;
+    }
+    li {
+      display: grid;
+      grid-template-columns: $spacer-md 1fr;
+      align-items: center;
+      @include list;
+    }
+
     a {
       @include links;
-    }
-    p {
-      font-size: $font-size-sm;
-      padding: $spacer-sm;
     }
     & > * {
       margin-bottom: $spacer-xs;
@@ -144,185 +205,36 @@
   }
 }
 
-@mixin links {
-  font-size: $font-size-sm;
-  width: fit-content;
-  overflow: hidden;
-  $underline-height: 0.08em;
-  position: relative;
-  background-color: $surface-color-2;
-  color: $default-color;
-  text-decoration-color: $surface-color-3;
-  text-decoration-thickness: $underline-height;
-  text-underline-offset: $spacer-sm;
-  padding: $spacer-sm;
-  display: block;
-  white-space: nowrap;
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: $spacer-xs + $underline-height;
-    left: 0;
-    display: block;
-    width: calc(100% - calc($spacer-sm * 2));
-    height: 0;
-    background-color: $accent-color;
-    z-index: 10;
-    padding-inline: $spacer-lg;
-    margin-inline-start: $spacer-sm;
-  }
-  &:hover {
-    &::after {
-      animation: underline-hover 0.1s ease-in-out forwards;
-      padding-inline: $spacer-sm;
-    }
-  }
-}
-
-@keyframes underline-hover {
-  from {
-    height: 0;
-  }
-  to {
-    height: 0.08em;
+@mixin dropdown-custom-hover {
+  .dropdown-menu {
+    width: calc(100% + $spacer-sm * 2);
+    left: -$spacer-sm;
   }
 }
 
 .dropdown-details {
-  @include dropdown-details($accent-color);
-  @include dropdown-details-custom;
+  @include dropdown-details;
+  @include dropdown-custom;
 }
 
-//initial state
-.dropdown-over {
-  @include dropdown-details($accent-color);
-  @include dropdown-details-custom;
-  position: relative;
-  &:focus-visible {
-    outline: $spacer-xs solid $accent-color;
-    outline-offset: calc($spacer-xs * -1);
-  }
-  &:focus-within:has(.dropdown-link:focus-visible) {
-    outline: $spacer-xs solid $accent-color;
-    .dropdown-menu {
-      outline: none;
-    }
-  }
-  .dropdown-link {
-    display: grid;
-    grid-template-columns: minmax($spacer-lg, auto) 1fr;
-    align-items: center;
-  }
-
-  svg {
-    width: $icon-xs;
-    fill: $default-color;
-    transition: all 0.3s ease;
-    vertical-align: middle;
-  }
-  .dropdown-menu {
-    background-color: $surface-color-2;
-    overflow: hidden;
-    position: absolute;
-    z-index: 10;
-    top: 100%;
-    width: calc(100% + $spacer-sm * 2);
-    left: -$spacer-sm;
-    height: 0;
-    opacity: 0;
-    padding-inline: $spacer-sm;
-    li {
-      position: relative;
-      z-index: 10;
-      width: 100%;
-      a {
-        @include links;
-        position: relative;
-        z-index: 10;
-      }
-      p {
-        position: relative;
-        z-index: 10;
-        padding: $spacer-sm;
-      }
-    }
-    li:last-child {
-      margin-bottom: $spacer-sm;
-    }
-  }
-}
-
-//hover and focus states
-.dropdown-over:has(.dropdown-link.open),
-.dropdown-toggle:hover,
-.dropdown-toggle:focus,
-.dropdown-toggle:focus-within {
-  svg {
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-    fill: var(--accent-color-2);
-    transition: all 0.3s ease;
-    cursor: pointer;
-  }
-  .dropdown-menu {
-    height: fit-content;
-    opacity: 1;
-    border-inline: $spacer-sm solid $surface-color;
-    transition: 0;
-  }
-}
-
-.dropdown-footer {
-  .dropdown-menu {
-    left: -1em;
-    top: auto;
-    bottom: 100%;
-    li:last-child {
-      margin-bottom: 0;
-    }
-  }
-}
-.dropdown-over-container {
+.dropdown-hover-container {
   height: 600px;
   overflow: hidden;
   padding-inline: $spacer-sm;
 }
 
-.dropdown {
-  .dropdown-menu {
-    font-size: $font-size-sm;
-    overflow-y: auto;
-    li {
-      display: grid;
-      grid-template-columns: $spacer-md 1fr;
-      align-items: center;
-      width: 100%;
-    }
-    li:before {
-      content: "";
-      display: block;
-      width: $spacer-xs;
-      aspect-ratio: 1/1;
-      background-color: $default-color;
-      border-radius: $border-radius-circle;
-      margin-inline: $spacer-sm;
-      align-self: baseline;
-      margin-top: $font-size-xs;
-    }
-  }
-}
-
-summary::-webkit-details-marker {
-  display: none;
+.dropdown-hover {
+  @include dropdown-hover($accent-color);
+  @include dropdown-hover-open;
+  @include dropdown-custom;
+  @include dropdown-custom-hover;
 }
 
 .nav-system header {
   background-color: $surface-color;
   position: relative;
   display: grid;
-  .dropdown-over {
+  .dropdown-hover {
     position: initial;
     margin-block: 0;
     height: 100%;
@@ -353,6 +265,17 @@ summary::-webkit-details-marker {
   .dropdown-details {
     background-color: $surface-color-2;
     border: none;
+  }
+}
+
+.dropdown-footer {
+  .dropdown-menu {
+    left: -1em;
+    top: auto;
+    bottom: 100%;
+    li:last-child {
+      margin-bottom: 0;
+    }
   }
 }
 

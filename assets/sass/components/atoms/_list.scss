@@ -1,0 +1,22 @@
+@use "../../variables" as *;
+
+@mixin list {
+  &::before {
+    content: "";
+    display: block;
+    width: $spacer-xs;
+    aspect-ratio: 1/1;
+    background-color: $default-color;
+    border-radius: $border-radius-circle;
+    margin-inline: $spacer-sm;
+    align-self: baseline;
+    margin-top: $font-size-xs;
+  }
+  & > * {
+    padding: $spacer-xs;
+    font-size: $font-size-sm;
+    width: fit-content;
+    overflow: hidden;
+    display: block;
+  }
+}

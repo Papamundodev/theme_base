@@ -1,0 +1,39 @@
+@use "../../variables" as *;
+@use "../../design_system" as *;
+@use "./utilities/flex" as *;
+
+@mixin links {
+  position: relative;
+  color: $default-color;
+  text-decoration-color: $surface-color-3;
+  text-decoration-thickness: $underline-height;
+  text-underline-offset: $spacer-sm;
+  width: fit-content;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: $underline-height;
+    left: 0;
+    display: block;
+    width: calc(100% - $spacer-sm);
+    height: 0;
+    background-color: $accent-color;
+    z-index: 10;
+    padding-inline: $spacer-lg;
+    margin-inline-start: $spacer-xs;
+  }
+  &:hover {
+    &::after {
+      animation: underline-hover 0.1s ease-in-out forwards;
+    }
+  }
+}
+
+@keyframes underline-hover {
+  from {
+    height: 0;
+  }
+  to {
+    height: $underline-height;
+  }
+}

@@ -23,7 +23,7 @@ $theme_location = $args['theme_location'] ?? "header";
 
         <!-- desktop dropdown -->
 
-        <div name="navmenu-header-dropdown-<?=$theme_location?>" class="dropdown dropdown-over dropdown-<?=$theme_location === 'footer' ? "footer" : "header" ?>">
+        <div name="navmenu-header-dropdown-<?=$theme_location?>" class="dropdown dropdown-hover dropdown-<?=$theme_location === 'footer' ? "footer" : "header" ?>">
             <a href="<?=$item['url']?>" target="<?=$item['target']?>" rel="<?= $item['target'] === '_blank' ? 'noopener' : '' ?>" class="nav-link"><?=$item['title']?></a>
             <svg class="plus-icon-svg" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
               <path id="path-1" d="M32 128C32 123.582 35.5817 120 40 120L216 120C220.418 120 224 123.582 224 128V128C224 132.418 220.418 136 216 136H128H40C35.5817 136 32 132.418 32 128V128Z" />

@@ -246,3 +246,6 @@ $wrapper-padding-inline: $spacer-md;
 $border-padding-inline: calc(
   $wrapper-border-inline * 2 + $wrapper-padding-inline * 2
 );
+
+/* ------- Underline ------- */
+$underline-height: 0.08em;

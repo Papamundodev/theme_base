@@ -440,29 +440,25 @@ $content = wpautop($object->post_content);
                 </div>
                 <div class="">
                     <div class="bg-background-color">
-                        <div class="dropdown-over-container">
-                            <nav aria-label="navigation" tabindex="0" class="dropdown-over dropdown-toggle dropdown dropdown-over-default dropdown">
-                                <div class="dropdown-link ">
-                                    <div class="svg-container">
-                                        <svg class="plus-icon-svg" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
-                                            <path id="path-1" d="M32 128C32 123.582 35.5817 120 40 120L216 120C220.418 120 224 123.582 224 128V128C224 132.418 220.418 136 216 136H128H40C35.5817 136 32 132.418 32 128V128Z" />
-                                            <path id="path-2" d="M128 224C123.582 224 120 220.418 120 216V40C120 35.5817 123.582 32 128 32V32C132.418 32 136 35.5817 136 40V128V216C136 220.418 132.418 224 128 224V224Z" />
-                                        </svg> 
-                                    </div>
-                                    <a class="dropdown-title" role="button" class="">this is a nice dropdown over.</a> 
+                        <nav aria-label="navigation" tabindex="0" class="dropdown-hover dropdown-toggle dropdown dropdown-hover-default dropdown">
+                            <div class="dropdown-link ">
+                                <div class="svg-container">
+                                    <svg class="plus-icon-svg" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                                        <path id="path-1" d="M32 128C32 123.582 35.5817 120 40 120L216 120C220.418 120 224 123.582 224 128V128C224 132.418 220.418 136 216 136H128H40C35.5817 136 32 132.418 32 128V128Z" />
+                                        <path id="path-2" d="M128 224C123.582 224 120 220.418 120 216V40C120 35.5817 123.582 32 128 32V32C132.418 32 136 35.5817 136 40V128V216C136 220.418 132.418 224 128 224V224Z" />
+                                    </svg> 
                                 </div>
-                                <ul class="dropdown-menu">
-                                    <li><p href="">that allows the header/summary to be clickable.</p></li>
-                                    <li><p href="">the content of the header is limited to 1 line and therefor the width of the dropdown is limited to the width of the container.
-                                     You can always add a scroll if its really needed.
-                                    </p></li>
-                                    <li><p href="">ist supported in all platform in the new os versions.</p></li>
-                                    <li><p href="">you have to be carefull of the content under it and the superposition.</p></li>
-                                    <li><p href="">it is weardly working on click on IOS .</p></li>
-                                    <li><p href="">somehow the when i try to tab back from the next component, the focus get lost.</p></li>
-                                </ul>
-                            </nav>
-                        </div>
+                                <a class="dropdown-title" role="button" class="">this is a nice dropdown hover.</a> 
+                            </div>
+                            <ul class="dropdown-menu">
+                                <li><p>that allows the header/summary to be clickable.</p></li>
+                                <li><p>the content of the header is limited to 1 line and therefor the width of the dropdown is limited to the width of the container.
+                                    You can always add a scroll if its really needed.
+                                </p></li>
+                                <li><p>ist supported in all platform</p></li>
+                                <li><p>you have to be carefull of the content under it and the superposition.</p></li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -483,7 +479,7 @@ $content = wpautop($object->post_content);
                  $menu_items = \Theme_base\Base::wp_get_menu_array($theme_location);
                  ?>
                 <?php if(is_array($menu_items) && count($menu_items) > 0): ?>
-                <nav aria-label="navigation" class="dropdown-over  dropdown dropdown-<?=$theme_location === 'footer' ? "footer" : "header" ?>">
+                <nav aria-label="navigation" class="dropdown-hover dropdown dropdown-<?=$theme_location === 'footer' ? "footer" : "header" ?>">
                     <div class="dropdown-link dropdown-button">
                         <div class="svg-container">
                             <svg class="plus-icon-svg" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
