@@ -78,12 +78,13 @@
     position: absolute;
     z-index: 10;
     top: 100%;
-    width: 100%;
     left: 0;
 
     // animation
     height: 0;
     opacity: 0;
+    padding-block: 0;
+    width: 0;
   }
 }
 
@@ -91,6 +92,30 @@
   //hover and focus states
   &:has(.dropdown-link.open),
   &:hover,
+  &:focus,
+  &:focus-within {
+    .svg-container {
+      @include dropdown-svg-open;
+    }
+    .dropdown-menu {
+      // animation
+      height: fit-content;
+      opacity: 1;
+      width: clamp(300px, calc(100% + $spacer-sm * 2), 100vw);
+      padding-block: $spacer-sm;
+    }
+    // to match details dropdown
+    .dropdown-menu {
+      border-inline: $spacer-sm solid $surface-color;
+      transition: 0;
+    }
+  }
+}
+
+@mixin dropdown-on-click-open {
+  //hover and focus states
+  &.open,
+  &:has(.dropdown-link.open),
   &:focus,
   &:focus-within {
     .svg-container {
@@ -111,7 +136,6 @@
 
 @mixin dropdown-custom {
   border-inline: $spacer-sm solid $surface-color;
-  margin-block: $spacer-sm;
   summary,
   .dropdown-link {
     font-size: $font-size-sm;
@@ -176,7 +200,6 @@
 
   .dropdown-menu {
     background-color: $surface-color-2;
-    padding: $spacer-sm;
     border-block-end: $spacer-sm solid $surface-color;
     font-size: $font-size-sm;
     overflow-y: auto;
@@ -212,6 +235,13 @@
   }
 }
 
+@mixin dropdown-custom-open {
+  .dropdown-menu {
+    width: calc(100% + $spacer-sm * 2);
+    left: -$spacer-sm;
+  }
+}
+
 .dropdown-details {
   @include dropdown-details;
   @include dropdown-custom;
@@ -230,41 +260,27 @@
   @include dropdown-custom-hover;
 }
 
-.nav-system header {
-  background-color: $surface-color;
-  position: relative;
-  display: grid;
-  .dropdown-hover {
-    position: initial;
-    margin-block: 0;
-    height: 100%;
-    .dropdown-link {
-      padding-block: 0;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      .svg-container {
-        display: none;
+.dropdown-on-click {
+  @include dropdown-hover($accent-color);
+  @include dropdown-hover-open;
+  @include dropdown-custom;
+  @include dropdown-custom-open;
+}
+
+.nav-system {
+  header {
+    .navmenu {
+      background-color: $surface-color;
+      padding-inline: $spacer-md;
+      li a {
+        @include links;
+      }
+      .dropdown-hover {
+        min-height: min($spacer-xxl, 100%);
+        .dropdown-menu {
+        }
       }
     }
-  }
-
-  .dropdown-menu {
-    width: 100%;
-    @include flex-column-center;
-    left: 0;
-    li {
-      margin-bottom: 1em;
-      width: fit-content;
-    }
-  }
-  summary {
-    background-color: $surface-color-2;
-  }
-  .dropdown-details {
-    background-color: $surface-color-2;
-    border: none;
   }
 }
 

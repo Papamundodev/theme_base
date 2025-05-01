@@ -383,6 +383,7 @@ $content = wpautop($object->post_content);
             </div>
             <div class=" flex-auto">
                 <div class="">
+                    <h2 class="">Dropdown mobile and accordion</h2>
                     <div class="bg-background-color">
                         <div class="" aria-label="dropdown-navigation">
                             <details name="dropdown-details" class="dropdown-details dropdown">
@@ -440,6 +441,7 @@ $content = wpautop($object->post_content);
                 </div>
                 <div class="">
                     <div class="bg-background-color">
+                        <h2 class="">Dropdown hover desktop</h2>
                         <nav aria-label="navigation" tabindex="0" class="dropdown-hover dropdown-toggle dropdown dropdown-hover-default dropdown">
                             <div class="dropdown-link ">
                                 <div class="svg-container">
@@ -479,39 +481,11 @@ $content = wpautop($object->post_content);
                  $menu_items = \Theme_base\Base::wp_get_menu_array($theme_location);
                  ?>
                 <?php if(is_array($menu_items) && count($menu_items) > 0): ?>
-                <nav aria-label="navigation" class="dropdown-hover dropdown dropdown-<?=$theme_location === 'footer' ? "footer" : "header" ?>">
-                    <div class="dropdown-link dropdown-button">
-                        <div class="svg-container">
-                            <svg class="plus-icon-svg" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
-                                <path id="path-1" d="M32 128C32 123.582 35.5817 120 40 120L216 120C220.418 120 224 123.582 224 128V128C224 132.418 220.418 136 216 136H128H40C35.5817 136 32 132.418 32 128V128Z" />
-                                <path id="path-2" d="M128 224C123.582 224 120 220.418 120 216V40C120 35.5817 123.582 32 128 32V32C132.418 32 136 35.5817 136 40V128V216C136 220.418 132.418 224 128 224V224Z" />
-                            </svg> 
-                        </div>
-                        <a role="button" class="dropdown-title nav-link">Menu Mobile</a>
-                    </div>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <details name="dropdown-details" class="dropdown-details dropdown">
-                                <summary class="default-color">
-                                    <div class="svg-container">
-                            <svg class="plus-icon-svg" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
-                                <path id="path-1" d="M32 128C32 123.582 35.5817 120 40 120L216 120C220.418 120 224 123.582 224 128V128C224 132.418 220.418 136 216 136H128H40C35.5817 136 32 132.418 32 128V128Z" />
-                                <path id="path-2" d="M128 224C123.582 224 120 220.418 120 216V40C120 35.5817 123.582 32 128 32V32C132.418 32 136 35.5817 136 40V128V216C136 220.418 132.418 224 128 224V224Z" />
-                            </svg>  
-                        </div>
-                        <p class="dropdown-title">Le menu burger (dev)</p>
-                    </summary>
-                    <ul class="">
-                        <li><p class=" " href="">i need to add the Menu burger</p></li>
-                        <li><p class=" " href="">Also animation.</p></li>
-                        <li><p class=" " href="">its supported everywhere.</p></li>
-                        <li><p class=" " href="">let's seperate it in a mixin.</p></li>
-                    </ul>
-                    </details>
-                    </li>
+                <nav id="navmenu-<?=$theme_location?>" class="navmenu navmenu-desktop">
+                <ul class="flex-center gap-xl">
                     <?php foreach($menu_items as $item): ?>
                     <?php if(empty($item['children'])):?>
-                            <li class="<?= \Theme_base\Base::get_active_class($item) ?>">
+                        <li class="<?= \Theme_base\Base::get_active_class($item) ?>">
                         <a class="nav-link" 
                         href="<?=$item['url']?>"
                         target="<?=$item['target']?>"
@@ -519,30 +493,35 @@ $content = wpautop($object->post_content);
                         ><?=$item['title']?></a>
                         </li>
                     <?php else: ?>
-                <details class="dropdown-details dropdown">
-                    <summary class="default-color">
-                        <div class="svg-container">
-                            <svg class="plus-icon-svg" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
-                                <path id="path-1" d="M32 128C32 123.582 35.5817 120 40 120L216 120C220.418 120 224 123.582 224 128V128C224 132.418 220.418 136 216 136H128H40C35.5817 136 32 132.418 32 128V128Z" />
-                                <path id="path-2" d="M128 224C123.582 224 120 220.418 120 216V40C120 35.5817 123.582 32 128 32V32C132.418 32 136 35.5817 136 40V128V216C136 220.418 132.418 224 128 224V224Z" />
-                            </svg> 
-                        </div>
-                        <a class="dropdown-title"><?=$item['title']?></a>
-                    </summary>
-                    <ul class="">
-                        <?php foreach($item['children'] as $child): ?>
-                        <?php if(empty($child['children'])):?>
-                            <li class="<?= \Theme_base\Base::get_active_class($child) ?>">
-                        <a class="nav-link" 
-                        href="<?=$child['url']?>"
-                        target="<?=$child['target']?>"
-                        rel="<?= $child['target'] === '_blank' ? 'noopener' : '' ?>"
-                        ><?=$child['title']?></a>
-                        </li>
-                    <?php endif; ?>
-                    <?php endforeach; ?>
-                    </ul>
-                </details>
+
+                        <nav aria-label="navigation" tabindex="0" class="dropdown-hover dropdown">
+                            <div class="dropdown-link ">
+                                <div class="svg-container">
+                                    <svg class="plus-icon-svg" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                                        <path id="path-1" d="M32 128C32 123.582 35.5817 120 40 120L216 120C220.418 120 224 123.582 224 128V128C224 132.418 220.418 136 216 136H128H40C35.5817 136 32 132.418 32 128V128Z" />
+                                        <path id="path-2" d="M128 224C123.582 224 120 220.418 120 216V40C120 35.5817 123.582 32 128 32V32C132.418 32 136 35.5817 136 40V128V216C136 220.418 132.418 224 128 224V224Z" />
+                                    </svg> 
+                                </div>
+                                <a class="dropdown-title" role="button" class=""><?=$item['title']?></a> 
+                            </div>
+                            <ul class="dropdown-menu">
+                                <?php foreach($item['children'] as $child): ?>
+                                <li class="<?= \Theme_base\Base::get_active_class($child) ?>">
+                                    <a  class="nav-link"
+                                    href="<?=$child['url']?>"
+                                    title="<?=$child['title']?>"
+                                    target="<?=$child['target']?>"
+                                    rel="<?= $child['target'] === '_blank' ? 'noopener' : '' ?>"
+                                    ><?=$child['title']?></a>
+                                </li>
+                                <?php endforeach; ?>
+                                <li class="dropdown-footer">
+                                    <p>Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.</p>
+                                </li>
+                            </ul>
+                        </nav>
+
+                        <!-- desktop dropdown -->
                     <?php endif; ?>
                     <?php endforeach; ?>
                 </ul>
