@@ -5,7 +5,7 @@ $content = $post->post_content;
 $content = wp_trim_words($content, 100, '...');
 $featured_image = get_the_post_thumbnail_url($post, 'medium');
 ?>
-<article class="post-preview">
+<article role="article" class="post-preview">
     <div class="">
         <h2 class=""><?=$title; ?></h2>
         <p class=""><?=$content; ?></p>

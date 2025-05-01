@@ -16,6 +16,9 @@
 @use "./design_system" as *;
 @use "./typography" as *;
 
+@view-transition {
+  navigation: auto;
+}
 /* Box sizing rules */
 *,
 *::before,
@@ -38,6 +41,7 @@ html {
 body {
   background-color: $background-color;
   color: $default-color;
+  overflow-x: hidden;
 }
 
 /* Remove default margin in favour of better control in authored CSS */

@@ -6,6 +6,15 @@ document.addEventListener("DOMContentLoaded", () => {
     burger.classList.toggle("open");
   });
 
+  const dropdowns = document.querySelectorAll(
+    "header .dropdown-over .dropdown-button"
+  );
+  dropdowns.forEach((dropdown) => {
+    dropdown.addEventListener("click", () => {
+      dropdown.classList.toggle("open");
+    });
+  });
+
   const popover = document.getElementById("navmenu-header-mobile");
   popover.addEventListener("toggle", (event) => {
     if (event.newState === "closed") {

@@ -2,12 +2,13 @@
 @use "../../design_system" as *;
 @use "./utilities/flex" as *;
 
-@mixin dropdown-details {
+@mixin dropdown-details($color: $accent-color) {
   ::marker {
     content: "";
     visibility: hidden;
     display: none;
   }
+
   summary {
     display: grid;
     grid-template-columns: $spacer-lg 1fr;
@@ -30,8 +31,20 @@
       -moz-transform: rotate(45deg);
       -ms-transform: rotate(45deg);
       transform: rotate(45deg);
-      fill: $accent-color;
+      fill: $color;
       margin-inline: $spacer-xs;
+    }
+  }
+  summary:focus-visible,
+  a:focus-visible {
+    outline: $spacer-xs solid $color;
+    padding-inline: $spacer-xs;
+  }
+  &:focus-within:has(summary:focus-visible),
+  &:focus-within:has(a:focus-visible) {
+    outline: $spacer-xs solid $color;
+    summary {
+      outline: none;
     }
   }
 }
@@ -41,25 +54,36 @@
   margin-block: $spacer-sm;
   summary,
   .dropdown-link {
-    font-size: $font-size-xs;
+    font-size: $font-size-sm;
     padding-block: $spacer-sm;
     background-color: $surface-color;
-    p,
     a {
       @include links;
+    }
+    .dropdown-title {
       font-size: $font-size-sm;
       background-color: $surface-color;
-      padding-inline: $spacer-sm;
+      padding: $spacer-sm;
+      cursor: pointer;
     }
     //SVG
     &:hover {
       cursor: pointer;
-      svg {
-        fill: $accent-color-2;
+      .svg-container {
+        background-color: $accent-color-2;
+        transition: all 0.2s step-start;
+        width: fit-content;
+        padding: $spacer-xs;
+        svg {
+          fill: $surface-color-2;
+          -webkit-transform: rotate(45deg);
+          -moz-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
       }
     }
     .svg-container {
-      background-color: $surface-color-2;
       display: flex;
       svg {
         vertical-align: middle;
@@ -108,8 +132,11 @@
       @include links;
     }
     p {
-      font-size: $font-size-xs;
+      font-size: $font-size-sm;
       padding: $spacer-sm;
+    }
+    & > * {
+      margin-bottom: $spacer-xs;
     }
   }
   &::details-content {
@@ -118,7 +145,7 @@
 }
 
 @mixin links {
-  font-size: $font-size-xs;
+  font-size: $font-size-sm;
   width: fit-content;
   overflow: hidden;
   $underline-height: 0.08em;
@@ -160,17 +187,27 @@
     height: 0.08em;
   }
 }
+
 .dropdown-details {
-  @include dropdown-details;
+  @include dropdown-details($accent-color);
   @include dropdown-details-custom;
 }
 
-//desktop dropdown
-
 //initial state
 .dropdown-over {
-  position: relative;
+  @include dropdown-details($accent-color);
   @include dropdown-details-custom;
+  position: relative;
+  &:focus-visible {
+    outline: $spacer-xs solid $accent-color;
+    outline-offset: calc($spacer-xs * -1);
+  }
+  &:focus-within:has(.dropdown-link:focus-visible) {
+    outline: $spacer-xs solid $accent-color;
+    .dropdown-menu {
+      outline: none;
+    }
+  }
   .dropdown-link {
     display: grid;
     grid-template-columns: minmax($spacer-lg, auto) 1fr;
@@ -187,6 +224,7 @@
     background-color: $surface-color-2;
     overflow: hidden;
     position: absolute;
+    z-index: 10;
     top: 100%;
     width: calc(100% + $spacer-sm * 2);
     left: -$spacer-sm;
@@ -194,11 +232,17 @@
     opacity: 0;
     padding-inline: $spacer-sm;
     li {
+      position: relative;
+      z-index: 10;
       width: 100%;
       a {
         @include links;
+        position: relative;
+        z-index: 10;
       }
       p {
+        position: relative;
+        z-index: 10;
         padding: $spacer-sm;
       }
     }
@@ -208,8 +252,11 @@
   }
 }
 
-//hover state
-.dropdown-over:hover {
+//hover and focus states
+.dropdown-over:has(.dropdown-link.open),
+.dropdown-toggle:hover,
+.dropdown-toggle:focus,
+.dropdown-toggle:focus-within {
   svg {
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
@@ -240,12 +287,12 @@
 .dropdown-over-container {
   height: 600px;
   overflow: hidden;
+  padding-inline: $spacer-sm;
 }
 
 .dropdown {
   .dropdown-menu {
     font-size: $font-size-sm;
-    max-height: 300px;
     overflow-y: auto;
     li {
       display: grid;
@@ -270,3 +317,63 @@
 summary::-webkit-details-marker {
   display: none;
 }
+
+.nav-system header {
+  background-color: $surface-color;
+  position: relative;
+  display: grid;
+  .dropdown-over {
+    position: initial;
+    margin-block: 0;
+    height: 100%;
+    .dropdown-link {
+      padding-block: 0;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .svg-container {
+        display: none;
+      }
+    }
+  }
+
+  .dropdown-menu {
+    width: 100%;
+    @include flex-column-center;
+    left: 0;
+    li {
+      margin-bottom: 1em;
+      width: fit-content;
+    }
+  }
+  summary {
+    background-color: $surface-color-2;
+  }
+  .dropdown-details {
+    background-color: $surface-color-2;
+    border: none;
+  }
+}
+
+// .navmenu-list {
+//   @include flex-center;
+//   background-color: $surface-color-2;
+//   li,
+//   .dropdown-link {
+//     & > * {
+//       @include links;
+//       &:hover {
+//         cursor: pointer;
+//       }
+//     }
+//     &.active {
+//       a {
+//         color: $accent-color;
+//       }
+//     }
+//   }
+//   .dropdown-menu {
+//     width: fit-content;
+//   }
+// }
