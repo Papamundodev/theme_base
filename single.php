@@ -8,36 +8,23 @@ $theme_template_name = basename(__FILE__, ".php");
 
     <section class="section"> 
 
-        <div class="wrapper">
+        <div class="">
 
-            <?php
-            $breadcrumbs = \Theme_base\Base::get_breadcrumbs();
-            ?>
+            <div class="wrapper">
 
-            <div id="breadcrumbs" class="breadcrumbs-custom">
-                <ul>
-                    <?php foreach ($breadcrumbs as $breadcrumb): ?>
-                        <?php if ($breadcrumb === end($breadcrumbs)): ?>
-                            <li><?= $breadcrumb['text'] ?></li>
-                        <?php else: ?>
-                            <li><a href="<?= $breadcrumb['url'] ?>"><?= $breadcrumb['text'] ?></a></li><span class="separator">|</span>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
+                <?php
+                if ( have_posts() ):
 
-        </div>
-
-        <?php
-        if ( have_posts() ):
-
-            while ( have_posts() ):
+                    while ( have_posts() ):
             the_post(); 
             get_template_part( 'partials/article/post-full' );
         endwhile;
 
-        endif;
-        ?>
+                    endif;
+                    ?>
+            </div>
+
+        </div>
 
     </section>
 

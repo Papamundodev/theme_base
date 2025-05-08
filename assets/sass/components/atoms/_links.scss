@@ -1,39 +1,65 @@
 @use "../../variables" as *;
-@use "../../design_system" as *;
 @use "./utilities/flex" as *;
+@use "../../typography" as *;
+
+@mixin custom-link {
+  background-color: transparent;
+  font-family: $primary-font;
+  font-weight: 400;
+}
 
 @mixin links {
   position: relative;
-  color: $default-color;
-  text-decoration-color: $surface-color-3;
-  text-decoration-thickness: $underline-height;
-  text-underline-offset: $spacer-sm;
+
+  display: flex;
+  align-items: center;
   width: fit-content;
+
+  cursor: pointer;
+
+  letter-spacing: 0;
+  word-spacing: 0;
+  text-transform: capitalize;
+  text-decoration: none;
+  line-height: 1.5rem;
+}
+
+.btn-links {
+  @include links;
+  @include custom-link;
+}
+
+@mixin link-underline($color: $default-color, $hover-color: $accent-color) {
+  $underline-offset: 0.2rem;
+
+  &:hover {
+    &::after {
+      width: 100%;
+    }
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: $underline-height;
+    background: $color;
+    left: 50%;
+    bottom: -$underline-offset;
+    transform: translate(-50%, 0);
+    transition: width 0.4s ease-in-out;
+  }
   &::after {
     content: "";
     position: absolute;
-    bottom: $underline-height;
-    left: 0;
     display: block;
-    width: calc(100% - $spacer-sm);
-    height: 0;
-    background-color: $accent-color;
-    z-index: 10;
-    padding-inline: $spacer-lg;
-    margin-inline-start: $spacer-xs;
-  }
-  &:hover {
-    &::after {
-      animation: underline-hover 0.1s ease-in-out forwards;
-    }
-  }
-}
-
-@keyframes underline-hover {
-  from {
-    height: 0;
-  }
-  to {
+    width: 0;
     height: $underline-height;
+    background: $hover-color;
+    left: 50%;
+    bottom: -$underline-offset;
+    transform: translate(-50%, 0);
+    transition: width 0.4s ease-in-out;
   }
 }

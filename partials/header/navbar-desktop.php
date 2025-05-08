@@ -6,47 +6,56 @@ $theme_location = $args['theme_location'] ?? "header";
 ?>
 
 
-<?php $menu_items = \Theme_base\Base::wp_get_menu_array($theme_location);?>
-<?php if(is_array($menu_items) && count($menu_items) > 0): ?>
-<nav id="navmenu-<?=$theme_location?>" class="navmenu navmenu-desktop">
-  <ul class="flex-center gap-xl">
-    <?php foreach($menu_items as $item): ?>
-      <?php if(empty($item['children'])):?>
-        <li class="<?= \Theme_base\Base::get_active_class($item) ?>">
-          <a class="nav-link" 
-          href="<?=$item['url']?>"
-          target="<?=$item['target']?>"
-          rel="<?= $item['target'] === '_blank' ? 'noopener' : '' ?>"
-          ><?=$item['title']?></a>
-        </li>
-      <?php else: ?>
+<?php
+                $theme_location = "header";
+                 $menu_items = \Theme_base\Base::wp_get_menu_array($theme_location);
+                 ?>
+                <?php if(is_array($menu_items) && count($menu_items) > 0): ?>
+                <nav id="navmenu-<?=$theme_location?>" class="navmenu navmenu-desktop">
+                <ul class="flex-center gap-xl">
+                    <?php foreach($menu_items as $item): ?>
+                    <?php if(empty($item['children'])):?>
+                        <li class="<?= \Theme_base\Base::get_active_class($item) ?>">
+                        <a class="nav-link" 
+                        href="<?=$item['url']?>"
+                        target="<?=$item['target']?>"
+                        rel="<?= $item['target'] === '_blank' ? 'noopener' : '' ?>"
+                        ><?=$item['title']?></a>
+                        </li>
+                    <?php else: ?>
+                        <li>
+                            <nav aria-label="navigation" tabindex="0" class="dropdown-header dropdown">
+                                <div class="dropdown-link ">
+                                    <div class="svg-container">
+                                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000'><path d='M353.8 853.1H147V646.2L.7 500 147 353.8V147h206.8L500 .7 646.2 147h206.9v206.8L999.3 500 853.1 646.2v206.9H646.2L500 999.3 353.8 853.1z' fill='currentColor'></path></svg>
+                                    </div>
+                                    <p class="dropdown-title nav-link"><?=$item['title']?></p> 
+                                </div>
+                                <ul class="dropdown-menu">
+                                    <?php foreach($item['children'] as $child): ?>
+                                    <li class="<?= \Theme_base\Base::get_active_class($child) ?>">
+                                        <a  class="nav-link"
+                                        href="<?=$child['url']?>"
+                                        title="<?=$child['title']?>"
+                                        target="<?=$child['target']?>"
+                                        rel="<?= $child['target'] === '_blank' ? 'noopener' : '' ?>"
+                                        ><?=$child['title']?></a>
+                                    </li>
+                                    <?php endforeach; ?>
+                                    <li class="dropdown-footer">
+                                        <p>Change the hover on dropdown hover to no background and rotate en hover.</p>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </li>
+                        <!-- desktop dropdown -->
+                    <?php endif; ?>
+                    <?php endforeach; ?>
+                </ul>
+                </nav>
+                <?php endif; ?>
 
-        <!-- desktop dropdown -->
 
-        <div name="navmenu-header-dropdown-<?=$theme_location?>" class="dropdown dropdown-hover dropdown-<?=$theme_location === 'footer' ? "footer" : "header" ?>">
-            <a href="<?=$item['url']?>" target="<?=$item['target']?>" rel="<?= $item['target'] === '_blank' ? 'noopener' : '' ?>" class="nav-link"><?=$item['title']?></a>
-            <svg class="plus-icon-svg" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
-              <path id="path-1" d="M32 128C32 123.582 35.5817 120 40 120L216 120C220.418 120 224 123.582 224 128V128C224 132.418 220.418 136 216 136H128H40C35.5817 136 32 132.418 32 128V128Z" />
-              <path id="path-2" d="M128 224C123.582 224 120 220.418 120 216V40C120 35.5817 123.582 32 128 32V32C132.418 32 136 35.5817 136 40V128V216C136 220.418 132.418 224 128 224V224Z" />
-            </svg>  
-        
-          <ul class="dropdown-menu">
-            <?php foreach($item['children'] as $child): ?>
-              <li class="<?= \Theme_base\Base::get_active_class($child) ?>">
-                <a  class="nav-link"
-                href="<?=$child['url']?>"
-                title="<?=$child['title']?>"
-                target="<?=$child['target']?>"
-                rel="<?= $child['target'] === '_blank' ? 'noopener' : '' ?>"
-                ><?=$child['title']?></a>
-              </li>
-            <?php endforeach; ?>
-          </ul>
-        </div>
-      <?php endif; ?>
-    <?php endforeach; ?>
-  </ul>
-</nav>
-<?php endif; ?>
+    
 
 

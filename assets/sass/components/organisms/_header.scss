@@ -1,7 +1,8 @@
 // HEADER FIXED
 @use "../../variables" as *;
 @use "../../utilities/flex" as *;
-
+@use "../atoms/links" as *;
+@use "../molecules/dropdown" as *;
 @mixin header-fixed {
   &::before {
     content: "";
@@ -21,5 +22,68 @@
     left: 0;
     right: 0;
     z-index: 200;
+  }
+}
+
+//custom header
+header,
+footer {
+  align-content: center;
+  background-color: $background-color;
+  .navmenu {
+    padding-inline: $spacer-md;
+    & > ul {
+      margin: auto;
+      list-style: none;
+    }
+    .dropdown-header {
+      .dropdown-title {
+        @include links;
+      }
+    }
+    li a,
+    .dropdown-title {
+      color: $link-color;
+      @include links;
+      font-weight: 600;
+    }
+
+    li.active > * {
+      color: $link-active-color;
+      &::after {
+        background-color: $link-active-color;
+        width: 100%;
+      }
+      &:hover {
+        color: $link-hover-color;
+        &::after {
+          background-color: $link-hover-color;
+        }
+      }
+    }
+
+    .dropdown-header {
+      min-height: min($spacer-xxl, 100%);
+      @include dropdown-hover;
+      @include dropdown-custom(
+        $dropdown-color: $background-color,
+        $menu-color: $surface-color
+      );
+      @include dropdown-custom-hover-open($color: $background-color);
+      .dropdown-link {
+        padding-inline: 0;
+        .dropdown-title {
+          padding-inline-start: 0;
+        }
+      }
+      &:hover {
+        .dropdown-title {
+          color: $accent-color;
+        }
+        .svg-container {
+          background-color: transparent;
+        }
+      }
+    }
   }
 }

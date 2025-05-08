@@ -1,8 +1,12 @@
 @use "sass:map";
 @use "./variables" as *;
 @use "./utilities/flex" as *;
-
-@mixin flex-col-3-demo($context) {
+@use "./animations" as *;
+@use "./typography" as *;
+@use "./components/atoms/list" as *;
+@use "./components/atoms/links" as *;
+@use "./components/atoms/button" as *;
+@mixin grid-col-3-demo($context) {
   .flex-auto {
     display: flex;
     flex-direction: column;
@@ -27,9 +31,6 @@
           $i: $i + 1;
         }
       }
-      & > * {
-        margin-bottom: $spacer-md;
-      }
     }
   }
   @each $key, $value in $breakpoints {
@@ -41,27 +42,9 @@
           calc(1200px - ($border-padding-inline))
         );
 
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 5%;
-        padding-block: 0;
-        & > * {
-          @if $key == "md" or $key == "sm" {
-            width: 47.5%;
-          } @else {
-            width: 30%;
-          }
-
-          & > * {
-            margin-bottom: calc(
-              ($value - $spacer-lg - $border-padding-inline) * 0.05
-            );
-            @media (width >= 1200px) {
-              margin-bottom: calc((1200px - $border-padding-inline) * 0.05);
-            }
-          }
-        }
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: $spacer-md;
       }
     }
   }
@@ -101,10 +84,139 @@
 
 @mixin card_test {
   & > * {
+    @include flex-column-start;
+  }
+}
+
+@mixin text-content {
+  @include flex-column-start;
+  gap: $spacer-lg;
+  padding-inline: $spacer-md;
+  padding-block: $spacer-xxl;
+  height: 100%;
+  max-width: 100%;
+  margin-inline: auto;
+  @media (width >= $breakpoint-sm) {
+    max-width: 60ch;
+  }
+  @media (width >= $breakpoint-md) {
+    max-width: 75ch;
+  }
+  @media (width >= $breakpoint-lg) {
+    max-width: 90ch;
+  }
+  @media (width >= $breakpoint-xl) {
+    max-width: 120ch;
+  }
+}
+@mixin card_text {
+  .text-content {
+    @include text-content;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: $heading-font;
+      font-size: $font-size-xxl;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: $heading-color;
+      font-weight: $font-weight-600;
+      margin-block-end: $spacer-md;
+    }
+    p {
+      font-family: $text-font;
+      font-size: $font-size-sm;
+      line-height: 1.6;
+      color: $default-color;
+      font-weight: $font-weight-400;
+      word-spacing: -0.3em;
+    }
+    ul {
+      font-family: $text-font;
+      font-size: $font-size-xs;
+      line-height: 1.5;
+      color: $default-color;
+      font-weight: $font-weight-400;
+      word-spacing: -0.3em;
+      border-radius: $border-radius-rounded;
+      @include list;
+    }
+    button {
+      font-family: $heading-font;
+      font-size: $font-size-sm;
+      line-height: 1.5;
+      color: $default-color;
+      font-weight: $font-weight-400;
+      @include btn;
+    }
+
+    a {
+      font-family: $text-font;
+      font-size: $font-size-sm;
+      line-height: 1.5;
+      color: $link-color;
+      font-weight: $font-weight-400;
+      word-spacing: -0.3em;
+    }
+
+    span {
+      font-family: $text-font;
+      font-size: $font-size-xs;
+      line-height: 1.5;
+      color: $link-color;
+      font-weight: $font-weight-400;
+    }
+  }
+}
+.post-full {
+  background-color: $background-color-2;
+  @include card_text;
+  .post-title {
+    background-image: $gradient-color;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+  }
+  .post-content {
+    background: linear-gradient(
+        90deg,
+        $background-color-3 50%,
+        $background-color-4 100%
+      )
+      no-repeat;
+    padding: $spacer-lg;
+    border-radius: $border-radius-rounded;
+    & a {
+      color: $accent-color;
+      &:hover {
+        color: $link-hover-color;
+      }
+    }
+  }
+  .post-date {
+    background-color: $surface-color-2;
+    padding: $spacer-sm;
+    border-radius: $border-radius-rounded;
+    gap: $spacer-sm;
+    @include flex-center;
+  }
+}
+
+@mixin card_background-color {
+  & > * {
     @include flex-column-center;
     margin-inline: auto;
-    & > * {
-      padding: $spacer-md;
+    gap: $spacer-md;
+    padding: $spacer-md;
+    p {
+      font-weight: $font-weight-600;
     }
   }
 }
@@ -125,66 +237,7 @@
   width: map.get($img-sizes, $key);
 }
 
-@mixin flex-col-3 {
-  //mobile
-  .flex-auto {
-    display: flex;
-    flex-direction: column;
-    gap: $spacer-md;
-    width: 100%;
-    & > * {
-      @content;
-      & > * {
-        margin-bottom: $spacer-md;
-      }
-    }
-  }
-  // responsive
-  @each $key, $value in $breakpoints {
-    @media (width >= $value) and (width <= $breakpoint-xxl) and (width >= $breakpoint-sm) {
-      .flex-auto {
-        width: calc($value - $spacer-lg - ($border-padding-inline));
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 5%;
-        padding-block: 0;
-        & > * {
-          @if $key == "md" or $key == "sm" {
-            width: 47.5%;
-          } @else {
-            width: 30%;
-          }
-          @content;
-          & > * {
-            margin-bottom: calc(
-              ($value - $spacer-lg - $border-padding-inline) * 0.05
-            );
-          }
-        }
-      }
-    }
-  }
-  // desktop
-  @media (width >= $breakpoint-xxl) {
-    .flex-auto {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: 5%;
-      width: calc(1200px - ($border-padding-inline));
-      & > * {
-        width: 30%;
-        @content;
-        & > * {
-          margin-bottom: calc((1200px - $border-padding-inline) * 0.05);
-        }
-      }
-    }
-  }
-}
-
-@mixin flex-col-2 {
+@mixin grid-col-3 {
   //mobile
   .flex-auto {
     display: flex;
@@ -197,16 +250,13 @@
   }
   // responsive
   @each $key, $value in $breakpoints {
-    @media (width >= $value) and (width <= $breakpoint-xxl) and (width >= $breakpoint-lg) {
+    @media (width >= $value) and (width <= $breakpoint-xxl) and (width >= $breakpoint-md) {
       .flex-auto {
         width: calc($value - $spacer-lg - ($border-padding-inline));
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 5%;
-        padding-block: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: $spacer-md;
         & > * {
-          width: 47.5%;
           @content;
         }
       }
@@ -215,13 +265,14 @@
   // desktop
   @media (width >= $breakpoint-xxl) {
     .flex-auto {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: 5%;
+      display: grid;
+      grid-template-columns: minmax(auto, 33%) minmax(auto, 33%) minmax(
+          auto,
+          33%
+        );
+      gap: $spacer-md;
       width: calc(1200px - ($border-padding-inline));
       & > * {
-        width: 47.5%;
         @content;
       }
     }
@@ -233,15 +284,19 @@
 .design-system {
   .page-title {
     font-size: $font-size-xxl;
-    color: $accent-color;
-    margin-bottom: $spacer-md;
+    margin-bottom: $spacer-lg;
     text-align: center;
+    line-height: 1.5;
+    @include gradient-text;
   }
 
   .design-system-header {
     padding-inline: $spacer-sm;
     padding-block: $spacer-sm;
     width: 100%;
+    background-color: $surface-color;
+    color: $accent-color;
+    margin-block-end: $spacer-md;
   }
 
   .table-component {
@@ -254,95 +309,79 @@
     }
   }
 
-  .flex-col-3 {
-    padding-block: 0;
-    .design-system-header {
-      margin-bottom: $spacer-md;
+  .font-weight-system {
+    .grid-table {
+      grid-template-rows: auto;
+      padding-block: $spacer-md;
+      background-image: linear-gradient(
+        to bottom,
+        $accent-color,
+        $accent-color-2,
+        $accent-color-3,
+        $accent-color-4,
+        $accent-color-3,
+        $accent-color-2,
+        $accent-color
+      );
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 100% 200%;
+      background-repeat: no-repeat;
+      background-position: 0 0;
+      &:hover {
+        animation: gradient-animation 10s ease-in-out infinite;
+      }
     }
-    @include flex-col-3 {
+  }
+
+  @keyframes gradient-animation {
+    0% {
+      background-position: 100% 0;
+    }
+    30% {
+      background-position: 50% 50%;
+    }
+    50% {
+      background-position: 0 100%;
+    }
+    70% {
+      background-position: 50% 50%;
+    }
+    100% {
+      background-position: 100% 0;
+    }
+  }
+
+  .text-system {
+    .flex-auto {
+      & > * {
+        width: 100%;
+        @include card_text;
+      }
+    }
+  }
+
+  .background-color-system {
+    @include grid-col-3 {
+      @include card_background-color;
+    }
+  }
+
+  .dropdown-system {
+    @include grid-col-3 {
       @include card_test;
     }
   }
 
-  .flex-col-2 {
-    padding-block: 0;
-    .design-system-header {
-      margin-bottom: $spacer-md;
-    }
-    @include flex-col-2 {
-    }
-  }
-
   .border-radius-system {
-    .design-system-header {
-      margin-bottom: $spacer-md;
-    }
-    @include flex-col-3-demo("border-radius");
+    @include grid-col-3-demo("border-radius");
   }
 
   .img-sizes-system {
-    .design-system-header {
-      margin-bottom: $spacer-md;
-    }
-    @include flex-col-3-demo("img-sizes");
+    @include grid-col-3-demo("img-sizes");
   }
 }
-
-// @mixin flex-col-2 {
-//   //mobile
-//   .flex-auto {
-//     display: flex;
-//     flex-direction: column;
-//     gap: $spacer-md;
-//     width: 100%;
-//     & > * {
-//       @content;
-//       & > * {
-//         margin-bottom: $spacer-md;
-//       }
-//     }
-//   }
-//   // responsive
-//   @each $key, $value in $breakpoints {
-//     @media (width >= $value) and (width <= $breakpoint-xxl) and (width >= $breakpoint-lg) {
-//       .flex-auto {
-//         width: calc($value - $spacer-lg - ($border-padding-inline));
-//         display: flex;
-//         flex-direction: row;
-//         flex-wrap: wrap;
-//         gap: 5%;
-//         padding-block: 0;
-//         & > * {
-//           width: 47.5%;
-//           @content;
-//           & > * {
-//             margin-bottom: calc(
-//               ($value - $spacer-lg - $border-padding-inline) * 0.05
-//             );
-//           }
-//         }
-//       }
-//     }
-//   }
-//   // desktop
-//   @media (width >= $breakpoint-xxl) {
-//     .flex-auto {
-//       display: flex;
-//       flex-direction: row;
-//       flex-wrap: wrap;
-//       gap: 5%;
-//       width: calc(1200px - ($border-padding-inline));
-//       & > * {
-//         width: 47.5%;
-//         @content;
-//         & > * {
-//           margin-bottom: calc((1200px - $border-padding-inline) * 0.05);
-//           overflow: hidden;
-//         }
-//       }
-//     }
-//   }
-// }
 
 .nav-system {
   height: 50vh;

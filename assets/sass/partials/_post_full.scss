@@ -1,12 +1,24 @@
-.separator {
-  margin-inline: 0.5em;
-  font-size: 0.8rem;
-}
+@use "../variables" as *;
+@use "../components/atoms/links" as *;
+@use "../typography" as *;
 
 #breadcrumbs {
   ul {
     display: flex;
     align-items: center;
+    gap: $spacer-lg;
+    li {
+      margin-block-end: $spacer-lg;
+      a {
+        font-family: $heading-font;
+        font-size: $font-size-xs;
+        line-height: 1.5;
+        color: $link-color;
+        font-weight: $font-weight-400;
+        @include links;
+        @include link-underline($link-color, $accent-color);
+      }
+    }
   }
 }
 

@@ -5,7 +5,7 @@
 </div>
 
 <div class="wrapper-site-title">
-    <a href="<?=home_url();?>">
-        <span class="fs-md"><?=get_bloginfo('name');?></span>
+    <a class="fs-md" href="<?=home_url();?>">
+        <?=get_bloginfo('name');?>
     </a>
 </div>

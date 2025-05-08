@@ -4,6 +4,7 @@
 @use "./utilities/flex" as *;
 
 @use "./components/atoms/img" as *;
+@use "./components/atoms/links" as *;
 @use "./components/molecules/dropdown" as *;
 @use "./components/molecules/burger" as *;
 @use "./components/organisms/navbar-desktop" as *;
@@ -31,11 +32,13 @@ html {
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 *[popover] {
   border: none;
+  outline: none;
+  background-color: transparent;
 }
 
 body {
@@ -55,7 +58,7 @@ figure,
 blockquote,
 dl,
 dd {
-  margin-block: 0;
+  margin: 0;
 }
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
@@ -63,18 +66,20 @@ ul,
 ol {
   padding: 0;
   margin: 0;
-  list-style: none;
 }
-
-/* ------- Font family ------- */
-$heading-font: "Outfit", sans-serif;
-$text-font: "Fira Sans", sans-serif;
 
 p,
 a,
-span {
+span,
+button,
+input,
+textarea,
+select {
   font-family: $text-font;
   text-wrap: pretty;
+  color: $default-color;
+  font-weight: 400;
+  font-size: $font-size-xs;
 }
 
 /* Set shorter line heights on headings and interactive elements */
@@ -82,11 +87,10 @@ h1,
 h2,
 h3,
 h4,
-button,
 input,
 label {
-  font-family: $heading-font;
-
+  font-family: $secondary-font;
+  font-weight: 700;
   text-wrap: balance;
   line-height: 1.1;
 }
@@ -95,15 +99,6 @@ label {
 a:not([class]) {
   text-decoration-skip-ink: auto;
   color: currentColor;
-}
-
-/* Inherit fonts for inputs and buttons */
-input,
-button,
-textarea,
-select {
-  font-family: inherit;
-  font-size: inherit;
 }
 
 /* Make sure textareas without a rows attribute are not tiny */
@@ -123,16 +118,26 @@ picture {
   display: block;
 }
 
+ul {
+  ::marker {
+    width: $spacer-md;
+    height: $spacer-md;
+    color: $accent-color;
+  }
+}
+
 .header-fixed {
   @include header-fixed;
 }
-
-@media (width >= $breakpoint-sm) {
-  .wrapper {
-    padding-inline: $wrapper-padding-inline;
-  }
-  .wrapper-border-inline {
-    border-inline: $wrapper-border-inline solid $gray-color;
+.container {
+  @media (width >= $breakpoint-sm) {
+    .wrapper {
+      padding-inline: $wrapper-padding-inline;
+    }
+    .wrapper-border-inline {
+      border-inline: $wrapper-border-inline solid $gray-color;
+      padding-block-end: $spacer-md;
+    }
   }
 }
 
@@ -160,17 +165,4 @@ $card-padding: $spacer-md;
   width: $card-width;
   height: $card-height;
   padding: $card-padding;
-}
-
-body {
-  p {
-    font-size: $font-size-sm;
-  }
-}
-
-#search-results-popover {
-  background-color: $surface-color-3;
-}
-#aas-search-input {
-  background-color: $surface-color-2;
 }

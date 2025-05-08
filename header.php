@@ -14,7 +14,7 @@ if (function_exists('wp_body_open')){
 }
 ?>
 
-<header class="bg-background-color header">
+<header class=" header">
         <!-- Logo -->
     <div class="wrapper-logo flex-start gap-xl">
         <?php get_template_part('partials/header/logo'); ?>
@@ -44,17 +44,14 @@ if (function_exists('wp_body_open')){
     </div>
 
 
-    
-</header>
-
-    <?php
+        <?php
     $latest_posts = get_posts([
         'post_type' => 'post',
         'posts_per_page' => 5,
     ]);
     ?>
 
-    <div popover id="search-results-popover" class="wrapper-search-results">
+    <div popover id="search-results-popover" class="wrapper-search-results ">
         <?php if (function_exists('aas_search_form')): ?>
         <div class="wrapper-ajax-autocomplete-search">
             <?=do_shortcode('[ajax_autocomplete_search]'); ?>
@@ -75,3 +72,5 @@ if (function_exists('wp_body_open')){
     <div class="wrapper-navbar">
         <?php get_template_part('partials/header/navbar-mobile', null, ['theme_location' => 'header']); ?>
     </div>
+</header>
+
