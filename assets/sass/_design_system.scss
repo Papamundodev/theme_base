@@ -6,6 +6,7 @@
 @use "./components/atoms/list" as *;
 @use "./components/atoms/links" as *;
 @use "./components/atoms/button" as *;
+
 @mixin grid-col-3-demo($context) {
   .flex-auto {
     display: flex;
@@ -113,25 +114,17 @@
   .text-content {
     @include text-content;
 
-    h1,
     h2,
     h3,
     h4,
     h5,
     h6 {
-      font-family: $heading-font;
-      font-size: $font-size-xxl;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-      color: $heading-color;
-      font-weight: $font-weight-600;
-      margin-block-end: $spacer-md;
+      @include font-title-2;
     }
     p {
       font-family: $text-font;
       font-size: $font-size-sm;
       line-height: 1.6;
-      color: $default-color;
       font-weight: $font-weight-400;
       word-spacing: -0.3em;
     }
@@ -139,7 +132,6 @@
       font-family: $text-font;
       font-size: $font-size-xs;
       line-height: 1.5;
-      color: $default-color;
       font-weight: $font-weight-400;
       word-spacing: -0.3em;
       border-radius: $border-radius-rounded;
@@ -149,7 +141,6 @@
       font-family: $heading-font;
       font-size: $font-size-sm;
       line-height: 1.5;
-      color: $default-color;
       font-weight: $font-weight-400;
       @include btn;
     }
@@ -158,7 +149,6 @@
       font-family: $text-font;
       font-size: $font-size-sm;
       line-height: 1.5;
-      color: $link-color;
       font-weight: $font-weight-400;
       word-spacing: -0.3em;
     }
@@ -167,7 +157,6 @@
       font-family: $text-font;
       font-size: $font-size-xs;
       line-height: 1.5;
-      color: $link-color;
       font-weight: $font-weight-400;
     }
   }
@@ -280,16 +269,17 @@
 }
 
 /* ------- Design System ------- */
+.page-title,
+.post-title {
+  margin-block: $spacer-xl;
+  margin-inline: auto;
+  @include gradient-text;
+  h1 {
+    @include font-title-1;
+  }
+}
 
 .design-system {
-  .page-title {
-    font-size: $font-size-xxl;
-    margin-bottom: $spacer-lg;
-    text-align: center;
-    line-height: 1.5;
-    @include gradient-text;
-  }
-
   .design-system-header {
     padding-inline: $spacer-sm;
     padding-block: $spacer-sm;
@@ -392,4 +382,19 @@
     height: $spacer-xxl;
     padding-inline: $spacer-md;
   }
+}
+
+p {
+  color: $default-color;
+}
+
+button {
+  color: $default-color;
+}
+a,
+.nav-link {
+  color: $link-color;
+}
+span {
+  color: $default-color;
 }

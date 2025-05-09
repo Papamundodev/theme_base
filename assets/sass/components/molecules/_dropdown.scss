@@ -7,19 +7,18 @@
 //molecules
 @mixin dropdown-summary {
   display: grid;
-  grid-template-columns: minmax($icon-md, auto) 1fr;
+  grid-template-columns: minmax($icon-sm, auto) 1fr;
   align-items: center;
   width: 100%;
   .svg-container {
-    width: $icon-md;
-    height: $icon-md;
+    width: $icon-sm;
+    height: $icon-sm;
     display: flex;
   }
 }
 
 @mixin dropdown-svg-open {
   transition: all 0.2s step-start;
-  padding: $spacer-xs;
   border-radius: $border-radius-circle;
   svg {
     -webkit-transform: rotate(45deg);
@@ -32,22 +31,13 @@
   }
 }
 
-//animations
-@mixin animation-dropdown-start {
-  opacity: 0;
-  pointer-events: none;
-  width: clamp(300px, calc(100%), 100vw);
-  padding-block: $spacer-sm;
-  height: fit-content;
-}
-
 @mixin animation-dropdown-end {
   opacity: 1;
   pointer-events: auto;
   transition: opacity 0.2s ease-in-out;
 }
 
-@mixin dropdown-details($color: $surface-color) {
+@mixin dropdown-details($color: inherit) {
   &::marker {
     content: "";
     visibility: hidden;
@@ -167,7 +157,7 @@
   }
 }
 
-@mixin dropdown-hover($color: $surface-color) {
+@mixin dropdown-hover($color: inherit) {
   overflow: hidden;
   //hover and focus states
   position: relative;
@@ -187,9 +177,7 @@
     .svg-container {
       display: flex;
       svg {
-        vertical-align: middle;
         width: $icon-xs;
-        margin: auto;
         transition: all 0.3s ease;
       }
     }
@@ -200,9 +188,11 @@
     z-index: 10;
     top: 100%;
     left: 0;
-
-    // animation
-    @include animation-dropdown-start;
+    opacity: 0;
+    pointer-events: none;
+    width: clamp(300px, calc(100%), 100vw);
+    padding-block: $spacer-sm;
+    height: fit-content;
   }
 }
 
@@ -347,7 +337,6 @@
     @include list;
 
     a {
-      @include links;
       @include link-underline;
     }
     & > * {
@@ -357,7 +346,7 @@
 }
 
 .dropdown-details {
-  @include dropdown-details;
+  @include dropdown-details($surface-color);
   @include dropdown-custom;
   @include dropdown-details-animation;
 }
@@ -366,12 +355,6 @@
   height: 600px;
   overflow: hidden;
   padding-inline: $spacer-sm;
-}
-
-.dropdown-hover {
-  @include dropdown-hover;
-  @include dropdown-custom;
-  @include dropdown-custom-hover-open;
 }
 
 .dropdown-popover {
@@ -388,6 +371,11 @@
 }
 
 .dropdown-system {
+  .dropdown-hover {
+    @include dropdown-hover;
+    @include dropdown-custom-hover-open;
+    @include dropdown-custom;
+  }
   .dropdown-title {
     padding-block: $spacer-sm;
     padding-inline-start: $spacer-sm;

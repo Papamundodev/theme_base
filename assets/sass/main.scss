@@ -68,18 +68,12 @@ ol {
   margin: 0;
 }
 
-p,
-a,
-span,
+/*forms elements dont inherit fonts body attributes so we need to set them manually */
 button,
 input,
 textarea,
 select {
-  font-family: $text-font;
-  text-wrap: pretty;
-  color: $default-color;
-  font-weight: 400;
-  font-size: $font-size-xs;
+  font: inherit;
 }
 
 /* Set shorter line heights on headings and interactive elements */
@@ -89,16 +83,11 @@ h3,
 h4,
 input,
 label {
-  font-family: $secondary-font;
-  font-weight: 700;
-  text-wrap: balance;
-  line-height: 1.1;
 }
 
 /* A elements that don't have a class get default styles */
 a:not([class]) {
   text-decoration-skip-ink: auto;
-  color: currentColor;
 }
 
 /* Make sure textareas without a rows attribute are not tiny */

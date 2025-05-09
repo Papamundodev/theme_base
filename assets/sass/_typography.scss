@@ -37,17 +37,18 @@
 }
 /* Fonts */
 :root {
-  --primary-font: "Fira Sans", "Raleway", system-ui, -apple-system, "Segoe UI",
-  --secondary-font: "EB Garamond", serif;
-  --tertiary-font: "Outfit", sans-serif;
-  --quaternary-font: "Oswald", sans-serif;
+  --text-font: "Fira Sans", "Raleway", system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+  --primary-font: "EB Garamond", serif;
+  --secondary-font: "Outfit", sans-serif;
+  --heading-font: "Oswald", sans-serif;
   --font-size-base: 16px;
 }
 
-$text-font: "Fira Sans", "Raleway", system-ui, -apple-system, sans-serif;
-$primary-font: "EB Garamond", serif;
-$secondary-font: "Outfit", sans-serif;
-$heading-font: "Oswald", sans-serif;
+$text-font: var(--text-font);
+$primary-font: var(--primary-font);
+$secondary-font: var(--secondary-font);
+$heading-font: var(--heading-font);
 
 $fonts: (
   "text": $text-font,
@@ -61,3 +62,93 @@ $fonts: (
     font-family: $value;
   }
 }
+
+@mixin font-1 {
+  font-family: $text-font;
+  font-size: $font-size-sm;
+  line-height: 1.6;
+  color: inherit;
+  font-weight: $font-weight-400;
+  word-spacing: -0.3em;
+}
+
+@mixin font-nav-1 {
+  font-family: $secondary-font;
+  font-size: $font-size-sm;
+  line-height: 1.6;
+  color: inherit;
+  font-weight: $font-weight-400;
+  word-spacing: -0.3em;
+}
+
+.nav-link {
+  @include font-nav-1;
+}
+
+@mixin font-title-1 {
+  font-family: $heading-font;
+  font-size: $font-size-big;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: inherit;
+  font-weight: $font-weight-600;
+  margin-block-end: $spacer-md;
+}
+
+.page-title {
+  @include font-title-1;
+}
+
+@mixin font-title-2 {
+  font-family: $heading-font;
+  font-size: $font-size-xl;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: inherit;
+  font-weight: $font-weight-600;
+  margin-block-end: $spacer-md;
+}
+
+section-title {
+  @include font-title-2;
+}
+
+//   p {
+//     font-family: $text-font;
+//     font-size: $font-size-sm;
+//     line-height: 1.6;
+//     font-weight: $font-weight-400;
+//     word-spacing: -0.3em;
+//   }
+//   ul {
+//     font-family: $text-font;
+//     font-size: $font-size-xs;
+//     line-height: 1.5;
+//     font-weight: $font-weight-400;
+//     word-spacing: -0.3em;
+//     border-radius: $border-radius-rounded;
+//     @include list;
+//   }
+//   button {
+//     font-family: $heading-font;
+//     font-size: $font-size-sm;
+//     line-height: 1.5;
+//     font-weight: $font-weight-400;
+//     @include btn;
+//   }
+
+//   a {
+//     font-family: $text-font;
+//     font-size: $font-size-sm;
+//     line-height: 1.5;
+//     font-weight: $font-weight-400;
+//     word-spacing: -0.3em;
+//   }
+
+//   span {
+//     font-family: $text-font;
+//     font-size: $font-size-xs;
+//     line-height: 1.5;
+//     font-weight: $font-weight-400;
+//   }
+// }

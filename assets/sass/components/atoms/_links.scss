@@ -2,13 +2,13 @@
 @use "./utilities/flex" as *;
 @use "../../typography" as *;
 
-@mixin custom-link {
+@mixin custom-btn-link {
   background-color: transparent;
   font-family: $primary-font;
   font-weight: 400;
 }
 
-@mixin links {
+@mixin link-underline($color: $link-color, $hover-color: $link-hover-color) {
   position: relative;
 
   display: flex;
@@ -17,22 +17,15 @@
 
   cursor: pointer;
 
-  letter-spacing: 0;
-  word-spacing: 0;
   text-transform: capitalize;
   text-decoration: none;
   line-height: 1.5rem;
-}
+  color: $color;
 
-.btn-links {
-  @include links;
-  @include custom-link;
-}
-
-@mixin link-underline($color: $default-color, $hover-color: $accent-color) {
   $underline-offset: 0.2rem;
 
   &:hover {
+    color: $hover-color;
     &::after {
       width: 100%;
     }
@@ -62,4 +55,23 @@
     transform: translate(-50%, 0);
     transition: width 0.4s ease-in-out;
   }
+}
+
+@mixin link {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  width: fit-content;
+
+  cursor: pointer;
+
+  text-transform: capitalize;
+  text-decoration: none;
+  line-height: 1.5rem;
+}
+
+.btn-links {
+  @include link;
+  @include custom-btn-link;
 }

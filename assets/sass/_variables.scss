@@ -53,7 +53,14 @@
   --link-color: var(--accent-color-3);
   --link-hover-color: var(--accent-color-4);
   --link-active-color: var(--accent-color-2);
-  --gradient-color: linear-gradient(to right, #ff6dc5, #371da0, #fc8181);
+  --gradient-color: linear-gradient(
+    to right,
+    #890088,
+    #ff6dc5,
+    #371da0,
+    #fc8181,
+    #941727
+  );
 }
 
 .dark-theme {
@@ -332,3 +339,5 @@ $border-padding-inline: calc(
 
 /* ------- Underline ------- */
 $underline-height: 1.5px;
+
+/* ------- Font ------- */

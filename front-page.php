@@ -400,7 +400,7 @@ $content = wpautop($object->post_content);
                         <div class="text-content">
                             <h3 class="">La couleur du background est background-color-4.</h3>
                             <p class="">Max line length: Limit paragraphs to ~60–75 characters (including spaces). In CSS, this often translates to max-width: 60ch; for the text container. As CSS-Tricks notes, “typographers will recommend that a paragraph have a width of around 75 characters for legibility”
-                            <ul class="bg-background-color-3">
+                            <ul class="">
                                 <li>On aura le default-color pour le texte.</li>
                                 <li>On aura le heading-color pour les titres.</li>
                                 <li>On aura l'accent-color pour les boutons.</li>
@@ -415,7 +415,7 @@ $content = wpautop($object->post_content);
                         <div class="text-content">
                             <h3 class="">La couleur du background est background-color-3.</h3>
                             <p class="">Max line length: Limit paragraphs to ~60–75 characters (including spaces). In CSS, this often translates to max-width: 60ch; for the text container. As CSS-Tricks notes, “typographers will recommend that a paragraph have a width of around 75 characters for legibility” css-tricks.com. Too-long lines make the eye work harder; break at natural points (see bullet on vertical rhythm below).</p>
-                            <ul class="bg-background-color-4">
+                            <ul class="">
                                 <li>On aura le default-color pour le texte.</li>
                                 <li>On aura le heading-color pour les titres.</li>
                                 <li>pas d'accent color.</li>

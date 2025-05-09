@@ -38,14 +38,11 @@ footer {
     }
     .dropdown-header {
       .dropdown-title {
-        @include links;
+        @include link-underline($accent-color, $link-hover-color);
       }
     }
-    li a,
-    .dropdown-title {
-      color: $link-color;
-      @include links;
-      font-weight: 600;
+    li a {
+      @include link-underline($accent-color, $link-hover-color);
     }
 
     li.active > * {
@@ -76,12 +73,19 @@ footer {
           padding-inline-start: 0;
         }
       }
-      &:hover {
-        .dropdown-title {
+      .svg-container {
+        cursor: pointer;
+        margin-block-start: 0.3em;
+        svg {
           color: $accent-color;
         }
+      }
+      &:hover {
         .svg-container {
           background-color: transparent;
+          svg {
+            color: $link-hover-color;
+          }
         }
       }
     }

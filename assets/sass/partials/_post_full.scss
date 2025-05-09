@@ -15,8 +15,7 @@
         line-height: 1.5;
         color: $link-color;
         font-weight: $font-weight-400;
-        @include links;
-        @include link-underline($link-color, $accent-color);
+        @include link-underline;
       }
     }
   }
