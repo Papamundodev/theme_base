@@ -112,7 +112,12 @@
   --link-color: var(--accent-color-3);
   --link-hover-color: var(--accent-color-2);
   --link-active-color: var(--accent-color-4);
-  --gradient-color: linear-gradient(to right, #efb5b9, #ff6dc5, #fc8181);
+  --gradient-color: linear-gradient(
+    to right,
+    var(--accent-color-3),
+    var(--accent-color-4),
+    var(--accent-color-2)
+  );
 }
 
 /* ------- Colors ------- */

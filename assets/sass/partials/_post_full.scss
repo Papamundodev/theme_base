@@ -1,7 +1,8 @@
 @use "../variables" as *;
 @use "../components/atoms/links" as *;
 @use "../typography" as *;
-
+@use "../design_system" as *;
+@use "../utilities/flex" as *;
 #breadcrumbs {
   ul {
     display: flex;
@@ -9,14 +10,7 @@
     gap: $spacer-lg;
     li {
       margin-block-end: $spacer-lg;
-      a {
-        font-family: $heading-font;
-        font-size: $font-size-xs;
-        line-height: 1.5;
-        color: $link-color;
-        font-weight: $font-weight-400;
-        @include link-underline;
-      }
+      color: $link-color;
     }
   }
 }
@@ -36,5 +30,42 @@
   img {
     width: 100%;
     height: auto;
+  }
+}
+
+.post-full {
+  background-color: $background-color-2;
+  @include card_text;
+  .post-title {
+    background-image: $gradient-color;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+  }
+  .post-content {
+    background: linear-gradient(
+        90deg,
+        $background-color-3 50%,
+        $background-color-4 100%
+      )
+      no-repeat;
+    padding: $spacer-lg;
+    border-radius: $border-radius-rounded;
+    & a {
+      color: $accent-color;
+      &:hover {
+        color: $link-hover-color;
+      }
+    }
+  }
+  .post-date {
+    background-color: $background-color-3;
+    padding: $spacer-sm;
+    border-radius: $border-radius-rounded;
+    gap: $spacer-sm;
+    @include flex-center;
   }
 }

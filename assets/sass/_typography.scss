@@ -78,11 +78,6 @@ $fonts: (
   line-height: 1.6;
   color: inherit;
   font-weight: $font-weight-400;
-  word-spacing: -0.3em;
-}
-
-.nav-link {
-  @include font-nav-1;
 }
 
 @mixin font-title-1 {

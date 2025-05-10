@@ -3,6 +3,7 @@
 @use "../../utilities/flex" as *;
 @use "../atoms/links" as *;
 @use "../molecules/dropdown" as *;
+@use "../../typography" as *;
 @mixin header-fixed {
   &::before {
     content: "";
@@ -45,8 +46,13 @@ footer {
       @include link-underline($accent-color, $link-hover-color);
     }
 
-    li.active > * {
+    li.active a,
+    li.active .dropdown-title,
+    li.active .svg-container {
       color: $link-active-color;
+      svg {
+        color: $link-active-color;
+      }
       &::after {
         background-color: $link-active-color;
         width: 100%;
@@ -90,4 +96,8 @@ footer {
       }
     }
   }
+}
+
+.nav-link {
+  @include font-nav-1;
 }

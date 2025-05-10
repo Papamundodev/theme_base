@@ -132,7 +132,12 @@ class Base
                 $menu[$m->ID]['classes'] = $m->classes;
                 $menu[$m->ID]['url'] = $m->url;
                 $menu[$m->ID]['object_id'] = intval($m->object_id);
-                $object = get_post($m->object_id);
+                if($m->type === 'post_type'){
+                    $object = get_post($m->object_id);
+                }elseif($m->type === 'taxonomy'){
+                    $object = get_term($m->object_id);
+                }
+                $menu[$m->ID]['object'] = $object;
                 $menu[$m->ID]['target'] = $m->target;
                 unset($menu_items[$k]);
                 $menu[$m->ID]['children'] = self::populate_children($menu_items, $m);
@@ -163,6 +168,12 @@ class Base
                     $children[$m->ID]['parent'] = intval($menu_item->ID);
                     $children[$m->ID]['target'] = $m->target;
                     $children[$m->ID]['object_id'] = intval($m->object_id);
+                    // Get the object based on the menu item type
+                    if ($m->type === 'post_type') {
+                        $children[$m->ID]['object'] = get_post($m->object_id);
+                    } elseif ($m->type === 'taxonomy') {
+                        $children[$m->ID]['object'] = get_term($m->object_id);
+                    }
                     unset($menu_array[$k]);
                     $children[$m->ID]['children'] = self::populate_children($menu_array, $m);
                 }
@@ -179,7 +190,43 @@ class Base
         return '';
     }
 
+    /**
+     * Check if an object is a WP_Post or WP_Term
+     * @param mixed $object The object to check
+     * @return string 'post'|'term'|'unknown'
+     */
+    public static function get_object_type($object) : string
+    {
+        if ($object instanceof \WP_Post) {
+            return 'post';
+        } elseif ($object instanceof \WP_Term) {
+            return 'term';
+        }
+        return 'unknown';
+    }
 
+    /**
+     * Get active class for parent menu items
+     * @param array $item Menu item array
+     * @param object $object Current queried object
+     * @param int $page_for_posts ID of the posts page
+     * @return string Active class if conditions are met
+     */
+    public static function get_parent_active_class($item, $object) : string
+    {
+        $active_class = '';
+        $page_for_posts = get_option('page_for_posts');
+        if(self::get_object_type($item['object']) === 'post' && $object->post_type === 'post'){
+            if($item['object']->ID === intval($page_for_posts)){
+                $active_class = 'active';
+            }
+        }elseif(self::get_object_type($item['object']) === 'term'){
+            if($item['object']->term_id === intval($object->parent)){
+                $active_class = 'active';
+            }
+        }
+        return $active_class;
+    }
 
     /**
      * Register sidebars and widgetized areas.
