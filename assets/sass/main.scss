@@ -1,7 +1,7 @@
 @use "./variables" as *;
 @use "./animations" as *;
-
 @use "./utilities/flex" as *;
+@use "./typography" as *;
 
 @use "./components/atoms/img" as *;
 @use "./components/atoms/links" as *;
@@ -15,7 +15,6 @@
 @use "./partials/post_full" as *;
 
 @use "./design_system" as *;
-@use "./typography" as *;
 
 @view-transition {
   navigation: auto;
@@ -113,6 +112,34 @@ ul {
     height: $spacer-md;
     color: $accent-color;
   }
+}
+
+::-moz-selection {
+  color: $accent-color;
+  background: $background-color;
+  font-weight: $font-weight-600;
+}
+
+::selection {
+  color: $accent-color;
+  background: $background-color;
+  font-weight: $font-weight-600;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: $background-color-2;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $accent-color-4;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $accent-color;
 }
 
 .header-fixed {

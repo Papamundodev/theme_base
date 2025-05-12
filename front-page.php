@@ -360,7 +360,11 @@ $content = wpautop($object->post_content);
                                 <li>In CSS, this often translates to max-width: 60ch; for the text container. As CSS-Tricks notes, “typographers will recommend that a paragraph have a width of around 75 characters for legibility” css-tricks.com.</li>
                                 <li>Too-long lines make the eye work harder; break at natural points (see bullet on vertical rhythm below).</li>
                             </ul>
-                            <button class="accent-color">Button</button>
+                            <div class="button-wrapper">
+                                <div class="button-container">
+                                    <button class=" button heading-font">Button even larger text</button>
+                                </div>
+                            </div>
                             <a href="" class="accent-color">Too-long lines make the eye work harder; break at natural points (see bullet on vertical rhythm below)</a>
                         </div>
                     </div>
@@ -375,7 +379,11 @@ $content = wpautop($object->post_content);
                                 <li>On aura le heading-color pour les titres.</li>
                                 <li>On aura l'accent-color pour les boutons.</li>
                             </ul>
-                            <button class="">Button</button>
+                            <div class="button-wrapper">
+                                <div class="button-container">
+                                    <button class=" button heading-font">Button even larger text</button>
+                                </div>
+                            </div>
                             <a href="" class="">Link</a>
                         </div>
                     </div>
@@ -390,7 +398,11 @@ $content = wpautop($object->post_content);
                                 <li>On aura le heading-color pour les titres.</li>
                                 <li>On aura pas d'accent-color.</li>
                             </ul>
-                            <button class="">Button</button>
+                            <div class="button-wrapper">
+                                <div class="button-container">
+                                    <button class=" button heading-font">Button even larger text</button>
+                                </div>
+                            </div>
                             <a href="" class="">Link</a>
                         </div>
                     </div>
@@ -405,7 +417,11 @@ $content = wpautop($object->post_content);
                                 <li>On aura le heading-color pour les titres.</li>
                                 <li>On aura l'accent-color pour les boutons.</li>
                             </ul>
-                            <button class="">Button</button>
+                            <div class="button-wrapper">
+                                <div class="button-container">
+                                    <button class=" button heading-font">Button even larger text</button>
+                                </div>
+                            </div>
                             <a href="" class="">Link</a>
                         </div>
                     </div>
@@ -420,7 +436,11 @@ $content = wpautop($object->post_content);
                                 <li>On aura le heading-color pour les titres.</li>
                                 <li>pas d'accent color.</li>
                             </ul>
-                            <button class="">Button</button>
+                            <div class="button-wrapper">
+                                <div class="button-container">
+                                    <button class=" button heading-font">Button even larger text</button>
+                                </div>
+                            </div>
                             <a href="" class="">Link</a>
                         </div>
                     </div>
@@ -562,6 +582,35 @@ $content = wpautop($object->post_content);
                 <div class="">
                     <div class="">
                         <div class=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="wrapper wrapper-border-inline button-system ">
+            <div class="design-system-header ">
+                <h2 class="">Buttons</h2>
+            </div>
+            <div class="flex-auto">
+                <div class="button-wrapper">
+                    <div class="button-container">
+                        <button class="button text-font">Button</button>
+                    </div>
+                </div>
+                <div class="button-wrapper">
+                    <div class="button-container">
+                        <button class=" button primary-font">Button medium</button>
+                    </div>
+                </div>
+                <div class="button-wrapper">
+                    <div class="button-container">
+                        <button class=" button secondary-font">Button large text</button>
+                    </div>
+                </div>
+                <div class="button-wrapper">
+                    <div class="button-container">
+                        <button class=" button heading-font">Button even larger text</button>
                     </div>
                 </div>
             </div>
@@ -750,6 +799,20 @@ $content = wpautop($object->post_content);
             </div>
         </div>
 
+        <div class="wrapper wrapper-border-inline ">
+            <div class="design-system-header ">
+                <h2 class="">3D</h2>
+            </div>
+            <div class="design-system-3d">
+                <div class="scene">
+                    <div class="title">
+                        <h1>Hello</h1>
+                    </div>
+                    <div class="panel">
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 </section>

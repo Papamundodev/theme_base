@@ -151,6 +151,12 @@
       line-height: 1.5;
       font-weight: $font-weight-400;
       word-spacing: -0.3em;
+      &:hover {
+        text-decoration-thickness: 0.1em;
+        font-weight: $font-weight-600;
+        transition: text-decoration-thickness 0.2s ease-in-out,
+          font-weight 0.3s ease-in-out;
+      }
     }
 
     span {
@@ -219,10 +225,7 @@
   @media (width >= $breakpoint-xxl) {
     .flex-auto {
       display: grid;
-      grid-template-columns: minmax(auto, 33%) minmax(auto, 33%) minmax(
-          auto,
-          33%
-        );
+      grid-template-columns: 1fr 1fr 1fr;
       gap: $spacer-md;
       width: calc(1200px - ($border-padding-inline));
       & > * {
@@ -240,6 +243,7 @@
   @include gradient-text;
   h1 {
     @include font-title-1;
+    -webkit-text-stroke: 1px $black-color;
   }
 }
 
@@ -362,3 +366,177 @@ a,
 span {
   color: $default-color;
 }
+
+// .button-system .flex-auto {
+//   display: flex;
+//   gap: $spacer-md;
+//   width: 100%;
+//   .button-container {
+//     margin-inline: auto;
+//     background-image: linear-gradient(
+//       to bottom,
+//       $background-color-3,
+//       $background-color-4
+//     );
+//     border: 0.08em solid transparent;
+//     padding: 0.08em;
+//     margin-block-end: $spacer-lg;
+//     button {
+//       @include btn;
+//       letter-spacing: 0.02em;
+//       font-weight: $font-weight-600;
+//       font-size: $font-size-sm;
+//       padding-inline: $spacer-md;
+//       padding-block: $spacer-sm;
+//     }
+//     &:hover {
+//       animation: gradient-animation 0.2s step-start forwards;
+//     }
+//   }
+// }
+
+// .button-system .flex-auto {
+//   display: flex;
+//   gap: $spacer-md;
+//   justify-content: center;
+//   width: 100%;
+//   .button-wrapper {
+//     margin-block-end: $spacer-lg;
+//     background-color: $surface-color;
+//     border: 0.08em solid $surface-color-5;
+//     border-radius: $border-radius-rounded;
+//     .button-container {
+//       background-image: linear-gradient(
+//         to bottom,
+//         $accent-color,
+//         $accent-color-2,
+//         $accent-color-3,
+//         $accent-color-4
+//       );
+//       background-size: 100% 100%;
+//       background-repeat: no-repeat;
+//       background-position: 0 0;
+//       background-clip: text;
+//       -webkit-background-clip: text;
+//       -webkit-text-fill-color: transparent;
+//       opacity: 1;
+//       button {
+//         @include btn;
+//         letter-spacing: 0.02em;
+//         font-weight: $font-weight-600;
+//         font-size: $font-size-sm;
+//         padding-inline: $spacer-md;
+//         padding-block: $spacer-sm;
+//       }
+//     }
+//   }
+// }
+
+.button-wrapper {
+  margin-block-end: $spacer-lg;
+  background-color: $surface-color;
+  border: 0.08em solid $surface-color-5;
+  border-radius: $border-radius-rounded;
+  padding-inline: $spacer-md;
+  padding-block: $spacer-sm;
+  .button-container {
+    button {
+      @include btn;
+      letter-spacing: 0.02em;
+      font-weight: $font-weight-600;
+      font-size: $font-size-sm;
+    }
+    &:hover {
+      animation: gradient-animation 0.2s step-start forwards;
+    }
+  }
+}
+
+.design-system-3d {
+  display: grid;
+  place-items: center;
+  width: fit-content;
+  margin-inline: auto;
+  overflow: hidden;
+  perspective: 1000px;
+  *:not(.panel) {
+    transform-style: preserve-3d;
+  }
+
+  .scene {
+    position: relative;
+    //transform: rotateX(-30deg) rotateY(30deg);
+    .title {
+      @include font-title-1;
+      -webkit-text-stroke: 3px $default-color;
+      color: $background-color;
+    }
+    .panel {
+      position: absolute;
+      top: 0%;
+      left: 0;
+      width: 100%;
+      height: 80%;
+      transform-origin: bottom;
+      background-image: linear-gradient(
+        to bottom,
+        $accent-color,
+        $accent-color-2,
+        $accent-color-3,
+        $accent-color-4
+      );
+      border-radius: $border-radius-rounded;
+      rotate: x 95deg;
+      z-index: -10;
+    }
+  }
+  &:hover {
+    animation: 0.25s gradient-animation 0.2s step-start forwards;
+    .panel {
+      animation: rotate-panel 0.5s linear forwards;
+    }
+  }
+}
+
+@keyframes rotate-panel {
+  0% {
+    opacity: 0.4;
+    rotate: x 95deg;
+  }
+  30% {
+    opacity: 0.6;
+    rotate: x 0deg;
+  }
+  100% {
+    rotate: x 0deg;
+    opacity: 0;
+  }
+}
+@keyframes gradient-animation {
+  to {
+    background-image: linear-gradient(
+      to bottom,
+      $accent-color,
+      $accent-color-2,
+      $accent-color-3,
+      $accent-color-4
+    );
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 1;
+  }
+}
+
+// position: absolute;
+//   top: -8px;
+//   left: -200px;
+//   width: 100%;
+//   height: 100%;
+//   transform-origin: center;
+//   background-color: black;
+//   rotate: x -81deg;
+//   animation: rotate-panel 3s linear forwards;

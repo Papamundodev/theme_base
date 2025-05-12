@@ -19,7 +19,6 @@
 
   text-transform: capitalize;
   text-decoration: none;
-  line-height: 1.5rem;
   color: $color;
 
   $underline-offset: 0.2rem;
@@ -28,20 +27,9 @@
     color: $hover-color;
     &::after {
       width: 100%;
+      transform: translate3d(-50%, 1px, 1px) scale3d(1, 1, 1)
+        rotate3d(0, 0, 1, 0deg);
     }
-  }
-
-  &::before {
-    content: "";
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: $underline-height;
-    background: $color;
-    left: 50%;
-    bottom: -$underline-offset;
-    transform: translate(-50%, 0);
-    transition: width 0.4s ease-in-out;
   }
   &::after {
     content: "";
@@ -52,8 +40,9 @@
     background: $hover-color;
     left: 50%;
     bottom: -$underline-offset;
-    transform: translate(-50%, 0);
-    transition: width 0.4s ease-in-out;
+    transform: translate3d(-50%, 1px, 1px) scale3d(0, 1, 1)
+      rotate3d(0, 0, 1, 0deg);
+    transition: transform 0.4s ease-in-out, width 0.4s ease-in-out;
   }
 }
 
