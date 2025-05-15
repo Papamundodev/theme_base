@@ -10,8 +10,7 @@ const path = require("path");
 
 // Compile SCSS to CSS
 gulp.task("styles", async function () {
-  const autoprefixer = await import("gulp-autoprefixer"); // Dynamic import for autoprefixer
-  const cleanCSS = await import("gulp-clean-css"); // Dynamic import for cleanCSS
+  const autoprefixer = await import("gulp-autoprefixer");
 
   return gulp
     .src(["./assets/sass/main.scss"])
@@ -25,8 +24,7 @@ gulp.task("styles", async function () {
         },
       }).on("error", sass.logError)
     )
-    .pipe(autoprefixer.default()) // Add vendor prefixes
-    .pipe(cleanCSS.default({ compatibility: "ie11" })) // Minify CSS
+    .pipe(autoprefixer.default())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest("./assets/build/css"))
     .pipe(browserSync.stream());

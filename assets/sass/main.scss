@@ -2,7 +2,6 @@
 @use "./animations" as *;
 @use "./utilities/flex" as *;
 @use "./typography" as *;
-
 @use "./components/atoms/img" as *;
 @use "./components/atoms/links" as *;
 @use "./components/molecules/dropdown" as *;
@@ -11,14 +10,27 @@
 @use "./components/organisms/navbar-mobile" as *;
 @use "./components/organisms/search-open" as *;
 @use "./components/organisms/header" as *;
-
 @use "./partials/post_full" as *;
-
 @use "./design_system" as *;
+
+@layer base, components;
+
+@layer base {
+  .test-layer-system {
+    color: red;
+  }
+}
+
+@layer components {
+  .test-layer-system {
+    color: blue;
+  }
+}
 
 @view-transition {
   navigation: auto;
 }
+
 /* Box sizing rules */
 *,
 *::before,
